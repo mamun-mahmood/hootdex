@@ -14,6 +14,10 @@ td, th {
 
 }
 
+tr:nth-child(odd){
+  background-color: #77C7A7;
+
+}
 tr:nth-child(even) {
   background-color: #dddddd;
 }
@@ -22,7 +26,7 @@ tr:nth-child(even) {
   font-size: 2rem;
   font-weight: 900;
   text-align: center;
-  color: rgb(2, 30, 86) ;;
+  color: rgb(244, 169, 50) ;
 }
 
 .table__container{
@@ -30,6 +34,7 @@ tr:nth-child(even) {
   display: flex;
   justify-content: center;
   align-items: center;
+ 
 }
 
 form{
@@ -88,4 +93,17 @@ label{
 form h3{
   color: #fff;
   font-size: 2rem;
+}
+
+.banner-hero{
+  background: rgba(54, 246, 224, 0.25);
+box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+backdrop-filter: blur( 4px );
+-webkit-backdrop-filter: blur( 4px );
+border-radius: 10px;
+border: 1px solid rgba( 255, 255, 255, 0.18 );
+  min-height: 85vh;
+ width: 95%;
+ margin: 1rem;
+ margin-top: 2rem;
 }

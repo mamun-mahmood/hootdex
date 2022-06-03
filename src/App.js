@@ -28,7 +28,7 @@ function App() {
         <Routes>
           <Route path="/create-token" element={<CreateToken />} />
 
-          <Route path="/" element={user?<Home />:<Login />} />
+          <Route path="/" element={<Home />} />
           <Route path="/wallet" element={<Wallet />} />
           <Route path="/login" element={<Login />} />
         </Routes>

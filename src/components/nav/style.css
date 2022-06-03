@@ -3,7 +3,7 @@
   flex-direction: row;
   justify-content: space-between;
   padding: 1rem;
-  background-color: rgb(2, 30, 86);
+  background-color: #002945;
   border: 1px solid #77C7A7;
 }
 
@@ -29,4 +29,9 @@ button{
 button:hover{
     background-color: rgb(244, 169, 50);
     color: #fff;
+}
+.header-link{
+   
+    background-color: rgb(2, 30, 86);
+    color: #77C7A7;
 }
