@@ -1,38 +1,91 @@
-.App {
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 80%;
+  padding: 1rem;
+  margin: 1rem;
+}
+
+td, th {
+  border: 1px solid #dddddd;
   text-align: center;
+  padding: 1rem;
+
+
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+tr:nth-child(even) {
+  background-color: #dddddd;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.primary__title{
+  font-size: 2rem;
+  font-weight: 900;
+  text-align: center;
+  color: rgb(2, 30, 86) ;;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.table__container{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+form{
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  align-items: center;
+  min-width: 300px;
+  min-height: 55vh;
+  height: 80%;
+  width: 60%;
+padding: 1rem;
+  /* From https://css.glass */
+background: rgba(255, 255, 255, 0.2);
+border-radius: 16px;
+box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+backdrop-filter: blur(5px);
+-webkit-backdrop-filter: blur(5px);
+border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
-.App-link {
-  color: #61dafb;
+input{
+  width: 90%;
+  margin: 1rem;
+  padding: .8rem;
+  outline: none;
+  font-size: 1.1rem;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.screen{
+  min-height: 90vh;
+  background-color: rgb(1, 13, 38);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+label{
+  width: 90%;
+  color: rgb(244, 169, 50);
+  font-weight: 600;
+  font-size: 1.1rem;
+  margin-top: 1rem;
+}
+
+.submit-btn{
+  width: 300px;
+  margin-top: 2rem;
+
+ padding: 1rem;
+ margin-left: auto;
+ margin-right:3rem;
+}
+
+form h3{
+  color: #fff;
+  font-size: 2rem;
 }
