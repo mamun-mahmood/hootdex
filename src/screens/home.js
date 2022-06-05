@@ -1,4 +1,5 @@
 import React from "react";
+import Chart from "./chart";
 
 export default function Home() {
   const poolTableAttributes = [
@@ -135,6 +136,8 @@ export default function Home() {
     <p style={{color:'orange'}}>Swap, earn, and build on the leading decentralized crypto trading protocol.</p>
     </div> */}
       <div>
+    
+        <Chart />
         <h1 className="primary__title">Available Pools</h1>
       </div>
       <div className="table__container">

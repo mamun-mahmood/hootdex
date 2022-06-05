@@ -4,7 +4,7 @@
   justify-content: space-between;
   padding: 1rem;
   background-color: #002945;
-  border: 1px solid #77C7A7;
+
 }
 
 a{
@@ -32,6 +32,8 @@ button:hover{
 }
 .header-link{
    
-    background-color: rgb(2, 30, 86);
+    background-color: #002945;
     color: #77C7A7;
+    border: none;
+    outline: none;
 }
