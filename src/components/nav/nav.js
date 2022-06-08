@@ -5,7 +5,7 @@ import logo from '../../assets/images/logo.png'
 export default function Nav() {
   const [user,setUser]=useState(null)
 const findUser=async()=>{
-  let data =localStorage.getItem('usercredshootdexas27')
+  let data =localStorage.getItem('hootdex_secretcookie')
   if(data){
       setUser(JSON.parse(data))
   }
@@ -25,8 +25,8 @@ const findUser=async()=>{
   <Link to="/wallet"> <button className='header-link'>Developers</button></Link>
   <Link to="/wallet"> <button className='header-link'>Blog</button></Link>
   <Link to="/wallet"> <button className='header-link'>FAQ</button></Link>
-  {user?<><Link to="/create-token"> <button>Create Token</button></Link>
-   <Link to="/wallet"> <button>Wallet</button></Link></>: <Link to="/login"> <button>Login</button></Link>
+  {user &&user.loggedIn?<><Link to="/create-token"> <button>Create Token</button></Link>
+   <Link to="/dashboard"> <button>Wallet</button></Link></>: <Link to="/login"> <button>Login</button></Link>
   }
     </div>
     </div>

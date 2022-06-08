@@ -1,14 +1,49 @@
-import React from 'react'
+import axios from 'axios';
+import React, { useState } from 'react'
 import logo from '../assets/images/logo.png'
-export default function Login() {
+import { useNavigate } from "react-router-dom";
+export default function Login(props) {
+  const [inputData,setInputData]=useState({email:"",password:""})
+  const navigate = useNavigate();
+
+  const hanldeSubmit=(e)=>{
+    e.preventDefault();
+    if(inputData.email.length==0 || inputData.password.length==0){
+      alert('Please fill all required fields');
+      return
+      };
+      axios.post(`https://api.pecunovus.net/user/login`,{
+        email:inputData.email,
+        password:inputData.password
+      }).then(res=>{
+        if(res.data.loggedIn==true){
+         
+          localStorage.setItem('hootdex_secretcookie',JSON.stringify(res.data))
+          props.loginData(res.data)
+        
+          navigate('/dashboard')
+         }
+        console.log(res.data)
+
+      }).catch(err=>{console.log(err)})
+
+};
+
+
+const handleChange=(e)=>{
+  let name =e.target.name;
+  let value=e.target.value;
+  setInputData({...inputData,[name]:value})
+}
   return (
     <div className='screen'>
-        <form onSubmit={(e)=>{e.preventDefault()}}>
+        <form onSubmit={hanldeSubmit}>
         <img src={logo} width={200} />
+        
         <label>Email</label>
-            <input type={'email'} placeholder='Email' />
+            <input type={'email'} name="email" onChange={handleChange} value={inputData.email} placeholder='Email' />
             <label>Password</label>
-            <input type={'password'} placeholder='Password' />
+            <input type={'password'} name="password" onChange={handleChange} value={inputData.password} placeholder='Password' />
             <button className='submit-btn'>Login</button>
         </form>
     </div>

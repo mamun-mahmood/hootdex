@@ -8,18 +8,32 @@ import CreateToken from "./screens/createToken";
 import Wallet from "./screens/wallet";
 import Login from "./screens/login";
 import { useEffect, useState } from "react";
+import Dashboard from "./screens/dashboard";
 function App() {
   const [user,setUser]=useState(null)
   const findUser=async()=>{
-    let data =localStorage.getItem('usercredshootdexas27')
+    let data =localStorage.getItem('hootdex_secretcookie')
     if(data){
         setUser(JSON.parse(data))
     }
   
   }
-    useEffect(()=>{
-      findUser()
-    },[])
+
+  useEffect(()=>{
+    let data=localStorage.getItem('hootdex_secretcookie')
+  
+   if(data){
+    
+       setUser(JSON.parse(data))
+   }
+  },[])
+
+
+  const handleUserToken=(e)=>{
+    setUser(e)
+  
+  }
+
   return (
     <BrowserRouter>
       <div>
@@ -30,7 +44,8 @@ function App() {
 
           <Route path="/" element={<Home />} />
           <Route path="/wallet" element={<Wallet />} />
-          <Route path="/login" element={<Login />} />
+          <Route path="/login" element={<Login loginData={(e)=>{handleUserToken(e)}} />} />
+          <Route path="/dashboard" element={user&& user.loggedIn?<Dashboard user={user} />:<Login />} />
         </Routes>
       </div>
       <Footer />
