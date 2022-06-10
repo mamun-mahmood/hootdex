@@ -9,6 +9,7 @@ import Typography from "@mui/material/Typography";
 import Divider from "@mui/material/Divider";
 import IconButton from "@mui/material/IconButton";
 import Grid from "@mui/material/Grid";
+import MenuIcon from "@mui/icons-material/Menu";
 // import Paper from "@mui/material/Paper";
 import Link from "@mui/material/Link";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
@@ -24,54 +25,10 @@ import { Paper } from "@mui/material";
 // import PieChart from "./PieChart";
 import axios from "axios";
 import Piechart from "../components/dashboard/PieChart";
-
-// import TeacherSignUp from "../../../components/SignUp/TeacherSignUp";
-// import AllStudents from "./AllStudents";
-// import Depertments from "./Depertments";
-// import AdmissionSignUp from "../../../components/SignUp/AdmissionSignUp";
-// import AllTeacher from "./AllTeacher";
-
-function Copyright(props) {
-  return (
-    <Typography
-      variant="body2"
-      color="text.secondary"
-      align="center"
-      {...props}
-    >
-      {"Developed By "}
-      <Link
-        color="inherit"
-        href="https://github.com/mamamun009/"
-        target="blank"
-      >
-        Mamoon Mahmood
-      </Link>{" "}
-      {new Date().getFullYear()}
-      {"."}
-    </Typography>
-  );
-}
-
+import Transactions from "../components/dashboard/Transaction";
+import AssetChart from "../components/dashboard/AssetChart";
+import InvAssetChart from "../components/dashboard/InvAssetChart";
 const drawerWidth = 240;
-
-const AppBar = styled(MuiAppBar, {
-  shouldForwardProp: (prop) => prop !== "open",
-})(({ theme, open }) => ({
-  zIndex: theme.zIndex.drawer + 1,
-  transition: theme.transitions.create(["width", "margin"], {
-    easing: theme.transitions.easing.sharp,
-    duration: theme.transitions.duration.leavingScreen,
-  }),
-  ...(open && {
-    marginLeft: drawerWidth,
-    width: `calc(100% - ${drawerWidth}px)`,
-    transition: theme.transitions.create(["width", "margin"], {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.enteringScreen,
-    }),
-  }),
-}));
 
 const Drawer = styled(MuiDrawer, {
   shouldForwardProp: (prop) => prop !== "open",
@@ -139,13 +96,14 @@ function DashboardContent({ user }) {
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "flex-end",
-                px: [1],
                 backgroundColor: "#002945",
+                textAlign: "center",
               }}
             >
-              <IconButton onClick={toggleDrawer}>
-                <ChevronLeftIcon />
-              </IconButton>
+              <div onClick={toggleDrawer} style={{ cursor: "pointer" }}>
+                {open === false && <MenuIcon sx={{ width: 40, height: 40 }} />}
+                {open && <ChevronLeftIcon sx={{ width: 40, height: 40 }} />}
+              </div>
             </Toolbar>
             <List
               sx={{
@@ -155,23 +113,17 @@ function DashboardContent({ user }) {
                 overflowX: "hidden",
               }}
             >
+              <Divider />
+              <ListItemButton onClick={() => setTab(0)}>
+                <ListItemIcon>
+                  <DashboardIcon />
+                </ListItemIcon>
+                <ListItemText primary="Dashboard" />
+              </ListItemButton>
+              <Divider />
               <ListItemButton onClick={() => setTab(0)}>
                 <ListItemIcon>
                   <PeopleIcon />
-                </ListItemIcon>
-                <ListItemText primary="My Profile" />
-              </ListItemButton>
-              <Divider />
-              <ListItemButton onClick={() => setTab(0)}>
-                <ListItemIcon>
-                  <DashboardIcon />
-                </ListItemIcon>
-                <ListItemText primary="My Profile" />
-              </ListItemButton>
-              <Divider />
-              <ListItemButton onClick={() => setTab(0)}>
-                <ListItemIcon>
-                  <DashboardIcon />
                 </ListItemIcon>
                 <ListItemText primary="My Profile" />
               </ListItemButton>
@@ -181,46 +133,71 @@ function DashboardContent({ user }) {
         <Box
           component="main"
           sx={{
-            flexGrow: 1,
-            height: "100vh",
-            padding: 1
-            // overflow: "auto",
+            padding: 1,
           }}
         >
-          <Grid container spacing={2}>
+          <Grid container spacing={1}>
             <Grid item xs={12} md={6} lg={3}>
-              <Paper style={{textAlign: 'center'}}>
-                <h4 >Welcome:</h4>
+              <Paper
+                style={{ textAlign: "center", backgroundColor: "#c9facd" }}
+              >
+                <h4>Welcome:</h4>
                 <Typography component="p" variant="h4">
-                {user.username}
+                  {user.username}
                 </Typography>
               </Paper>
             </Grid>
             <Grid item xs={12} md={6} lg={3}>
-              <Paper style={{textAlign: 'center'}}>
-                <h4 >Pool Level</h4>
+              <Paper
+                style={{ textAlign: "center", backgroundColor: "#d0f2fe" }}
+              >
+                <h4>Pool Level</h4>
                 <Typography component="p" variant="h4">
-                Tier 0
+                  Tier 0
                 </Typography>
               </Paper>
             </Grid>
             <Grid item xs={12} md={6} lg={3}>
-              <Paper style={{textAlign: 'center'}}>
-                <h4 >Total Coins</h4>
+              <Paper
+                style={{ textAlign: "center", backgroundColor: "#fff8ce" }}
+              >
+                <h4>Total Coins</h4>
                 <Typography component="p" variant="h4">
-                4b
+                  4b
                 </Typography>
               </Paper>
             </Grid>
             <Grid item xs={12} md={6} lg={3}>
-              <Paper style={{textAlign: 'center'}}>
-                <h4 >Total XMG</h4>
+              <Paper
+                style={{ textAlign: "center", backgroundColor: "#ffe8d9" }}
+              >
+                <h4>Total XMG</h4>
                 <Typography component="p" variant="h4">
-                4b
+                  4b
                 </Typography>
               </Paper>
             </Grid>
-          <Piechart user={user} />
+            <Grid item xs={8}>
+              <Paper sx={{ backgroundColor: "#18214c", }}>
+                <AssetChart user={user} />
+              </Paper>
+            </Grid>
+            <Grid item xs={4}>
+              <Paper sx={{ backgroundColor: "#18214c", display: 'flex', justifyContent: "center"}}>
+                <InvAssetChart user={user} />
+              </Paper>
+            </Grid>
+            <Grid item xs={4}>
+              {/* <Piechart user={user} /> */}
+            </Grid>
+            <Grid item xs={8}>
+              <Piechart user={user} />
+            </Grid>
+            <Grid item xs={12}>
+              <Paper sx={{width: "100%"}}>
+                <Transactions />
+              </Paper>
+            </Grid>
           </Grid>
         </Box>
       </Box>

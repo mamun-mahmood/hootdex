@@ -1,4 +1,4 @@
-table {
+.table {
   font-family: arial, sans-serif;
   border-collapse: collapse;
   width: 80%;
@@ -6,7 +6,7 @@ table {
   margin: 1rem;
 }
 
-td, th {
+.td, .th {
   border: 1px solid #dddddd;
   text-align: center;
   padding: 1rem;
@@ -14,11 +14,11 @@ td, th {
 
 }
 
-tr:nth-child(odd){
+.tr:nth-child(odd){
   background-color: #77C7A7;
 
 }
-tr:nth-child(even) {
+.tr:nth-child(even) {
   background-color: #23674c;
 }
 
