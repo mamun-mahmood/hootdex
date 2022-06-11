@@ -55,7 +55,7 @@ export default function Transactions() {
   return (
     <React.Fragment>
       <h4 style={{textAlign: 'center'}}>Transactions</h4>
-      <Table size="small" style={{maxWidth: '100% !important'}}>
+      <Table size="small" style={{maxWidth: '100% !important',}}>
         <TableHead>
           <TableRow>
             <TableCell>Date</TableCell>

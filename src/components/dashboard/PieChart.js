@@ -1,17 +1,9 @@
 import { Container } from "@mui/material";
 import React from "react";
 import {
-  Funnel,
-  FunnelChart,
-  LabelList,
-  Legend,
   Pie,
   PieChart,
-  RadialBar,
-  RadialBarChart,
-  Tooltip,
 } from "recharts";
-import CardMini from "./CardMini";
 
 export default function Piechart({ user }) {
   const assets = [
@@ -64,8 +56,18 @@ export default function Piechart({ user }) {
           <div>
             {accessEmails.includes(user.email) && (
               <>
-                <div style={{ display: "flex", flexDirection: "row" }}>
+                {/* <div style={{ display: "flex", flexDirection: "row" }}> */}
                   {" "}
+                  <div style={{display: 'flex', justifyContent: 'space-around'}}>
+                    {" "}
+                    <h5 style={{ color: "orange" }}>
+                      XMG DISTRIBUTION :orange
+                    </h5>
+                    <h5 style={{ color: "blue" }}>PECU DISTRIBUTION :blue</h5>
+                    <h5 style={{ color: "green" }}>
+                      XMG/PECU DISTRIBUTION :green
+                    </h5>
+                  </div>
                   <PieChart width={600} height={600}>
                     <Pie
                       data={xmgData}
@@ -94,17 +96,7 @@ export default function Piechart({ user }) {
                       label
                     />
                   </PieChart>
-                  <div>
-                    {" "}
-                    <h5 style={{ color: "orange" }}>
-                      XMG DISTRIBUTION :orange
-                    </h5>
-                    <h5 style={{ color: "blue" }}>PECU DISTRIBUTION :blue</h5>
-                    <h5 style={{ color: "green" }}>
-                      XMG/PECU DISTRIBUTION :green
-                    </h5>
-                  </div>
-                </div>
+                {/* </div> */}
               </>
             )}
           </div>
