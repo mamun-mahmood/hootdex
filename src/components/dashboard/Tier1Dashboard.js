@@ -1,23 +1,10 @@
 import * as React from "react";
-import { styled, createTheme, ThemeProvider } from "@mui/material/styles";
-import MuiDrawer from "@mui/material/Drawer";
 import Box from "@mui/material/Box";
-import Toolbar from "@mui/material/Toolbar";
-import List from "@mui/material/List";
 import Typography from "@mui/material/Typography";
-import Divider from "@mui/material/Divider";
 import Grid from "@mui/material/Grid";
-import MenuIcon from "@mui/icons-material/Menu";
-import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
-import ListItemButton from "@mui/material/ListItemButton";
-import ListItemIcon from "@mui/material/ListItemIcon";
-import ListItemText from "@mui/material/ListItemText";
-import DashboardIcon from "@mui/icons-material/Dashboard";
-import AccountCircleIcon from "@mui/icons-material/AccountCircle";
-import { Avatar, Paper } from "@mui/material";
+import { Paper } from "@mui/material";
 import Coin from "../../assets/images/coin-svgrepo-com.svg";
 import XMG from "../../assets/images/xmg-svgrepo-com.svg";
-import axios from "axios";
 import Piechart from "./PieChart";
 import Transactions from "./Transaction";
 import AssetChart from "./AssetChart";
@@ -29,127 +16,9 @@ import TokenIcon from "../../assets/images/tokens-svgrepo-com.svg"
 import InvestIcon from "../../assets/images/investment-svgrepo-com.svg"
 import FundsIcon from "../../assets/images/funds-svgrepo-com.svg"
 
-const drawerWidth = 240;
-const Drawer = styled(MuiDrawer, {
-  shouldForwardProp: (prop) => prop !== "open",
-})(({ theme, open }) => ({
-  "& .MuiDrawer-paper": {
-    position: "relative",
-    whiteSpace: "nowrap",
-    width: drawerWidth,
-    transition: theme.transitions.create("width", {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.enteringScreen,
-    }),
-    boxSizing: "border-box",
-    ...(!open && {
-      overflowX: "hidden",
-      transition: theme.transitions.create("width", {
-        easing: theme.transitions.easing.sharp,
-        duration: theme.transitions.duration.leavingScreen,
-      }),
-      width: theme.spacing(7),
-      [theme.breakpoints.up("sm")]: {
-        width: theme.spacing(9),
-      },
-    }),
-  },
-}));
-
-const mdTheme = createTheme();
-
 function DashboardContent({ user }) {
-  const [open, setOpen] = React.useState(true);
-  const toggleDrawer = () => {
-    setOpen(!open);
-  };
-  // const logout = () => {
-  //   localStorage.removeItem("UGV_Student_MS_Jwt_AD");
-  //   window.location.pathname = "/administrator_dashboard";
-  // };
-  const userId = user?.tokenUser?.userId;
-  const [userData, setUserData] = React.useState({});
-  React.useEffect(() => {
-    axios
-      .get(`http://localhost:7000/administrator/profile/getAdmin/${userId}`)
-      .then((res) => {
-        console.log(res.data);
-        setUserData(res.data);
-      })
-      .catch((err) => console.log(err));
-  }, [userId]);
-  // const { a_id, name } = userData;
-  const [tab, setTab] = React.useState(0);
 
   return (
-    <ThemeProvider theme={mdTheme}>
-      <Divider />
-      <Box sx={{ display: "flex", backgroundColor: "#091e17" }}>
-        <Box sx={{ minHeight: "100vh", backgroundColor: "#002945" }}>
-          <Drawer
-            variant="permanent"
-            open={open}
-            sx={{ backgroundColor: "#002945" }}
-          >
-            <Toolbar
-              sx={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "flex-end",
-                backgroundColor: "#002945",
-                textAlign: "center",
-              }}
-            >
-              <div onClick={toggleDrawer} style={{ cursor: "pointer" }}>
-                {open === false && <MenuIcon sx={{ width: 40, height: 40 }} />}
-                {open && <ChevronLeftIcon sx={{ width: 40, height: 40 }} />}
-              </div>
-            </Toolbar>
-            <List
-              sx={{
-                backgroundColor: "#002945",
-                minWidth: "100%",
-                height: "100vh",
-                overflowX: "hidden",
-              }}
-            >
-              <ListItemButton
-                sx={{
-                  color: "white",
-                  backgroundColor: "#091e17",
-                  borderTopRightRadius: "20px",
-                  borderBottomRightRadius: "20px",
-                  width: "95%",
-                  mb: 1,
-                  border: "1px solid #091e17",
-                }}
-                onClick={() => setTab(0)}
-              >
-                <ListItemIcon>
-                  <DashboardIcon sx={{ color: "white" }} />
-                </ListItemIcon>
-                <ListItemText primary="Dashboard" />
-              </ListItemButton>
-              <ListItemButton
-                sx={{
-                  color: "white",
-                  backgroundColor: "#091e17",
-                  borderTopRightRadius: "20px",
-                  borderBottomRightRadius: "20px",
-                  width: "95%",
-                  mb: 1,
-                  border: "1px solid #091e17",
-                }}
-                onClick={() => setTab(0)}
-              >
-                <ListItemIcon>
-                  <AccountCircleIcon sx={{ color: "white" }} />
-                </ListItemIcon>
-                <ListItemText primary="My Profile" />
-              </ListItemButton>
-            </List>
-          </Drawer>
-        </Box>
         <Box
           component="main"
           sx={{
@@ -443,8 +312,6 @@ function DashboardContent({ user }) {
             </Grid>
           </Grid>
         </Box>
-      </Box>
-    </ThemeProvider>
   );
 }
 
