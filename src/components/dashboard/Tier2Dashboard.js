@@ -13,8 +13,10 @@ import TokenIcon from "../../assets/images/tokens-svgrepo-com.svg";
 import InvestIcon from "../../assets/images/investment-svgrepo-com.svg";
 import FundsIcon from "../../assets/images/funds-svgrepo-com.svg";
 import AddIcon from "../../assets/images/add-svgrepo-com.svg";
+import { useNavigate } from "react-router-dom";
 
 function DashboardContent({ user }) {
+  const navigate = useNavigate()
   return (
     <Grid container spacing={1}>
       <Grid item xs={12} md={6} lg={3}>
@@ -87,6 +89,9 @@ function DashboardContent({ user }) {
                 style={{ width: "80px", cursor: "pointer" }}
                 src={AddIcon}
                 alt="coin logo"
+                onClick={(e)=> {
+                  navigate("/create-token")
+                }}
               />
             </div>
             <div>
