@@ -25,6 +25,7 @@ import InvAssetChart from "./InvAssetChart";
 import WavesIcon from "@mui/icons-material/Waves";
 import LineCharts from "./LineChart";
 import PeopleAltIcon from "@mui/icons-material/PeopleAlt";
+import TokenIcon from "../../assets/images/tokens-svgrepo-com.svg"
 const drawerWidth = 240;
 const Drawer = styled(MuiDrawer, {
   shouldForwardProp: (prop) => prop !== "open",
@@ -316,7 +317,7 @@ function DashboardContent({ user }) {
                 <LineCharts user={user} />
               </Paper>
             </Grid>
-            <Grid item xs={8}>
+            <Grid item xs={12}>
               <Piechart user={user} />
             </Grid>
             <Grid item xs={4}>
@@ -346,9 +347,10 @@ function DashboardContent({ user }) {
                   </div>
                 </div>
               </Paper>
+            </Grid>
+            <Grid item xs={4}>
               <Paper
-                sx={{
-                  mt: 1,
+                style={{
                   textAlign: "center",
                   backgroundColor: "#ffe8d9",
                   display: "flex",
@@ -364,38 +366,11 @@ function DashboardContent({ user }) {
                   }}
                 >
                   <div>
-                    <PeopleAltIcon style={{ width: "80px", height: "80px" }} />
-                    {/* <img style={{ width: "80px" }} src={Coin} alt="coin logo" /> */}
+                    {/* <PeopleAltIcon style={{ width: "80px", height: "80px" }} /> */}
+                    <img style={{ width: "80px" }} src={TokenIcon} alt="coin logo" />
                   </div>
                   <div>
-                    <h4>Connected Accounts</h4>
-                    <Typography variant="h4">400k</Typography>
-                  </div>
-                </div>
-              </Paper>
-              <Paper
-                sx={{
-                  mt: 1,
-                  textAlign: "center",
-                  backgroundColor: "#ffe8d9",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                }}
-              >
-                <div
-                  style={{
-                    display: "flex",
-                    justifyContent: "center",
-                    alignItems: "center",
-                  }}
-                >
-                  <div>
-                    <PeopleAltIcon style={{ width: "80px", height: "80px" }} />
-                    {/* <img style={{ width: "80px" }} src={Coin} alt="coin logo" /> */}
-                  </div>
-                  <div>
-                    <h4>Connected Accounts</h4>
+                    <h4>Total Invested Tokens</h4>
                     <Typography variant="h4">400k</Typography>
                   </div>
                 </div>
