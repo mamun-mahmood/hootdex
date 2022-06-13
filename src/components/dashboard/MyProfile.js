@@ -30,6 +30,7 @@ const MyProfile = ({ user }) => {
     // eslint-disable-next-line no-restricted-globals
     location.reload();
   };
+  console.log(user);
   return (
     <>
       <Grid container sx={{ backgroundColor: "#384b4", p: 1 }} spacing={1}>
@@ -45,6 +46,10 @@ const MyProfile = ({ user }) => {
                 }}
               >
                 {user.username}
+                <br />
+                <small>
+                  User Id: <span style={{ color: "red" }}>{user?.user_id}</span>
+                </small>
                 <br />
                 <small>
                   Status: <span style={{ color: "green" }}>Active</span>
@@ -75,6 +80,7 @@ const MyProfile = ({ user }) => {
               onChange={handleChange}
               variant="standard"
               InputProps={{ inputProps: { style: { color: "#fff" } } }}
+              defaultValue={user?.fullname}
             />
           </div>
         </Grid>
@@ -126,6 +132,7 @@ const MyProfile = ({ user }) => {
               InputProps={{ inputProps: { style: { color: "#fff" } } }}
               onChange={handleChange}
               variant="standard"
+              defaultValue={user?.email}
             />
           </div>
         </Grid>
