@@ -25,10 +25,10 @@ import InvAssetChart from "./InvAssetChart";
 import WavesIcon from "@mui/icons-material/Waves";
 import LineCharts from "./LineChart";
 import PeopleAltIcon from "@mui/icons-material/PeopleAlt";
-import TokenIcon from "../../assets/images/tokens-svgrepo-com.svg"
-import InvestIcon from "../../assets/images/investment-svgrepo-com.svg"
-import FundsIcon from "../../assets/images/funds-svgrepo-com.svg"
-import AddIcon from "../../assets/images/add-svgrepo-com.svg"
+import TokenIcon from "../../assets/images/tokens-svgrepo-com.svg";
+import InvestIcon from "../../assets/images/investment-svgrepo-com.svg";
+import FundsIcon from "../../assets/images/funds-svgrepo-com.svg";
+import AddIcon from "../../assets/images/add-svgrepo-com.svg";
 
 const drawerWidth = 240;
 const Drawer = styled(MuiDrawer, {
@@ -232,7 +232,11 @@ function DashboardContent({ user }) {
                   }}
                 >
                   <div>
-                    <img style={{ width: "80px", cursor: 'pointer' }} src={AddIcon} alt="coin logo" />
+                    <img
+                      style={{ width: "80px", cursor: "pointer" }}
+                      src={AddIcon}
+                      alt="coin logo"
+                    />
                   </div>
                   <div>
                     <h4>Create New</h4>
@@ -254,7 +258,7 @@ function DashboardContent({ user }) {
                   component="p"
                   variant="h5"
                 >
-                  Total Assets
+                  Available Tokens
                 </Typography>
                 <div
                   style={{
@@ -281,7 +285,7 @@ function DashboardContent({ user }) {
                     justifyContent: "center",
                   }}
                 >
-                <AssetChart user={user} />
+                  <AssetChart user={user} />
                 </div>
               </Paper>
             </Grid>
@@ -314,9 +318,9 @@ function DashboardContent({ user }) {
               </Paper>
             </Grid>
             <Grid item xs={8}>
-              <Paper sx={{ backgroundColor: "#18214c", }}>
+              <Paper sx={{ backgroundColor: "#18214c" }}>
                 <p style={{ textAlign: "center", color: "white" }}>
-                  Available Tokens
+                  Current Assets
                 </p>
                 <div
                   style={{
@@ -324,12 +328,9 @@ function DashboardContent({ user }) {
                     justifyContent: "center",
                   }}
                 >
-                <LineCharts user={user} />
+                  <LineCharts user={user} />
                 </div>
               </Paper>
-            </Grid>
-            <Grid item xs={8}>
-              <Piechart user={user} />
             </Grid>
             <Grid item xs={4}>
               <Paper
@@ -349,14 +350,20 @@ function DashboardContent({ user }) {
                   }}
                 >
                   <div>
-                    <img style={{ width: "80px" }} src={FundsIcon} alt="coin logo" />
+                    <img
+                      style={{ width: "80px" }}
+                      src={FundsIcon}
+                      alt="coin logo"
+                    />
                   </div>
                   <div>
-                    <h4>Total Tokens</h4>
+                    <h4>Total Assets</h4>
                     <Typography variant="h4">400k</Typography>
                   </div>
                 </div>
               </Paper>
+            </Grid>
+            <Grid item xs={4}>
               <Paper
                 style={{
                   textAlign: "center",
@@ -364,7 +371,6 @@ function DashboardContent({ user }) {
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "center",
-                  marginTop: '20px'
                 }}
               >
                 <div
@@ -375,7 +381,11 @@ function DashboardContent({ user }) {
                   }}
                 >
                   <div>
-                    <img style={{ width: "80px" }} src={InvestIcon} alt="coin logo" />
+                    <img
+                      style={{ width: "80px" }}
+                      src={InvestIcon}
+                      alt="coin logo"
+                    />
                   </div>
                   <div>
                     <h4>Make New Investment</h4>
@@ -402,35 +412,12 @@ function DashboardContent({ user }) {
                   }}
                 >
                   <div>
-                    <PeopleAltIcon style={{ width: "80px", height: "80px" }} />
-                  </div>
-                  <div>
-                    <h4>Connected Accounts</h4>
-                    <Typography variant="h4">400k</Typography>
-                  </div>
-                </div>
-              </Paper>
-            </Grid>
-            <Grid item xs={4}>
-              <Paper
-                style={{
-                  textAlign: "center",
-                  backgroundColor: "#ffe8d9",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                }}
-              >
-                <div
-                  style={{
-                    display: "flex",
-                    justifyContent: "center",
-                    alignItems: "center",
-                  }}
-                >
-                  <div>
                     {/* <PeopleAltIcon style={{ width: "80px", height: "80px" }} /> */}
-                    <img style={{ width: "80px" }} src={TokenIcon} alt="coin logo" />
+                    <img
+                      style={{ width: "80px" }}
+                      src={TokenIcon}
+                      alt="coin logo"
+                    />
                   </div>
                   <div>
                     <h4>Total Invested Tokens</h4>
