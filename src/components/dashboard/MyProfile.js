@@ -26,34 +26,41 @@ const MyProfile = ({ user }) => {
     setOpen(false);
   };
   const logout = () => {
-    localStorage.removeItem('hootdex_secretcookie');
+    localStorage.removeItem("hootdex_secretcookie");
     // eslint-disable-next-line no-restricted-globals
     location.reload();
-  }
+  };
   return (
-    <Box
-      component="main"
-      sx={{
-        padding: 2,
-      }} 
-    >
-      <div style={{ display: "flex", justifyContent: "center" }}>
-        <div>
-          <Avatar sx={{ width: 150, height: 150 }} />
-          <h4 style={{ textAlign: "center", color: "white", fontSize: "20px" }}>
-            {user.username}
-            <br />
-            <small>
-              Status: <span style={{ color: "green" }}>Active</span>
-            </small>
-            <br />
-            <Button onClick={logout} variant="outlined" sx={{ color: "white", textTransform: "capitalize"}}>
-            Logout
-          </Button>
-          </h4>
-        </div>
-      </div>
+    <>
       <Grid container sx={{ backgroundColor: "#384b4", p: 1 }} spacing={1}>
+        <Grid item xs={12}>
+          <div style={{ display: "flex", justifyContent: "center" }}>
+            <div>
+              <Avatar sx={{ width: 150, height: 150 }} />
+              <h4
+                style={{
+                  textAlign: "center",
+                  color: "white",
+                  fontSize: "20px",
+                }}
+              >
+                {user.username}
+                <br />
+                <small>
+                  Status: <span style={{ color: "green" }}>Active</span>
+                </small>
+                <br />
+                <Button
+                  onClick={logout}
+                  variant="outlined"
+                  sx={{ color: "white", textTransform: "capitalize" }}
+                >
+                  Logout
+                </Button>
+              </h4>
+            </div>
+          </div>
+        </Grid>
         <Grid item xs={12} md={4}>
           <div style={{ backgroundColor: "#384b45", padding: "10px" }}>
             <TextField
@@ -229,7 +236,7 @@ const MyProfile = ({ user }) => {
           </DialogActions>
         </Dialog>
       </div>
-    </Box>
+    </>
   );
 };
 

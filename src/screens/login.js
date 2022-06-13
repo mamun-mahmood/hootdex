@@ -38,7 +38,7 @@ const handleChange=(e)=>{
   return (
     <div className='screen'>
         <form className='form' onSubmit={hanldeSubmit}>
-        <img src={logo} width={200} />
+        <img  src={logo} alt="clogo"  width={200} />
         
         <label className='label'>Email</label>
             <input className='input' type={'email'} name="email" onChange={handleChange} value={inputData.email} placeholder='Email' />
