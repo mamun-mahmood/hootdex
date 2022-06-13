@@ -14,6 +14,7 @@ import { styled, createTheme, ThemeProvider } from "@mui/material/styles";
 import React from "react";
 import Divider from "@mui/material/Divider";
 import MuiDrawer from "@mui/material/Drawer";
+import MyProfile from "../components/dashboard/MyProfile";
 const drawerWidth = 240;
 const Drawer = styled(MuiDrawer, {
   shouldForwardProp: (prop) => prop !== "open",
@@ -52,7 +53,7 @@ const DashboardIndex = ({ user }) => {
   //   window.location.pathname = "/administrator_dashboard";
   // };
   const [tab, setTab] = React.useState(0);
-  let tier = 2;
+  let tier = 0;
   return (
     <div>
       <ThemeProvider theme={mdTheme}>
@@ -127,10 +128,17 @@ const DashboardIndex = ({ user }) => {
             </Drawer>
           </Box>
           {/* showing dashboard based on user tier level */}
-          {tier === 0 && tab === 0 && <Tier0Dashboard user={user} />}
-          {tier === 1 && tab === 0 && <Tier1Dashboard user={user} />}
-          {tier === 2 && tab === 0 && <Tier2Dashboard user={user} />}
-          
+          <Box
+            component="main"
+            sx={{
+              padding: 1,
+            }}
+          >
+            {tier === 0 && tab === 0 && <Tier0Dashboard user={user} />}
+            {tier === 1 && tab === 0 && <Tier1Dashboard user={user} />}
+            {tier === 2 && tab === 0 && <Tier2Dashboard user={user} />}
+            {tab === 1 && <MyProfile user={user} />}
+          </Box>
         </Box>
       </ThemeProvider>
     </div>

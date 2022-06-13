@@ -50,7 +50,6 @@ export default function Piechart({ user }) {
     "acc9@falconglobalacquisitions.com",
   ];
   return (
-    <Container>
       <div className="">
         {user ? (
           <div>
@@ -102,6 +101,5 @@ export default function Piechart({ user }) {
           </div>
         ) : null}
       </div>
-    </Container>
   );
 }
