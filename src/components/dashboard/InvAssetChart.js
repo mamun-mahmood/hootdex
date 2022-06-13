@@ -12,13 +12,7 @@ const InvAssetChart = () => {
   ];
   return (
     <div>
-      <Typography
-        style={{ textAlign: "center", color: "white" }}
-        component="p"
-        variant="h5"
-      >
-        Invested Assets
-      </Typography>
+      
       <PieChart width={600} height={400}>
         {/* <Pie
           dataKey="value"

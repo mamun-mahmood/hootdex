@@ -55,11 +55,6 @@ const AssetChart = () => {
   ];
   return (
     <>
-      <Typography style={{ textAlign: "center", color: "white" }} component="p" variant="h5">
-        Total Assets
-      </Typography>
-      <div style={{display: 'flex', justifyContent: "center"}}>
-
       <AreaChart
         width={500}
         height={400}
@@ -77,7 +72,6 @@ const AssetChart = () => {
         <Tooltip />
         <Area type="monotone" dataKey="uv" stroke="#8884d8" fill="#8884d8" />
       </AreaChart>
-      </div>
     </>
   );
 };
