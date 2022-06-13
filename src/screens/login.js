@@ -37,13 +37,13 @@ const handleChange=(e)=>{
 }
   return (
     <div className='screen'>
-        <form onSubmit={hanldeSubmit}>
+        <form className='form' onSubmit={hanldeSubmit}>
         <img src={logo} width={200} />
         
-        <label>Email</label>
-            <input type={'email'} name="email" onChange={handleChange} value={inputData.email} placeholder='Email' />
-            <label>Password</label>
-            <input type={'password'} name="password" onChange={handleChange} value={inputData.password} placeholder='Password' />
+        <label className='label'>Email</label>
+            <input className='input' type={'email'} name="email" onChange={handleChange} value={inputData.email} placeholder='Email' />
+            <label className='label'>Password</label>
+            <input className='input' type={'password'} name="password" onChange={handleChange} value={inputData.password} placeholder='Password' />
             <button className='submit-btn'>Login</button>
         </form>
     </div>
