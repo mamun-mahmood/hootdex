@@ -234,7 +234,7 @@ function DashboardContent({ user }) {
               <img style={{ width: "80px" }} src={InvestIcon} alt="coin logo" />
             </div>
             <div>
-              <h4>Make New Investment</h4>
+              <h4>Incoming Funds</h4>
               <Typography variant="h4">400k</Typography>
             </div>
           </div>
