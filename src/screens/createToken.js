@@ -1,6 +1,6 @@
-import { Alert, Box, Collapse, } from "@mui/material";
+import { Alert, Box, Collapse } from "@mui/material";
 import axios from "axios";
-import IconButton from '@mui/material/IconButton';
+import IconButton from "@mui/material/IconButton";
 
 import React, { useEffect, useState } from "react";
 import CloseIcon from "@mui/icons-material/Close";
@@ -9,7 +9,7 @@ export default function CreateToken({ user }) {
   const [alert, setAlert] = React.useState(false);
 
   const [inputData, setInputData] = useState({
-    username: user?.username, 
+    username: user?.username,
     tokenName: "",
     totalToken: "",
     investementAmount: "",
@@ -24,9 +24,17 @@ export default function CreateToken({ user }) {
       if (res.data.affectedRows > 0) {
         setAlert(true);
         window.scrollTo(0, 0);
-        document.getElementById("myForm").reset();
+        setInputData({
+          username: user?.username,
+          tokenName: "",
+          totalToken: "",
+          investementAmount: "",
+          pecuCoin: "",
+          tokenPrice: "",
+          status: "Pending",
+        });
         setTimeout(() => {
-          setAlert(false)
+          setAlert(false);
         }, 10000);
       }
     });
@@ -54,10 +62,11 @@ export default function CreateToken({ user }) {
 
   return (
     <div className="screen">
-      <Box sx={{ mt: 2, position: 'fixed', zIndex: 1000, top:0 }}>
+      <Box sx={{ mt: 2, position: "fixed", zIndex: 1000, top: 0 }}>
         <Collapse in={alert}>
           <Alert
-          variant="outlined" severity="success" 
+            variant="outlined"
+            severity="success"
             action={
               <IconButton
                 aria-label="close"
@@ -70,7 +79,7 @@ export default function CreateToken({ user }) {
                 <CloseIcon fontSize="inherit" />
               </IconButton>
             }
-            sx={{ mb: 2, backgroundColor: 'white', fontSize: '18px'}}
+            sx={{ mb: 2, backgroundColor: "white", fontSize: "18px" }}
           >
             Token created successfully!
           </Alert>
