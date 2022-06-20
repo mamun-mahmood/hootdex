@@ -41,7 +41,7 @@ function App() {
         <Nav />
 
         <Routes>
-          <Route path="/create-token" element={<CreateToken />} />
+          <Route path="/create-token" element={<CreateToken user={user} />} />
 
           <Route path="/" element={<Home />} />
           <Route path="/wallet" element={<Wallet />} />

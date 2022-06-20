@@ -1,12 +1,10 @@
 import * as React from "react";
-import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Grid from "@mui/material/Grid";
 import { Paper } from "@mui/material";
 import Coin from "../../assets/images/coin-svgrepo-com.svg";
 import Transactions from "./Transaction";
 import AssetChart from "./AssetChart";
-import InvAssetChart from "./InvAssetChart";
 import WavesIcon from "@mui/icons-material/Waves";
 import LineCharts from "./LineChart";
 import TokenIcon from "../../assets/images/tokens-svgrepo-com.svg";
@@ -14,9 +12,24 @@ import InvestIcon from "../../assets/images/investment-svgrepo-com.svg";
 import FundsIcon from "../../assets/images/funds-svgrepo-com.svg";
 import AddIcon from "../../assets/images/add-svgrepo-com.svg";
 import { useNavigate } from "react-router-dom";
-
+import { useEffect } from "react";
+import axios from "axios";
+import PendingCoin from "../Modal/PendingCoin";
+import DoNotDisturbAltIcon from "@mui/icons-material/DoNotDisturbAlt";
 function DashboardContent({ user }) {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
+  const [pendingToken, setPendingToken] = React.useState([]);
+  const username = user.username;
+  useEffect(() => {
+    if (username) {
+      axios
+        .get(`http://localhost:5000/pending-token/${username}`)
+        .then((res) => {
+          setPendingToken(res.data.reverse());
+          console.log(res.data);
+        });
+    }
+  }, [username]);
   return (
     <Grid container spacing={1}>
       <Grid item xs={12} md={6} lg={3}>
@@ -89,8 +102,8 @@ function DashboardContent({ user }) {
                 style={{ width: "80px", cursor: "pointer" }}
                 src={AddIcon}
                 alt="coin logo"
-                onClick={(e)=> {
-                  navigate("/create-token")
+                onClick={(e) => {
+                  navigate("/create-token");
                 }}
               />
             </div>
@@ -103,27 +116,57 @@ function DashboardContent({ user }) {
           </div>
         </Paper>
       </Grid>
-      <Grid item xs={12} md={6} lg={3}>
+      <Grid item xs={12} md={6} lg={3} sx={{ maxHeight: "70vh" }}>
         <Paper
           sx={{
+            maxHeight: "100%",
             backgroundColor: "#18214c",
+            overflowY: "scroll",
           }}
+          className="hide-scrollbar"
         >
           <Typography
             style={{ textAlign: "center", color: "white" }}
             component="p"
             variant="h5"
           >
-            Available Tokens
+            Pending Tokens
           </Typography>
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "center",
-            }}
-          >
-            <InvAssetChart user={user} />
-          </div>
+          {pendingToken.map((each) => (
+            <PendingCoin each={each} />
+          ))}
+          {!pendingToken.length && (
+            <Paper
+              sx={{
+                textAlign: "center",
+                // backgroundColor: "#ffe8d9",
+                mt: 5,
+              }}
+            >
+              <h4>No Pending Token</h4>
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                }}
+              >
+                <div>
+                  <img
+                    style={{ width: "40px", cursor: "pointer" }}
+                    src={AddIcon}
+                    alt="coin logo"
+                    onClick={(e) => {
+                      navigate("/create-token");
+                    }}
+                  />
+                </div>
+                <div>
+                  <h4>Create New</h4>
+                </div>
+              </div>
+            </Paper>
+          )}
         </Paper>
       </Grid>
       <Grid item xs={12} md={6} lg={9}>

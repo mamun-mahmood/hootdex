@@ -8,6 +8,7 @@ export default function Login(props) {
 
   const hanldeSubmit=(e)=>{
     e.preventDefault();
+    // eslint-disable-next-line eqeqeq
     if(inputData.email.length==0 || inputData.password.length==0){
       alert('Please fill all required fields');
       return
@@ -16,6 +17,7 @@ export default function Login(props) {
         email:inputData.email,
         password:inputData.password
       }).then(res=>{
+        // eslint-disable-next-line eqeqeq
         if(res.data.loggedIn==true){
          
           localStorage.setItem('hootdex_secretcookie',JSON.stringify(res.data))

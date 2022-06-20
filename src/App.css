@@ -113,3 +113,19 @@ border: 1px solid rgba( 255, 255, 255, 0.18 );
 .rounded {
   border-radius: 20px;
 }
+html {
+  scroll-behavior: smooth;
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.hover-grey:hover {
+  background-color: grey!important;
+}
+.twhite {
+  color: white
+}
+.tcenter {
+  text-align: center;
+}
