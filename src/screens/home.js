@@ -141,20 +141,20 @@ export default function Home() {
         <h1 className="primary__title">Available Pools</h1>
       </div>
       <div className="table__container">
-        <table>
-          <tr>
+        <table className="table">
+          <tr className="tr">
             {poolTableAttributes.map((e) => (
-              <th>{e}</th>
+              <th className="th">{e}</th>
             ))}
           </tr>
 
           {poolData.map((e) => (
-            <tr>
-              <td>{e.id}</td>
-              <td>{e.name}</td>
-              <td>{e.token}</td>
-              <td>{e.coins}</td>
-              <td>{e.rate}</td>
+            <tr className="tr">
+              <td className="td">{e.id}</td>
+              <td className="td">{e.name}</td>
+              <td className="td">{e.token}</td>
+              <td className="td">{e.coins}</td>
+              <td className="td">{e.rate}</td>
             </tr>
           ))}
         </table>

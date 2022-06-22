@@ -1,4 +1,8 @@
-table {
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap');
+* {
+  font-family: 'Poppins', sans-serif;
+}
+.table {
   font-family: arial, sans-serif;
   border-collapse: collapse;
   width: 80%;
@@ -6,7 +10,7 @@ table {
   margin: 1rem;
 }
 
-td, th {
+.td, .th {
   border: 1px solid #dddddd;
   text-align: center;
   padding: 1rem;
@@ -14,11 +18,11 @@ td, th {
 
 }
 
-tr:nth-child(odd){
+.tr:nth-child(odd){
   background-color: #77C7A7;
 
 }
-tr:nth-child(even) {
+.tr:nth-child(even) {
   background-color: #23674c;
 }
 
@@ -37,7 +41,7 @@ tr:nth-child(even) {
  
 }
 
-form{
+.form{
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -47,7 +51,6 @@ form{
   height: 80%;
   width: 60%;
 padding: 1rem;
-  /* From https://css.glass */
 background: rgba(255, 255, 255, 0.2);
 border-radius: 16px;
 box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
@@ -56,7 +59,7 @@ backdrop-filter: blur(5px);
 border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
-input{
+.input{
   width: 90%;
   margin: 1rem;
   padding: .8rem;
@@ -73,7 +76,7 @@ input{
   align-items: center;
 }
 
-label{
+.label{
   width: 90%;
   color: rgb(244, 169, 50);
   font-weight: 600;
@@ -90,7 +93,7 @@ label{
  margin-right:3rem;
 }
 
-form h3{
+.form h3{
   color: #fff;
   font-size: 2rem;
 }
@@ -106,4 +109,23 @@ border: 1px solid rgba( 255, 255, 255, 0.18 );
  width: 95%;
  margin: 1rem;
  margin-top: 2rem;
+}
+.rounded {
+  border-radius: 20px;
+}
+html {
+  scroll-behavior: smooth;
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.hover-grey:hover {
+  background-color: grey!important;
+}
+.twhite {
+  color: white
+}
+.tcenter {
+  text-align: center;
 }

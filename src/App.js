@@ -8,7 +8,8 @@ import CreateToken from "./screens/createToken";
 import Wallet from "./screens/wallet";
 import Login from "./screens/login";
 import { useEffect, useState } from "react";
-import Dashboard from "./screens/dashboard";
+import DashboardIndex from "./screens/DashboardIndex";
+
 function App() {
   const [user,setUser]=useState(null)
   const findUser=async()=>{
@@ -40,12 +41,12 @@ function App() {
         <Nav />
 
         <Routes>
-          <Route path="/create-token" element={<CreateToken />} />
+          <Route path="/create-token" element={<CreateToken user={user} />} />
 
           <Route path="/" element={<Home />} />
           <Route path="/wallet" element={<Wallet />} />
           <Route path="/login" element={<Login loginData={(e)=>{handleUserToken(e)}} />} />
-          <Route path="/dashboard" element={user&& user.loggedIn?<Dashboard user={user} />:<Login />} />
+          <Route path="/dashboard" element={user&& user.loggedIn?<DashboardIndex user={user} />:<Login />} />
         </Routes>
       </div>
       <Footer />
