@@ -111,7 +111,7 @@ border: 1px solid rgba( 255, 255, 255, 0.18 );
  margin-top: 2rem;
 }
 .rounded {
-  border-radius: 20px;
+  border-radius: 5px;
 }
 html {
   scroll-behavior: smooth;
@@ -128,4 +128,8 @@ html {
 }
 .tcenter {
   text-align: center;
+}
+.center-width {
+  width: 95%;
+  margin-left: 2.5%;
 }
