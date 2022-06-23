@@ -106,7 +106,7 @@ function DashboardContent({ user }) {
                 component="p"
                 variant="h5"
               >
-                My Total Asset
+              My Total Asset
               </Typography>
               <div
                 style={{

@@ -53,14 +53,14 @@ const DashboardIndex = ({ user }) => {
   //   window.location.pathname = "/administrator_dashboard";
   // };
   const [tab, setTab] = React.useState(0);
-  let tier = 0;
+  let tier = 1;
   return (
     <>
       <Divider color="black" />
       <div style={{ display: "flex", backgroundColor: "#091e17" }}>
         {/* Sidebar */}
         <Box sx={{ minHeight: "50vh", backgroundColor: "#002945" }}>
-          <ClickAwayListener onClickAway={toggleDrawer}>
+          <ClickAwayListener onClickAway={() => setOpen(false)}>
             <Drawer
               variant="permanent"
               open={open}
@@ -130,7 +130,7 @@ const DashboardIndex = ({ user }) => {
           </ClickAwayListener>
         </Box>
         {/* showing dashboard based on user tier level */}
-        <Box sx={{ flex: 1, mt: 1 }}>
+        <Box sx={{ flex: 1, mt: 1, }}>
           {tier === 0 && tab === 0 && <Tier0Dashboard user={user} />}
           {tier === 1 && tab === 0 && <Tier1Dashboard user={user} />}
           {tier === 2 && tab === 0 && <Tier2Dashboard user={user} />}

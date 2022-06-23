@@ -259,3 +259,6 @@ html {
   background-color: rgb(244, 169, 50);
   color: #fff;
 }
+.rounded20 {
+  border-radius: 20px !important;
+}

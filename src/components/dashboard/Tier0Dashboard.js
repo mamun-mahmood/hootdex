@@ -3,13 +3,7 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Grid from "@mui/material/Grid";
 import { Paper } from "@mui/material";
-import Piechart from "../../components/dashboard/PieChart";
-import Transactions from "../../components/dashboard/Transaction";
 import AssetChart from "../../components/dashboard/AssetChart";
-import InvAssetChart from "../../components/dashboard/InvAssetChart";
-import WavesIcon from "@mui/icons-material/Waves";
-import LineCharts from "../../components/dashboard/LineChart";
-import PeopleAltIcon from "@mui/icons-material/PeopleAlt";
 
 function DashboardContent({ user }) {
   return (
@@ -32,7 +26,7 @@ function DashboardContent({ user }) {
                   textAlign: "center",
                   backgroundColor: "#00071a",
                 }}
-                className="border tShadow"
+                className="border"
               >
                 <div
                   style={{
