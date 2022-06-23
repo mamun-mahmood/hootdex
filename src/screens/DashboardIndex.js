@@ -128,15 +128,7 @@ const DashboardIndex = ({ user }) => {
           </Box> */}
         {/* showing dashboard based on user tier level */}
         <Box
-          className="rounded shadow"
-          sx={{
-            padding: 1,
-            width: "95%",
-            ml: "2.5%",
-            mt: 1,
-            backgroundColor: 'black',
-            pb: 2,
-          }}
+          
         >
           {tier === 0 && tab === 0 && <Tier0Dashboard user={user} />}
           {tier === 1 && tab === 0 && <Tier1Dashboard user={user} />}

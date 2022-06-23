@@ -239,6 +239,10 @@ html {
 .border {
   border-top: 1px solid #fff;
   border-left: 1px solid #fff;
-  border-bottom: 2px solid #fff;
-  border-right: 2px solid #fff;
+  border-bottom: 2.5px solid #fff;
+  border-right: 2.5px solid #fff;
+}
+.tShadow {
+  box-shadow: 71px 58px 55px -9px rgba(69,69,69,0.75) inset;
+
 }
