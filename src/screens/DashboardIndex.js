@@ -1,4 +1,4 @@
-import { Box, ListItemIcon } from "@mui/material";
+import { Box, ClickAwayListener, ListItemIcon } from "@mui/material";
 import Tier0Dashboard from "../components/dashboard/Tier0Dashboard";
 import Tier1Dashboard from "../components/dashboard/Tier1Dashboard";
 import Tier2Dashboard from "../components/dashboard/Tier2Dashboard";
@@ -10,7 +10,7 @@ import DashboardIcon from "@mui/icons-material/Dashboard";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import Toolbar from "@mui/material/Toolbar";
 import List from "@mui/material/List";
-import { styled, } from "@mui/material/styles";
+import { styled } from "@mui/material/styles";
 import React from "react";
 import Divider from "@mui/material/Divider";
 import MuiDrawer from "@mui/material/Drawer";
@@ -57,78 +57,80 @@ const DashboardIndex = ({ user }) => {
   return (
     <>
       <Divider color="black" />
-      <div
-        style={{ display: "flex", backgroundColor: "#091e17", minHeight: "100vh" }}
-      >
+      <div style={{ display: "flex", backgroundColor: "#091e17" }}>
         {/* Sidebar */}
-        <Box sx={{ minHeight: "100vh", backgroundColor: "#002945" }}>
-          <Drawer
-            variant="permanent"
-            open={open}
-            sx={{ backgroundColor: "#002945" }}
-            onClose={() => setOpen(!open)}
-          >
-            <Toolbar
-              sx={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "flex-end",
-                backgroundColor: "#002945",
-                textAlign: "center",
-              }}
+        <Box sx={{ minHeight: "50vh", backgroundColor: "#002945" }}>
+          <ClickAwayListener onClickAway={toggleDrawer}>
+            <Drawer
+              variant="permanent"
+              open={open}
+              sx={{ backgroundColor: "#002945" }}
+              onClose={() => setOpen(!open)}
             >
-              <div onClick={toggleDrawer} style={{ cursor: "pointer" }}>
-                {open === false && <MenuIcon sx={{ width: 40, height: 40 }} />}
-                {open && <ChevronLeftIcon sx={{ width: 40, height: 40 }} />}
-              </div>
-            </Toolbar>
-            <List
-              sx={{
-                backgroundColor: "#002945",
-                minWidth: "100%",
-                height: "100vh",
-                overflowX: "hidden",
-              }}
-            >
-              <ListItemButton
+              <Toolbar
                 sx={{
-                  color: "white",
-                  backgroundColor: "#00071a",
-                  borderTopRightRadius: "20px",
-                  borderBottomRightRadius: "20px",
-                  width: "95%",
-                  mb: 1,
-                  border: "1px solid #091e17",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "flex-end",
+                  backgroundColor: "#002945",
+                  textAlign: "center",
                 }}
-                onClick={() => setTab(0)}
               >
-                <ListItemIcon>
-                  <DashboardIcon sx={{ color: "white" }} />
-                </ListItemIcon>
-                <ListItemText primary="Dashboard" />
-              </ListItemButton>
-              <ListItemButton
+                <div onClick={toggleDrawer} style={{ cursor: "pointer" }}>
+                  {open === false && (
+                    <MenuIcon sx={{ width: 40, height: 40 }} />
+                  )}
+                  {open && <ChevronLeftIcon sx={{ width: 40, height: 40 }} />}
+                </div>
+              </Toolbar>
+              <List
                 sx={{
-                  color: "white",
-                  backgroundColor: "#00071a",
-                  borderTopRightRadius: "20px",
-                  borderBottomRightRadius: "20px",
-                  width: "95%",
-                  mb: 1,
-                  border: "1px solid #091e17",
+                  backgroundColor: "#002945",
+                  minWidth: "100%",
+                  height: "98vh",
+                  overflowX: "hidden",
                 }}
-                onClick={() => setTab(1)}
               >
-                <ListItemIcon>
-                  <AccountCircleIcon sx={{ color: "white" }} />
-                </ListItemIcon>
-                <ListItemText primary="My Profile" />
-              </ListItemButton>
-            </List>
-          </Drawer>
+                <ListItemButton
+                  sx={{
+                    color: "white",
+                    backgroundColor: "#00071a",
+                    borderTopRightRadius: "20px",
+                    borderBottomRightRadius: "20px",
+                    width: "95%",
+                    mb: 1,
+                    border: "1px solid #091e17",
+                  }}
+                  onClick={() => setTab(0)}
+                >
+                  <ListItemIcon>
+                    <DashboardIcon sx={{ color: "white" }} />
+                  </ListItemIcon>
+                  <ListItemText primary="Dashboard" />
+                </ListItemButton>
+                <ListItemButton
+                  sx={{
+                    color: "white",
+                    backgroundColor: "#00071a",
+                    borderTopRightRadius: "20px",
+                    borderBottomRightRadius: "20px",
+                    width: "95%",
+                    mb: 1,
+                    border: "1px solid #091e17",
+                  }}
+                  onClick={() => setTab(1)}
+                >
+                  <ListItemIcon>
+                    <AccountCircleIcon sx={{ color: "white" }} />
+                  </ListItemIcon>
+                  <ListItemText primary="My Profile" />
+                </ListItemButton>
+              </List>
+            </Drawer>
+          </ClickAwayListener>
         </Box>
         {/* showing dashboard based on user tier level */}
-        <Box sx={{ flex: 1, mt: 1}}>
+        <Box sx={{ flex: 1, mt: 1 }}>
           {tier === 0 && tab === 0 && <Tier0Dashboard user={user} />}
           {tier === 1 && tab === 0 && <Tier1Dashboard user={user} />}
           {tier === 2 && tab === 0 && <Tier2Dashboard user={user} />}

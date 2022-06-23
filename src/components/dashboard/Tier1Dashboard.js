@@ -98,7 +98,6 @@ function DashboardContent({ user }) {
             <Paper
               sx={{
                 backgroundColor: "#00071a",
-                borderTop: "1px solid #fff",
               }}
               className="border"
             >

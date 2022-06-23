@@ -237,14 +237,13 @@ html {
   box-shadow: 0px 0px 6px 0px rgba(255, 255, 255, 1);
 }
 .border {
-  border-top: 1px solid #fff;
-  border-left: 1px solid #fff;
-  border-bottom: 2.5px solid #fff;
-  border-right: 2.5px solid #fff;
+  border-top: 2px solid #091e17;
+  border-left: 2px solid #091e17;
+  border-bottom: 4px solid #091e17;
+  border-right: 4px solid #091e17;
 }
 .tShadow {
   box-shadow: 71px 58px 55px -9px rgba(69,69,69,0.75) inset;
-
 }
 .cbutton{
   padding: 0.6rem;
