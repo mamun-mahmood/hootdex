@@ -165,7 +165,9 @@ function DashboardContent({ user }) {
               >
                 <h3>Pending Tokens</h3>
               </div>
-              <p className="fontS22">{!pendingToken.length && "No Pending Token"}</p>
+              <p className="fontS22">
+                {!pendingToken.length && "No Pending Token"}
+              </p>
             </div>
           </Paper>
         </Grid>
@@ -192,9 +194,14 @@ function DashboardContent({ user }) {
               >
                 <h3>Create New</h3>
               </div>
-              <p className="fontS22" onClick={(e) => {
+              <p
+                className="fontS22"
+                onClick={(e) => {
                   navigate("/create-token");
-                }}>Tokens</p>
+                }}
+              >
+                Tokens
+              </p>
             </div>
           </Paper>
         </Grid>
@@ -221,7 +228,7 @@ function DashboardContent({ user }) {
               >
                 <h4>Incoming Funds</h4>
               </div>
-              <Typography variant="h4">$ 2548</Typography>
+              <p className="fontS22">$ 524574</p>
             </div>
           </Paper>
         </Grid>
@@ -236,7 +243,6 @@ function DashboardContent({ user }) {
           mt: 4,
           p: 1,
         }}
-        // spacing={5}
       >
         <Grid container spacing={1}>
           <Grid item sx={6} md={2}>
@@ -262,7 +268,7 @@ function DashboardContent({ user }) {
                 >
                   <h4>Incoming Funds</h4>
                 </div>
-                <Typography variant="h4">$ 2548</Typography>
+                <p className="fontS22">$ 524574</p>
               </div>
             </Paper>
           </Grid>
@@ -289,7 +295,7 @@ function DashboardContent({ user }) {
                 >
                   <h4>Incoming Funds</h4>
                 </div>
-                <Typography variant="h4">$ 2548</Typography>
+                <p className="fontS22">$ 524574</p>
               </div>
             </Paper>
           </Grid>
@@ -316,9 +322,7 @@ function DashboardContent({ user }) {
                 >
                   <h4>Transactions</h4>
                 </div>
-                <Typography variant="h4" sx={{ textTransform: "capitalize" }}>
-                  View all
-                </Typography>
+                <p className="fontS22">View all</p>
               </div>
             </Paper>
           </Grid>
