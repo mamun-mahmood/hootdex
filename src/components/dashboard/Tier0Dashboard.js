@@ -3,8 +3,6 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Grid from "@mui/material/Grid";
 import { Paper } from "@mui/material";
-import Coin from "../../assets/images/coin-svgrepo-com.svg";
-import XMG from "../../assets/images/xmg-svgrepo-com.svg";
 import Piechart from "../../components/dashboard/PieChart";
 import Transactions from "../../components/dashboard/Transaction";
 import AssetChart from "../../components/dashboard/AssetChart";
@@ -16,6 +14,7 @@ import PeopleAltIcon from "@mui/icons-material/PeopleAlt";
 function DashboardContent({ user }) {
   return (
     <Grid container spacing={1}>
+      
       <Grid item xs={12} md={6} lg={3}>
         <Paper style={{ textAlign: "center", backgroundColor: "#c9facd" }}>
           <div
@@ -63,7 +62,7 @@ function DashboardContent({ user }) {
             }}
           >
             <div>
-              <img style={{ width: "80px" }} src={Coin} alt="coin logo" />
+              {/* <img style={{ width: "80px" }} src={Coin} alt="coin logo" /> */}
             </div>
             <div>
               <h4>Total Coins</h4>
@@ -82,7 +81,7 @@ function DashboardContent({ user }) {
             }}
           >
             <div>
-              <img style={{ width: "80px" }} src={XMG} alt="coin logo" />
+              {/* <img style={{ width: "80px" }} src={XMG} alt="coin logo" /> */}
             </div>
             <div>
               <h4>Total XMG</h4>
@@ -154,7 +153,7 @@ function DashboardContent({ user }) {
             }}
           >
             <div>
-              <img style={{ width: "80px" }} src={Coin} alt="coin logo" />
+              {/* <img style={{ width: "80px" }} src={Coin} alt="coin logo" /> */}
             </div>
             <div>
               <h4>Total Pecu Coins</h4>
