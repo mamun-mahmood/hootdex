@@ -1,7 +1,7 @@
 import * as React from "react";
 import Typography from "@mui/material/Typography";
 import Grid from "@mui/material/Grid";
-import { Paper } from "@mui/material";
+import { Box, Paper } from "@mui/material";
 import Transactions from "./Transaction";
 import AssetChart from "./AssetChart";
 import LineCharts from "./LineChart";
@@ -28,10 +28,10 @@ function DashboardContent({ user }) {
     }
   }, [username]);
   return (
-    <Grid container spacing={1} sx={{ textTransform: "uppercase" }}>
+    <Grid container spacing={1}>
       {/* dashboard left 1st road */}
       <Grid item xs={12} md={3} lg={3}>
-      <Grid sx={{ mt: 3 }}>
+        <Grid sx={{ mt: 3 }}>
           <Paper
             style={{
               textAlign: "center",
@@ -45,16 +45,16 @@ function DashboardContent({ user }) {
             <div
               style={{
                 color: "white",
-                wordWrap: "break-word"
+                wordWrap: "break-word",
               }}
             >
               <div
-                className="rounded center-width"
+                className="rounded center-width tUpper"
                 style={{ backgroundColor: "#002945" }}
               >
-                <h4>Total Tokens</h4>
+                <h3>Total Tokens</h3>
               </div>
-              <Typography variant="h4">15425</Typography>
+              <p className="fontS22">54546</p>
             </div>
           </Paper>
         </Grid>
@@ -72,16 +72,16 @@ function DashboardContent({ user }) {
             <div
               style={{
                 color: "white",
-                wordWrap: "break-word"
+                wordWrap: "break-word",
               }}
             >
               <div
-                className="rounded center-width"
+                className="rounded center-width tUpper"
                 style={{ backgroundColor: "#002945" }}
               >
-                <h4>Token Sold</h4>
+                <h3>Token Sold</h3>
               </div>
-              <Typography variant="h4">4b</Typography>
+              <p className="fontS22">4b</p>
             </div>
           </Paper>
         </Grid>
@@ -99,25 +99,30 @@ function DashboardContent({ user }) {
             <div
               style={{
                 color: "white",
-                wordWrap: "break-word"
+                wordWrap: "break-word",
               }}
             >
               <div
-                className="rounded center-width"
+                className="rounded center-width tUpper"
                 style={{ backgroundColor: "#002945" }}
               >
-                <h4>Total Asset</h4>
+                <h3>Total Asset</h3>
               </div>
-              <Typography variant="h4">$ 102548</Typography>
+              <p className="fontS22">$ 45656</p>
             </div>
           </Paper>
         </Grid>
       </Grid>
       <Grid item xs={12} md={6} lg={6}>
-        <Paper sx={{ backgroundColor: "#00071a", borderTop: "1px solid #fff",
-              borderLeft: "1px solid #fff",
-              borderBottom: "3px solid #fff",
-              borderRight: "3px solid #fff", }}>
+        <Paper
+          sx={{
+            backgroundColor: "#00071a",
+            borderTop: "1px solid #fff",
+            borderLeft: "1px solid #fff",
+            borderBottom: "3px solid #fff",
+            borderRight: "3px solid #fff",
+          }}
+        >
           <Typography
             style={{ textAlign: "center", color: "white" }}
             component="p"
@@ -135,8 +140,9 @@ function DashboardContent({ user }) {
           </div>
         </Paper>
       </Grid>
+      {/* first row right */}
       <Grid item xs={12} md={3} lg={3}>
-      <Grid sx={{ mt: 3 }}>
+        <Grid sx={{ mt: 3 }}>
           <Paper
             style={{
               textAlign: "center",
@@ -150,45 +156,16 @@ function DashboardContent({ user }) {
             <div
               style={{
                 color: "white",
-                wordWrap: "break-word"
+                wordWrap: "break-word",
               }}
             >
               <div
-                className="rounded center-width"
+                className="rounded center-width tUpper"
                 style={{ backgroundColor: "#002945" }}
               >
-                <h4>Pending Tokens</h4>
+                <h3>Pending Tokens</h3>
               </div>
-              <Typography variant="h4">{!pendingToken.length && "No Pending Token" }</Typography>
-            </div>
-          </Paper>
-        </Grid>
-      <Grid sx={{ mt: 3 }}>
-          <Paper
-            style={{
-              textAlign: "center",
-              backgroundColor: "#00071a",
-              borderTop: "1px solid #fff",
-              borderLeft: "1px solid #fff",
-              borderBottom: "3px solid #fff",
-              borderRight: "3px solid #fff",
-            }}
-          >
-            <div
-              style={{
-                color: "white",
-                wordWrap: "break-word"
-              }}
-            >
-              <div
-                className="rounded center-width"
-                style={{ backgroundColor: "#002945" }}
-              >
-                <h4>Create New</h4>
-              </div>
-              <Typography sx={{cursor: "pointer"}}  onClick={(e) => {
-                  navigate("/create-token");
-                }} variant="h4">Tokens</Typography>
+              <p className="fontS22">{!pendingToken.length && "No Pending Token"}</p>
             </div>
           </Paper>
         </Grid>
@@ -206,11 +183,40 @@ function DashboardContent({ user }) {
             <div
               style={{
                 color: "white",
-                wordWrap: "break-word"
+                wordWrap: "break-word",
               }}
             >
               <div
-                className="rounded center-width"
+                className="rounded center-width tUpper"
+                style={{ backgroundColor: "#002945" }}
+              >
+                <h3>Create New</h3>
+              </div>
+              <p className="fontS22" onClick={(e) => {
+                  navigate("/create-token");
+                }}>Tokens</p>
+            </div>
+          </Paper>
+        </Grid>
+        <Grid sx={{ mt: 3 }}>
+          <Paper
+            style={{
+              textAlign: "center",
+              backgroundColor: "#00071a",
+              borderTop: "1px solid #fff",
+              borderLeft: "1px solid #fff",
+              borderBottom: "3px solid #fff",
+              borderRight: "3px solid #fff",
+            }}
+          >
+            <div
+              style={{
+                color: "white",
+                wordWrap: "break-word",
+              }}
+            >
+              <div
+                className="rounded center-width tUpper"
                 style={{ backgroundColor: "#002945" }}
               >
                 <h4>Incoming Funds</h4>
@@ -220,6 +226,104 @@ function DashboardContent({ user }) {
           </Paper>
         </Grid>
       </Grid>
+      {/* third row */}
+      <Box
+        className="rounded"
+        sx={{
+          width: "97%",
+          marginLeft: "1.2%",
+          backgroundColor: "#091e17",
+          mt: 4,
+          p: 1,
+        }}
+        // spacing={5}
+      >
+        <Grid container spacing={1}>
+          <Grid item sx={6} md={2}>
+            <Paper
+              style={{
+                textAlign: "center",
+                backgroundColor: "#00071a",
+                borderTop: "1px solid #fff",
+                borderLeft: "1px solid #fff",
+                borderBottom: "3px solid #fff",
+                borderRight: "3px solid #fff",
+              }}
+            >
+              <div
+                style={{
+                  color: "white",
+                  wordWrap: "break-word",
+                }}
+              >
+                <div
+                  className="rounded center-width tUpper"
+                  style={{ backgroundColor: "#002945" }}
+                >
+                  <h4>Incoming Funds</h4>
+                </div>
+                <Typography variant="h4">$ 2548</Typography>
+              </div>
+            </Paper>
+          </Grid>
+          <Grid item sx={6} md={2}>
+            <Paper
+              style={{
+                textAlign: "center",
+                backgroundColor: "#00071a",
+                borderTop: "1px solid #fff",
+                borderLeft: "1px solid #fff",
+                borderBottom: "3px solid #fff",
+                borderRight: "3px solid #fff",
+              }}
+            >
+              <div
+                style={{
+                  color: "white",
+                  wordWrap: "break-word",
+                }}
+              >
+                <div
+                  className="rounded center-width tUpper"
+                  style={{ backgroundColor: "#002945" }}
+                >
+                  <h4>Incoming Funds</h4>
+                </div>
+                <Typography variant="h4">$ 2548</Typography>
+              </div>
+            </Paper>
+          </Grid>
+          <Grid item sx={6} md={2}>
+            <Paper
+              style={{
+                textAlign: "center",
+                backgroundColor: "#00071a",
+                borderTop: "1px solid #fff",
+                borderLeft: "1px solid #fff",
+                borderBottom: "3px solid #fff",
+                borderRight: "3px solid #fff",
+              }}
+            >
+              <div
+                style={{
+                  color: "white",
+                  wordWrap: "break-word",
+                }}
+              >
+                <div
+                  className="rounded center-width tUpper"
+                  style={{ backgroundColor: "#002945" }}
+                >
+                  <h4>Transactions</h4>
+                </div>
+                <Typography variant="h4" sx={{ textTransform: "capitalize" }}>
+                  View all
+                </Typography>
+              </div>
+            </Paper>
+          </Grid>
+        </Grid>
+      </Box>
       <Grid item xs={12}>
         <Paper sx={{ width: "100%", backgroundColor: "#3f4c66" }}>
           <Transactions />
