@@ -19,7 +19,7 @@ const style = {
   pb: 3,
 };
 
-export default function PendingCoin({ each }) {
+export default function PendingCoin({ each, index }) {
   const [open, setOpen] = useState(false);
   const handleOpen = () => {
     setOpen(true);
@@ -45,7 +45,7 @@ export default function PendingCoin({ each }) {
         <Paper
           style={{
             textAlign: "center",
-            backgroundColor: "#ffe8d9",
+            backgroundColor: `${index % 2 ? "#d0f2fe" : "#ffe8d9"}`,
             width: "95%",
           }}
           className="hover-grey"
@@ -81,7 +81,7 @@ export default function PendingCoin({ each }) {
           <h2 className="twhite tcenter">Token details</h2>
           <Grid container>
             <Grid item xs={12} md={4}>
-              <div style={{ backgroundColor: "", padding: "10px" }}>
+              <div style={{ padding: "10px" }}>
                 <TextField
                   fullWidth
                   name="tokenName"
@@ -90,18 +90,22 @@ export default function PendingCoin({ each }) {
                   type="text"
                   InputLabelProps={{
                     shrink: true,
-                    style: { color: '#fff' },
+                    style: { color: "#fff" },
                   }}
                   onChange={handleChange}
                   variant="filled"
                   color="warning"
-                  InputProps={{ inputProps: { style: { color: "#fff", borderColor: '#fff' } } }}
+                  InputProps={{
+                    inputProps: {
+                      style: { color: "#fff", borderColor: "#fff" },
+                    },
+                  }}
                   defaultValue={each?.tokenName}
                 />
               </div>
             </Grid>
             <Grid item xs={12} md={4}>
-              <div style={{ backgroundColor: "", padding: "10px" }}>
+              <div style={{ padding: "10px" }}>
                 <TextField
                   fullWidth
                   name="totalToken"
@@ -110,19 +114,22 @@ export default function PendingCoin({ each }) {
                   type="text"
                   InputLabelProps={{
                     shrink: true,
-                    style: { color: '#fff' },
-
+                    style: { color: "#fff" },
                   }}
                   onChange={handleChange}
                   variant="filled"
                   color="warning"
-                  InputProps={{ inputProps: { style: { color: "#fff", borderColor: '#fff' } } }}
+                  InputProps={{
+                    inputProps: {
+                      style: { color: "#fff", borderColor: "#fff" },
+                    },
+                  }}
                   defaultValue={each?.totalToken}
                 />
               </div>
             </Grid>
             <Grid item xs={12} md={4}>
-              <div style={{ backgroundColor: "", padding: "10px" }}>
+              <div style={{ padding: "10px" }}>
                 <TextField
                   fullWidth
                   name="investementAmount"
@@ -131,12 +138,16 @@ export default function PendingCoin({ each }) {
                   type="text"
                   InputLabelProps={{
                     shrink: true,
-                    style: { color: '#fff' },
+                    style: { color: "#fff" },
                   }}
                   onChange={handleChange}
                   variant="filled"
                   color="warning"
-                  InputProps={{ inputProps: { style: { color: "#fff", borderColor: '#fff' } } }}
+                  InputProps={{
+                    inputProps: {
+                      style: { color: "#fff", borderColor: "#fff" },
+                    },
+                  }}
                   defaultValue={each?.investementAmount}
                 />
               </div>

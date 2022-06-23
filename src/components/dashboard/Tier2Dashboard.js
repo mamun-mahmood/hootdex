@@ -15,7 +15,6 @@ import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import axios from "axios";
 import PendingCoin from "../Modal/PendingCoin";
-import DoNotDisturbAltIcon from "@mui/icons-material/DoNotDisturbAlt";
 function DashboardContent({ user }) {
   const navigate = useNavigate();
   const [pendingToken, setPendingToken] = React.useState([]);
@@ -132,8 +131,8 @@ function DashboardContent({ user }) {
           >
             Pending Tokens
           </Typography>
-          {pendingToken.map((each) => (
-            <PendingCoin each={each} />
+          {pendingToken.map((each, index) => (
+            <PendingCoin each={each} index={index} key={index} />
           ))}
           {!pendingToken.length && (
             <Paper

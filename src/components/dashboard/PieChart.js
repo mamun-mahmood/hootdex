@@ -50,7 +50,10 @@ export default function Piechart({ user }) {
     "acc9@falconglobalacquisitions.com",
   ];
   return (
-      <div className="">
+      <div className="" style={{backgroundColor: "#00071a", borderTop: "1px solid #fff",
+      borderLeft: "1px solid #fff",
+      borderBottom: "3px solid #fff",
+      borderRight: "3px solid #fff",}}>
         {user ? (
           <div>
             {accessEmails.includes(user.email) && (
@@ -67,6 +70,7 @@ export default function Piechart({ user }) {
                       XMG/PECU DISTRIBUTION :green
                     </h5>
                   </div>
+                  <div style={{display: "flex", justifyContent: "center"}}>
                   <PieChart width={600} height={600}>
                     <Pie
                       data={xmgData}
@@ -95,6 +99,7 @@ export default function Piechart({ user }) {
                       label
                     />
                   </PieChart>
+                  </div>
                 {/* </div> */}
               </>
             )}

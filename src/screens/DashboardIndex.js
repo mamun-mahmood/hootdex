@@ -16,6 +16,7 @@ import Divider from "@mui/material/Divider";
 import MuiDrawer from "@mui/material/Drawer";
 import MyProfile from "../components/dashboard/MyProfile";
 const drawerWidth = 240;
+
 const Drawer = styled(MuiDrawer, {
   shouldForwardProp: (prop) => prop !== "open",
 })(({ theme, open }) => ({
@@ -53,12 +54,12 @@ const DashboardIndex = ({ user }) => {
   //   window.location.pathname = "/administrator_dashboard";
   // };
   const [tab, setTab] = React.useState(0);
-  let tier = 2;
+  let tier = 1;
   return (
     <div>
       <ThemeProvider theme={mdTheme}>
         <Divider />
-        <Box sx={{ display: "flex", backgroundColor: "#091e17" }}>
+        <Box sx={{ display: "flex", backgroundColor: "black" }}>
           {/* Sidebar */}
           <Box sx={{ minHeight: "100vh", backgroundColor: "#002945" }}>
             <Drawer
@@ -93,7 +94,7 @@ const DashboardIndex = ({ user }) => {
                 <ListItemButton
                   sx={{
                     color: "white",
-                    backgroundColor: "#091e17",
+                    backgroundColor: "#00071a",
                     borderTopRightRadius: "20px",
                     borderBottomRightRadius: "20px",
                     width: "95%",
@@ -110,7 +111,7 @@ const DashboardIndex = ({ user }) => {
                 <ListItemButton
                   sx={{
                     color: "white",
-                    backgroundColor: "#091e17",
+                    backgroundColor: "#00071a",
                     borderTopRightRadius: "20px",
                     borderBottomRightRadius: "20px",
                     width: "95%",

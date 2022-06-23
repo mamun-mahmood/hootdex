@@ -20,7 +20,6 @@ export default function CreateToken({ user }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     axios.post("http://localhost:5000/create-tokens", inputData).then((res) => {
-      console.log(res);
       if (res.data.affectedRows > 0) {
         setAlert(true);
         window.scrollTo(0, 0);

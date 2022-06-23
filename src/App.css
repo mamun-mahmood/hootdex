@@ -111,7 +111,7 @@ border: 1px solid rgba( 255, 255, 255, 0.18 );
  margin-top: 2rem;
 }
 .rounded {
-  border-radius: 20px;
+  border-radius: 5px;
 }
 html {
   scroll-behavior: smooth;
@@ -128,4 +128,116 @@ html {
 }
 .tcenter {
   text-align: center;
+}
+.center-width {
+  width: 95%;
+  margin-left: 2.5%;
+}
+
+.banner{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+ 
+  width: 100%;
+  background-color: #e9eff5;
+
+}
+
+.banner-left{
+  flex:0.2;
+  margin: 1rem;
+}
+
+.banner-right{
+  flex:0.8;
+  margin-right: 2rem;
+  margin-top: 1rem;
+ 
+}
+
+.banner-right-h{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 1rem;
+  
+}
+
+.label-heading{
+  font-size: 3rem;
+  font-weight: bold;
+  font-style: normal;
+  color: rgb(244, 169, 50);
+
+}
+
+.heading-btn{
+  background-color: whitesmoke;
+  color: black;
+  font-weight: bold;
+  font-size: 1rem;
+  padding: 1rem;
+  width: 150px;
+  text-align: center;
+
+  border-radius: 5px;
+  background: #e9eff5;
+  box-shadow:  20px 20px 60px #c6cbd0,
+               -20px -20px 60px #ffffff;
+               color: #081e16;
+
+}
+
+.heading-btn:hover{
+  background-color: rgb(235, 233, 233);
+  cursor: pointer;
+
+}
+
+.content-body{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  align-items: center;
+ 
+}
+
+.card{padding: 1rem;
+  width: 200px;
+  height: 200px;
+  border-radius: 50px;
+background: #e9eff5;
+box-shadow:  20px 20px 60px #c6cbd0,
+             -20px -20px 60px #ffffff;
+             color: #081e16;
+
+             margin: 1rem;
+             display: flex;
+             justify-content: center;
+             align-items: center;
+           
+}
+
+.label-semi{
+  font-size: 1.5rem;
+  color: rgb(62, 62, 62);
+  font-weight: bold;
+  text-align: center;
+ 
+}
+
+.description{
+  margin-top: 5rem;
+}
+
+.neomorphism{
+  border-radius: 50px;
+  background: #e9eff5;
+  box-shadow:  20px 20px 60px #c6cbd0,
+               -20px -20px 60px #ffffff;
+               color: #081e16;
 }

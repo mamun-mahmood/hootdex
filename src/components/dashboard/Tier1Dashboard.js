@@ -1,5 +1,4 @@
 import * as React from "react";
-import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Grid from "@mui/material/Grid";
 import { Paper } from "@mui/material";
@@ -18,109 +17,102 @@ import FundsIcon from "../../assets/images/funds-svgrepo-com.svg";
 
 function DashboardContent({ user }) {
   return (
-    <Grid container spacing={1}>
+    <Grid container spacing={1} sx={{ textTransform: "uppercase" }}>
       <Grid item xs={12} md={6} lg={3}>
-        <Paper style={{ textAlign: "center", backgroundColor: "#c9facd" }}>
-          <div
+        {/* dashboard left */}
+        <Grid sx={{ mt: 3 }}>
+          <Paper
             style={{
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
+              textAlign: "center",
+              backgroundColor: "#00071a",
+              borderTop: "1px solid #fff",
+              borderLeft: "1px solid #fff",
+              borderBottom: "3px solid #fff",
+              borderRight: "3px solid #fff",
             }}
           >
-            {/* <div><Avatar   alt="coin logo" /></div> */}
-            <div>
-              <h4>Welcome</h4>
-              <Typography variant="h4">{user.username}</Typography>
+            <div
+              style={{
+                color: "white",
+                wordWrap: "break-word"
+              }}
+            >
+              <div
+                className="rounded center-width"
+                style={{ backgroundColor: "#002945" }}
+              >
+                <h4>Total Tokens</h4>
+              </div>
+              <Typography variant="h4">15425</Typography>
             </div>
-          </div>
-        </Paper>
-      </Grid>
-      <Grid item xs={12} md={6} lg={3}>
-        <Paper style={{ textAlign: "center", backgroundColor: "#d0f2fe" }}>
-          <div
+          </Paper>
+        </Grid>
+        <Grid sx={{ mt: 3 }}>
+          <Paper
             style={{
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
+              textAlign: "center",
+              backgroundColor: "#00071a",
+              borderTop: "1px solid #fff",
+              borderLeft: "1px solid #fff",
+              borderBottom: "3px solid #fff",
+              borderRight: "3px solid #fff",
             }}
           >
-            <div>
-              <WavesIcon sx={{ width: "80px", height: "80px" }} />
-              {/* <img style={{ width: "80px" }} src={TierLogo} alt="coin logo" /> */}
+            <div
+              style={{
+                color: "white",
+                wordWrap: "break-word"
+              }}
+            >
+              <div
+                className="rounded center-width"
+                style={{ backgroundColor: "#002945" }}
+              >
+                <h4>Total Value</h4>
+              </div>
+              <Typography variant="h4">$ 15425</Typography>
             </div>
-            <div>
-              <h4>Pool Level</h4>
-              <Typography variant="h4">Tier 1</Typography>
-            </div>
-          </div>
-        </Paper>
-      </Grid>
-      <Grid item xs={12} md={6} lg={3}>
-        <Paper style={{ textAlign: "center", backgroundColor: "#fff8ce" }}>
-          <div
+          </Paper>
+        </Grid>
+        <Grid sx={{ mt: 3 }}>
+          <Paper
             style={{
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
+              textAlign: "center",
+              backgroundColor: "#00071a",
+              borderTop: "1px solid #fff",
+              borderLeft: "1px solid #fff",
+              borderBottom: "3px solid #fff",
+              borderRight: "3px solid #fff",
             }}
           >
-            <div>
-              <img style={{ width: "80px" }} src={Coin} alt="coin logo" />
+            <div
+              style={{
+                color: "white",
+                wordWrap: "break-word"
+              }}
+            >
+              <div
+                className="rounded center-width"
+                style={{ backgroundColor: "#002945" }}
+              >
+                <h4>Total Coin</h4>
+              </div>
+              <Typography variant="h4">65415425</Typography>
             </div>
-            <div>
-              <h4>Total Coins</h4>
-              <Typography variant="h4">4b</Typography>
-            </div>
-          </div>
-        </Paper>
+          </Paper>
+        </Grid>
       </Grid>
-      <Grid item xs={12} md={6} lg={3}>
-        <Paper style={{ textAlign: "center", backgroundColor: "#ffe8d9" }}>
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-            }}
-          >
-            <div>
-              <img style={{ width: "80px" }} src={XMG} alt="coin logo" />
-            </div>
-            <div>
-              <h4>Total XMG</h4>
-              <Typography component="p" variant="h4">
-                4b
-              </Typography>
-            </div>
-          </div>
-        </Paper>
-      </Grid>
-      <Grid item xs={12} md={6} lg={4}>
+      {/* dashboard middle */}
+      <Grid item xs={12} md={8} lg={6}>
         <Paper
           sx={{
-            backgroundColor: "#18214c",
+            backgroundColor: "#00071a",
+            borderTop: "1px solid #fff",
+              borderLeft: "1px solid #fff",
+              borderBottom: "3px solid #fff",
+              borderRight: "3px solid #fff",
           }}
         >
-          <Typography
-            style={{ textAlign: "center", color: "white" }}
-            component="p"
-            variant="h5"
-          >
-            My Invested Assets
-          </Typography>
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "center",
-            }}
-          >
-            <InvAssetChart user={user} />
-          </div>
-        </Paper>
-      </Grid>
-      <Grid item xs={12} md={8} lg={8}>
-        <Paper sx={{ backgroundColor: "#18214c" }}>
           <Typography
             style={{ textAlign: "center", color: "white" }}
             component="p"
@@ -136,46 +128,103 @@ function DashboardContent({ user }) {
           >
             <AssetChart user={user} />
           </div>
-        </Paper>
+        </Paper> 
       </Grid>
-      <Grid item xs={12} md={6} lg={4}>
-        <Paper
-          style={{
-            textAlign: "center",
-            backgroundColor: "#d0f2fe",
-            height: "100%",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-          }}
-        >
-          <div
+      {/* dashboard right */}
+      <Grid item xs={12} md={8} lg={3}>
+        <Grid sx={{ mt: 3 }}>
+          <Paper
             style={{
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
+              textAlign: "center",
+              backgroundColor: "#00071a",
+              borderTop: "1px solid #fff",
+              borderLeft: "1px solid #fff",
+              borderBottom: "3px solid #fff",
+              borderRight: "3px solid #fff",
             }}
           >
-            <div>
-              <img style={{ width: "80px" }} src={Coin} alt="coin logo" />
+            <div
+              style={{
+                color: "white",
+                wordWrap: "break-word"
+              }}
+            >
+              <div
+                className="rounded center-width"
+                style={{ backgroundColor: "#002945" }}
+              >
+                <h4>Total XMG</h4>
+              </div>
+              <Typography variant="h4">15425</Typography>
             </div>
-            <div>
-              <h4>Total Pecu Coins</h4>
-              <Typography variant="h4">4b</Typography>
+          </Paper>
+        </Grid>
+        <Grid sx={{ mt: 3 }}>
+          <Paper
+            style={{
+              textAlign: "center",
+              backgroundColor: "#00071a",
+              borderTop: "1px solid #fff",
+              borderLeft: "1px solid #fff",
+              borderBottom: "3px solid #fff",
+              borderRight: "3px solid #fff",
+            }}
+          >
+            <div
+              style={{
+                color: "white",
+                wordWrap: "break-word"
+              }}
+            >
+              <div
+                className="rounded center-width"
+                style={{ backgroundColor: "#002945" }}
+              >
+                <h4>Token Created</h4>
+              </div>
+              <Typography variant="h4">None</Typography>
             </div>
-          </div>
-        </Paper>
+          </Paper>
+        </Grid>
+        <Grid sx={{ mt: 3 }}>
+          <Paper
+            style={{
+              textAlign: "center",
+              backgroundColor: "#00071a",
+              borderTop: "1px solid #fff",
+              borderLeft: "1px solid #fff",
+              borderBottom: "3px solid #fff",
+              borderRight: "3px solid #fff",
+            }}
+          >
+            <div
+              style={{
+                color: "white",
+                wordWrap: "break-word"
+              }}
+            >
+              <div
+                className="rounded center-width"
+                style={{ backgroundColor: "#002945" }}
+              >
+                <h4>Total Pecu Coins</h4>
+              </div>
+              <Typography variant="h4">4054984654</Typography>
+            </div>
+          </Paper>
+        </Grid>
       </Grid>
-      <Grid item xs={12} md={8} lg={8}>
+      {/* second row */}
+      <Grid item xs={12} xl={6}>
+        <Piechart user={user} />
+      </Grid>
+      <Grid item xs={12} xl={6} sx={{mt:3}}>
         <Paper sx={{ backgroundColor: "#18214c" }}>
           <p style={{ textAlign: "center", color: "white" }}>Pecu Price</p>
           <LineCharts user={user} />
         </Paper>
       </Grid>
-      <Grid item xs={8}>
-        <Piechart user={user} />
-      </Grid>
-      <Grid item xs={12} md={6} lg={4}>
+      <Grid item xs={12} md={6} lg={4} xl={3}>
         <Paper
           style={{
             textAlign: "center",
@@ -197,42 +246,13 @@ function DashboardContent({ user }) {
               <img style={{ width: "80px" }} src={FundsIcon} alt="coin logo" />
             </div>
             <div>
-              {/* some random text here */}
               <h4>Current Funds</h4>
               <Typography variant="h4">400k</Typography>
             </div>
           </div>
         </Paper>
-        <Paper
-          style={{
-            textAlign: "center",
-            backgroundColor: "#ffe8d9",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            marginTop: "20px",
-          }}
-        >
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-            }}
-          >
-            <div>
-              {/* <PeopleAltIcon style={{ width: "80px", height: "80px" }} /> */}
-              <img style={{ width: "80px" }} src={InvestIcon} alt="coin logo" />
-            </div>
-            <div>
-              {/* some random text here */}
-              <h4>Make New Investment</h4>
-              <Typography variant="h4">400k</Typography>
-            </div>
-          </div>
-        </Paper>
       </Grid>
-      <Grid item xs={12} md={6} lg={4}>
+      <Grid item xs={12} md={6} lg={4} xl={3}>
         <Paper
           style={{
             textAlign: "center",
@@ -260,7 +280,36 @@ function DashboardContent({ user }) {
           </div>
         </Paper>
       </Grid>
-      <Grid item xs={12} md={6} lg={4}>
+      <Grid item xs={12} md={6} lg={4} xl={3}>
+      <Paper
+          style={{
+            textAlign: "center",
+            backgroundColor: "#ffe8d9",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            <div>
+              {/* <PeopleAltIcon style={{ width: "80px", height: "80px" }} /> */}
+              <img style={{ width: "80px" }} src={InvestIcon} alt="coin logo" />
+            </div>
+            <div>
+              {/* some random text here */}
+              <h4>Make New Investment</h4>
+              <Typography variant="h4">400k</Typography>
+            </div>
+          </div>
+        </Paper>
+      </Grid>
+      <Grid item xs={12} md={6} lg={4} xl={3}>
         <Paper
           style={{
             textAlign: "center",
