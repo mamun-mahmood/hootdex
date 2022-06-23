@@ -54,14 +54,12 @@ const DashboardIndex = ({ user }) => {
   //   window.location.pathname = "/administrator_dashboard";
   // };
   const [tab, setTab] = React.useState(0);
-  let tier = 2;
+  let tier = 1;
   return (
-    <div>
-      <ThemeProvider theme={mdTheme}>
-        <Divider />
-        <Box sx={{ display: "flex", backgroundColor: "black" }}>
-          {/* Sidebar */}
-          <Box sx={{ minHeight: "100vh", backgroundColor: "#002945" }}>
+    <div style={{ backgroundColor: "#002945", height: '100vh' }}>
+      <Divider/>
+        {/* Sidebar */}
+        {/* <Box sx={{ minHeight: "100vh", backgroundColor: "#002945" }}>
             <Drawer
               variant="permanent"
               open={open}
@@ -127,21 +125,24 @@ const DashboardIndex = ({ user }) => {
                 </ListItemButton>
               </List>
             </Drawer>
-          </Box>
-          {/* showing dashboard based on user tier level */}
-          <Box
-            component="main"
-            sx={{
-              padding: 1,
-            }}
-          >
-            {tier === 0 && tab === 0 && <Tier0Dashboard user={user} />}
-            {tier === 1 && tab === 0 && <Tier1Dashboard user={user} />}
-            {tier === 2 && tab === 0 && <Tier2Dashboard user={user} />}
-            {tab === 1 && <MyProfile user={user} />}
-          </Box>
+          </Box> */}
+        {/* showing dashboard based on user tier level */}
+        <Box
+          className="rounded shadow"
+          sx={{
+            padding: 1,
+            width: "95%",
+            ml: "2.5%",
+            mt: 1,
+            backgroundColor: 'black',
+            pb: 2,
+          }}
+        >
+          {tier === 0 && tab === 0 && <Tier0Dashboard user={user} />}
+          {tier === 1 && tab === 0 && <Tier1Dashboard user={user} />}
+          {tier === 2 && tab === 0 && <Tier2Dashboard user={user} />}
+          {tab === 1 && <MyProfile user={user} />}
         </Box>
-      </ThemeProvider>
     </div>
   );
 };

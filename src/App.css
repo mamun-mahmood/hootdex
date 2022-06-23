@@ -90,7 +90,7 @@
   margin-right: 3rem;
 }
 
-.form h3 {
+.form {
   color: #fff;
   font-size: 2rem;
 }
@@ -232,4 +232,13 @@ html {
 }
 .tUpper {
   text-transform: uppercase;
+}
+.shadow {
+  box-shadow: 0px 0px 6px 0px rgba(255, 255, 255, 1);
+}
+.border {
+  border-top: 1px solid #fff;
+  border-left: 1px solid #fff;
+  border-bottom: 2px solid #fff;
+  border-right: 2px solid #fff;
 }
