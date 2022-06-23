@@ -2,14 +2,7 @@ import * as React from "react";
 import Typography from "@mui/material/Typography";
 import Grid from "@mui/material/Grid";
 import { Paper } from "@mui/material";
-import Piechart from "./PieChart";
-import Transactions from "./Transaction";
 import AssetChart from "./AssetChart";
-import LineCharts from "./LineChart";
-import PeopleAltIcon from "@mui/icons-material/PeopleAlt";
-import TokenIcon from "../../assets/images/tokens-svgrepo-com.svg";
-import InvestIcon from "../../assets/images/investment-svgrepo-com.svg";
-import FundsIcon from "../../assets/images/funds-svgrepo-com.svg";
 import { Box } from "@mui/system";
 
 function DashboardContent({ user }) {
@@ -25,7 +18,7 @@ function DashboardContent({ user }) {
             pb: 2,
           }}>
         <Grid container spacing={5} sx={{ textTransform: "uppercase", p: 5 }}>
-          <Grid item xs={12} md={6} lg={3}>
+          <Grid item xs={12} md={6} lg={3} mt={5}>
             {/* dashboard left */}
             <Grid sx={{ mt: 3 }}>
               <Paper
@@ -110,11 +103,11 @@ function DashboardContent({ user }) {
               className="border"
             >
               <Typography
-                style={{ textAlign: "center", color: "white" }}
+                sx={{ textAlign: "center", color: "white", mt: 1}}
                 component="p"
                 variant="h5"
               >
-                My Total Assets
+                My Total Asset
               </Typography>
               <div
                 style={{
@@ -127,7 +120,7 @@ function DashboardContent({ user }) {
             </Paper>
           </Grid>
           {/* dashboard right */}
-          <Grid item xs={12} md={8} lg={3}>
+          <Grid item xs={12} md={8} lg={3} mt={5}>
             <Grid sx={{ mt: 3 }}>
               <Paper
                 style={{
@@ -204,15 +197,6 @@ function DashboardContent({ user }) {
         </Grid>
       </Box>
       {/* second row */}
-      {/* <Grid item xs={12} xl={6}>
-        <Piechart user={user} />
-      </Grid> */}
-      {/* <Grid item xs={12} xl={6} sx={{mt:3}}>
-        <Paper sx={{ backgroundColor: "#18214c" }}>
-          <p style={{ textAlign: "center", color: "white" }}>Pecu Price</p>
-          <LineCharts user={user} />
-        </Paper>
-      </Grid> */}
       <Box
         className="rounded shadow"
         sx={{
@@ -221,6 +205,7 @@ function DashboardContent({ user }) {
           ml: "2.5%",
           mt: 3,
           backgroundColor: "black",
+          mb: 1
         }}
       >
         <Grid container spacing={5} sx={{ p: 1 }}>
@@ -322,11 +307,6 @@ function DashboardContent({ user }) {
           </Grid>
         </Grid>
       </Box>
-      {/* <Grid item xs={12}>
-        <Paper sx={{ width: "100%", backgroundColor: "#3f4c66" }}>
-          <Transactions />
-        </Paper>
-      </Grid> */}
     </>
   );
 }

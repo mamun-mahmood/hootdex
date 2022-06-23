@@ -54,7 +54,57 @@ const AssetChart = () => {
     },
   ];
   return (
-    <>
+    <div>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-around",
+            marginTop: "1rem",
+            marginBottom: "1rem",
+            width: "100%",
+          }}
+        >
+          <button
+            className="header-link cbutton"
+            onClick={() => {
+              // getChatData("yearly");
+            }}
+          >
+            12M
+          </button>
+          <button
+            className="header-link cbutton"
+            onClick={() => {
+              // getChatData("quaterly");
+            }}
+          >
+            3M
+          </button>
+          <button
+            className="header-link cbutton"
+            onClick={() => {
+              // getChatData("monthly");
+            }}
+          >
+            1M
+          </button>
+          <button
+            className="header-link cbutton"
+            onClick={() => {
+              // getChatData("weekly");
+            }}
+          >
+            7D
+          </button>
+          <button
+            className="header-link cbutton"
+            onClick={() => {
+              // getChatData("hourly");
+            }}
+          >
+            Hourly
+          </button>
+        </div>
       <AreaChart
         width={500}
         height={400}
@@ -72,7 +122,7 @@ const AssetChart = () => {
         <Tooltip />
         <Area type="monotone" dataKey="uv" stroke="#8884d8" fill="#8884d8" />
       </AreaChart>
-    </>
+    </div>
   );
 };
 

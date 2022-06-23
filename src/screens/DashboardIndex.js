@@ -49,11 +49,11 @@ const DashboardIndex = ({ user }) => {
     setOpen(!open);
   };
   // const logout = () => {
-  //   localStorage.removeItem("UGV_Student_MS_Jwt_AD");
+  //   localStorage.removeItem("");
   //   window.location.pathname = "/administrator_dashboard";
   // };
   const [tab, setTab] = React.useState(0);
-  let tier = 1;
+  let tier = 0;
   return (
     <>
       <Divider color="black" />
@@ -66,6 +66,7 @@ const DashboardIndex = ({ user }) => {
             variant="permanent"
             open={open}
             sx={{ backgroundColor: "#002945" }}
+            onClose={() => setOpen(!open)}
           >
             <Toolbar
               sx={{
@@ -127,7 +128,7 @@ const DashboardIndex = ({ user }) => {
           </Drawer>
         </Box>
         {/* showing dashboard based on user tier level */}
-        <Box sx={{ flex: 1, mt: 5}}>
+        <Box sx={{ flex: 1, mt: 1}}>
           {tier === 0 && tab === 0 && <Tier0Dashboard user={user} />}
           {tier === 1 && tab === 0 && <Tier1Dashboard user={user} />}
           {tier === 2 && tab === 0 && <Tier2Dashboard user={user} />}
