@@ -9,6 +9,7 @@ import Wallet from "./screens/wallet";
 import Login from "./screens/login";
 import { useEffect, useState } from "react";
 import DashboardIndex from "./screens/DashboardIndex";
+import TokenPage from "./screens/tokenPage";
 
 function App() {
   const [user,setUser]=useState(null)
@@ -45,6 +46,7 @@ function App() {
 
           <Route path="/" element={<Home />} />
           <Route path="/wallet" element={<Wallet />} />
+          <Route path="/tokenDetails" element={<TokenPage />} />
           <Route path="/login" element={<Login loginData={(e)=>{handleUserToken(e)}} />} />
           <Route path="/dashboard" element={user&& user.loggedIn?<DashboardIndex user={user} />:<Login />} />
         </Routes>

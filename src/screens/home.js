@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import Chart from "./chart";
 
 export default function Home() {
@@ -8,6 +9,7 @@ export default function Home() {
     "Token",
     "Available Coins",
     "Rate Pecu/Token",
+    "Info"
   ];
   const poolData = [
     {
@@ -138,7 +140,7 @@ export default function Home() {
       <div>
     
         <Chart />
-        <h1 className="primary__title">Available Pools</h1>
+        <h1 className="primary__title">Listed Tokens</h1>
       </div>
       <div className="table__container">
         <table className="table">
@@ -149,13 +151,16 @@ export default function Home() {
           </tr>
 
           {poolData.map((e) => (
-            <tr className="tr">
+         <tr className="tr">    
               <td className="td">{e.id}</td>
               <td className="td">{e.name}</td>
               <td className="td">{e.token}</td>
               <td className="td">{e.coins}</td>
               <td className="td">{e.rate}</td>
+              <Link  to="/tokenDetails" state={{tokenData:e}}><button style={{width:'100%',padding:'1rem',backgroundColor:'rgb(244, 169, 50)',fontSize:'14px',border:'none',borderRadius:'5px'}}>Visit👀
+              </button></Link>
             </tr>
+            
           ))}
         </table>
       </div>
