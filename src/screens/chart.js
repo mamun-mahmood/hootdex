@@ -27,7 +27,7 @@ export default function Chart() {
             setChartData(localData);
           }
         });
-      });
+      }).catch(err=>getChatData(filter))
   };
 
   useEffect(() => {
