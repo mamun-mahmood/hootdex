@@ -35,6 +35,15 @@ const MyProfile = ({ user }) => {
     location.reload();
   };
   console.log(user);
+
+//   First Name
+// Last Name
+// Street address
+// City
+// State
+// Zip code
+// Phone number
+// Email address
   return (
     <>
       <Box
@@ -80,7 +89,7 @@ const MyProfile = ({ user }) => {
                   justifyContent: "center",
                 }}
               >
-                <Avatar sx={{ width: 150, height: 150 }} />
+                <Avatar sx={{ width: 100, height: 100 }} />
               </div>
               <div
                 style={{
@@ -95,7 +104,7 @@ const MyProfile = ({ user }) => {
                   <h3>{user.username}</h3>
                 </div>
                 <p className="fontS22">User ID: {user?.user_id}</p>
-                <p className="">Pool Lavel: 1</p>
+                <p className="">Tier Level: 0</p>
               </div>
               {/* <Button
                     onClick={logout}
@@ -140,7 +149,7 @@ const MyProfile = ({ user }) => {
               />
             </div>
             <div style={{ backgroundColor: "black", padding: "10px" }}>
-              <p style={{ color: "white", marginLeft: "15px" }}>Website Link</p>
+              <p style={{ color: "white", marginLeft: "15px" }}>Username</p>
               <input
                 className="border"
                 style={{
@@ -190,7 +199,7 @@ const MyProfile = ({ user }) => {
               />
             </div>
             <div style={{ backgroundColor: "black", padding: "10px" }}>
-              <p style={{ color: "white", marginLeft: "15px" }}>Company Name</p>
+              <p style={{ color: "white", marginLeft: "15px" }}>Country</p>
               <input
                 className="border"
                 style={{
@@ -247,51 +256,16 @@ const MyProfile = ({ user }) => {
         >
           <StepConnector />
           <Typography sx={{ color: "white" }} variant="h5">
-            Biling Info
+            Address Info
           </Typography>
           <StepConnector />
         </div>
         {/* billing info */}
         <Grid container sx={{ maxWidth: "100%" }} spacing={5}>
+       
           <Grid item xs={12} md={4}>
             <div style={{ backgroundColor: "black", padding: "10px" }}>
-              <p style={{ color: "white", marginLeft: "15px" }}>First Name</p>
-              <input
-                className="border"
-                style={{
-                  width: "100%",
-                  backgroundColor: "black",
-                  borderRadius: "20px",
-                  color: "white",
-                  fontSize: "24px",
-                  padding: "15px",
-                }}
-                type="text"
-                name="firstname"
-              />
-            </div>
-          </Grid>
-          <Grid item xs={12} md={4}>
-            <div style={{ backgroundColor: "black", padding: "10px" }}>
-              <p style={{ color: "white", marginLeft: "15px" }}>Last Name</p>
-              <input
-                className="border"
-                style={{
-                  width: "100%",
-                  backgroundColor: "black",
-                  borderRadius: "20px",
-                  color: "white",
-                  fontSize: "24px",
-                  padding: "15px",
-                }}
-                type="text"
-                name="lastname"
-              />
-            </div>
-          </Grid>
-          <Grid item xs={12} md={4}>
-            <div style={{ backgroundColor: "black", padding: "10px" }}>
-              <p style={{ color: "white", marginLeft: "15px" }}>Address 1</p>
+              <p style={{ color: "white", marginLeft: "15px" }}>City</p>
               <input
                 className="border"
                 style={{
@@ -309,7 +283,7 @@ const MyProfile = ({ user }) => {
           </Grid>
           <Grid item xs={12} md={4}>
             <div style={{ backgroundColor: "black", padding: "10px" }}>
-              <p style={{ color: "white", marginLeft: "15px" }}>Address 2</p>
+              <p style={{ color: "white", marginLeft: "15px" }}>State</p>
               <input
                 className="border"
                 style={{
@@ -327,7 +301,7 @@ const MyProfile = ({ user }) => {
           </Grid>
           <Grid item xs={12} md={4}>
             <div style={{ backgroundColor: "black", padding: "10px" }}>
-              <p style={{ color: "white", marginLeft: "15px" }}>Phone</p>
+              <p style={{ color: "white", marginLeft: "15px" }}>Street</p>
               <input
                 className="border"
                 style={{
