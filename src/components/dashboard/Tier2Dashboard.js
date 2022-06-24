@@ -187,8 +187,10 @@ function DashboardContent({ user }) {
                 style={{
                   textAlign: "center",
                   backgroundColor: "#00071a",
+                  cursor: "pointer",
                 }}
                 className="border"
+                onClick={() => navigate("/create-token")}
               >
                 <div
                   style={{
