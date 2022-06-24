@@ -227,7 +227,7 @@ export default function TokenRequest({ each, index }) {
             <Grid item xs={12}>
               <div style={{textAlign: 'center'}}>
                 <Button className="border" variant="contained" sx={{ color: "white", backgroundColor: "#00071a" }}>
-                  Accept
+                  Approve
                 </Button>
               </div>
             </Grid>
