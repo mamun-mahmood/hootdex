@@ -4,7 +4,9 @@ import Typography from "@mui/material/Typography";
 import Grid from "@mui/material/Grid";
 import { Paper } from "@mui/material";
 import AssetChart from "../../components/dashboard/AssetChart";
-
+import Chart from "../../screens/chart";
+import CircularChart from "./CircularChart";
+import InvAssetChart from "./InvAssetChart";
 function DashboardContent({ user }) {
   return (
     <>
@@ -38,9 +40,9 @@ function DashboardContent({ user }) {
                     className="rounded center-width tUpper"
                     style={{ backgroundColor: "#002945" }}
                   >
-                    <h3>Total Tokens</h3>
+                    <h3>Total XMG</h3>
                   </div>
-                  <p className="fontS22">54546</p>
+                  <p className="fontS22">3 B</p>
                 </div>
               </Paper>
             </Grid>
@@ -64,7 +66,7 @@ function DashboardContent({ user }) {
                   >
                     <h3>Total Value</h3>
                   </div>
-                  <p className="fontS22">54546</p>
+                  <p className="fontS22">$3 B</p>
                 </div>
               </Paper>
             </Grid>
@@ -88,36 +90,13 @@ function DashboardContent({ user }) {
                   >
                     <h3>Total Coin</h3>
                   </div>
-                  <p className="fontS22">54546</p>
+                  <p className="fontS22">3B</p>
                 </div>
               </Paper>
             </Grid>
           </Grid>
           {/* dashboard middle */}
-          <Grid item xs={12} md={8} lg={6}>
-            <Paper
-              sx={{
-                backgroundColor: "#00071a",
-              }}
-              className="border "
-            >
-              <Typography
-                sx={{ textAlign: "center", color: "white", mt: 1}}
-                component="p"
-                variant="h5"
-              >
-                Total Asset
-              </Typography>
-              <div
-                style={{
-                  display: "flex",
-                  justifyContent: "center",
-                }}
-              >
-                <AssetChart user={user} />
-              </div>
-            </Paper>
-          </Grid>
+        <CircularChart />
           {/* dashboard right */}
           <Grid item xs={12} md={8} lg={3} mt={5}>
             <Grid sx={{ mt: 3 }}>
@@ -138,9 +117,9 @@ function DashboardContent({ user }) {
                     className="rounded center-width tUpper"
                     style={{ backgroundColor: "#002945" }}
                   >
-                    <h3>Total XMG</h3>
+                    <h3>Total PECU</h3>
                   </div>
-                  <p className="fontS22">54546</p>
+                  <p className="fontS22">3B</p>
                 </div>
               </Paper>
             </Grid>
@@ -162,9 +141,9 @@ function DashboardContent({ user }) {
                     className="rounded center-width tUpper"
                     style={{ backgroundColor: "#002945" }}
                   >
-                    <h3>Invested Asset</h3>
+                    <h3>Total Value</h3>
                   </div>
-                  <p className="fontS22">12354546</p>
+                  <p className="fontS22">3 B</p>
                 </div>
               </Paper>
             </Grid>
@@ -188,13 +167,28 @@ function DashboardContent({ user }) {
                   >
                     <h3>Total Pecu Coin</h3>
                   </div>
-                  <p className="fontS22">65746554546</p>
+                  <p className="fontS22">3 B</p>
                 </div>
               </Paper>
             </Grid>
           </Grid>
+        
+      
         </Grid>
       </Box>
+      <Box
+        className="rounded shadow"
+        sx={{
+          padding: 1,
+          width: "95%",
+          ml: "2.5%",
+          mt: 3,
+          backgroundColor: "black",
+          mb: 1
+        }}
+      > 
+        <Chart />
+        </Box>
       {/* second row */}
       <Box
         className="rounded shadow"
@@ -226,9 +220,9 @@ function DashboardContent({ user }) {
                   className="rounded center-width tUpper"
                   style={{ backgroundColor: "#002945" }}
                 >
-                  <h3>Current Balance</h3>
+                  <h3>Current Pool Balance</h3>
                 </div>
-                <p className="fontS22">$ 4546</p>
+                <p className="fontS22">6B</p>
               </div>
             </Paper>
           </Grid>
@@ -250,9 +244,9 @@ function DashboardContent({ user }) {
                   className="rounded center-width tUpper"
                   style={{ backgroundColor: "#002945" }}
                 >
-                  <h3>Current Balance</h3>
+                  <h3>Current PECU Price</h3>
                 </div>
-                <p className="fontS22">$ 4546</p>
+                <p className="fontS22">$41</p>
               </div>
             </Paper>
           </Grid>
@@ -274,36 +268,13 @@ function DashboardContent({ user }) {
                   className="rounded center-width tUpper"
                   style={{ backgroundColor: "#002945" }}
                 >
-                  <h3>Current Balance</h3>
+                  <h3>Current XMG Price</h3>
                 </div>
-                <p className="fontS22">$ 4546</p>
+                <p className="fontS22">$ 1</p>
               </div>
             </Paper>
           </Grid>
-          <Grid item xs={12} md={6} lg={4} xl={3}>
-            <Paper
-              style={{
-                textAlign: "center",
-                backgroundColor: "#00071a",
-              }}
-              className="border"
-            >
-              <div
-                style={{
-                  color: "white",
-                  wordWrap: "break-word",
-                }}
-              >
-                <div
-                  className="rounded center-width tUpper"
-                  style={{ backgroundColor: "#002945" }}
-                >
-                  <h3>Current Balance</h3>
-                </div>
-                <p className="fontS22">$ 4546</p>
-              </div>
-            </Paper>
-          </Grid>
+       
         </Grid>
       </Box>
     </>

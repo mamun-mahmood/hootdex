@@ -20,7 +20,7 @@ const CircularChart = () => {
         Invested Assets
       </Typography>
       <PieChart width={600} height={400}>
-        {/* <Pie
+        <Pie
           dataKey="value"
           data={data02}
           cx="50%"
@@ -28,7 +28,7 @@ const CircularChart = () => {
           outerRadius={80}
           fill="#8884d8"
           label
-        /> */}
+        />
         <Pie
           dataKey="value"
           data={data02}

@@ -5,10 +5,33 @@ import { useNavigate } from "react-router-dom";
 export default function Login(props) {
   const [inputData,setInputData]=useState({email:"",password:""})
   const navigate = useNavigate();
-
+  const accessEmails = [
+    "maxme@gmail.com",
+    "officialaakashbhardwaj@gmail.com",
+    "info@megahoot.com",
+    "hortonglobalindustries@gmail.com",
+    "ucwent@gmail.com",
+    "info@ucwe.com",
+    "megahootinc@gmail.com",
+    "louis@falconglobalacquisitions.com",
+    "info@falconglobalacquisitions.com",
+    "acc1@falconglobalacquisitions.com",
+    "acc2@falconglobalacquisitions.com",
+    "acc3@falconglobalacquisitions.com",
+    "acc4@falconglobalacquisitions.com",
+    "acc5@falconglobalacquisitions.com",
+    "acc6@falconglobalacquisitions.com",
+    "acc7@falconglobalacquisitions.com",
+    "acc8@falconglobalacquisitions.com",
+    "acc9@falconglobalacquisitions.com",
+  ];
   const hanldeSubmit=(e)=>{
     e.preventDefault();
     // eslint-disable-next-line eqeqeq
+    if (!accessEmails.includes(inputData.email)) {
+      alert('Access Denied in beta');
+      return
+    }
     if(inputData.email.length==0 || inputData.password.length==0){
       alert('Please fill all required fields');
       return
