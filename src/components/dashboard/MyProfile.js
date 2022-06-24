@@ -266,48 +266,7 @@ const MyProfile = ({ user }) => {
        
           <Grid item xs={12} md={4}>
             <div style={{ backgroundColor: "black", padding: "10px" }}>
-<<<<<<< HEAD
-              <p style={{ color: "white", marginLeft: "15px" }}>First Name</p>
-              <input
-                className="border"
-                style={{
-                  width: "100%",
-                  backgroundColor: "black",
-                  borderRadius: "20px",
-                  color: "white",
-                  fontSize: "24px",
-                  padding: "15px",
-                }}
-                type="text"
-                name="firstname"
-                value={user.username}
-              />
-            </div>
-          </Grid>
-          <Grid item xs={12} md={4}>
-            <div style={{ backgroundColor: "black", padding: "10px" }}>
-              <p style={{ color: "white", marginLeft: "15px" }}>Last Name</p>
-              <input
-                className="border"
-                style={{
-                  width: "100%",
-                  backgroundColor: "black",
-                  borderRadius: "20px",
-                  color: "white",
-                  fontSize: "24px",
-                  padding: "15px",
-                }}
-                type="text"
-                name="lastname"
-              />
-            </div>
-          </Grid>
-          <Grid item xs={12} md={4}>
-            <div style={{ backgroundColor: "black", padding: "10px" }}>
-              <p style={{ color: "white", marginLeft: "15px" }}>Address 1</p>
-=======
               <p style={{ color: "white", marginLeft: "15px" }}>City</p>
->>>>>>> 978f9d4e9cf14b23183e80a9d2adf8e854f31717
               <input
                 className="border"
                 style={{
