@@ -1,13 +1,8 @@
 import {
   Avatar,
   Button,
-  Dialog,
-  DialogActions,
-  DialogContent,
-  DialogTitle,
   Grid,
   Paper,
-  TextField,
   StepConnector,
   Typography,
 } from "@mui/material";
@@ -19,15 +14,6 @@ const MyProfile = ({ user }) => {
   const [formData, setFormData] = useState({});
   const handleChange = (event) => {
     setFormData({ ...formData, [event.target.name]: event.target.value });
-  };
-  const [open, setOpen] = React.useState(false);
-
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
-
-  const handleClose = () => {
-    setOpen(false);
   };
   const logout = () => {
     localStorage.removeItem("hootdex_secretcookie");
@@ -55,6 +41,7 @@ const MyProfile = ({ user }) => {
           mt: 1,
           backgroundColor: "black",
           pb: 2,
+          mb:2
         }}
       >
         <div
@@ -106,13 +93,13 @@ const MyProfile = ({ user }) => {
                 <p className="fontS22">User ID: {user?.user_id}</p>
                 <p className="">Tier Level: 0</p>
               </div>
-              {/* <Button
+              <Button
                     onClick={logout}
                     variant="outlined"
-                    sx={{ color: "white", textTransform: "capitalize" }}
+                    sx={{ color: "white", textTransform: "capitalize", m:1 }}
                   >
                     Logout
-                  </Button> */}
+                  </Button>
             </Paper>
           </Grid>
           <Grid item xs={12} md={4}>
@@ -215,37 +202,6 @@ const MyProfile = ({ user }) => {
               />
             </div>
           </Grid>
-          {/* <Grid item xs={12} md={4}>
-            <div style={{ backgroundColor: "#384b45", padding: "10px" }}>
-              <TextField
-                fullWidth
-                name="location"
-                id="location"
-                label="Location"
-                type="text"
-                InputLabelProps={{
-                  shrink: true,
-                }}
-                InputProps={{ inputProps: { style: { color: "#fff" } } }}
-                onChange={handleChange}
-                variant="standard"
-              />
-            </div>
-          </Grid>
-          <Grid item xs={12} md={4}>
-            <div
-              style={{
-                backgroundColor: "#384b45",
-                padding: "10px",
-                display: "flex",
-                justifyContent: "center",
-              }}
-            >
-              <Button sx={{ color: "white" }} onClick={handleClickOpen}>
-                Change Password
-              </Button>
-            </div>
-          </Grid> */}
         </Grid>
         <div
           style={{
@@ -319,93 +275,10 @@ const MyProfile = ({ user }) => {
           </Grid>
         </Grid>
         {/* settings */}
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "space-around",
-            alignItems: "center",
-          }}
-        >
-          <StepConnector />
-          <Typography sx={{ color: "white" }} variant="h5">
-            Settings
-          </Typography>
-          <StepConnector />
-        </div>
         <div style={{ display: "flex", justifyContent: "center" }}>
           <Button variant="outlined" sx={{ color: "red" }}>
             Save Changes
           </Button>
-        </div>
-        {/* Password change Modal */}
-        <div>
-          <Dialog
-            open={open}
-            onClose={handleClose}
-            aria-labelledby="alert-dialog-title"
-            aria-describedby="alert-dialog-description"
-          >
-            <DialogTitle id="alert-dialog-title">
-              {"Change Password..."}
-            </DialogTitle>
-            <DialogContent>
-              <TextField
-                fullWidth
-                name="oldPassword"
-                id="oldPassword"
-                label="Enter Old Password"
-                type="text"
-                InputLabelProps={{
-                  shrink: true,
-                }}
-                onChange={handleChange}
-                variant="standard"
-              />
-              <TextField
-                fullWidth
-                name="newPassword"
-                id="newPassword"
-                label="Enter New Password"
-                type="text"
-                InputLabelProps={{
-                  shrink: true,
-                }}
-                onChange={handleChange}
-                variant="standard"
-                sx={{ mt: 1 }}
-              />
-              <TextField
-                fullWidth
-                name="confirmNewPassword"
-                id="confirmNewPassword"
-                label="Confirm New Password"
-                type="text"
-                InputLabelProps={{
-                  shrink: true,
-                }}
-                onChange={handleChange}
-                variant="standard"
-                sx={{ mt: 1 }}
-              />
-            </DialogContent>
-            <DialogActions>
-              <Button
-                variant="contained"
-                sx={{ backgroundColor: "black" }}
-                onClick={handleClose}
-              >
-                Cancel
-              </Button>
-              <Button
-                variant="contained"
-                sx={{ backgroundColor: "green" }}
-                onClick={handleClose}
-                autoFocus
-              >
-                Save
-              </Button>
-            </DialogActions>
-          </Dialog>
         </div>
       </Box>
     </>
