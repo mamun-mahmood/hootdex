@@ -1,7 +1,7 @@
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
 import Button from "@mui/material/Button";
-import { Grid, Paper, TextField, Typography } from "@mui/material";
+import { Grid, Paper, StepConnector, TextField, Typography } from "@mui/material";
 
 import { useState } from "react";
 
@@ -45,7 +45,7 @@ export default function TokenRequest({ each, index }) {
           sx={{
             textAlign: "center",
             backgroundColor: "#00071a",
-            m:1
+            m: 1,
           }}
           className="hover-grey center-width border"
         >
@@ -54,14 +54,9 @@ export default function TokenRequest({ each, index }) {
               display: "flex",
               justifyContent: "space-around",
               alignItems: "center",
-              color: "white"
+              color: "white",
             }}
           >
-            {/* <div>
-              <PendingIcon
-                sx={{ width: "60px", height: "60px", cursor: "pointer" }}
-              />
-            </div> */}
             <div>
               <Typography component="p" variant="h5">
                 {each.tokenName}
@@ -80,86 +75,159 @@ export default function TokenRequest({ each, index }) {
       >
         <Box
           className="border"
-          sx={{ ...style, width: 600, backdropFilter: "blur(5px)" }}
+          sx={{ ...style, width: 800, backdropFilter: "blur(5px)" }}
         >
           <h2 className="twhite tcenter">Token details</h2>
-          <Grid container>
-            <Grid item xs={12} md={4}>
-              <div style={{ padding: "10px" }}>
-                <TextField
-                  fullWidth
-                  name="tokenName"
-                  id="firstname"
-                  label="Token Name"
-                  type="text"
-                  InputLabelProps={{
-                    shrink: true,
-                    style: { color: "#fff" },
+          <StepConnector/>
+          <Grid container spacing={5}>
+            <Grid item xs={6} md={4} sx={{ mt: 3 }}>
+              <Paper
+                style={{
+                  textAlign: "center",
+                  backgroundColor: "#00071a",
+                }}
+                className="border tShadow"
+              >
+                <div
+                  style={{
+                    color: "white",
+                    wordWrap: "break-word",
                   }}
-                  onChange={handleChange}
-                  variant="filled"
-                  color="warning"
-                  InputProps={{
-                    inputProps: {
-                      style: { color: "#fff", borderColor: "#fff" },
-                    },
-                  }}
-                  defaultValue={each?.tokenName}
-                />
-              </div>
+                >
+                  <div
+                    className="rounded center-width tUpper"
+                    style={{ backgroundColor: "#002945" }}
+                  >
+                    <h3>Name</h3>
+                  </div>
+                  <p className="fontS22">{each?.tokenName}</p>
+                </div>
+              </Paper>
             </Grid>
-            <Grid item xs={12} md={4}>
-              <div style={{ padding: "10px" }}>
-                <TextField
-                  fullWidth
-                  name="totalToken"
-                  id="firstname"
-                  label="Total Token"
-                  type="text"
-                  InputLabelProps={{
-                    shrink: true,
-                    style: { color: "#fff" },
+            <Grid item xs={6} md={4} sx={{ mt: 3 }}>
+              <Paper
+                style={{
+                  textAlign: "center",
+                  backgroundColor: "#00071a",
+                }}
+                className="border tShadow"
+              >
+                <div
+                  style={{
+                    color: "white",
+                    wordWrap: "break-word",
                   }}
-                  onChange={handleChange}
-                  variant="filled"
-                  color="warning"
-                  InputProps={{
-                    inputProps: {
-                      style: { color: "#fff", borderColor: "#fff" },
-                    },
-                  }}
-                  defaultValue={each?.totalToken}
-                />
-              </div>
+                >
+                  <div
+                    className="rounded center-width tUpper"
+                    style={{ backgroundColor: "#002945" }}
+                  >
+                    <h3>Amount</h3>
+                  </div>
+                  <p className="fontS22">{each?.totalToken}</p>
+                </div>
+              </Paper>
             </Grid>
-            <Grid item xs={12} md={4}>
-              <div style={{ padding: "10px" }}>
-                <TextField
-                  fullWidth
-                  name="investementAmount"
-                  id="firstname"
-                  label="Value Investement (USD)"
-                  type="text"
-                  InputLabelProps={{
-                    shrink: true,
-                    style: { color: "#fff" },
+            <Grid item xs={6} md={4} sx={{ mt: 3 }}>
+              <Paper
+                style={{
+                  textAlign: "center",
+                  backgroundColor: "#00071a",
+                }}
+                className="border tShadow"
+              >
+                <div
+                  style={{
+                    color: "white",
+                    wordWrap: "break-word",
                   }}
-                  onChange={handleChange}
-                  variant="filled"
-                  color="warning"
-                  InputProps={{
-                    inputProps: {
-                      style: { color: "#fff", borderColor: "#fff" },
-                    },
+                >
+                  <div
+                    className="rounded center-width tUpper"
+                    style={{ backgroundColor: "#002945" }}
+                  >
+                    <h3>Price</h3>
+                  </div>
+                  <p className="fontS22">{each?.tokenPrice}</p>
+                </div>
+              </Paper>
+            </Grid>
+            <Grid item xs={6} md={4} sx={{ mt: 3 }}>
+              <Paper
+                style={{
+                  textAlign: "center",
+                  backgroundColor: "#00071a",
+                }}
+                className="border tShadow"
+              >
+                <div
+                  style={{
+                    color: "white",
+                    wordWrap: "break-word",
                   }}
-                  defaultValue={each?.investementAmount}
-                />
-              </div>
+                >
+                  <div
+                    className="rounded center-width tUpper"
+                    style={{ backgroundColor: "#002945" }}
+                  >
+                    <h3>Investment</h3>
+                  </div>
+                  <p className="fontS22">{each?.investementAmount}</p>
+                </div>
+              </Paper>
+            </Grid>
+            <Grid item xs={6} md={4} sx={{ mt: 3 }}>
+              <Paper
+                style={{
+                  textAlign: "center",
+                  backgroundColor: "#00071a",
+                }}
+                className="border tShadow"
+              >
+                <div
+                  style={{
+                    color: "white",
+                    wordWrap: "break-word",
+                  }}
+                >
+                  <div
+                    className="rounded center-width tUpper"
+                    style={{ backgroundColor: "#002945" }}
+                  >
+                    <h3>Pecu Coin</h3>
+                  </div>
+                  <p className="fontS22">{each?.pecuCoin}</p>
+                </div>
+              </Paper>
+            </Grid>
+            <Grid item xs={6} md={4} sx={{ mt: 3 }}>
+              <Paper
+                style={{
+                  textAlign: "center",
+                  backgroundColor: "#00071a",
+                }}
+                className="border tShadow"
+              >
+                <div
+                  style={{
+                    color: "white",
+                    wordWrap: "break-word",
+                  }}
+                >
+                  <div
+                    className="rounded center-width tUpper"
+                    style={{ backgroundColor: "#002945" }}
+                  >
+                    <h3>Creator</h3>
+                  </div>
+                  <p className="fontS22">{each?.username}</p>
+                </div>
+              </Paper>
             </Grid>
             <Grid item xs={12}>
-              <div>
-                <Button variant="outlined" sx={{ color: "white" }}>
-                  Save
+              <div style={{textAlign: 'center'}}>
+                <Button className="border" variant="contained" sx={{ color: "white", backgroundColor: "#00071a" }}>
+                  Approve
                 </Button>
               </div>
             </Grid>
