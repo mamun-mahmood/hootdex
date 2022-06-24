@@ -2,7 +2,7 @@ import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
 import Button from "@mui/material/Button";
 import { Grid, Paper, TextField, Typography } from "@mui/material";
-import PendingIcon from "@mui/icons-material/Pending";
+
 import { useState } from "react";
 
 const style = {
@@ -19,7 +19,7 @@ const style = {
   pb: 3,
 };
 
-export default function PendingCoin({ each, index }) {
+export default function TokenRequest({ each, index }) {
   const [open, setOpen] = useState(false);
   const handleOpen = () => {
     setOpen(true);
@@ -32,42 +32,43 @@ export default function PendingCoin({ each, index }) {
     setFormData({ ...formData, [event.target.name]: event.target.value });
   };
   return (
-    <div>
+    <>
       <div
         onClick={handleOpen}
         style={{
           display: "flex",
           justifyContent: "center",
-          marginTop: "10px",
           cursor: "pointer",
         }}
       >
         <Paper
-          style={{
+          sx={{
             textAlign: "center",
-            backgroundColor: `${index % 2 ? "#d0f2fe" : "#ffe8d9"}`,
-            width: "95%",
+            backgroundColor: "#00071a",
+            m:1
           }}
-          className="hover-grey"
+          className="hover-grey center-width border"
         >
           <div
             style={{
               display: "flex",
               justifyContent: "space-around",
               alignItems: "center",
+              color: "white"
             }}
           >
-            <div>
+            {/* <div>
               <PendingIcon
                 sx={{ width: "60px", height: "60px", cursor: "pointer" }}
               />
-            </div>
+            </div> */}
             <div>
               <Typography component="p" variant="h5">
                 {each.tokenName}
               </Typography>
             </div>
             <h4>{each.totalToken}</h4>
+            <p>{each.status}</p>
           </div>
         </Paper>
       </div>
@@ -77,7 +78,10 @@ export default function PendingCoin({ each, index }) {
         aria-labelledby="parent-modal-title"
         aria-describedby="parent-modal-description"
       >
-        <Box sx={{ ...style, width: 600, backdropFilter: "blur(5px)" }}>
+        <Box
+          className="border"
+          sx={{ ...style, width: 600, backdropFilter: "blur(5px)" }}
+        >
           <h2 className="twhite tcenter">Token details</h2>
           <Grid container>
             <Grid item xs={12} md={4}>
@@ -162,6 +166,6 @@ export default function PendingCoin({ each, index }) {
           </Grid>
         </Box>
       </Modal>
-    </div>
+    </>
   );
 }
