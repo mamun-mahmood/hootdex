@@ -48,12 +48,8 @@ const DashboardIndex = ({ user }) => {
   const toggleDrawer = () => {
     setOpen(!open);
   };
-  // const logout = () => {
-  //   localStorage.removeItem("");
-  //   window.location.pathname = "/administrator_dashboard";
-  // };
   const [tab, setTab] = React.useState(0);
-  let tier = 1;
+  let tier = 2;
   return (
     <>
       <Divider color="black" />

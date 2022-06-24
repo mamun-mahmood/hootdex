@@ -1,15 +1,35 @@
 import * as React from "react";
 import Typography from "@mui/material/Typography";
 import Grid from "@mui/material/Grid";
-import { Box, Paper } from "@mui/material";
+import { Box, Modal, Paper, StepConnector } from "@mui/material";
 import AssetChart from "./AssetChart";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import axios from "axios";
+const style = {
+  position: "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  width: 400,
+  bgcolor: "drak",
+  border: "2px solid #000",
+  boxShadow: 24,
+  pt: 2,
+  px: 4,
+  pb: 3,
+};
 function DashboardContent({ user }) {
   const navigate = useNavigate();
   const [pendingToken, setPendingToken] = React.useState([]);
   const username = user.username;
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => {
+    setOpen(true);
+  };
+  const handleClose = () => {
+    setOpen(false);
+  };
   useEffect(() => {
     if (username) {
       axios
@@ -34,7 +54,7 @@ function DashboardContent({ user }) {
         }}
       >
         <Grid container spacing={5} sx={{ textTransform: "uppercase", p: 5 }}>
-          <Grid item xs={12} md={6} lg={3} sx={{mt: 7}}>
+          <Grid item xs={12} md={6} lg={3} sx={{ mt: 7 }}>
             {/* dashboard left */}
             <Grid sx={{ mt: 3 }}>
               <Paper
@@ -118,7 +138,7 @@ function DashboardContent({ user }) {
               className="border"
             >
               <Typography
-                sx={{ textAlign: "center", color: "white", mt: 1}}
+                sx={{ textAlign: "center", color: "white", mt: 1 }}
                 component="p"
                 variant="h5"
               >
@@ -135,13 +155,15 @@ function DashboardContent({ user }) {
             </Paper>
           </Grid>
           {/* dashboard right */}
-          <Grid item xs={12} md={8} lg={3} sx={{mt: 7}}>
+          <Grid item xs={12} md={8} lg={3} sx={{ mt: 7 }}>
             <Grid sx={{ mt: 3 }}>
               <Paper
                 style={{
                   textAlign: "center",
                   backgroundColor: "#00071a",
+                  cursor: "pointer",
                 }}
+                onClick={handleOpen}
                 className="border"
               >
                 <div
@@ -156,7 +178,7 @@ function DashboardContent({ user }) {
                   >
                     <h3>Pending Tokens</h3>
                   </div>
-                  <p className="fontS22">54546</p>
+                  <p className="fontS22">{pendingToken.length}</p>
                 </div>
               </Paper>
             </Grid>
@@ -220,10 +242,10 @@ function DashboardContent({ user }) {
           ml: "2.5%",
           mt: 3,
           backgroundColor: "black",
-          mb: 1
+          mb: 1,
         }}
       >
-        <Grid container spacing={5} sx={{ p: 1, }}>
+        <Grid container spacing={5} sx={{ p: 1 }}>
           <Grid item xs={12} md={6} lg={4} xl={3}>
             <Paper
               style={{
@@ -322,6 +344,70 @@ function DashboardContent({ user }) {
           </Grid>
         </Grid>
       </Box>
+      <Modal
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="parent-modal-title"
+        aria-describedby="parent-modal-description"
+      >
+        <Box
+          className="border"
+          sx={{ ...style, width: 800, backdropFilter: "blur(5px)" }}
+        >
+          <p className="twhite tcenter fontS22">Your Pending Tokens</p>
+          <StepConnector sx={{ mt: 1 }} />
+          <Paper
+            sx={{
+              textAlign: "center",
+              backgroundColor: "#00071a",
+              m: 1,
+              mt: 2,
+            }}
+            className="center-width border"
+          >
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "space-around",
+                alignItems: "center",
+                color: "white",
+              }}
+            >
+              <p>Name</p>
+              <p>Amount</p>
+              <p>Status</p>
+            </div>
+          </Paper>
+          {pendingToken.length &&
+            pendingToken?.map((each, index) => (
+              <Paper
+                sx={{
+                  textAlign: "center",
+                  backgroundColor: "#00071a",
+                  m: 1,
+                }}
+                className="hover-grey center-width border"
+              >
+                <div
+                  style={{
+                    display: "flex",
+                    justifyContent: "space-around",
+                    alignItems: "center",
+                    color: "white",
+                  }}
+                >
+                  <div>
+                    <Typography component="p" variant="h5">
+                      {each?.tokenName}
+                    </Typography>
+                  </div>
+                  <h4>{each?.totalToken}</h4>
+                  <p>{each?.status}</p>
+                </div>
+              </Paper>
+            ))}
+        </Box>
+      </Modal>
     </>
   );
 }
