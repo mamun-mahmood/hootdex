@@ -54,7 +54,7 @@ function DashboardContent({ user }) {
                     className="rounded center-width tUpper"
                     style={{ backgroundColor: "#002945" }}
                   >
-                    <h3>Total Tokens</h3>
+                    <h3>Total Tokens Created</h3>
                   </div>
                   <p className="fontS22">54546</p>
                 </div>

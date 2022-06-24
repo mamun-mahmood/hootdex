@@ -26,7 +26,7 @@ const findUser=async()=>{
   <Link to="/wallet"> <button className='button header-link'>Blog</button></Link>
   <Link to="/wallet"> <button className='button header-link'>FAQ</button></Link>
   {user &&user.loggedIn?<><Link to="/create-token"> <button className='button '>Create Token</button></Link>
-   <Link to="/dashboard"> <button className='button '>Dashboard</button></Link></>: <Link to="/login"> <button>Login</button></Link>
+   <Link to="/dashboard"> <button className='button '>Dashboard</button></Link></>: <Link to="/login"> <button className='button'>Login</button></Link>
   }
     </div>
     </div>
