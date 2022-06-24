@@ -170,9 +170,9 @@ export default function TokenRequest({ each, index }) {
                     className="rounded center-width tUpper"
                     style={{ backgroundColor: "#002945" }}
                   >
-                    <h3>Investment</h3>
+                    <h3>Value (USD)</h3>
                   </div>
-                  <p className="fontS22">{each?.investementAmount}</p>
+                  <p className="fontS22">$ {each?.investementAmount}</p>
                 </div>
               </Paper>
             </Grid>
@@ -194,7 +194,7 @@ export default function TokenRequest({ each, index }) {
                     className="rounded center-width tUpper"
                     style={{ backgroundColor: "#002945" }}
                   >
-                    <h3>Pecu Coin</h3>
+                    <h3>Pecu Coin (EQ)</h3>
                   </div>
                   <p className="fontS22">{each?.pecuCoin}</p>
                 </div>
@@ -218,7 +218,7 @@ export default function TokenRequest({ each, index }) {
                     className="rounded center-width tUpper"
                     style={{ backgroundColor: "#002945" }}
                   >
-                    <h3>Creator</h3>
+                    <h3>Created By</h3>
                   </div>
                   <p className="fontS22">{each?.username}</p>
                 </div>
