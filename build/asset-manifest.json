@@ -1,21 +1,17 @@
 {
   "files": {
-    "main.css": "/static/css/main.b7b13401.css",
-    "main.js": "/static/js/main.336074d3.js",
+    "main.css": "/static/css/main.6c5b2a18.css",
+    "main.js": "/static/js/main.e7d17c46.js",
     "static/js/787.432d3ff5.chunk.js": "/static/js/787.432d3ff5.chunk.js",
     "static/media/logo.png": "/static/media/logo.7087ff3c9b26aa7b8c42.png",
-    "static/media/investment-svgrepo-com.svg": "/static/media/investment-svgrepo-com.5728ce92498479326df39ae8831ed5c9.svg",
     "static/media/logo.svg": "/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
-    "static/media/add-svgrepo-com.svg": "/static/media/add-svgrepo-com.c687829df54166165ab9e85434e95e89.svg",
-    "static/media/tokens-svgrepo-com.svg": "/static/media/tokens-svgrepo-com.358ac625e8039752e83f02a838f211bd.svg",
     "index.html": "/index.html",
-    "static/media/funds-svgrepo-com.svg": "/static/media/funds-svgrepo-com.6a07e501be9961d9f8ab5feed21a40ba.svg",
-    "main.b7b13401.css.map": "/static/css/main.b7b13401.css.map",
-    "main.336074d3.js.map": "/static/js/main.336074d3.js.map",
+    "main.6c5b2a18.css.map": "/static/css/main.6c5b2a18.css.map",
+    "main.e7d17c46.js.map": "/static/js/main.e7d17c46.js.map",
     "787.432d3ff5.chunk.js.map": "/static/js/787.432d3ff5.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.b7b13401.css",
-    "static/js/main.336074d3.js"
+    "static/css/main.6c5b2a18.css",
+    "static/js/main.e7d17c46.js"
   ]
 }
