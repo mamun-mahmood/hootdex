@@ -40,10 +40,8 @@ function App() {
     <BrowserRouter>
       <div>
         <Nav />
-
         <Routes>
           <Route path="/create-token" element={<CreateToken user={user} />} />
-
           <Route path="/" element={<Home />} />
           <Route path="/wallet" element={<Wallet />} />
           <Route path="/tokenDetails" element={<TokenPage />} />

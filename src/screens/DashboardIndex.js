@@ -1,4 +1,4 @@
-import { Box, ListItemIcon } from "@mui/material";
+import { Box, ClickAwayListener, ListItemIcon } from "@mui/material";
 import Tier0Dashboard from "../components/dashboard/Tier0Dashboard";
 import Tier1Dashboard from "../components/dashboard/Tier1Dashboard";
 import Tier2Dashboard from "../components/dashboard/Tier2Dashboard";
@@ -10,7 +10,7 @@ import DashboardIcon from "@mui/icons-material/Dashboard";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import Toolbar from "@mui/material/Toolbar";
 import List from "@mui/material/List";
-import { styled, createTheme, ThemeProvider } from "@mui/material/styles";
+import { styled } from "@mui/material/styles";
 import React from "react";
 import Divider from "@mui/material/Divider";
 import MuiDrawer from "@mui/material/Drawer";
@@ -43,29 +43,29 @@ const Drawer = styled(MuiDrawer, {
   },
 }));
 
-const mdTheme = createTheme();
 const DashboardIndex = ({ user }) => {
   const [open, setOpen] = React.useState(false);
   const toggleDrawer = () => {
     setOpen(!open);
   };
   // const logout = () => {
-  //   localStorage.removeItem("UGV_Student_MS_Jwt_AD");
+  //   localStorage.removeItem("");
   //   window.location.pathname = "/administrator_dashboard";
   // };
   const [tab, setTab] = React.useState(0);
   let tier = 1;
   return (
-    <div>
-      <ThemeProvider theme={mdTheme}>
-        <Divider />
-        <Box sx={{ display: "flex", backgroundColor: "black" }}>
-          {/* Sidebar */}
-          <Box sx={{ minHeight: "100vh", backgroundColor: "#002945" }}>
+    <>
+      <Divider color="black" />
+      <div style={{ display: "flex", backgroundColor: "#091e17" }}>
+        {/* Sidebar */}
+        <Box sx={{ minHeight: "50vh", backgroundColor: "#002945" }}>
+          <ClickAwayListener onClickAway={() => setOpen(false)}>
             <Drawer
               variant="permanent"
               open={open}
               sx={{ backgroundColor: "#002945" }}
+              onClose={() => setOpen(!open)}
             >
               <Toolbar
                 sx={{
@@ -87,7 +87,7 @@ const DashboardIndex = ({ user }) => {
                 sx={{
                   backgroundColor: "#002945",
                   minWidth: "100%",
-                  height: "100vh",
+                  height: "98vh",
                   overflowX: "hidden",
                 }}
               >
@@ -127,22 +127,17 @@ const DashboardIndex = ({ user }) => {
                 </ListItemButton>
               </List>
             </Drawer>
-          </Box>
-          {/* showing dashboard based on user tier level */}
-          <Box
-            component="main"
-            sx={{
-              padding: 1,
-            }}
-          >
-            {tier === 0 && tab === 0 && <Tier0Dashboard user={user} />}
-            {tier === 1 && tab === 0 && <Tier1Dashboard user={user} />}
-            {tier === 2 && tab === 0 && <Tier2Dashboard user={user} />}
-            {tab === 1 && <MyProfile user={user} />}
-          </Box>
+          </ClickAwayListener>
         </Box>
-      </ThemeProvider>
-    </div>
+        {/* showing dashboard based on user tier level */}
+        <Box sx={{ flex: 1, mt: 1, }}>
+          {tier === 0 && tab === 0 && <Tier0Dashboard user={user} />}
+          {tier === 1 && tab === 0 && <Tier1Dashboard user={user} />}
+          {tier === 2 && tab === 0 && <Tier2Dashboard user={user} />}
+          {tab === 1 && <MyProfile user={user} />}
+        </Box>
+      </div>
+    </>
   );
 };
 

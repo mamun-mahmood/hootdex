@@ -16,7 +16,7 @@ const findUser=async()=>{
   },[])
   return (
     <div className='nav'>
-        <div className='left__nav'><Link to="/"  className='logo__header'><img src={logo} width={200} /></Link></div>
+        <div className='left__nav'><Link to="/"  className='logo__header'><img src={logo} alt="nav_logo" width={200} /></Link></div>
     <div className='right__nav'>
    
   <Link to="/wallet"> <button className='button header-link'>Ecosystem</button></Link>

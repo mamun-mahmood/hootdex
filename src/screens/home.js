@@ -9,7 +9,7 @@ export default function Home() {
     "Token",
     "Available Coins",
     "Rate Pecu/Token",
-    "Info"
+    "Info",
   ];
   const poolData = [
     {
@@ -130,37 +130,47 @@ export default function Home() {
       token: "1000",
       coins: "1000",
       rate: "1",
-    }
+    },
   ];
   return (
     <div className="screen">
-    {/* <div className="banner-hero" >   <h1 className="primary__title">Available Pools</h1>
+      {/* <div className="banner-hero" >   <h1 className="primary__title">Available Pools</h1>
     <p style={{color:'orange'}}>Swap, earn, and build on the leading decentralized crypto trading protocol.</p>
     </div> */}
       <div>
-    
         <Chart />
         <h1 className="primary__title">Listed Tokens</h1>
       </div>
       <div className="table__container">
         <table className="table">
           <tr className="tr">
-            {poolTableAttributes.map((e) => (
-              <th className="th">{e}</th>
+            {poolTableAttributes.map((e, index) => (
+              <th className="th" key={index}>{e}</th>
             ))}
           </tr>
 
-          {poolData.map((e) => (
-         <tr className="tr">    
+          {poolData.map((e, index) => (
+            <tr className="tr" key={index}>
               <td className="td">{e.id}</td>
               <td className="td">{e.name}</td>
               <td className="td">{e.token}</td>
               <td className="td">{e.coins}</td>
               <td className="td">{e.rate}</td>
-              <Link  to="/tokenDetails" state={{tokenData:e}}><button style={{width:'100%',padding:'1rem',backgroundColor:'rgb(244, 169, 50)',fontSize:'14px',border:'none',borderRadius:'5px'}}>Visit👀
-              </button></Link>
+              <Link to="/tokenDetails" state={{ tokenData: e }}>
+                <button
+                  style={{
+                    width: "100%",
+                    padding: "1rem",
+                    backgroundColor: "rgb(244, 169, 50)",
+                    fontSize: "14px",
+                    border: "none",
+                    borderRadius: "5px",
+                  }}
+                >
+                  Visit👀
+                </button>
+              </Link>
             </tr>
-            
           ))}
         </table>
       </div>
