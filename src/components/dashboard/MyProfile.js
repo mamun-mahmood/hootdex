@@ -46,6 +46,7 @@ const MyProfile = ({ user }) => {
           mt: 1,
           backgroundColor: "black",
           pb: 2,
+          mb:2
         }}
       >
         <div
@@ -268,6 +269,7 @@ const MyProfile = ({ user }) => {
                 }}
                 type="text"
                 name="firstname"
+                value={user.username}
               />
             </div>
           </Grid>
