@@ -353,8 +353,8 @@ function DashboardContent({ user }) {
         aria-describedby="parent-modal-description"
       >
         <Box
-          className="border"
-          sx={{ ...style, width: 800, backdropFilter: "blur(5px)" }}
+          className="border hide-scrollbar"
+          sx={{ ...style, width: 800, maxHeight: 300, backdropFilter: "blur(5px)", overflowY: "scroll" }}
         >
           <p className="twhite tcenter fontS22">Your Pending Tokens</p>
           <StepConnector sx={{ mt: 1 }} />
