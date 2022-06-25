@@ -15,6 +15,8 @@ import React from "react";
 import Divider from "@mui/material/Divider";
 import MuiDrawer from "@mui/material/Drawer";
 import MyProfile from "../components/dashboard/MyProfile";
+import GroupIcon from "@mui/icons-material/Group";
+import Users from "./Users";
 const drawerWidth = 240;
 
 const Drawer = styled(MuiDrawer, {
@@ -49,7 +51,7 @@ const DashboardIndex = ({ user }) => {
     setOpen(!open);
   };
   const [tab, setTab] = React.useState(0);
-  let tier = 2;
+  let tier = 0;
   return (
     <>
       <Divider color="black" />
@@ -104,6 +106,25 @@ const DashboardIndex = ({ user }) => {
                   </ListItemIcon>
                   <ListItemText primary="Dashboard" />
                 </ListItemButton>
+                {tier === 0 && (
+                  <ListItemButton
+                    sx={{
+                      color: "white",
+                      backgroundColor: "#00071a",
+                      borderTopRightRadius: "20px",
+                      borderBottomRightRadius: "20px",
+                      width: "95%",
+                      mb: 1,
+                      border: "1px solid #091e17",
+                    }}
+                    onClick={() => setTab("users")}
+                  >
+                    <ListItemIcon>
+                      <GroupIcon sx={{ color: "white" }} />
+                    </ListItemIcon>
+                    <ListItemText primary="Users" />
+                  </ListItemButton>
+                )}
                 <ListItemButton
                   sx={{
                     color: "white",
@@ -126,11 +147,12 @@ const DashboardIndex = ({ user }) => {
           </ClickAwayListener>
         </Box>
         {/* showing dashboard based on user tier level */}
-        <Box sx={{ flex: 1, mt: 1, }}>
+        <Box sx={{ flex: 1, mt: 1 }}>
           {tier === 0 && tab === 0 && <Tier0Dashboard user={user} />}
           {tier === 1 && tab === 0 && <Tier1Dashboard user={user} />}
           {tier === 2 && tab === 0 && <Tier2Dashboard user={user} />}
           {tab === 1 && <MyProfile user={user} />}
+          {tab === "users" && <Users user={user} />}
         </Box>
       </div>
     </>

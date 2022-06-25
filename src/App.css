@@ -121,7 +121,7 @@ html {
   background-color: grey !important;
 }
 .twhite {
-  color: white;
+  color: white !important;
 }
 .tcenter {
   text-align: center !important;
@@ -242,6 +242,12 @@ html {
   border-bottom: 4px solid #091e17 !important;
   border-right: 4px solid #091e17 !important;
 }
+.borderS {
+  border-top: 2px solid #091e17 !important;
+  border-left: 2px solid #091e17 !important;
+  border-bottom: 2px solid #091e17 !important;
+  border-right: 2px solid #091e17 !important;
+}
 .tShadow {
   box-shadow: 71px 58px 55px -9px rgba(69,69,69,0.75) inset;
 }
@@ -261,4 +267,10 @@ html {
 }
 .rounded20 {
   border-radius: 20px !important;
+}
+.bg1 {
+  background-color: #00071a !important;
+}
+.bg2 {
+  background-color: #002945 !important;
 }

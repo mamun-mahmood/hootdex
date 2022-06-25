@@ -10,15 +10,17 @@ import InvAssetChart from "./InvAssetChart";
 function DashboardContent({ user }) {
   return (
     <>
-      <Box className="rounded shadow"
-          sx={{
-            padding: 1,
-            width: "95%",
-            ml: "2.5%",
-            mt: 1,
-            backgroundColor: 'black',
-            pb: 2,
-          }}>
+      <Box
+        className="rounded shadow"
+        sx={{
+          padding: 1,
+          width: "95%",
+          ml: "2.5%",
+          mt: 1,
+          backgroundColor: "black",
+          pb: 2,
+        }}
+      >
         <Grid container spacing={5} sx={{ textTransform: "uppercase", p: 5 }}>
           <Grid item xs={12} md={6} lg={3} mt={5}>
             {/* dashboard left */}
@@ -96,7 +98,7 @@ function DashboardContent({ user }) {
             </Grid>
           </Grid>
           {/* dashboard middle */}
-        <CircularChart />
+          <CircularChart />
           {/* dashboard right */}
           <Grid item xs={12} md={8} lg={3} mt={5}>
             <Grid sx={{ mt: 3 }}>
@@ -172,23 +174,8 @@ function DashboardContent({ user }) {
               </Paper>
             </Grid>
           </Grid>
-        
-      
         </Grid>
       </Box>
-      <Box
-        className="rounded shadow"
-        sx={{
-          padding: 1,
-          width: "95%",
-          ml: "2.5%",
-          mt: 3,
-          backgroundColor: "black",
-          mb: 1
-        }}
-      > 
-        <Chart />
-        </Box>
       {/* second row */}
       <Box
         className="rounded shadow"
@@ -198,7 +185,21 @@ function DashboardContent({ user }) {
           ml: "2.5%",
           mt: 3,
           backgroundColor: "black",
-          mb: 1
+          mb: 1,
+        }}
+      >
+        <Chart />
+      </Box>
+      {/* Third row */}
+      <Box
+        className="rounded shadow"
+        sx={{
+          padding: 1,
+          width: "95%",
+          ml: "2.5%",
+          mt: 3,
+          backgroundColor: "black",
+          mb: 1,
         }}
       >
         <Grid container spacing={5} sx={{ p: 1 }}>
@@ -274,7 +275,6 @@ function DashboardContent({ user }) {
               </div>
             </Paper>
           </Grid>
-       
         </Grid>
       </Box>
     </>
