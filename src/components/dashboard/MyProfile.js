@@ -106,15 +106,7 @@ const MyProfile = ({ user }) => {
             <div style={{ backgroundColor: "black", padding: "10px" }}>
               <p style={{ color: "white", marginLeft: "15px" }}>First Name</p>
               <input
-                className="border"
-                style={{
-                  width: "100%",
-                  backgroundColor: "black",
-                  borderRadius: "20px",
-                  color: "white",
-                  fontSize: "24px",
-                  padding: "15px",
-                }}
+                className="border inputField"
                 type="text"
                 name="firstname"
               />
@@ -122,15 +114,7 @@ const MyProfile = ({ user }) => {
             <div style={{ backgroundColor: "black", padding: "10px" }}>
               <p style={{ color: "white", marginLeft: "15px" }}>Last Name</p>
               <input
-                className="border"
-                style={{
-                  width: "100%",
-                  backgroundColor: "black",
-                  borderRadius: "20px",
-                  color: "white",
-                  fontSize: "24px",
-                  padding: "15px",
-                }}
+                className="border inputField"
                 type="text"
                 name="lastname"
               />
@@ -138,15 +122,7 @@ const MyProfile = ({ user }) => {
             <div style={{ backgroundColor: "black", padding: "10px" }}>
               <p style={{ color: "white", marginLeft: "15px" }}>Username</p>
               <input
-                className="border"
-                style={{
-                  width: "100%",
-                  backgroundColor: "black",
-                  borderRadius: "20px",
-                  color: "white",
-                  fontSize: "24px",
-                  padding: "15px",
-                }}
+                className="border inputField"
                 type="text"
                 name="lastname"
               />
@@ -156,15 +132,7 @@ const MyProfile = ({ user }) => {
             <div style={{ backgroundColor: "black", padding: "10px" }}>
               <p style={{ color: "white", marginLeft: "15px" }}>Phone</p>
               <input
-                className="border"
-                style={{
-                  width: "100%",
-                  backgroundColor: "black",
-                  borderRadius: "20px",
-                  color: "white",
-                  fontSize: "24px",
-                  padding: "15px",
-                }}
+                className="border inputField"
                 type="text"
                 name="phone"
               />
@@ -172,15 +140,7 @@ const MyProfile = ({ user }) => {
             <div style={{ backgroundColor: "black", padding: "10px" }}>
               <p style={{ color: "white", marginLeft: "15px" }}>Email</p>
               <input
-                className="border"
-                style={{
-                  width: "100%",
-                  backgroundColor: "black",
-                  borderRadius: "20px",
-                  color: "white",
-                  fontSize: "24px",
-                  padding: "15px",
-                }}
+                className="border inputField"
                 type="text"
                 name="email"
               />
@@ -188,15 +148,7 @@ const MyProfile = ({ user }) => {
             <div style={{ backgroundColor: "black", padding: "10px" }}>
               <p style={{ color: "white", marginLeft: "15px" }}>Country</p>
               <input
-                className="border"
-                style={{
-                  width: "100%",
-                  backgroundColor: "black",
-                  borderRadius: "20px",
-                  color: "white",
-                  fontSize: "24px",
-                  padding: "15px",
-                }}
+                className="border inputField"
                 type="text"
                 name="company"
               />
@@ -223,15 +175,7 @@ const MyProfile = ({ user }) => {
             <div style={{ backgroundColor: "black", padding: "10px" }}>
               <p style={{ color: "white", marginLeft: "15px" }}>City</p>
               <input
-                className="border"
-                style={{
-                  width: "100%",
-                  backgroundColor: "black",
-                  borderRadius: "20px",
-                  color: "white",
-                  fontSize: "24px",
-                  padding: "15px",
-                }}
+                className="border inputField"
                 type="text"
                 name="addres1"
               />
@@ -241,15 +185,7 @@ const MyProfile = ({ user }) => {
             <div style={{ backgroundColor: "black", padding: "10px" }}>
               <p style={{ color: "white", marginLeft: "15px" }}>State</p>
               <input
-                className="border"
-                style={{
-                  width: "100%",
-                  backgroundColor: "black",
-                  borderRadius: "20px",
-                  color: "white",
-                  fontSize: "24px",
-                  padding: "15px",
-                }}
+                className="border inputField"
                 type="text"
                 name="addres2"
               />
@@ -259,15 +195,7 @@ const MyProfile = ({ user }) => {
             <div style={{ backgroundColor: "black", padding: "10px" }}>
               <p style={{ color: "white", marginLeft: "15px" }}>Street</p>
               <input
-                className="border"
-                style={{
-                  width: "100%",
-                  backgroundColor: "black",
-                  borderRadius: "20px",
-                  color: "white",
-                  fontSize: "24px",
-                  padding: "15px",
-                }}
+                className="border inputField"
                 type="text"
                 name="phone"
               />
