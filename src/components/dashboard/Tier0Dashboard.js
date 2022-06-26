@@ -1,12 +1,9 @@
 import * as React from "react";
 import Box from "@mui/material/Box";
-import Typography from "@mui/material/Typography";
 import Grid from "@mui/material/Grid";
 import { Paper } from "@mui/material";
-import AssetChart from "../../components/dashboard/AssetChart";
 import Chart from "../../screens/chart";
 import CircularChart from "./CircularChart";
-import InvAssetChart from "./InvAssetChart";
 function DashboardContent({ user }) {
   return (
     <>

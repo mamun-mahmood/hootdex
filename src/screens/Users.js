@@ -1,21 +1,21 @@
 import {
+  Alert,
   Box,
+  Collapse,
   FormControl,
-  InputLabel,
+  IconButton,
   LinearProgress,
   MenuItem,
-  Pagination,
   Select,
-  Stack,
   StepConnector,
   Table,
   TableBody,
   TableCell,
   TableContainer,
   TableHead,
-  TablePagination,
   TableRow,
 } from "@mui/material";
+import CloseIcon from "@mui/icons-material/Close";
 import React from "react";
 import Paper from "@mui/material/Paper";
 import { useState } from "react";
@@ -29,16 +29,21 @@ const Users = ({ user }) => {
   const [to, setTo] = useState(10);
   const [searchKey, setSearchKey] = useState("");
   const [loading, setLoading] = useState(false);
-  const [tier, setTier] = React.useState("");
   const [refresh, setRefresh] = React.useState(false);
+  const [alert, setAlert] = React.useState(!users.length && !loading);
   const fetchUser = (target) => {
     if (target === "all") {
       setLoading(true);
-      axios.get("http://localhost:3001/hootdex/alluser").then((res) => {
-        setUsers(res.data);
-        setAllUsers(res.data);
-        setLoading(false);
-      });
+      axios
+        .get("http://localhost:3001/hootdex/alluser")
+        .then((res) => {
+          setUsers(res.data);
+          setAllUsers(res.data);
+          setLoading(false);
+        })
+        .catch((err) => {
+          setLoading(false);
+        });
     }
     if (target.includes("@")) {
       setLoading(true);
@@ -48,23 +53,37 @@ const Users = ({ user }) => {
         .then((res) => {
           setUsers(res.data);
           setLoading(false);
+        })
+        .catch((err) => {
+          setLoading(false);
         });
-    } else if(target !== "all") {
+    } else if (target !== "all") {
       setLoading(true);
-      axios.get(`http://localhost:3001/hootdex/user/${target}`).then((res) => {
-        setUsers(res.data);
-        setLoading(false);
-      });
+      axios
+        .get(`http://localhost:3001/hootdex/user/${target}`)
+        .then((res) => {
+          setUsers(res.data);
+          setLoading(false);
+        })
+        .catch((err) => {
+          setLoading(false);
+        });
     }
   };
   const handleChange = (e, uname) => {
     setLoading(true);
-    setTier(e.target.value); 
-    axios.post(`http://localhost:3001/hootdex/update-tier-level/${uname}/${e.target.value}`).then((res) => {
+    axios
+      .post(
+        `http://localhost:3001/hootdex/update-tier-level/${uname}/${e.target.value}`
+      )
+      .then((res) => {
         setLoading(false);
-        setRefresh(!refresh)
-      }); 
-  }
+        setRefresh(!refresh);
+      })
+      .catch((err) => {
+        setLoading(false);
+      });
+  };
   useEffect(() => {
     fetchUser("all");
   }, [refresh]);
@@ -113,7 +132,7 @@ const Users = ({ user }) => {
               <input
                 style={{
                   width: "30rem",
-                  height: "1.5rem",
+                  height: "1rem",
                 }}
                 className="border inputField shadow"
                 type="text"
@@ -125,12 +144,30 @@ const Users = ({ user }) => {
             </form>
           </div>
           {loading && <LinearProgress />}
-          {!users.length && !loading && <p className="twhite tcenter fontS22" style={{
-            marginBottom: "1rem"
-          }}>Nothing found!</p> }
-          <Table
-            className="shadow"
-          >
+          <div style={{ display: "flex", justifyContent: "center" }}>
+            <Collapse in={!users.length && !loading } sx={{ maxWidth: 400, position: 'absolute' }}>
+              <Alert 
+                variant="outlined"
+                severity="error" 
+                action={
+                  <IconButton
+                    aria-label="close"
+                    color="inherit"
+                    size="small"
+                    onClick={() => {
+                      setAlert(false);
+                    }}
+                  >
+                    <CloseIcon fontSize="inherit" />
+                  </IconButton>
+                }
+                sx={{ mb: 2, backgroundColor: "white", fontSize: "18px" }}
+              >
+                Nothing found!
+              </Alert>
+            </Collapse>
+          </div>
+          <Table className="shadow">
             <TableHead className="">
               <TableRow className="">
                 <TableCell className="twhite" component="th" scope="row">
@@ -168,19 +205,20 @@ const Users = ({ user }) => {
                     </TableCell>
                     <TableCell className="twhite" align="left">
                       {each.email}
-                    </TableCell> 
+                    </TableCell>
                     <TableCell className="twhite" align="center">
-                      <FormControl sx={{minWidth: 120,}}>
-                        <Select 
-                        className="shadow twhite"
-                        sx={{border: '1px solid white', height: 40}}
+                      <FormControl sx={{ minWidth: 120 }}>
+                        <Select
+                          className="shadow twhite"
+                          sx={{ border: "1px solid white", height: 40 }}
                           value={each.tier === null ? "null" : each.tier}
                           onChange={(e) => handleChange(e, each.uname)}
                         >
-                          <MenuItem sx={{display: "none"}} value="null">
+                          <MenuItem sx={{ display: "none" }} value="null">
                             <em>Null</em>
                           </MenuItem>
-                          <MenuItem sx={{display: "none"}} value="0">0
+                          <MenuItem sx={{ display: "none" }} value="0">
+                            0
                           </MenuItem>
                           <MenuItem value="1">Tier 1</MenuItem>
                           <MenuItem value="2">Tier 2</MenuItem>
