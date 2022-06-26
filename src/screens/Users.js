@@ -182,8 +182,8 @@ const Users = ({ user }) => {
                           </MenuItem>
                           <MenuItem sx={{display: "none"}} value="0">0
                           </MenuItem>
-                          <MenuItem value="tier1">Tier 1</MenuItem>
-                          <MenuItem value="tier2">Tier 2</MenuItem>
+                          <MenuItem value="1">Tier 1</MenuItem>
+                          <MenuItem value="2">Tier 2</MenuItem>
                         </Select>
                       </FormControl>
                     </TableCell>
