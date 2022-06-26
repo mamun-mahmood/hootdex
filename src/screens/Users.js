@@ -125,10 +125,11 @@ const Users = ({ user }) => {
             </form>
           </div>
           {loading && <LinearProgress />}
+          {!users.length && !loading && <p className="twhite tcenter fontS22" style={{
+            marginBottom: "1rem"
+          }}>Nothing found!</p> }
           <Table
             className="shadow"
-            aria-label="simple table"
-            sx={{ backgroundColor: "" }}
           >
             <TableHead className="">
               <TableRow className="">
