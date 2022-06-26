@@ -24,13 +24,15 @@ import axios from "axios";
 const Users = ({ user }) => {
   const [allUsers, setAllUsers] = useState([]);
   const [users, setUsers] = useState([]);
+  const [tier1, setTier1] = useState([]);
+  const [tier2, setTier2] = useState([]);
+  const [tierPending, setTierPending] = useState([]);
   // const [rows, setRows] = useState(10);
   const [from, setFrom] = useState(0);
   const [to, setTo] = useState(10);
   const [searchKey, setSearchKey] = useState("");
   const [loading, setLoading] = useState(false);
-  const [refresh, setRefresh] = React.useState(false);
-  const [alert, setAlert] = React.useState(!users.length && !loading);
+  const [refresh, setRefresh] = useState(false);
   const fetchUser = (target) => {
     if (target === "all") {
       setLoading(true);
@@ -39,6 +41,9 @@ const Users = ({ user }) => {
         .then((res) => {
           setUsers(res.data);
           setAllUsers(res.data);
+          setTier1(res.data.filter((each) => each.tier === 1));
+          setTier2(res.data.filter((each) => each.tier === 2));
+          setTierPending(res.data.filter((each) => each.tier === null));
           setLoading(false);
         })
         .catch((err) => {
@@ -47,27 +52,12 @@ const Users = ({ user }) => {
     }
     if (target.includes("@")) {
       setLoading(true);
-      console.log(target);
-      axios
-        .get(`http://localhost:3001/hootdex/userbyemail/${target}`)
-        .then((res) => {
-          setUsers(res.data);
-          setLoading(false);
-        })
-        .catch((err) => {
-          setLoading(false);
-        });
+      setUsers(users.filter((each) => each.email === target));
+      setLoading(false);
     } else if (target !== "all") {
       setLoading(true);
-      axios
-        .get(`http://localhost:3001/hootdex/user/${target}`)
-        .then((res) => {
-          setUsers(res.data);
-          setLoading(false);
-        })
-        .catch((err) => {
-          setLoading(false);
-        });
+      setUsers(users.filter((each) => each.uname === target));
+      setLoading(false);
     }
   };
   const handleChange = (e, uname) => {
@@ -86,6 +76,7 @@ const Users = ({ user }) => {
   };
   useEffect(() => {
     fetchUser("all");
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [refresh]);
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -117,9 +108,9 @@ const Users = ({ user }) => {
               }}
             >
               <p>Total: {allUsers.length}</p>
-              <p>Tier 1: 0</p>
-              <p>Tier 2: 0</p>
-              <p>Pending: 0</p>
+              <p>Tier 1: {tier1.length}</p>
+              <p>Tier 2: {tier2.length}</p>
+              <p>Pending: {tierPending.length}</p>
             </div>
           </div>
           <div
@@ -145,19 +136,15 @@ const Users = ({ user }) => {
           </div>
           {loading && <LinearProgress />}
           <div style={{ display: "flex", justifyContent: "center" }}>
-            <Collapse in={!users.length && !loading } sx={{ maxWidth: 400, position: 'absolute' }}>
-              <Alert 
+            <Collapse
+              in={!users.length && !loading}
+              sx={{ maxWidth: 400, position: "absolute" }}
+            >
+              <Alert
                 variant="outlined"
-                severity="error" 
+                severity="error"
                 action={
-                  <IconButton
-                    aria-label="close"
-                    color="inherit"
-                    size="small"
-                    onClick={() => {
-                      setAlert(false);
-                    }}
-                  >
+                  <IconButton aria-label="close" color="inherit" size="small">
                     <CloseIcon fontSize="inherit" />
                   </IconButton>
                 }
