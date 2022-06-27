@@ -13,7 +13,7 @@ export default function Login(props) {
       alert('Please fill all required fields');
       return
       };
-      axios.post(`https://api.pecunovus.net/user/login`,{
+      axios.post(`http://localhost:3001/user/login`,{
         email:inputData.email,
         password:inputData.password
       }).then(res=>{
