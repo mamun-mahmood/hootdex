@@ -1,4 +1,3 @@
-import * as React from "react";
 import Typography from "@mui/material/Typography";
 import Grid from "@mui/material/Grid";
 import { Paper } from "@mui/material";
@@ -6,17 +5,17 @@ import AssetChart from "./AssetChart";
 import { Box } from "@mui/system";
 import TokenRequest from "../Modal/TokenRequest";
 import axios from "axios";
+import { useEffect, useState } from "react";
 
 function DashboardContent({ user }) {
-  const [pendingToken, setPendingToken] = React.useState([]);
+  const [pendingToken, setPendingToken] = useState([]);
   const username = user.username;
-  React.useEffect(() => {
+  useEffect(() => {
     if (username) {
       axios
-        .get(`http://localhost:5000/pending-token/${username}`)
+        .get(`http://localhost:3001/hootdex/pending-token/${username}`)
         .then((res) => {
           setPendingToken(res.data.reverse());
-          console.log(res.data);
         });
     }
   }, [username]);
@@ -172,8 +171,9 @@ function DashboardContent({ user }) {
                   <small>Status</small>
                 </div>
                 {pendingToken.map((each, index) => (
-                  <TokenRequest each={each} index={index} key={index} />
+                  <TokenRequest user={user} each={each} index={index} key={index} />
                 ))}
+                {!pendingToken.length && <div className="bg2 twhite"><small>No Pending Request</small></div> }
               </Paper>
             </Grid>
             <Grid sx={{ mt: 3 }}></Grid>
