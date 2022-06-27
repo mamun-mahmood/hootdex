@@ -141,6 +141,27 @@ export default function Home() {
         <Chart />
         <h1 className="primary__title">Listed Tokens</h1>
       </div>
+      <div
+            style={{
+              textAlign: "center",
+              marginBottom: "1rem",
+            }}
+          >
+            <form className="form-control" onSubmit={"handleSubmit"}>
+              <input
+                style={{
+                  width: "30rem",
+                  height: "1rem",
+                }}
+                className="border inputField shadow"
+                type="text"
+                placeholder="Search with username or email..."
+                name="searchKey"
+                // value={searchKey}
+                // onChange={(e) => setSearchKey(e.target.value)}
+              />
+            </form>
+          </div>
       <div className="table__container">
         <table className="table">
           <tr className="tr">

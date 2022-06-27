@@ -19,7 +19,7 @@ console.log(user);
   });
   const handleSubmit = (e) => {
     e.preventDefault();
-    axios.post("http://localhost:3001/hootdex/create-tokens", inputData).then((res) => {
+    axios.post("https://api.pecunovus.net/hootdex/create-tokens", inputData).then((res) => {
       if (res.data.affectedRows > 0) {
         setAlert(true);
         window.scrollTo(0, 0);
