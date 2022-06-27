@@ -34,7 +34,7 @@ const Users = ({ user }) => {
   const [loading, setLoading] = useState(false);
   const [refresh, setRefresh] = useState(false);
   const fetchUser = (target) => {
-    if (target === "all") {
+    if (target === "all" && !users.length) {
       setLoading(true);
       axios
         .get("http://localhost:3001/hootdex/alluser")
