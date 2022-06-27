@@ -7,9 +7,9 @@ import CloseIcon from "@mui/icons-material/Close";
 
 export default function CreateToken({ user }) {
   const [alert, setAlert] = React.useState(false);
-
+console.log(user);
   const [inputData, setInputData] = useState({
-    username: user?.username,
+    userName: user?.username,
     tokenName: "",
     totalToken: "",
     investementAmount: "",
@@ -19,12 +19,12 @@ export default function CreateToken({ user }) {
   });
   const handleSubmit = (e) => {
     e.preventDefault();
-    axios.post("http://localhost:5000/create-tokens", inputData).then((res) => {
+    axios.post("http://localhost:3001/hootdex/create-tokens", inputData).then((res) => {
       if (res.data.affectedRows > 0) {
         setAlert(true);
         window.scrollTo(0, 0);
         setInputData({
-          username: user?.username,
+          userName: user?.username,
           tokenName: "",
           totalToken: "",
           investementAmount: "",
@@ -34,7 +34,7 @@ export default function CreateToken({ user }) {
         });
         setTimeout(() => {
           setAlert(false);
-        }, 10000);
+        }, 5000);
       }
     });
   };
@@ -52,7 +52,6 @@ export default function CreateToken({ user }) {
     let changeData = { ...inputData };
     let totalPecuCoin = inputData.investementAmount / pecuRate;
     let tokenPrice = totalPecuCoin / inputData.totalToken;
-
     changeData["pecuCoin"] = totalPecuCoin;
     changeData["tokenPrice"] = tokenPrice;
     setInputData(changeData);

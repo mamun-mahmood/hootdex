@@ -34,7 +34,7 @@ const Users = ({ user }) => {
   const [loading, setLoading] = useState(false);
   const [refresh, setRefresh] = useState(false);
   const fetchUser = (target) => {
-    if (target === "all" && !users.length) {
+    if (target === "all" ) {
       setLoading(true);
       axios
         .get("https://api.pecunovus.net/hootdex/alluser")

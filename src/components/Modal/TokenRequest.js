@@ -3,7 +3,8 @@ import Modal from "@mui/material/Modal";
 import Button from "@mui/material/Button";
 import { Grid, Paper, StepConnector, Typography } from "@mui/material";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 const style = {
   position: "absolute",
@@ -19,7 +20,7 @@ const style = {
   pb: 3,
 };
 
-export default function TokenRequest({ each, index }) {
+export default function TokenRequest({ each, index, user}) {
   const [open, setOpen] = useState(false);
   const handleOpen = () => {
     setOpen(true);
@@ -31,6 +32,17 @@ export default function TokenRequest({ each, index }) {
   const handleChange = (event) => {
     setFormData({ ...formData, [event.target.name]: event.target.value });
   };
+  const handleSubmit = () => {
+    if (user.username) {
+      axios
+        .post(`http://localhost:3001/hootdex/approve-token/${each.createdBy}/${user.username}`)
+        .then((res) => {
+          if(res.data.affectedRows > 0) {
+            handleClose()
+          }
+        });
+    }
+  }
   return (
     <>
       <div
@@ -220,13 +232,13 @@ export default function TokenRequest({ each, index }) {
                   >
                     <h3>Created By</h3>
                   </div>
-                  <p className="fontS22">{each?.username}</p>
+                  <p className="fontS22">{each?.createdBy}</p>
                 </div>
               </Paper>
             </Grid>
             <Grid item xs={12}>
               <div style={{textAlign: 'center'}}>
-                <Button className="border" variant="contained" sx={{ color: "white", backgroundColor: "#00071a" }}>
+                <Button onClick={handleSubmit} className="border" variant="contained" sx={{ color: "white", backgroundColor: "#00071a" }}>
                   Approve
                 </Button>
               </div>
