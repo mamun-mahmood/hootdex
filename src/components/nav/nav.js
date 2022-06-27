@@ -20,11 +20,11 @@ const findUser=async()=>{
     <div className='right__nav'>
    
   <Link to="/wallet"> <button className='button header-link'>Ecosystem</button></Link>
-  <Link to="/wallet"> <button className='button header-link'>Community</button></Link>
-  <Link to="/wallet"> <button className='button header-link'>Tokens</button></Link>
-  <Link to="/wallet"> <button className='button header-link'>Developers</button></Link>
-  <Link to="/wallet"> <button className='button header-link'>Blog</button></Link>
-  <Link to="/wallet"> <button className='button header-link'>FAQ</button></Link>
+  <Link to="/Community"> <button className='button header-link'>Community</button></Link>
+  <Link to="/"> <button className='button header-link'>Tokens</button></Link>
+  <Link to="/Developers"> <button className='button header-link'>Developers</button></Link>
+  <Link to="/Blog"> <button className='button header-link'>Blog</button></Link>
+  <Link to="/Faq"> <button className='button header-link'>FAQ</button></Link>
   {user &&user.loggedIn?<><Link to="/create-token"> <button className='button '>Create Token</button></Link>
    <Link to="/dashboard"> <button className='button '>Dashboard</button></Link></>: <Link to="/login"> <button className='button'>Login</button></Link>
   }

@@ -37,7 +37,7 @@ const Users = ({ user }) => {
     if (target === "all" && !users.length) {
       setLoading(true);
       axios
-        .get("http://localhost:3001/hootdex/alluser")
+        .get("https://api.pecunovus.net/hootdex/alluser")
         .then((res) => {
           setUsers(res.data);
           setAllUsers(res.data);
@@ -64,7 +64,7 @@ const Users = ({ user }) => {
     setLoading(true);
     axios
       .post(
-        `http://localhost:3001/hootdex/update-tier-level/${uname}/${e.target.value}`
+        `https://api.pecunovus.net/hootdex/update-tier-level/${uname}/${e.target.value}`
       )
       .then((res) => {
         setLoading(false);
