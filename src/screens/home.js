@@ -140,7 +140,7 @@ export default function Home() {
   const fetchToken = (target) => {
     if (target === "all" ) { 
       setLoading(true)
-    axios.get("http://127.0.0.1:3001/hootdex/available-tokens").then((res) => {
+    axios.get("http://http://127.0.0.1:3001/hootdex/available-tokens").then((res) => {
       setTokens(res.data);
       setLoading(false)
     })
@@ -210,7 +210,7 @@ export default function Home() {
               <td className="td">{e.totalToken}</td>
               <td className="td">{e.pecuCoin}</td>
               <td className="td">{e.rate}</td>
-              <Link to="/tokenDetails" state={{ tokenData: e }}>
+              <Link to={`/token/${e.tokenName}`}>
                 <button
                   style={{
                     width: "100%",
@@ -219,6 +219,7 @@ export default function Home() {
                     fontSize: "14px",
                     border: "none",
                     borderRadius: "5px",
+                    cursor: 'pointer'
                   }}
                 >
                   Visit👀

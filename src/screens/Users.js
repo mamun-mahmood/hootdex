@@ -42,7 +42,7 @@ const Users = ({ user }) => {
     if (target === "all") {
       setLoading(true);
       axios
-        .get("http://localhost:3001/hootdex/alluser")
+        .get("https://api.pecunovus.net/hootdex/alluser")
         .then((res) => {
           setUsers(res.data);
           setAllUsers(res.data);
@@ -53,6 +53,18 @@ const Users = ({ user }) => {
         })
         .catch((err) => {
           setLoading(false);
+          setAlert({
+            msg: "There was an error",
+            type: "error",
+            show: true,
+          });
+          setTimeout(() => {
+            setAlert({
+              msg: "There was an error",
+              type: "error",
+              show: false,
+            });
+          }, 3000);
         });
     }
     if (target.includes("@")) {
@@ -138,7 +150,7 @@ const Users = ({ user }) => {
                 marginBottom: "1rem",
               }}
             >
-              <p>Total: {allUsers.length}</p>
+              <p>Total: {allUsers?.length}</p>
               <p>Tier 1: {tier1.length}</p>
               <p>Tier 2: {tier2.length}</p>
               <p>Pending: {tierPending.length}</p>
