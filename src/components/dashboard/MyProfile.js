@@ -20,7 +20,6 @@ const MyProfile = ({ user }) => {
     // eslint-disable-next-line no-restricted-globals
     location.reload();
   };
-  console.log(user);
 
 //   First Name
 // Last Name
