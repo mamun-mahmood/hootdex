@@ -51,7 +51,7 @@ const DashboardIndex = ({ user }) => {
     setOpen(!open);
   };
   const [tab, setTab] = React.useState(0);
-  let tier = 0;
+  let tier = 1;
   return (
     <>
       <Divider color="black" />

@@ -210,7 +210,7 @@ export default function Home() {
               <td className="td">{e.totalToken}</td>
               <td className="td">{e.pecuCoin}</td>
               <td className="td">{e.rate}</td>
-              <Link to="/tokenDetails" state={{ tokenData: e }}>
+              <Link to={`/t/${e.tokenName}`}>
                 <button
                   style={{
                     width: "100%",
@@ -219,6 +219,7 @@ export default function Home() {
                     fontSize: "14px",
                     border: "none",
                     borderRadius: "5px",
+                    cursor: 'pointer'
                   }}
                 >
                   Visit👀
