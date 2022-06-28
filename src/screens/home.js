@@ -1,4 +1,5 @@
-import React from "react";
+import axios from "axios";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Chart from "./chart";
 
@@ -132,6 +133,13 @@ export default function Home() {
       rate: "1",
     },
   ];
+  const [tokens, setTokens] = useState([])
+  useEffect(() => {
+    axios.get('http://localhost:3001/hootdex/available-tokens')
+    .then(res => {
+      setTokens(res.data)
+    })
+  }, [])
   return (
     <div className="screen">
       {/* <div className="banner-hero" >   <h1 className="primary__title">Available Pools</h1>
@@ -155,7 +163,7 @@ export default function Home() {
                 }}
                 className="border inputField shadow"
                 type="text"
-                placeholder="Search with username or email..."
+                placeholder="Search for token..."
                 name="searchKey"
                 // value={searchKey}
                 // onChange={(e) => setSearchKey(e.target.value)}
