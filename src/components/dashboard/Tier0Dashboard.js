@@ -4,7 +4,22 @@ import Grid from "@mui/material/Grid";
 import { Paper } from "@mui/material";
 import Chart from "../../screens/chart";
 import CircularChart from "./CircularChart";
+import axios from "axios";
 function DashboardContent({ user }) {
+  const [currentValue,setCurrentValue]=React.useState(0)
+  const get_current_index_coin=()=>{
+  
+    axios.get(`https://api.pecunovus.net/wallet/get_current_index_coin`).then((res) => {
+    
+     
+     setCurrentValue(res.data[0].value)
+
+    })
+  }
+
+  React.useEffect(() => {
+    get_current_index_coin()
+  },[])
   return (
     <>
       <Box
@@ -244,7 +259,7 @@ function DashboardContent({ user }) {
                 >
                   <h3>Current PECU Price</h3>
                 </div>
-                <p className="fontS22">$41</p>
+                <p className="fontS22">${ currentValue}</p>
               </div>
             </Paper>
           </Grid>
