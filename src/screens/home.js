@@ -140,7 +140,7 @@ export default function Home() {
   const fetchToken = (target) => {
     if (target === "all" ) { 
       setLoading(true)
-    axios.get("https://api.pecunovus.net/hootdex/available-tokens").then((res) => {
+    axios.get("http://127.0.0.1:3001/hootdex/available-tokens").then((res) => {
       setTokens(res.data);
       setLoading(false)
     })

@@ -33,11 +33,16 @@ const Users = ({ user }) => {
   const [searchKey, setSearchKey] = useState("");
   const [loading, setLoading] = useState(false);
   const [refresh, setRefresh] = useState(false);
+  const [alert, setAlert] = useState({
+    msg: "",
+    type: "",
+    show: false,
+  });
   const fetchUser = (target) => {
-    if (target === "all" ) {
+    if (target === "all") {
       setLoading(true);
       axios
-        .get("https://api.pecunovus.net/hootdex/alluser")
+        .get("http://localhost:3001/hootdex/alluser")
         .then((res) => {
           setUsers(res.data);
           setAllUsers(res.data);
@@ -69,9 +74,35 @@ const Users = ({ user }) => {
       .then((res) => {
         setLoading(false);
         setRefresh(!refresh);
+        if (res.data.changedRows > 0) {
+          setAlert({
+            msg: "Tier Updated",
+            type: "success",
+            show: true,
+          });
+          setTimeout(() => {
+            setAlert({
+              msg: "Tier Updated",
+              type: "success",
+              show: false,
+            });
+          }, 2000);
+        }
       })
       .catch((err) => {
         setLoading(false);
+        setAlert({
+          msg: "There was an error",
+          type: "error",
+          show: true,
+        });
+        setTimeout(() => {
+          setAlert({
+            msg: "There was an error",
+            type: "error",
+            show: false,
+          });
+        }, 3000);
       });
   };
   useEffect(() => {
@@ -137,12 +168,12 @@ const Users = ({ user }) => {
           {loading && <LinearProgress />}
           <div style={{ display: "flex", justifyContent: "center" }}>
             <Collapse
-              in={!users.length && !loading}
+              in={alert.show}
               sx={{ maxWidth: 400, position: "absolute" }}
             >
               <Alert
                 variant="outlined"
-                severity="error"
+                severity={alert.type}
                 action={
                   <IconButton aria-label="close" color="inherit" size="small">
                     <CloseIcon fontSize="inherit" />
@@ -150,7 +181,7 @@ const Users = ({ user }) => {
                 }
                 sx={{ mb: 2, backgroundColor: "white", fontSize: "18px" }}
               >
-                Nothing found!
+                {alert.msg}
               </Alert>
             </Collapse>
           </div>
@@ -199,7 +230,10 @@ const Users = ({ user }) => {
                           className="shadow twhite"
                           sx={{ border: "1px solid white", height: 40 }}
                           value={each.tier === null ? "null" : each.tier}
-                          onChange={(e) => handleChange(e, each.uname)}
+                          onChange={(e) =>
+                            e.target.value !== each.tier &&
+                            handleChange(e, each.uname)
+                          }
                         >
                           <MenuItem sx={{ display: "none" }} value="null">
                             <em>Null</em>
