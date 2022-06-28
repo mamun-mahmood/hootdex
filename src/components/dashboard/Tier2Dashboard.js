@@ -33,7 +33,7 @@ function DashboardContent({ user }) {
   useEffect(() => {
     if (username) {
       axios
-        .get(`http://localhost:5000/pending-token/${username}`)
+        .get(`https://api.pecunovus.net/hootdex/pending-token/${username}`)
         .then((res) => {
           setPendingToken(res.data.reverse());
           console.log(res.data);

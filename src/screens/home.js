@@ -1,4 +1,6 @@
-import React from "react";
+import { LinearProgress } from "@mui/material";
+import axios from "axios";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Chart from "./chart";
 
@@ -11,6 +13,7 @@ export default function Home() {
     "Rate Pecu/Token",
     "Info",
   ];
+  const [loading, setLoading] = useState(false);
   const poolData = [
     {
       id: "45435",
@@ -132,6 +135,34 @@ export default function Home() {
       rate: "1",
     },
   ];
+  const [tokens, setTokens] = useState([]);
+  const [searchKey, setSearchKey] = useState("");
+  const fetchToken = (target) => {
+    if (target === "all" ) { 
+      setLoading(true)
+    axios.get("https://api.pecunovus.net/hootdex/available-tokens").then((res) => {
+      setTokens(res.data);
+      setLoading(false)
+    })
+    .catch(err => {
+      setLoading(false)
+    });
+    }
+    else {
+      setLoading(true);
+      setTokens(tokens.filter((each) => each.tokenName === target));
+      setLoading(false);
+    } 
+  }
+  useEffect(() => {
+    fetchToken("all")
+  }, []);
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (searchKey) {
+      fetchToken(searchKey);
+    } else fetchToken("all");
+  };
   return (
     <div className="screen">
       {/* <div className="banner-hero" >   <h1 className="primary__title">Available Pools</h1>
@@ -142,40 +173,42 @@ export default function Home() {
         <h1 className="primary__title">Listed Tokens</h1>
       </div>
       <div
+        style={{
+          textAlign: "center",
+          marginBottom: "1rem",
+        }}
+      >
+        <form className="form-control" onSubmit={handleSubmit}>
+          <input
             style={{
-              textAlign: "center",
-              marginBottom: "1rem",
+              width: "30rem",
+              height: "1rem",
             }}
-          >
-            <form className="form-control" onSubmit={"handleSubmit"}>
-              <input
-                style={{
-                  width: "30rem",
-                  height: "1rem",
-                }}
-                className="border inputField shadow"
-                type="text"
-                placeholder="Search with username or email..."
-                name="searchKey"
-                // value={searchKey}
-                // onChange={(e) => setSearchKey(e.target.value)}
-              />
-            </form>
-          </div>
+            className="border inputField shadow"
+            type="text"
+            placeholder="Search for token..."
+            name="searchKey"
+            value={searchKey}
+            onChange={(e) => setSearchKey(e.target.value)}
+          />
+        </form>
+      <div className="center-width">{loading && <LinearProgress  />}</div>
+      </div>
       <div className="table__container">
         <table className="table">
           <tr className="tr">
             {poolTableAttributes.map((e, index) => (
-              <th className="th" key={index}>{e}</th>
+              <th className="th" key={index}>
+                {e}
+              </th>
             ))}
           </tr>
-
-          {poolData.map((e, index) => (
+          {tokens.map((e, index) => (
             <tr className="tr" key={index}>
               <td className="td">{e.id}</td>
-              <td className="td">{e.name}</td>
-              <td className="td">{e.token}</td>
-              <td className="td">{e.coins}</td>
+              <td className="td">{e.tokenName}</td>
+              <td className="td">{e.totalToken}</td>
+              <td className="td">{e.pecuCoin}</td>
               <td className="td">{e.rate}</td>
               <Link to="/tokenDetails" state={{ tokenData: e }}>
                 <button
