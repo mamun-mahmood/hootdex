@@ -44,7 +44,7 @@ function App() {
           <Route path="/create-token" element={<CreateToken user={user} />} />
           <Route path="/" element={<Home />} />
           <Route path="/wallet" element={<Wallet />} />
-          <Route path="/token/:tokenName" element={<TokenPage />} />
+          <Route path="/t/:tokenName" element={<TokenPage />} />
           <Route path="/login" element={<Login loginData={(e)=>{handleUserToken(e)}} />} />
           <Route path="/dashboard" element={user&& user.loggedIn?<DashboardIndex user={user} />:<Login />} />
         </Routes>
