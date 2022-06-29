@@ -7,36 +7,40 @@ import CloseIcon from "@mui/icons-material/Close";
 
 export default function CreateToken({ user }) {
   const [alert, setAlert] = React.useState(false);
-console.log(user);
+  console.log(user);
   const [inputData, setInputData] = useState({
-    userName: user?.username,
+    createdBy: user?.username,
     tokenName: "",
     totalToken: "",
     investementAmount: "",
     pecuCoin: "",
     tokenPrice: "",
     status: "Pending",
+    tokenSymbol: "",
   });
   const handleSubmit = (e) => {
     e.preventDefault();
-    axios.post("https://api.pecunovus.net/hootdex/create-tokens", inputData).then((res) => {
-      if (res.data.affectedRows > 0) {
-        setAlert(true);
-        window.scrollTo(0, 0);
-        setInputData({
-          userName: user?.username,
-          tokenName: "",
-          totalToken: "",
-          investementAmount: "",
-          pecuCoin: "",
-          tokenPrice: "",
-          status: "Pending",
-        });
-        setTimeout(() => {
-          setAlert(false);
-        }, 5000);
-      }
-    });
+    axios
+      .post("http://localhost:3001/hootdex/create-tokens", inputData)
+      .then((res) => {
+        if (res.data.affectedRows > 0) {
+          setAlert(true);
+          window.scrollTo(0, 0);
+          setInputData({
+            createdBy: user?.username,
+            tokenName: "",
+            totalToken: "",
+            investementAmount: "",
+            pecuCoin: "",
+            tokenPrice: "",
+            status: "Pending",
+            tokenSymbol: "",
+          });
+          setTimeout(() => {
+            setAlert(false);
+          }, 5000);
+        }
+      });
   };
 
   const handleChange = (e) => {
@@ -95,6 +99,16 @@ console.log(user);
           required
         ></input>
 
+        <label className="label">Token Symbol</label>
+        <input
+          className="input"
+          name={"tokenSymbol"}
+          value={inputData.tokenSymbol}
+          onChange={handleChange}
+          type={"text"}
+          placeholder="Enter"
+          required
+        ></input>
         <label className="label">Total Token issue</label>
         <input
           className="input"
@@ -105,7 +119,6 @@ console.log(user);
           placeholder="Enter"
           required
         ></input>
-
         <label className="label">Value Investement (USD)</label>
         <input
           className="input"
@@ -133,6 +146,14 @@ console.log(user);
           value={inputData.tokenPrice}
           disabled
           type={"number"}
+          placeholder="Enter"
+          required
+        ></input>
+        <label className="label">Upload token logo</label>
+        <input
+          className="input"
+          // value={inputData.tokenPrice}
+          type={"file"}
           placeholder="Enter"
           required
         ></input>

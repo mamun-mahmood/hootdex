@@ -51,14 +51,14 @@ export default function TokenPage(props) {
           <p className="label-semi">{token?.tokenName}</p>
         </div>
         <div className="card">
-          <p className="label-semi">Rate:{token?.rate}</p>
+          <p className="label-semi">Symbol:{token?.tokenSymbol}</p>
         </div>
         <div className="card">
           {" "}
-          <p className="label-semi">Available Tokens:{token.totalToken}</p>
+          <p className="label-semi">Available Tokens:{token?.totalToken}</p>
         </div>
         <div className="card">
-          <p className="label-semi">Coins:{"coins"}</p>
+          <p className="label-semi">Coins:{token?.pecuCoin}</p>
         </div>
         <div className="description">
           <h1 className="label">Token Performance</h1>
