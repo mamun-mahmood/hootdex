@@ -2,14 +2,14 @@ import axios from "axios";
 import React from "react";
 import { useEffect } from "react";
 import { useState } from "react";
-import { useLocation, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import Chart from "./chart";
 
 export default function TokenPage(props) {
   const tokenName = useParams().tokenName
   const [token, setToken] = useState({})
   useEffect(() => {
-    axios.get(`http://127.0.0.1:3001/hootdex/getToken/${tokenName}`)
+    axios.get(`https://api.pecunovus.net/hootdex/getToken/${tokenName}`)
     .then(res => {
       setToken(res.data[0])
     })
