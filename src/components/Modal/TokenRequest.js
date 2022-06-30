@@ -35,7 +35,7 @@ export default function TokenRequest({ each, index, user}) {
   const handleSubmit = () => {
     if (user.username) {
       axios
-        .post(`https://api.pecunovus.net/hootdex/approve-token/${each.createdBy}/${user.username}`)
+        .post(`http://localhost:3001/hootdex/approve-token/${each.createdBy}/${user.username}`)
         .then((res) => {
           if(res.data.affectedRows > 0) {
             handleClose()

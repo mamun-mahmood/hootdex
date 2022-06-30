@@ -9,7 +9,7 @@ export default function TokenPage(props) {
   const tokenName = useParams().tokenName
   const [token, setToken] = useState({})
   useEffect(() => {
-    axios.get(`https://api.pecunovus.net/hootdex/getToken/${tokenName}`)
+    axios.get(`http://localhost:3001/hootdex/getToken/${tokenName}`)
     .then(res => {
       setToken(res.data[0])
     })
