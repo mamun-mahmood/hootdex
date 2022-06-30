@@ -42,7 +42,7 @@ const Users = ({ user }) => {
     if (target === "all") {
       setLoading(true);
       await axios
-        .get("http://localhost:3001/hootdex/alluser")
+        .get("https://api.pecunovus.net/hootdex/alluser")
         .then((res) => {
           setUsers(res.data);
           setAllUsers(res.data);
@@ -81,7 +81,7 @@ const Users = ({ user }) => {
     setLoading(true);
     await axios
       .post(
-        `http://localhost:3001/hootdex/update-tier-level/${uname}/${e.target.value}`
+        `https://api.pecunovus.net/hootdex/update-tier-level/${uname}/${e.target.value}`
       )
       .then((res) => {
         setLoading(false);
@@ -179,18 +179,10 @@ const Users = ({ user }) => {
           </div>
           {loading && <LinearProgress />}
           <div style={{ display: "flex", justifyContent: "center" }}>
-            <Collapse
-              in={alert.show}
-              sx={{ maxWidth: 400, position: "absolute" }}
-            >
+            <Collapse in={alert.show} sx={{ maxWidth: 400, position: "fixed" }}>
               <Alert
                 variant="outlined"
                 severity={alert.type}
-                action={
-                  <IconButton aria-label="close" color="inherit" size="small">
-                    <CloseIcon fontSize="inherit" />
-                  </IconButton>
-                }
                 sx={{ mb: 2, backgroundColor: "white", fontSize: "18px" }}
               >
                 {alert.msg}

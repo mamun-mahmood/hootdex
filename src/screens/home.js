@@ -140,7 +140,7 @@ export default function Home() {
   const fetchToken = (target) => {
     if (target === "all" ) { 
       setLoading(true)
-    axios.get("http://localhost:3001/hootdex/available-tokens").then((res) => {
+    axios.get("https://api.pecunovus.net/hootdex/available-tokens").then((res) => {
       setTokens(res.data);
       setLoading(false)
     })
@@ -170,12 +170,13 @@ export default function Home() {
     </div> */}
       <div>
         <Chart />
-        <h1 className="primary__title">Listed Tokens</h1>
+        {/* <h1 className="primary__title">Listed Tokens</h1> */}
       </div>
       <div
         style={{
           textAlign: "center",
           marginBottom: "1rem",
+          marginTop: "1rem",
         }}
       >
         <form className="form-control" onSubmit={handleSubmit}>

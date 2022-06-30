@@ -50,8 +50,9 @@ const DashboardIndex = ({ user }) => {
   const toggleDrawer = () => {
     setOpen(!open);
   };
+  console.log(user);
   const [tab, setTab] = React.useState(0);
-  let tier = 0;
+  let tier = user?.tier;
   return (
     <>
       <Divider color="black" />
