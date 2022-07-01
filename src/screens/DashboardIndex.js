@@ -52,7 +52,8 @@ const DashboardIndex = ({ user }) => {
   };
   console.log(user);
   const [tab, setTab] = React.useState(0);
-  let tier = user?.tier;
+
+  let tier = user.tier||2;
   return (
     <>
       <Divider color="black" />
