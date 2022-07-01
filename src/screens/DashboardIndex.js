@@ -148,6 +148,7 @@ const DashboardIndex = ({ user }) => {
         </Box>
         {/* showing dashboard based on user tier level */}
         <Box sx={{ flex: 1, mt: 1 }}>
+         
           {tier === 0 && tab === 0 && <Tier0Dashboard user={user} />}
           {tier === 1 && tab === 0 && <Tier1Dashboard user={user} />}
           {tier === 2 && tab === 0 && <Tier2Dashboard user={user} />}
