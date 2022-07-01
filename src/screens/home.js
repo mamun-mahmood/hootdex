@@ -170,12 +170,13 @@ export default function Home() {
     </div> */}
       <div>
         <Chart />
-        <h1 className="primary__title">Listed Tokens</h1>
+        {/* <h1 className="primary__title">Listed Tokens</h1> */}
       </div>
       <div
         style={{
           textAlign: "center",
           marginBottom: "1rem",
+          marginTop: "1rem",
         }}
       >
         <form className="form-control" onSubmit={handleSubmit}>
