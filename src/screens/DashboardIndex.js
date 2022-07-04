@@ -45,14 +45,14 @@ const Drawer = styled(MuiDrawer, {
   },
 }));
 
-const DashboardIndex = ({ user }) => {
+const DashboardIndex = ({ user, pecuCoins }) => {
   const [open, setOpen] = React.useState(false);
   const toggleDrawer = () => {
     setOpen(!open);
   };
   const [tab, setTab] = React.useState(0);
 
-  let tier = user.tier||0;
+  let tier = user.tier || 2;
   return (
     <>
       <Divider color="black" />
@@ -149,10 +149,9 @@ const DashboardIndex = ({ user }) => {
         </Box>
         {/* showing dashboard based on user tier level */}
         <Box sx={{ flex: 1, mt: 1 }}>
-         
-          {tier === 0 && tab === 0 && <Tier0Dashboard user={user} />}
-          {tier === 1 && tab === 0 && <Tier1Dashboard user={user} />}
-          {tier === 2 && tab === 0 && <Tier2Dashboard user={user} />}
+          {tier === 0 && tab === 0 && <Tier0Dashboard user={user} pecuCoins={pecuCoins} />}
+          {tier === 1 && tab === 0 && <Tier1Dashboard user={user} pecuCoins={pecuCoins} />}
+          {tier === 2 && tab === 0 && <Tier2Dashboard user={user} pecuCoins={pecuCoins} />}
           {tab === 1 && <MyProfile user={user} />}
           {tab === "users" && <Users user={user} />}
         </Box>

@@ -2,12 +2,9 @@ import React, { useEffect, useState } from "react";
 import "./style.css";
 import { Link } from "react-router-dom";
 import logo from "../../assets/images/logo.png";
-import MenuIcon from "@mui/icons-material/Menu";
 
 import {
   Alert,
-  AppBar,
-  Box,
   Button,
   Collapse,
   Dialog,
@@ -16,34 +13,14 @@ import {
   DialogContentText,
   DialogTitle,
   Divider,
-  IconButton,
   LinearProgress,
-  Modal,
-  Toolbar,
-  Typography,
 } from "@mui/material";
 import axios from "axios";
-const style = {
-  position: "absolute",
-  top: "50%",
-  left: "50%",
-  transform: "translate(-50%, -50%)",
-  width: 600,
-  bgcolor: "drak",
-  border: "2px solid #000",
-  boxShadow: 24,
-  // pt: 2,
-  // px: 4,
-  // pb: 3,
-  m: 0,
-};
-export default function Nav() {
+import ConnectWallet from "../Modal/ConnectWallet";
+export default function Nav({fetchWallet, wallet}) {
   const [user, setUser] = useState(null);
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(false);
-  const wallet = JSON.parse(
-    localStorage.getItem("hootdex_secretcookie_wallet")
-  );
   const [alert, setAlert] = useState({
     msg: "",
     type: "",
@@ -77,6 +54,7 @@ export default function Nav() {
               "hootdex_secretcookie_wallet",
               JSON.stringify(res.data)
             );
+            fetchWallet();
             setAlert({
               msg: "Wallet Connected!",
               type: "success",
@@ -84,7 +62,12 @@ export default function Nav() {
             });
             setTimeout(() => {
               handleClose();
-            }, 3000);
+              setAlert({
+                msg: "Wallet Connected!",
+                type: "success",
+                show: false,
+              });
+            }, 2000);
           } else {
             setAlert({
               msg: "No user found with this email!",
@@ -172,8 +155,7 @@ export default function Nav() {
                   className="button"
                   onClick={() => {
                     localStorage.removeItem("hootdex_secretcookie_wallet");
-                    // eslint-disable-next-line no-restricted-globals
-                    location.reload();
+                    fetchWallet();
                   }}
                 >
                   Disconnect Wallet
@@ -196,65 +178,7 @@ export default function Nav() {
           )}
         </div>
       </div>
-      <Dialog
-        open={open}
-        onClose={handleClose}
-        aria-labelledby="alert-dialog-title"
-        aria-describedby="alert-dialog-description"
-      >
-        {" "}
-        <div style={{ backgroundColor: "black" }} className="border">
-          <DialogTitle
-            className="twhite tcenter fontS22"
-            id="alert-dialog-title"
-          >
-            Connect your wallet
-          </DialogTitle>
-          <Divider sx={{ backgroundColor: "#091e17", height: "2px" }} />
-          {loading && <LinearProgress />}
-          <div style={{ display: "flex", justifyContent: "center" }}>
-            <Collapse in={alert.show} sx={{ maxWidth: 400, position: "fixed" }}>
-              <Alert
-                variant="outlined"
-                severity={alert.type}
-                sx={{ mb: 2, backgroundColor: "white", fontSize: "18px" }}
-              >
-                {alert.msg}
-              </Alert>
-            </Collapse>
-          </div>
-          <DialogContent>
-            <DialogContentText id="alert-dialog-description">
-              <p style={{ color: "white", marginLeft: "15px" }}>Wallet Name</p>
-              <input
-                className="border inputfWW"
-                type="text"
-                name="walletName"
-              />
-            </DialogContentText>
-            <DialogContentText id="alert-dialog-description" sx={{ mt: 1 }}>
-              <p style={{ color: "white", marginLeft: "15px" }}>Email</p>
-              <input
-                onChange={(e) => setEmail(e.target.value)}
-                className="border inputfWW"
-                type="text"
-                name="email"
-                required
-              />
-            </DialogContentText>
-          </DialogContent>
-          <DialogActions>
-            <Button
-              className="border"
-              sx={{ color: "white" }}
-              onClick={handleSubmit}
-              autoFocus
-            >
-              Connect
-            </Button>
-          </DialogActions>
-        </div>
-      </Dialog>
+      <ConnectWallet setOpen={setOpen} open={open} fetchWallet={fetchWallet} wallet={wallet} />
     </>
   );
 }
