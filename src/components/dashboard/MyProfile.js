@@ -90,7 +90,7 @@ const MyProfile = ({ user }) => {
                   <h3>{user.username}</h3>
                 </div>
                 <p className="fontS22">User ID: {user?.user_id}</p>
-                <p className="">Tier Level: 0</p>
+                <p className="">Tier Level: {user?.tier || 2}</p>
               </div>
               <Button
                     onClick={logout}
