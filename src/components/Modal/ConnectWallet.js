@@ -49,7 +49,7 @@ const ConnectWallet = ({ fetchWallet, wallet, setOpen, open }) => {
                 type: "success",
                 show: false,
               });
-            }, 2000);
+            }, 1000);
           } else {
             setAlert({
               msg: "No user found with this email!",
