@@ -9,8 +9,10 @@ import {
 
 import { Box } from "@mui/system";
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const MyProfile = ({ user }) => {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({});
   const handleChange = (event) => {
     setFormData({ ...formData, [event.target.name]: event.target.value });
@@ -18,7 +20,7 @@ const MyProfile = ({ user }) => {
   const logout = () => {
     localStorage.removeItem("hootdex_secretcookie");
     // eslint-disable-next-line no-restricted-globals
-    location.reload();
+    navigate('/')
   };
 
 //   First Name
@@ -90,7 +92,7 @@ const MyProfile = ({ user }) => {
                   <h3>{user.username}</h3>
                 </div>
                 <p className="fontS22">User ID: {user?.user_id}</p>
-                <p className="">Tier Level: 0</p>
+                <p className="">Tier Level: { user.tier==null?2:user.tier}</p>
               </div>
               <Button
                     onClick={logout}

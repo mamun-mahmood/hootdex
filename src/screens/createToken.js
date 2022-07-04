@@ -52,7 +52,7 @@ export default function CreateToken({ user }) {
   };
 
   useEffect(() => {
-    let pecuRate = 37.64;
+    let pecuRate = 42.64;
     let changeData = { ...inputData };
     let totalPecuCoin = inputData.investementAmount / pecuRate;
     let tokenPrice = totalPecuCoin / inputData.totalToken;
