@@ -23,7 +23,7 @@ export default function CreateToken({ user, pecuCoins }) {
     e.preventDefault();
     if (pecuCoins?.coin >= inputData.pecuCoin) {
       axios
-        .post("http://localhost:3001/hootdex/create-tokens", inputData)
+        .post("https://api.pecunovus.net/hootdex/create-tokens", inputData)
         .then((res) => {
           if (res.data.status === "error") {
             setAlert({
@@ -104,7 +104,7 @@ export default function CreateToken({ user, pecuCoins }) {
   };
 
   useEffect(() => {
-    let pecuRate = 37.64;
+    let pecuRate = 42.64;
     let changeData = { ...inputData };
     let totalPecuCoin = inputData.investementAmount / pecuRate;
     let tokenPrice = totalPecuCoin / inputData.totalToken;

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./style.css";
-import { Link } from "react-router-dom";
+import { Link, useLocation, } from "react-router-dom";
 import logo from "../../assets/images/logo.png";
 
 import ConnectWallet from "../Modal/ConnectWallet";
@@ -16,9 +16,15 @@ export default function Nav({ fetchWallet, wallet }) {
       setUser(JSON.parse(data));
     }
   };
+  const location = useLocation();
   useEffect(() => {
-    findUser();
-  }, []);
+    setUser(null)
+    findUser()
+    }, [location]);
+  
+    useEffect(()=>{
+      findUser()
+    },[])
   return (
     <>
       <div className="nav">
