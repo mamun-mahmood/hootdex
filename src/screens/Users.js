@@ -33,10 +33,15 @@ const Users = ({ user }) => {
   const [searchKey, setSearchKey] = useState("");
   const [loading, setLoading] = useState(false);
   const [refresh, setRefresh] = useState(false);
-  const fetchUser = (target) => {
-    if (target === "all" ) {
+  const [alert, setAlert] = useState({
+    msg: "",
+    type: "",
+    show: false,
+  });
+  const fetchUser = async (target) => {
+    if (target === "all") {
       setLoading(true);
-      axios
+      await axios
         .get("https://api.pecunovus.net/hootdex/alluser")
         .then((res) => {
           setUsers(res.data);
@@ -48,6 +53,18 @@ const Users = ({ user }) => {
         })
         .catch((err) => {
           setLoading(false);
+          setAlert({
+            msg: "There was an error",
+            type: "error",
+            show: true,
+          });
+          setTimeout(() => {
+            setAlert({
+              msg: "There was an error",
+              type: "error",
+              show: false,
+            });
+          }, 3000);
         });
     }
     if (target.includes("@")) {
@@ -60,18 +77,44 @@ const Users = ({ user }) => {
       setLoading(false);
     }
   };
-  const handleChange = (e, uname) => {
+  const handleChange = async (e, uname) => {
     setLoading(true);
-    axios
+    await axios
       .post(
         `https://api.pecunovus.net/hootdex/update-tier-level/${uname}/${e.target.value}`
       )
       .then((res) => {
         setLoading(false);
         setRefresh(!refresh);
+        if (res.data.changedRows > 0) {
+          setAlert({
+            msg: "Tier Updated",
+            type: "success",
+            show: true,
+          });
+          setTimeout(() => {
+            setAlert({
+              msg: "Tier Updated",
+              type: "success",
+              show: false,
+            });
+          }, 2000);
+        }
       })
       .catch((err) => {
         setLoading(false);
+        setAlert({
+          msg: "There was an error",
+          type: "error",
+          show: true,
+        });
+        setTimeout(() => {
+          setAlert({
+            msg: "There was an error",
+            type: "error",
+            show: false,
+          });
+        }, 3000);
       });
   };
   useEffect(() => {
@@ -107,7 +150,7 @@ const Users = ({ user }) => {
                 marginBottom: "1rem",
               }}
             >
-              <p>Total: {allUsers.length}</p>
+              <p>Total: {allUsers?.length}</p>
               <p>Tier 1: {tier1.length}</p>
               <p>Tier 2: {tier2.length}</p>
               <p>Pending: {tierPending.length}</p>
@@ -136,21 +179,13 @@ const Users = ({ user }) => {
           </div>
           {loading && <LinearProgress />}
           <div style={{ display: "flex", justifyContent: "center" }}>
-            <Collapse
-              in={!users.length && !loading}
-              sx={{ maxWidth: 400, position: "absolute" }}
-            >
+            <Collapse in={alert.show} sx={{ maxWidth: 400, position: "fixed" }}>
               <Alert
                 variant="outlined"
-                severity="error"
-                action={
-                  <IconButton aria-label="close" color="inherit" size="small">
-                    <CloseIcon fontSize="inherit" />
-                  </IconButton>
-                }
+                severity={alert.type}
                 sx={{ mb: 2, backgroundColor: "white", fontSize: "18px" }}
               >
-                Nothing found!
+                {alert.msg}
               </Alert>
             </Collapse>
           </div>
@@ -199,7 +234,10 @@ const Users = ({ user }) => {
                           className="shadow twhite"
                           sx={{ border: "1px solid white", height: 40 }}
                           value={each.tier === null ? "null" : each.tier}
-                          onChange={(e) => handleChange(e, each.uname)}
+                          onChange={(e) =>
+                            e.target.value !== each.tier &&
+                            handleChange(e, each.uname)
+                          }
                         >
                           <MenuItem sx={{ display: "none" }} value="null">
                             <em>Null</em>

@@ -19,14 +19,12 @@ export default function Login(props) {
       }).then(res=>{
         // eslint-disable-next-line eqeqeq
         if(res.data.loggedIn==true){
-         
-          localStorage.setItem('hootdex_secretcookie',JSON.stringify(res.data))
-          props.loginData(res.data)
-        
+          localStorage.setItem('hootdex_secretcookie', JSON.stringify(res.data))
+          if (props&&props.loginData) {
+              props.loginData(res.data)
+          }
           navigate('/dashboard')
          }
-        console.log(res.data)
-
       }).catch(err=>{console.log(err)})
 
 };

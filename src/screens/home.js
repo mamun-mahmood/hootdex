@@ -14,133 +14,133 @@ export default function Home() {
     "Info",
   ];
   const [loading, setLoading] = useState(false);
-  const poolData = [
-    {
-      id: "45435",
-      name: "MariaNu45token",
-      token: "1000",
-      coins: "1000",
-      rate: "1",
-    },
-    {
-      id: "45436",
-      name: "MariaNu45token",
-      token: "1000",
-      coins: "1000",
-      rate: "1",
-    },
-    {
-      id: "45437",
-      name: "MariaNu45token",
-      token: "1000",
-      coins: "1000",
-      rate: "1",
-    },
-    {
-      id: "45438",
-      name: "MariaNu45token",
-      token: "1000",
-      coins: "1000",
-      rate: "1",
-    },
-    {
-      id: "45439",
-      name: "MariaNu45token",
-      token: "1000",
-      coins: "1000",
-      rate: "1",
-    },
-    {
-      id: "45440",
-      name: "MariaNu45token",
-      token: "1000",
-      coins: "1000",
-      rate: "1",
-    },
-    {
-      id: "45441",
-      name: "MariaNu45token",
-      token: "1000",
-      coins: "1000",
-      rate: "1",
-    },
-    {
-      id: "45442",
-      name: "MariaNu45token",
-      token: "1000",
-      coins: "1000",
-      rate: "1",
-    },
-    {
-      id: "45443",
-      name: "MariaNu45token",
-      token: "1000",
-      coins: "1000",
-      rate: "1",
-    },
-    {
-      id: "45444",
-      name: "MariaNu45token",
-      token: "1000",
-      coins: "1000",
-      rate: "1",
-    },
-    {
-      id: "45445",
-      name: "MariaNu45token",
-      token: "1000",
-      coins: "1000",
-      rate: "1",
-    },
-    {
-      id: "45446",
-      name: "MariaNu45token",
-      token: "1000",
-      coins: "1000",
-      rate: "1",
-    },
-    {
-      id: "45447",
-      name: "MariaNu45token",
-      token: "1000",
-      coins: "1000",
-      rate: "1",
-    },
-    {
-      id: "45448",
-      name: "MariaNu45token",
-      token: "1000",
-      coins: "1000",
-      rate: "1",
-    },
-    {
-      id: "45449",
-      name: "MariaNu45token",
-      token: "1000",
-      coins: "1000",
-      rate: "1",
-    },
-    {
-      id: "45450",
-      name: "MariaNu45token",
-      token: "1000",
-      coins: "1000",
-      rate: "1",
-    },
-    {
-      id: "45451",
-      name: "MariaNu45token",
-      token: "1000",
-      coins: "1000",
-      rate: "1",
-    },
-  ];
+  // const poolData = [
+  //   {
+  //     id: "45435",
+  //     name: "MariaNu45token",
+  //     token: "1000",
+  //     coins: "1000",
+  //     rate: "1",
+  //   },
+  //   {
+  //     id: "45436",
+  //     name: "MariaNu45token",
+  //     token: "1000",
+  //     coins: "1000",
+  //     rate: "1",
+  //   },
+  //   {
+  //     id: "45437",
+  //     name: "MariaNu45token",
+  //     token: "1000",
+  //     coins: "1000",
+  //     rate: "1",
+  //   },
+  //   {
+  //     id: "45438",
+  //     name: "MariaNu45token",
+  //     token: "1000",
+  //     coins: "1000",
+  //     rate: "1",
+  //   },
+  //   {
+  //     id: "45439",
+  //     name: "MariaNu45token",
+  //     token: "1000",
+  //     coins: "1000",
+  //     rate: "1",
+  //   },
+  //   {
+  //     id: "45440",
+  //     name: "MariaNu45token",
+  //     token: "1000",
+  //     coins: "1000",
+  //     rate: "1",
+  //   },
+  //   {
+  //     id: "45441",
+  //     name: "MariaNu45token",
+  //     token: "1000",
+  //     coins: "1000",
+  //     rate: "1",
+  //   },
+  //   {
+  //     id: "45442",
+  //     name: "MariaNu45token",
+  //     token: "1000",
+  //     coins: "1000",
+  //     rate: "1",
+  //   },
+  //   {
+  //     id: "45443",
+  //     name: "MariaNu45token",
+  //     token: "1000",
+  //     coins: "1000",
+  //     rate: "1",
+  //   },
+  //   {
+  //     id: "45444",
+  //     name: "MariaNu45token",
+  //     token: "1000",
+  //     coins: "1000",
+  //     rate: "1",
+  //   },
+  //   {
+  //     id: "45445",
+  //     name: "MariaNu45token",
+  //     token: "1000",
+  //     coins: "1000",
+  //     rate: "1",
+  //   },
+  //   {
+  //     id: "45446",
+  //     name: "MariaNu45token",
+  //     token: "1000",
+  //     coins: "1000",
+  //     rate: "1",
+  //   },
+  //   {
+  //     id: "45447",
+  //     name: "MariaNu45token",
+  //     token: "1000",
+  //     coins: "1000",
+  //     rate: "1",
+  //   },
+  //   {
+  //     id: "45448",
+  //     name: "MariaNu45token",
+  //     token: "1000",
+  //     coins: "1000",
+  //     rate: "1",
+  //   },
+  //   {
+  //     id: "45449",
+  //     name: "MariaNu45token",
+  //     token: "1000",
+  //     coins: "1000",
+  //     rate: "1",
+  //   },
+  //   {
+  //     id: "45450",
+  //     name: "MariaNu45token",
+  //     token: "1000",
+  //     coins: "1000",
+  //     rate: "1",
+  //   },
+  //   {
+  //     id: "45451",
+  //     name: "MariaNu45token",
+  //     token: "1000",
+  //     coins: "1000",
+  //     rate: "1",
+  //   },
+  // ];
   const [tokens, setTokens] = useState([]);
   const [searchKey, setSearchKey] = useState("");
   const fetchToken = (target) => {
     if (target === "all" ) { 
       setLoading(true)
-    axios.get("http://localhost:3001/hootdex/available-tokens").then((res) => {
+    axios.get("https://api.pecunovus.net/hootdex/available-tokens").then((res) => {
       setTokens(res.data);
       setLoading(false)
     })
@@ -170,12 +170,13 @@ export default function Home() {
     </div> */}
       <div>
         <Chart />
-        <h1 className="primary__title">Listed Tokens</h1>
+        {/* <h1 className="primary__title">Listed Tokens</h1> */}
       </div>
       <div
         style={{
           textAlign: "center",
           marginBottom: "1rem",
+          marginTop: "1rem",
         }}
       >
         <form className="form-control" onSubmit={handleSubmit}>
@@ -210,7 +211,7 @@ export default function Home() {
               <td className="td">{e.totalToken}</td>
               <td className="td">{e.pecuCoin}</td>
               <td className="td">{e.rate}</td>
-              <Link to="/tokenDetails" state={{ tokenData: e }}>
+              <Link to={`/t/${e.tokenName}`}>
                 <button
                   style={{
                     width: "100%",
@@ -219,6 +220,7 @@ export default function Home() {
                     fontSize: "14px",
                     border: "none",
                     borderRadius: "5px",
+                    cursor: 'pointer'
                   }}
                 >
                   Visit👀

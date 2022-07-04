@@ -9,27 +9,27 @@ import {
 
 import { Box } from "@mui/system";
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const MyProfile = ({ user }) => {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({});
   const handleChange = (event) => {
     setFormData({ ...formData, [event.target.name]: event.target.value });
   };
   const logout = () => {
     localStorage.removeItem("hootdex_secretcookie");
-    // eslint-disable-next-line no-restricted-globals
-    location.reload();
+    navigate("/");
   };
-  console.log(user);
 
-//   First Name
-// Last Name
-// Street address
-// City
-// State
-// Zip code
-// Phone number
-// Email address
+  //   First Name
+  // Last Name
+  // Street address
+  // City
+  // State
+  // Zip code
+  // Phone number
+  // Email address
   return (
     <>
       <Box
@@ -41,7 +41,7 @@ const MyProfile = ({ user }) => {
           mt: 1,
           backgroundColor: "black",
           pb: 2,
-          mb:2
+          mb: 2,
         }}
       >
         <div
@@ -91,15 +91,17 @@ const MyProfile = ({ user }) => {
                   <h3>{user.username}</h3>
                 </div>
                 <p className="fontS22">User ID: {user?.user_id}</p>
-                <p className="">Tier Level: 0</p>
+                <p className="">
+                  Tier Level: {user.tier == null ? 2 : user.tier}
+                </p>
               </div>
               <Button
-                    onClick={logout}
-                    variant="outlined"
-                    sx={{ color: "white", textTransform: "capitalize", m:1 }}
-                  >
-                    Logout
-                  </Button>
+                onClick={logout}
+                variant="outlined"
+                sx={{ color: "white", textTransform: "capitalize", m: 1 }}
+              >
+                Logout
+              </Button>
             </Paper>
           </Grid>
           <Grid item xs={12} md={4}>
@@ -131,27 +133,15 @@ const MyProfile = ({ user }) => {
           <Grid item xs={12} md={4}>
             <div style={{ backgroundColor: "black", padding: "10px" }}>
               <p style={{ color: "white", marginLeft: "15px" }}>Phone</p>
-              <input
-                className="border inputField"
-                type="text"
-                name="phone"
-              />
+              <input className="border inputField" type="text" name="phone" />
             </div>
             <div style={{ backgroundColor: "black", padding: "10px" }}>
               <p style={{ color: "white", marginLeft: "15px" }}>Email</p>
-              <input
-                className="border inputField"
-                type="text"
-                name="email"
-              />
+              <input className="border inputField" type="text" name="email" />
             </div>
             <div style={{ backgroundColor: "black", padding: "10px" }}>
               <p style={{ color: "white", marginLeft: "15px" }}>Country</p>
-              <input
-                className="border inputField"
-                type="text"
-                name="company"
-              />
+              <input className="border inputField" type="text" name="company" />
             </div>
           </Grid>
         </Grid>
@@ -170,35 +160,22 @@ const MyProfile = ({ user }) => {
         </div>
         {/* billing info */}
         <Grid container sx={{ maxWidth: "100%" }} spacing={5}>
-       
           <Grid item xs={12} md={4}>
             <div style={{ backgroundColor: "black", padding: "10px" }}>
               <p style={{ color: "white", marginLeft: "15px" }}>City</p>
-              <input
-                className="border inputField"
-                type="text"
-                name="addres1"
-              />
+              <input className="border inputField" type="text" name="addres1" />
             </div>
           </Grid>
           <Grid item xs={12} md={4}>
             <div style={{ backgroundColor: "black", padding: "10px" }}>
               <p style={{ color: "white", marginLeft: "15px" }}>State</p>
-              <input
-                className="border inputField"
-                type="text"
-                name="addres2"
-              />
+              <input className="border inputField" type="text" name="addres2" />
             </div>
           </Grid>
           <Grid item xs={12} md={4}>
             <div style={{ backgroundColor: "black", padding: "10px" }}>
               <p style={{ color: "white", marginLeft: "15px" }}>Street</p>
-              <input
-                className="border inputField"
-                type="text"
-                name="phone"
-              />
+              <input className="border inputField" type="text" name="phone" />
             </div>
           </Grid>
         </Grid>

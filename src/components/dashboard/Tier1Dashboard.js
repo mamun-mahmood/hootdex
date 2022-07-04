@@ -13,7 +13,7 @@ function DashboardContent({ user }) {
   useEffect(() => {
     if (username) {
       axios
-        .get(`https://api.pecunovus.net/hootdex/pending-token/${username}`)
+        .get(`https://api.pecunovus.net/hootdex/all-token/Pending`)
         .then((res) => {
           setPendingToken(res.data.reverse());
         });
