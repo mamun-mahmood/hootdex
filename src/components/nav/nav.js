@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from "react";
-import "./style.css";
-import { Link, useLocation, } from "react-router-dom";
-import logo from "../../assets/images/logo.png";
+import React, { useEffect, useState } from 'react';
+import './style.css';
+import { Link, useLocation } from 'react-router-dom';
+import logo from '../../assets/images/logo.png';
 
-import ConnectWallet from "../Modal/ConnectWallet";
+import ConnectWallet from '../Modal/ConnectWallet';
 export default function Nav({ fetchWallet, wallet }) {
   const [user, setUser] = useState(null);
   const [open, setOpen] = useState(false);
@@ -11,20 +11,20 @@ export default function Nav({ fetchWallet, wallet }) {
     setOpen(true);
   };
   const findUser = async () => {
-    let data = localStorage.getItem("hootdex_secretcookie");
+    let data = localStorage.getItem('hootdex_secretcookie');
     if (data) {
       setUser(JSON.parse(data));
     }
   };
   const location = useLocation();
   useEffect(() => {
-    setUser(null)
-    findUser()
-    }, [location]);
-  
-    useEffect(()=>{
-      findUser()
-    },[])
+    setUser(null);
+    findUser();
+  }, [location]);
+
+  useEffect(() => {
+    findUser();
+  }, []);
   return (
     <>
       <div className="nav">
@@ -35,38 +35,38 @@ export default function Nav({ fetchWallet, wallet }) {
         </div>
         <div className="right__nav">
           <Link to="/wallet">
-            {" "}
+            {' '}
             <button className="button header-link">Ecosystem</button>
           </Link>
           <Link to="/Community">
-            {" "}
+            {' '}
             <button className="button header-link">Community</button>
           </Link>
           <Link to="/">
-            {" "}
+            {' '}
             <button className="button header-link">Tokens</button>
           </Link>
           <Link to="/Developers">
-            {" "}
+            {' '}
             <button className="button header-link">Developers</button>
           </Link>
           <Link to="/Blog">
-            {" "}
+            {' '}
             <button className="button header-link">Blog</button>
           </Link>
           <Link to="/Faq">
-            {" "}
+            {' '}
             <button className="button header-link">FAQ</button>
           </Link>
           {user && user.loggedIn ? (
             <>
               {JSON.parse(
-                localStorage.getItem("hootdex_secretcookie_wallet")
+                localStorage.getItem('hootdex_secretcookie_wallet')
               ) ? (
                 <button
                   className="button"
                   onClick={() => {
-                    localStorage.removeItem("hootdex_secretcookie_wallet");
+                    localStorage.removeItem('hootdex_secretcookie_wallet');
                     fetchWallet();
                   }}
                 >
@@ -78,13 +78,13 @@ export default function Nav({ fetchWallet, wallet }) {
                 </button>
               )}
               <Link to="/dashboard">
-                {" "}
+                {' '}
                 <button className="button ">Dashboard</button>
               </Link>
             </>
           ) : (
             <Link to="/login">
-              {" "}
+              {' '}
               <button className="button">Login</button>
             </Link>
           )}

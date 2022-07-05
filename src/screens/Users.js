@@ -13,14 +13,14 @@ import {
   TableCell,
   TableContainer,
   TableHead,
-  TableRow,
-} from "@mui/material";
-import CloseIcon from "@mui/icons-material/Close";
-import React from "react";
-import Paper from "@mui/material/Paper";
-import { useState } from "react";
-import { useEffect } from "react";
-import axios from "axios";
+  TableRow
+} from '@mui/material';
+import CloseIcon from '@mui/icons-material/Close';
+import React from 'react';
+import Paper from '@mui/material/Paper';
+import { useState } from 'react';
+import { useEffect } from 'react';
+import axios from 'axios';
 const Users = ({ user }) => {
   const [allUsers, setAllUsers] = useState([]);
   const [users, setUsers] = useState([]);
@@ -30,19 +30,19 @@ const Users = ({ user }) => {
   // const [rows, setRows] = useState(10);
   const [from, setFrom] = useState(0);
   const [to, setTo] = useState(10);
-  const [searchKey, setSearchKey] = useState("");
+  const [searchKey, setSearchKey] = useState('');
   const [loading, setLoading] = useState(false);
   const [refresh, setRefresh] = useState(false);
   const [alert, setAlert] = useState({
-    msg: "",
-    type: "",
-    show: false,
+    msg: '',
+    type: '',
+    show: false
   });
   const fetchUser = async (target) => {
-    if (target === "all") {
+    if (target === 'all') {
       setLoading(true);
       await axios
-        .get("https://api.pecunovus.net/hootdex/alluser")
+        .get('https://api.pecunovus.net/hootdex/alluser')
         .then((res) => {
           setUsers(res.data);
           setAllUsers(res.data);
@@ -54,24 +54,24 @@ const Users = ({ user }) => {
         .catch((err) => {
           setLoading(false);
           setAlert({
-            msg: "There was an error",
-            type: "error",
-            show: true,
+            msg: 'There was an error',
+            type: 'error',
+            show: true
           });
           setTimeout(() => {
             setAlert({
-              msg: "There was an error",
-              type: "error",
-              show: false,
+              msg: 'There was an error',
+              type: 'error',
+              show: false
             });
           }, 3000);
         });
     }
-    if (target.includes("@")) {
+    if (target.includes('@')) {
       setLoading(true);
       setUsers(users.filter((each) => each.email === target));
       setLoading(false);
-    } else if (target !== "all") {
+    } else if (target !== 'all') {
       setLoading(true);
       setUsers(users.filter((each) => each.uname === target));
       setLoading(false);
@@ -88,15 +88,15 @@ const Users = ({ user }) => {
         setRefresh(!refresh);
         if (res.data.changedRows > 0) {
           setAlert({
-            msg: "Tier Updated",
-            type: "success",
-            show: true,
+            msg: 'Tier Updated',
+            type: 'success',
+            show: true
           });
           setTimeout(() => {
             setAlert({
-              msg: "Tier Updated",
-              type: "success",
-              show: false,
+              msg: 'Tier Updated',
+              type: 'success',
+              show: false
             });
           }, 2000);
         }
@@ -104,39 +104,39 @@ const Users = ({ user }) => {
       .catch((err) => {
         setLoading(false);
         setAlert({
-          msg: "There was an error",
-          type: "error",
-          show: true,
+          msg: 'There was an error',
+          type: 'error',
+          show: true
         });
         setTimeout(() => {
           setAlert({
-            msg: "There was an error",
-            type: "error",
-            show: false,
+            msg: 'There was an error',
+            type: 'error',
+            show: false
           });
         }, 3000);
       });
   };
   useEffect(() => {
-    fetchUser("all");
+    fetchUser('all');
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [refresh]);
   const handleSubmit = (e) => {
     e.preventDefault();
     if (searchKey) {
       fetchUser(searchKey);
-    } else fetchUser("all");
+    } else fetchUser('all');
   };
   return (
     <div>
       <Box>
         <TableContainer
           sx={{
-            width: "80%",
-            ml: "10%",
+            width: '80%',
+            ml: '10%',
             p: 1,
-            backgroundColor: "black",
-            mb: 1,
+            backgroundColor: 'black',
+            mb: 1
           }}
           component={Paper}
         >
@@ -145,9 +145,9 @@ const Users = ({ user }) => {
             <StepConnector />
             <div
               style={{
-                display: "flex",
-                justifyContent: "space-around",
-                marginBottom: "1rem",
+                display: 'flex',
+                justifyContent: 'space-around',
+                marginBottom: '1rem'
               }}
             >
               <p>Total: {allUsers?.length}</p>
@@ -158,15 +158,15 @@ const Users = ({ user }) => {
           </div>
           <div
             style={{
-              textAlign: "center",
-              marginBottom: "1rem",
+              textAlign: 'center',
+              marginBottom: '1rem'
             }}
           >
             <form className="form-control" onSubmit={handleSubmit}>
               <input
                 style={{
-                  width: "30rem",
-                  height: "1rem",
+                  width: '30rem',
+                  height: '1rem'
                 }}
                 className="border inputField shadow"
                 type="text"
@@ -178,12 +178,16 @@ const Users = ({ user }) => {
             </form>
           </div>
           {loading && <LinearProgress />}
-          <div style={{ display: "flex", justifyContent: "center" }}>
-            <Collapse in={alert.show} sx={{ maxWidth: 400, position: "fixed" }}>
+          <div style={{ display: 'flex', justifyContent: 'center' }}>
+            <Collapse in={alert.show} sx={{ maxWidth: 400, position: 'fixed' }}>
               <Alert
                 variant="outlined"
                 severity={alert.type}
-                sx={{ mb: 2, backgroundColor: "white", fontSize: "18px" }}
+                sx={{
+                  mb: 2,
+                  backgroundColor: 'white',
+                  fontSize: '18px'
+                }}
               >
                 {alert.msg}
               </Alert>
@@ -214,10 +218,12 @@ const Users = ({ user }) => {
                 users.slice(from, to).map((each, index) => (
                   <TableRow
                     className={`${
-                      index % 2 === 0 ? "bg1 borderS" : "bg2 borderS"
+                      index % 2 === 0 ? 'bg1 borderS' : 'bg2 borderS'
                     }`}
                     key={each.id}
-                    sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+                    sx={{
+                      '&:last-child td, &:last-child th': { border: 0 }
+                    }}
                   >
                     <TableCell className="twhite" component="th" scope="row">
                       {each.id}
@@ -232,17 +238,20 @@ const Users = ({ user }) => {
                       <FormControl sx={{ minWidth: 120 }}>
                         <Select
                           className="shadow twhite"
-                          sx={{ border: "1px solid white", height: 40 }}
-                          value={each.tier === null ? "null" : each.tier}
+                          sx={{
+                            border: '1px solid white',
+                            height: 40
+                          }}
+                          value={each.tier === null ? 'null' : each.tier}
                           onChange={(e) =>
                             e.target.value !== each.tier &&
                             handleChange(e, each.uname)
                           }
                         >
-                          <MenuItem sx={{ display: "none" }} value="null">
+                          <MenuItem sx={{ display: 'none' }} value="null">
                             <em>Null</em>
                           </MenuItem>
-                          <MenuItem sx={{ display: "none" }} value="0">
+                          <MenuItem sx={{ display: 'none' }} value="0">
                             0
                           </MenuItem>
                           <MenuItem value="1">Tier 1</MenuItem>

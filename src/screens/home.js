@@ -1,17 +1,17 @@
-import { LinearProgress } from "@mui/material";
-import axios from "axios";
-import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import Chart from "./chart";
+import { LinearProgress } from '@mui/material';
+import axios from 'axios';
+import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
+import Chart from './chart';
 
 export default function Home() {
   const poolTableAttributes = [
-    "Id",
-    "Name",
-    "Token",
-    "Available Coins",
-    "Rate Pecu/Token",
-    "Info",
+    'Id',
+    'Name',
+    'Token',
+    'Available Coins',
+    'Rate Pecu/Token',
+    'Info'
   ];
   const [loading, setLoading] = useState(false);
   // const poolData = [
@@ -136,32 +136,33 @@ export default function Home() {
   //   },
   // ];
   const [tokens, setTokens] = useState([]);
-  const [searchKey, setSearchKey] = useState("");
+  const [searchKey, setSearchKey] = useState('');
   const fetchToken = (target) => {
-    if (target === "all" ) { 
-      setLoading(true)
-    axios.get("https://api.pecunovus.net/hootdex/available-tokens").then((res) => {
-      setTokens(res.data);
-      setLoading(false)
-    })
-    .catch(err => {
-      setLoading(false)
-    });
-    }
-    else {
+    if (target === 'all') {
+      setLoading(true);
+      axios
+        .get('https://api.pecunovus.net/hootdex/available-tokens')
+        .then((res) => {
+          setTokens(res.data);
+          setLoading(false);
+        })
+        .catch((err) => {
+          setLoading(false);
+        });
+    } else {
       setLoading(true);
       setTokens(tokens.filter((each) => each.tokenName === target));
       setLoading(false);
-    } 
-  }
+    }
+  };
   useEffect(() => {
-    fetchToken("all")
+    fetchToken('all');
   }, []);
   const handleSubmit = (e) => {
     e.preventDefault();
     if (searchKey) {
       fetchToken(searchKey);
-    } else fetchToken("all");
+    } else fetchToken('all');
   };
   return (
     <div className="screen">
@@ -174,16 +175,16 @@ export default function Home() {
       </div>
       <div
         style={{
-          textAlign: "center",
-          marginBottom: "1rem",
-          marginTop: "1rem",
+          textAlign: 'center',
+          marginBottom: '1rem',
+          marginTop: '1rem'
         }}
       >
         <form className="form-control" onSubmit={handleSubmit}>
           <input
             style={{
-              width: "30rem",
-              height: "1rem",
+              width: '30rem',
+              height: '1rem'
             }}
             className="border inputField shadow"
             type="text"
@@ -193,7 +194,7 @@ export default function Home() {
             onChange={(e) => setSearchKey(e.target.value)}
           />
         </form>
-      <div className="center-width">{loading && <LinearProgress  />}</div>
+        <div className="center-width">{loading && <LinearProgress />}</div>
       </div>
       <div className="table__container">
         <table className="table">
@@ -214,12 +215,12 @@ export default function Home() {
               <Link to={`/t/${e.tokenName}`}>
                 <button
                   style={{
-                    width: "100%",
-                    padding: "1rem",
-                    backgroundColor: "rgb(244, 169, 50)",
-                    fontSize: "14px",
-                    border: "none",
-                    borderRadius: "5px",
+                    width: '100%',
+                    padding: '1rem',
+                    backgroundColor: 'rgb(244, 169, 50)',
+                    fontSize: '14px',
+                    border: 'none',
+                    borderRadius: '5px',
                     cursor: 'pointer'
                   }}
                 >

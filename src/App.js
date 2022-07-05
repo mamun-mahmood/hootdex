@@ -1,20 +1,20 @@
-import "./App.css";
-import Home from "./screens/home";
-import Nav from "./components/nav/nav";
-import Footer from "./components/footer/footer";
-import { BrowserRouter, Routes, Route, useNavigate} from "react-router-dom";
-import CreateToken from "./screens/createToken";
-import Wallet from "./screens/wallet";
-import Login from "./screens/login";
-import { useEffect, useState } from "react";
-import DashboardIndex from "./screens/DashboardIndex";
-import TokenPage from "./screens/tokenPage";
-import axios from "axios";
+import './App.css';
+import Home from './screens/home';
+import Nav from './components/nav/nav';
+import Footer from './components/footer/footer';
+import { BrowserRouter, Routes, Route, useNavigate } from 'react-router-dom';
+import CreateToken from './screens/createToken';
+import Wallet from './screens/wallet';
+import Login from './screens/login';
+import { useEffect, useState } from 'react';
+import DashboardIndex from './screens/DashboardIndex';
+import TokenPage from './screens/tokenPage';
+import axios from 'axios';
 
 function App() {
   const [user, setUser] = useState(null);
   const findUser = async () => {
-    let data = localStorage.getItem("hootdex_secretcookie");
+    let data = localStorage.getItem('hootdex_secretcookie');
     if (data) {
       setUser(JSON.parse(data));
     }
@@ -24,7 +24,7 @@ function App() {
   const [wallet, setWallet] = useState({});
   const fetchWallet = () => {
     const wall = JSON.parse(
-      localStorage.getItem("hootdex_secretcookie_wallet")
+      localStorage.getItem('hootdex_secretcookie_wallet')
     );
     setWallet(wall);
     if (wall?.userFound) {
@@ -36,7 +36,7 @@ function App() {
     }
   };
   useEffect(() => {
-    let data = localStorage.getItem("hootdex_secretcookie");
+    let data = localStorage.getItem('hootdex_secretcookie');
 
     if (data) {
       setUser(JSON.parse(data));
@@ -55,7 +55,8 @@ function App() {
           <Route
             path="/create-token"
             element={
-              (user?.tier === 2 || "null") && wallet?.userFound && (
+              (user?.tier === 2 || 'null') &&
+              wallet?.userFound && (
                 <CreateToken user={user} pecuCoins={pecuCoins} />
               )
             }
