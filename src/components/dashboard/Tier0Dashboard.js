@@ -31,7 +31,6 @@ function DashboardContent({ user }) {
           width: "95%",
           ml: "2.5%",
           mt: 1,
-          backgroundColor: "black",
           pb: 2,
         }}
       >
@@ -198,7 +197,6 @@ function DashboardContent({ user }) {
           width: "95%",
           ml: "2.5%",
           mt: 3,
-          backgroundColor: "black",
           mb: 1,
         }}
       >

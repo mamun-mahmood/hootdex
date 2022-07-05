@@ -86,7 +86,7 @@ const DashboardIndex = ({ user, pecuCoins }) => {
                 sx={{
                   backgroundColor: '#002945',
                   minWidth: '100%',
-                  height: '98vh',
+                  // height: '98vh',
                   overflowX: 'hidden'
                 }}
               >
@@ -148,7 +148,7 @@ const DashboardIndex = ({ user, pecuCoins }) => {
           </ClickAwayListener>
         </Box>
         {/* showing dashboard based on user tier level */}
-        <Box sx={{ flex: 1, mt: 1 }}>
+        <Box sx={{ flex: 1, mt: 1, }}>
           {tier === 0 && tab === 0 && (
             <Tier0Dashboard user={user} pecuCoins={pecuCoins} />
           )}
