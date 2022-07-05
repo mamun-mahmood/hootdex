@@ -14,7 +14,7 @@ export default function Chart() {
   const getChatData = (filter) => {
     let localData = [];
     axios
-      .get(`http://localhost:3001/wallet/get_change_index_coin_${filter}`)
+      .get(`https://api.pecunovus.net/wallet/get_change_index_coin_${filter}`)
       .then((res) => {
         res.data.forEach((e) => {
           e.chart_date = new Date(e.chart_date).toLocaleDateString();

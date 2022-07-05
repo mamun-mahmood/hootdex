@@ -28,7 +28,7 @@ const ConnectWallet = ({ fetchWallet, wallet, setOpen, open }) => {
     if (email) {
       setLoading(true);
       axios
-        .get(`http://localhost:3001/hootdex/checkUser/${email}`)
+        .get(`https://api.pecunovus.net/hootdex/checkUser/${email}`)
         .then((res) => {
           setLoading(false);
           if (res.data.userFound) {

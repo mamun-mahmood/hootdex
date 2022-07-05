@@ -23,7 +23,7 @@ export default function CreateToken({ user, pecuCoins }) {
     e.preventDefault();
     if (pecuCoins?.coin >= inputData.pecuCoin) {
       axios
-        .post("http://localhost:3001/hootdex/create-tokens", inputData)
+        .post("https://api.pecunovus.net/hootdex/create-tokens", inputData)
         .then((res) => {
           if (res.data.status === "error") {
             setAlert({
