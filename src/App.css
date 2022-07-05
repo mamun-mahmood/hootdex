@@ -1,6 +1,9 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap');
 * {
-  font-family: "Poppins", sans-serif;
+  font-family: 'Poppins', sans-serif;
+}
+body {
+  background-color: #091e17;
 }
 .table {
   font-family: arial, sans-serif;
@@ -200,7 +203,7 @@ html {
   /* box-shadow: 20px 20px 60px #c6cbd0, -20px -20px 60px #ffffff; */
   color: white;
   margin: 1rem;
-  background-color: #00071a ;
+  background-color: #00071a;
   box-shadow: 0px 0px 6px 0px rgba(255, 255, 255, 1);
   /* word-wrap: break-word; */
 }
@@ -279,4 +282,14 @@ html {
   color: white;
   font-size: 24px;
   padding: 15px;
+}
+.inputfWW {
+  background-color: black;
+  border-radius: 20px;
+  color: white;
+  font-size: 24px;
+  padding: 15px;
+}
+.tlower {
+  text-transform: capitalize;
 }

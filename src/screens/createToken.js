@@ -1,46 +1,98 @@
-import { Alert, Box, Collapse } from "@mui/material";
-import axios from "axios";
-import IconButton from "@mui/material/IconButton";
+import { Alert, Box, Collapse } from '@mui/material';
+import axios from 'axios';
 
-import React, { useEffect, useState } from "react";
-import CloseIcon from "@mui/icons-material/Close";
+import React, { useEffect, useState } from 'react';
 
-export default function CreateToken({ user }) {
-  const [alert, setAlert] = React.useState(false);
-  console.log(user);
+export default function CreateToken({ user, pecuCoins }) {
+  const [alert, setAlert] = useState({
+    msg: '',
+    type: '',
+    loading: false
+  });
   const [inputData, setInputData] = useState({
     createdBy: user?.username,
-    tokenName: "",
-    totalToken: "",
-    investementAmount: "",
-    pecuCoin: "",
-    tokenPrice: "",
-    status: "Pending",
-    tokenSymbol: "",
+    tokenName: '',
+    totalToken: '',
+    investementAmount: '',
+    pecuCoin: '',
+    tokenPrice: '',
+    status: 'Pending',
+    tokenSymbol: ''
   });
   const handleSubmit = (e) => {
     e.preventDefault();
-    axios
-      .post("https://api.pecunovus.net/hootdex/create-tokens", inputData)
-      .then((res) => {
-        if (res.data.affectedRows > 0) {
-          setAlert(true);
-          window.scrollTo(0, 0);
-          setInputData({
-            createdBy: user?.username,
-            tokenName: "",
-            totalToken: "",
-            investementAmount: "",
-            pecuCoin: "",
-            tokenPrice: "",
-            status: "Pending",
-            tokenSymbol: "",
+    if (pecuCoins?.coin >= inputData.pecuCoin) {
+      axios
+        .post('https://api.pecunovus.net/hootdex/create-tokens', inputData)
+        .then((res) => {
+          if (res.data.status === 'error') {
+            setAlert({
+              msg: res.data.msg,
+              type: 'error',
+              show: true
+            });
+            setTimeout(() => {
+              setAlert({
+                msg: res.data.msg,
+                type: 'error',
+                show: false
+              });
+            }, 4000);
+          }
+          if (res.data.affectedRows > 0) {
+            window.scrollTo(0, 0);
+            setInputData({
+              createdBy: user?.username,
+              tokenName: '',
+              totalToken: '',
+              investementAmount: '',
+              pecuCoin: '',
+              tokenPrice: '',
+              status: 'Pending',
+              tokenSymbol: ''
+            });
+            setAlert({
+              msg: 'Token Created!',
+              type: 'success',
+              show: true
+            });
+            setTimeout(() => {
+              setAlert({
+                msg: 'Token Created!',
+                type: 'success',
+                show: false
+              });
+            }, 3000);
+          }
+        })
+        .catch((err) => {
+          setAlert({
+            msg: 'There was an error!',
+            type: 'error',
+            show: true
           });
           setTimeout(() => {
-            setAlert(false);
-          }, 5000);
-        }
+            setAlert({
+              msg: 'There was an error!',
+              type: 'error',
+              show: false
+            });
+          }, 3000);
+        });
+    } else {
+      setAlert({
+        msg: "You don't have enough Pecu coin!",
+        type: 'error',
+        show: true
       });
+      setTimeout(() => {
+        setAlert({
+          msg: "You don't have enough Pecu coin!",
+          type: 'error',
+          show: false
+        });
+      }, 3000);
+    }
   };
 
   const handleChange = (e) => {
@@ -56,43 +108,33 @@ export default function CreateToken({ user }) {
     let changeData = { ...inputData };
     let totalPecuCoin = inputData.investementAmount / pecuRate;
     let tokenPrice = totalPecuCoin / inputData.totalToken;
-    changeData["pecuCoin"] = totalPecuCoin;
-    changeData["tokenPrice"] = tokenPrice;
+    changeData['pecuCoin'] = totalPecuCoin;
+    changeData['tokenPrice'] = tokenPrice;
     setInputData(changeData);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [inputData.investementAmount, inputData.totalToken]);
 
   return (
     <div className="screen">
-      <Box sx={{ mt: 2, position: "fixed", zIndex: 1000, top: 0 }}>
-        <Collapse in={alert}>
-          <Alert
-            variant="outlined"
-            severity="success"
-            action={
-              <IconButton
-                aria-label="close"
-                color="inherit"
-                size="small"
-                onClick={() => {
-                  setAlert(false);
-                }}
-              >
-                <CloseIcon fontSize="inherit" />
-              </IconButton>
-            }
-            sx={{ mb: 2, backgroundColor: "white", fontSize: "18px" }}
-          >
-            Token created successfully!
-          </Alert>
-        </Collapse>
+      <Box sx={{ mt: 2, position: 'fixed', zIndex: 1000, top: 0 }}>
+        <div style={{ display: 'flex', justifyContent: 'center' }}>
+          <Collapse in={alert.show} sx={{ maxWidth: 400, position: 'fixed' }}>
+            <Alert
+              variant="outlined"
+              severity={alert.type}
+              sx={{ mb: 2, backgroundColor: 'white', fontSize: '18px' }}
+            >
+              {alert.msg}
+            </Alert>
+          </Collapse>
+        </div>
       </Box>
       <form id="myForm" className="form" onSubmit={handleSubmit}>
         <h3>Create Token</h3>
         <label className="label">Token Name</label>
         <input
           className="input"
-          name={"tokenName"}
+          name={'tokenName'}
           value={inputData.tokenName}
           onChange={handleChange}
           placeholder="Enter"
@@ -102,40 +144,43 @@ export default function CreateToken({ user }) {
         <label className="label">Token Symbol</label>
         <input
           className="input"
-          name={"tokenSymbol"}
+          name={'tokenSymbol'}
           value={inputData.tokenSymbol}
           onChange={handleChange}
-          type={"text"}
+          type={'text'}
           placeholder="Enter"
           required
         ></input>
         <label className="label">Total Token issue</label>
         <input
           className="input"
-          name={"totalToken"}
+          name={'totalToken'}
           value={inputData.totalToken}
           onChange={handleChange}
-          type={"number"}
+          type={'number'}
           placeholder="Enter"
           required
         ></input>
         <label className="label">Value Investement (USD)</label>
         <input
           className="input"
-          name={"investementAmount"}
+          name={'investementAmount'}
           value={inputData.investementAmount}
           onChange={handleChange}
-          type={"number"}
+          type={'number'}
           placeholder="Enter"
           required
         ></input>
 
-        <label className="label">Investement equivalent Pecu Coins</label>
+        <label className="label">
+          Investement equivalent Pecu Coins. You have ({pecuCoins?.coin})
+          available
+        </label>
         <input
           className="input"
           value={inputData.pecuCoin}
           disabled
-          type={"number"}
+          type={'number'}
           placeholder="Enter"
           required
         ></input>
@@ -145,7 +190,7 @@ export default function CreateToken({ user }) {
           className="input"
           value={inputData.tokenPrice}
           disabled
-          type={"number"}
+          type={'number'}
           placeholder="Enter"
           required
         ></input>
@@ -153,9 +198,9 @@ export default function CreateToken({ user }) {
         <input
           className="input"
           // value={inputData.tokenPrice}
-          type={"file"}
+          type={'file'}
           placeholder="Enter"
-          required
+          // required
         ></input>
         <button className="submit-btn button">Submit Request</button>
       </form>
