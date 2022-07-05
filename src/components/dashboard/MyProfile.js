@@ -12,15 +12,15 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const MyProfile = ({ user }) => {
-    const navigate = useNavigate();
-    const [formData, setFormData] = useState({});
-    const handleChange = (event) => {
-        setFormData({ ...formData, [event.target.name]: event.target.value });
-    };
-    const logout = () => {
-        localStorage.removeItem('hootdex_secretcookie');
-        navigate('/');
-    };
+  const navigate = useNavigate();
+  const [formData, setFormData] = useState({});
+  const handleChange = (event) => {
+    setFormData({ ...formData, [event.target.name]: event.target.value });
+  };
+  const logout = () => {
+    localStorage.removeItem("hootdex_secretcookie");
+    navigate("/login");
+  };
 
     //   First Name
     // Last Name

@@ -1,10 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import {
-  LineChart,
   ResponsiveContainer,
-  Legend,
   Tooltip,
-  Line,
   XAxis,
   YAxis,
   CartesianGrid,
