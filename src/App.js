@@ -29,7 +29,7 @@ function App() {
     setWallet(wall);
     if (wall?.userFound) {
       axios
-        .get(`https://api.pecunovus.net/hootdex/getMycoins/${wall.uid}`)
+        .get(`http://localhost:3001/hootdex/getMycoins/${wall.uid}`)
         .then((res) => {
           setPecuCoins(res.data[0]);
         });

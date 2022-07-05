@@ -29,7 +29,7 @@ function DashboardContent({ user, pecuCoins }) {
   useEffect(() => {
     if (username) {
       axios
-        .get(`https://api.pecunovus.net/hootdex/token/${username}`)
+        .get(`http://localhost:3001/hootdex/token/${username}`)
         .then((res) => {
           setTokenCreated(res.data.reverse());
           setPendingTokens(res.data.filter(e => e.status === "Pending"))

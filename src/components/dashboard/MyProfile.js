@@ -19,7 +19,7 @@ const MyProfile = ({ user }) => {
   };
   const logout = () => {
     localStorage.removeItem("hootdex_secretcookie");
-    navigate("/");
+    navigate("/login");
   };
 
   //   First Name

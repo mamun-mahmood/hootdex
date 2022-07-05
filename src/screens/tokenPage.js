@@ -25,7 +25,7 @@ export default function TokenPage(props) {
   useEffect(() => {
     setLoading(true);
     axios
-      .get(`https://api.pecunovus.net/hootdex/getToken/${tokenName}`)
+      .get(`http://localhost:3001/hootdex/getToken/${tokenName}`)
       .then((res) => {
         setToken(res.data[0]);
         setLoading(false);
