@@ -66,10 +66,11 @@ export default function TokenPage(props) {
         <div className="banner-left">
           <img
             className="rounded"
+            style={{width: '200px', height: '150px'}}
             src={
-              'https://res.cloudinary.com/crunchbase-production/image/upload/c_lpad,h_170,w_170,f_auto,b_white,q_auto:eco,dpr_1/qfavylwan5f8hiu78fsq'
+              `https://api.pecunovus.net/hootdex/images/${token.logo_src}`
             }
-            alt="megahoot logo"
+            alt="token logo"
           />
           {/* <p className="tcenter">{token?.tokenName}</p> */}
         </div>
