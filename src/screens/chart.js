@@ -1,17 +1,14 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState } from 'react';
 import {
-  LineChart,
   ResponsiveContainer,
-  Legend,
   Tooltip,
-  Line,
   XAxis,
   YAxis,
   CartesianGrid,
   AreaChart,
-  Area,
-} from "recharts";
-import axios from "axios";
+  Area
+} from 'recharts';
+import axios from 'axios';
 export default function Chart() {
   const [chartData, setChartData] = useState([]);
   const getChatData = (filter) => {
@@ -27,26 +24,27 @@ export default function Chart() {
             setChartData(localData);
           }
         });
-      }).catch(err=>getChatData(filter))
+      })
+      .catch((err) => getChatData(filter));
   };
 
   useEffect(() => {
-    getChatData("yearly");
+    getChatData('yearly');
   }, []);
   return (
-    <div style={{ display: "flex", flexDirection: "column" }}>
+    <div style={{ display: 'flex', flexDirection: 'column' }}>
       <div
         style={{
-          display: "flex",
-          flexDirection: "row",
-          justifyContent: "center",
-          marginTop: "1rem",
+          display: 'flex',
+          flexDirection: 'row',
+          justifyContent: 'center',
+          marginTop: '1rem'
         }}
       >
         <button
           className="header-link button"
           onClick={() => {
-            getChatData("yearly");
+            getChatData('yearly');
           }}
         >
           12M
@@ -54,7 +52,7 @@ export default function Chart() {
         <button
           className="header-link button"
           onClick={() => {
-            getChatData("quaterly");
+            getChatData('quaterly');
           }}
         >
           3M
@@ -62,7 +60,7 @@ export default function Chart() {
         <button
           className="header-link button"
           onClick={() => {
-            getChatData("monthly");
+            getChatData('monthly');
           }}
         >
           1M
@@ -70,7 +68,7 @@ export default function Chart() {
         <button
           className="header-link button"
           onClick={() => {
-            getChatData("weekly");
+            getChatData('weekly');
           }}
         >
           7D
@@ -78,7 +76,7 @@ export default function Chart() {
         <button
           className="header-link button"
           onClick={() => {
-            getChatData("hourly");
+            getChatData('hourly');
           }}
         >
           Hourly

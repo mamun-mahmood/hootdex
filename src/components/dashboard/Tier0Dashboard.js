@@ -6,20 +6,22 @@ import Chart from "../../screens/chart";
 import CircularChart from "./CircularChart";
 import axios from "axios";
 function DashboardContent({ user }) {
-  const [currentValue,setCurrentValue]=React.useState(0)
-  const get_current_index_coin=()=>{
-  
-    axios.get(`https://api.pecunovus.net/wallet/get_current_index_coin`).then((res) => {
-    
-     
-     setCurrentValue(res.data[0].value)
+  const [currentValue, setCurrentValue] = React.useState(0);
+  const get_current_index_coin = () => {
+    axios
+      .get(`https://api.pecunovus.net/wallet/get_current_index_coin`)
+      .then((res) => {
+        setCurrentValue(res.data[0].value);
+        console.log(res.data[0]);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
 
-    })
-  }
-
-  React.useEffect(() => {
-    get_current_index_coin()
-  },[])
+  // React.useEffect(() => {
+  //   get_current_index_coin();
+  // }, [user]);
   return (
     <>
       <Box
@@ -29,7 +31,6 @@ function DashboardContent({ user }) {
           width: "95%",
           ml: "2.5%",
           mt: 1,
-          backgroundColor: "black",
           pb: 2,
         }}
       >
@@ -196,7 +197,6 @@ function DashboardContent({ user }) {
           width: "95%",
           ml: "2.5%",
           mt: 3,
-          backgroundColor: "black",
           mb: 1,
         }}
       >
@@ -259,7 +259,7 @@ function DashboardContent({ user }) {
                 >
                   <h3>Current PECU Price</h3>
                 </div>
-                <p className="fontS22">${ currentValue}</p>
+                <p className="fontS22">${currentValue}</p>
               </div>
             </Paper>
           </Grid>

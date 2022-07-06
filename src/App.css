@@ -1,6 +1,9 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap');
 * {
-  font-family: "Poppins", sans-serif;
+  font-family: 'Poppins', sans-serif;
+}
+body {
+  background-color: #091e17;
 }
 .table {
   font-family: arial, sans-serif;
@@ -131,16 +134,14 @@ html {
   margin-left: 2.5%;
 }
 
-.banner {
+/* .banner {
   display: flex;
-  flex-direction: row;
   justify-content: space-between;
   align-items: center;
   padding: 1rem;
-
   width: 100%;
   background-color: #e9eff5;
-}
+} */
 
 .banner-left {
   flex: 0.2;
@@ -175,15 +176,14 @@ html {
   padding: 1rem;
   width: 150px;
   text-align: center;
-
   border-radius: 5px;
   background: #e9eff5;
-  box-shadow: 20px 20px 60px #c6cbd0, -20px -20px 60px #ffffff;
   color: #081e16;
+  box-shadow: 0px 0px 6px 0px rgba(255, 255, 255, 1);
 }
-
 .heading-btn:hover {
-  background-color: rgb(235, 233, 233);
+  background-color: #00071a;
+  color: white;
   cursor: pointer;
 }
 
@@ -197,22 +197,23 @@ html {
 
 .card {
   padding: 1rem;
-  width: 200px;
-  height: 200px;
-  border-radius: 50px;
-  background: #e9eff5;
-  box-shadow: 20px 20px 60px #c6cbd0, -20px -20px 60px #ffffff;
-  color: #081e16;
-
+  min-width: 220px;
+  min-height: 60px;
+  border-radius: 20px;
+  /* box-shadow: 20px 20px 60px #c6cbd0, -20px -20px 60px #ffffff; */
+  color: white;
   margin: 1rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  background-color: #00071a;
+  box-shadow: 0px 0px 6px 0px rgba(255, 255, 255, 1);
+  /* word-wrap: break-word; */
+}
+.card:hover {
+  box-shadow: 1px 1px 6px 0px rgba(255, 255, 255, 1);
+  cursor: pointer;
 }
 
 .label-semi {
   font-size: 1.5rem;
-  color: rgb(62, 62, 62);
   font-weight: bold;
   text-align: center;
 }
@@ -281,4 +282,14 @@ html {
   color: white;
   font-size: 24px;
   padding: 15px;
+}
+.inputfWW {
+  background-color: black;
+  border-radius: 20px;
+  color: white;
+  font-size: 24px;
+  padding: 15px;
+}
+.tlower {
+  text-transform: capitalize;
 }
