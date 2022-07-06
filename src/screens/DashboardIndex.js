@@ -52,7 +52,7 @@ const DashboardIndex = ({ user, pecuCoins }) => {
   };
   const [tab, setTab] = React.useState(0);
 
-  let tier = user.tier || 1;
+  let tier = user.tier || 2;
   return (
     <>
       <Divider color="black" />
