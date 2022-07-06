@@ -16,11 +16,11 @@ function DashboardContent({ user, pecuCoins }) {
   const wallet = JSON.parse(
     localStorage.getItem("hootdex_secretcookie_wallet")
   );
-  const [modal, setModal] = React.useState(0)
+  const [modal, setModal] = React.useState(0);
   const [open, setOpen] = React.useState(false);
   const handleOpen = (e) => {
     setOpen(true);
-    setModal(e)
+    setModal(e);
   };
   const handleClose = () => {
     setOpen(false);
@@ -32,7 +32,7 @@ function DashboardContent({ user, pecuCoins }) {
         .get(`https://api.pecunovus.net/hootdex/token/${username}`)
         .then((res) => {
           setTokenCreated(res.data.reverse());
-          setPendingTokens(res.data.filter(e => e.status === "Pending"))
+          setPendingTokens(res.data.filter((e) => e.status === "Pending"));
           console.log(res.data);
         });
     }
@@ -51,160 +51,158 @@ function DashboardContent({ user, pecuCoins }) {
         }}
       >
         <Grid container spacing={5} sx={{ textTransform: "uppercase", p: 10 }}>
-            <Grid item xs={12} md={6} lg={4}>
-              <Paper
+          <Grid item xs={12} md={6} lg={4}>
+            <Paper
+              style={{
+                textAlign: "center",
+                backgroundColor: "#00071a",
+              }}
+              className="border tShadow"
+            >
+              <div
                 style={{
-                  textAlign: "center",
-                  backgroundColor: "#00071a",
+                  color: "white",
+                  wordWrap: "break-word",
                 }}
-                className="border tShadow"
               >
                 <div
-                  style={{
-                    color: "white",
-                    wordWrap: "break-word",
-                  }}
+                  className="rounded center-width tUpper"
+                  style={{ backgroundColor: "#002945" }}
                 >
-                  <div
-                    className="rounded center-width tUpper"
-                    style={{ backgroundColor: "#002945" }}
-                  >
-                    <h3>Pecu Coins</h3>
-                  </div>
-                  <p className="fontS22 tlower">
-                    {wallet?.userFound
-                      ? pecuCoins?.coin
-                      : "Wallet Disconnected"}
-                  </p>
+                  <h3>Pecu Connected</h3>
                 </div>
-              </Paper>
-            </Grid>
-            <Grid item xs={12} md={6} lg={4}>
-              <Paper
+                <p className="fontS22 tlower">
+                  {wallet?.userFound ? pecuCoins?.coin : "Wallet Disconnected"}
+                </p>
+              </div>
+            </Paper>
+          </Grid>
+          <Grid item xs={12} md={6} lg={4}>
+            <Paper
+              style={{
+                textAlign: "center",
+                backgroundColor: "#00071a",
+              }}
+              className="border"
+            >
+              <div
                 style={{
-                  textAlign: "center",
-                  backgroundColor: "#00071a",
+                  color: "white",
+                  wordWrap: "break-word",
                 }}
-                className="border"
               >
                 <div
-                  style={{
-                    color: "white",
-                    wordWrap: "break-word",
-                  }}
+                  className="rounded center-width tUpper"
+                  style={{ backgroundColor: "#002945" }}
                 >
-                  <div
-                    className="rounded center-width tUpper"
-                    style={{ backgroundColor: "#002945" }}
-                  >
-                    <h3>Token Purchased</h3>
-                  </div>
-                  <p className="fontS22">0</p>
+                  <h3>Connected Wallet</h3>
                 </div>
-              </Paper>
-            </Grid>
-            <Grid item xs={12} md={6} lg={4}>
-              <Paper
+                <p className="fontS22">0</p>
+              </div>
+            </Paper>
+          </Grid>
+          <Grid item xs={12} md={6} lg={4}>
+            <Paper
+              style={{
+                textAlign: "center",
+                backgroundColor: "#00071a",
+                cursor: "pointer",
+              }}
+              // onClick={() => handleOpen(1)}
+              className="border"
+            >
+              <div
                 style={{
-                  textAlign: "center",
-                  backgroundColor: "#00071a",
-                  cursor: "pointer",
+                  color: "white",
+                  wordWrap: "break-word",
                 }}
-                onClick={() => handleOpen(1)}
-                className="border"
               >
                 <div
-                  style={{
-                    color: "white",
-                    wordWrap: "break-word",
-                  }}
+                  className="rounded center-width tUpper"
+                  style={{ backgroundColor: "#002945" }}
                 >
-                  <div
-                    className="rounded center-width tUpper"
-                    style={{ backgroundColor: "#002945" }}
-                  >
-                    <h3>Token Pending</h3>
-                  </div>
-                  <p className="fontS22">{pendingToken.length}</p>
+                  <h3>Token Purchased</h3>
                 </div>
-              </Paper>
-            </Grid>
-            <Grid item xs={12} md={6} lg={4}>
-              <Paper
+                <p className="fontS22">0</p>
+              </div>
+            </Paper>
+          </Grid>
+          <Grid item xs={12} md={6} lg={4}>
+            <Paper
+              style={{
+                textAlign: "center",
+                backgroundColor: "#00071a",
+                cursor: "pointer",
+              }}
+              // onClick={() => handleOpen(2)}
+              className="border"
+            >
+              <div
                 style={{
-                  textAlign: "center",
-                  backgroundColor: "#00071a",
-                  cursor: "pointer",
+                  color: "white",
+                  wordWrap: "break-word",
                 }}
-                onClick={() => handleOpen(2)}
-                className="border"
               >
                 <div
-                  style={{
-                    color: "white",
-                    wordWrap: "break-word",
-                  }}
+                  className="rounded center-width tUpper"
+                  style={{ backgroundColor: "#002945" }}
                 >
-                  <div
-                    className="rounded center-width tUpper"
-                    style={{ backgroundColor: "#002945" }}
-                  >
-                    <h3>Token Created</h3>
-                  </div>
-                  <p className="fontS22">{tokenCreated.length}</p>
+                  <h3>Current Holdings</h3>
                 </div>
-              </Paper>
-            </Grid>
-            <Grid item xs={12} md={6} lg={4}>
-              <Paper
+                <p className="fontS22">0</p>
+              </div>
+            </Paper>
+          </Grid>
+          <Grid item xs={12} md={6} lg={4}>
+            <Paper
+              style={{
+                textAlign: "center",
+                backgroundColor: "#00071a",
+                cursor: "pointer",
+              }}
+              className="border"
+              // onClick={() => wallet?.userFound && navigate("/create-token")}
+            >
+              <div
                 style={{
-                  textAlign: "center",
-                  backgroundColor: "#00071a",
-                  cursor: "pointer",
+                  color: "white",
+                  wordWrap: "break-word",
                 }}
-                className="border"
-                onClick={() => wallet?.userFound && navigate("/create-token")}
               >
                 <div
-                  style={{
-                    color: "white",
-                    wordWrap: "break-word",
-                  }}
+                  className="rounded center-width tUpper"
+                  style={{ backgroundColor: "#002945" }}
                 >
-                  <div
-                    className="rounded center-width tUpper"
-                    style={{ backgroundColor: "#002945" }}
-                  >
-                    <h3>Create New</h3>
-                  </div>
-                  <p className="fontS22 tlower">{!wallet?.userFound ? "Wallet Disconnected" : "Token"}</p>
+                  <h3>Buy New</h3>
                 </div>
-              </Paper>
-            </Grid>
-            <Grid item xs={12} md={6} lg={4}>
-              <Paper
+                <p className="fontS22 tlower">Token</p>
+              </div>
+            </Paper>
+          </Grid>
+          <Grid item xs={12} md={6} lg={4}>
+            <Paper
+              style={{
+                textAlign: "center",
+                backgroundColor: "#00071a",
+              }}
+              className="border"
+            >
+              <div
                 style={{
-                  textAlign: "center",
-                  backgroundColor: "#00071a",
+                  color: "white",
+                  wordWrap: "break-word",
                 }}
-                className="border"
               >
                 <div
-                  style={{
-                    color: "white",
-                    wordWrap: "break-word",
-                  }}
+                  className="rounded center-width tUpper"
+                  style={{ backgroundColor: "#002945" }}
                 >
-                  <div
-                    className="rounded center-width tUpper"
-                    style={{ backgroundColor: "#002945" }}
-                  >
-                    <h3>Buy Tokens</h3>
-                  </div>
-                  <p className="fontS22">{"< >"} </p>
+                  <h3>Token Shop</h3>
                 </div>
-              </Paper>
-            </Grid>
+                <p className="fontS22">{"< >"} </p>
+              </div>
+            </Paper>
+          </Grid>
         </Grid>
       </Box>
       {/* second row */}
@@ -219,36 +217,14 @@ function DashboardContent({ user, pecuCoins }) {
         }}
       >
         <Grid container spacing={5} sx={{ p: 1 }}>
-          <Grid item xs={12} md={6} lg={4} xl={3}>
+          <Grid item xs={12} md={6} lg={4}>
             <Paper
               style={{
                 textAlign: "center",
                 backgroundColor: "#00071a",
+                cursor: "pointer",
               }}
-              className="border "
-            >
-              <div
-                style={{
-                  color: "white",
-                  wordWrap: "break-word",
-                }}
-              >
-                <div
-                  className="rounded center-width tUpper"
-                  style={{ backgroundColor: "#002945" }}
-                >
-                  <h3>Current Balance</h3>
-                </div>
-                <p className="fontS22">$ 4546</p>
-              </div>
-            </Paper>
-          </Grid>
-          <Grid item xs={12} md={6} lg={4} xl={3}>
-            <Paper
-              style={{
-                textAlign: "center",
-                backgroundColor: "#00071a",
-              }}
+              onClick={() => handleOpen(2)}
               className="border"
             >
               <div
@@ -261,18 +237,48 @@ function DashboardContent({ user, pecuCoins }) {
                   className="rounded center-width tUpper"
                   style={{ backgroundColor: "#002945" }}
                 >
-                  <h3>Current Balance</h3>
+                  <h3>Token Created</h3>
                 </div>
-                <p className="fontS22">$ 4546</p>
+                <p className="fontS22">{tokenCreated.length}</p>
               </div>
             </Paper>
           </Grid>
-          <Grid item xs={12} md={6} lg={4} xl={3}>
+          <Grid item xs={12} md={6} lg={4} >
             <Paper
               style={{
                 textAlign: "center",
                 backgroundColor: "#00071a",
+                cursor: "pointer",
               }}
+              className="border"
+              onClick={() => wallet?.userFound && navigate("/create-token")}
+            >
+              <div
+                style={{
+                  color: "white",
+                  wordWrap: "break-word",
+                }}
+              >
+                <div
+                  className="rounded center-width tUpper"
+                  style={{ backgroundColor: "#002945" }}
+                >
+                  <h3>Create New</h3>
+                </div>
+                <p className="fontS22 tlower">
+                  {!wallet?.userFound ? "Wallet Disconnected" : "Token"}
+                </p>
+              </div>
+            </Paper>
+          </Grid>
+          <Grid item xs={12} md={6} lg={4}>
+          <Paper
+              style={{
+                textAlign: "center",
+                backgroundColor: "#00071a",
+                cursor: "pointer",
+              }}
+              onClick={() => handleOpen(1)}
               className="border"
             >
               <div
@@ -285,40 +291,30 @@ function DashboardContent({ user, pecuCoins }) {
                   className="rounded center-width tUpper"
                   style={{ backgroundColor: "#002945" }}
                 >
-                  <h3>Current Balance</h3>
+                  <h3>Token Pending</h3>
                 </div>
-                <p className="fontS22">$ 4546</p>
-              </div>
-            </Paper>
-          </Grid>
-          <Grid item xs={12} md={6} lg={4} xl={3}>
-            <Paper
-              style={{
-                textAlign: "center",
-                backgroundColor: "#00071a",
-              }}
-              className="border"
-            >
-              <div
-                style={{
-                  color: "white",
-                  wordWrap: "break-word",
-                }}
-              >
-                <div
-                  className="rounded center-width tUpper"
-                  style={{ backgroundColor: "#002945" }}
-                >
-                  <h3>Current Balance</h3>
-                </div>
-                <p className="fontS22">$ 4546</p>
+                <p className="fontS22">{pendingToken.length}</p>
               </div>
             </Paper>
           </Grid>
         </Grid>
       </Box>
-      {modal === 1 && <TokenList modal={1} tokens={pendingToken} handleClose={handleClose} open={open} />}
-      {modal === 2 && <TokenList modal={2} tokens={tokenCreated} handleClose={handleClose} open={open} />}
+      {modal === 1 && (
+        <TokenList
+          modal={1}
+          tokens={pendingToken}
+          handleClose={handleClose}
+          open={open}
+        />
+      )}
+      {modal === 2 && (
+        <TokenList
+          modal={2}
+          tokens={tokenCreated}
+          handleClose={handleClose}
+          open={open}
+        />
+      )}
     </>
   );
 }
