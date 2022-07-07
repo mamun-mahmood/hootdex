@@ -52,13 +52,13 @@ const ConnectWallet = ({ fetchWallet, wallet, setOpen, open }) => {
             }, 1000);
           } else {
             setAlert({
-              msg: "No user found with this email!",
+              msg: "No account found with this key!",
               type: "error",
               show: true,
             });
             setTimeout(() => {
               setAlert({
-                msg: "No user found with this email!",
+                msg: "No account found with this key!",
                 type: "error",
                 show: false,
               });
@@ -82,13 +82,13 @@ const ConnectWallet = ({ fetchWallet, wallet, setOpen, open }) => {
         });
     } else {
       setAlert({
-        msg: "Enter your email!",
+        msg: "Enter your private key!",
         type: "error",
         show: true,
       });
       setTimeout(() => {
         setAlert({
-          msg: "Enter your email!",
+          msg: "Enter your private key!",
           type: "error",
           show: false,
         });
@@ -134,7 +134,7 @@ const ConnectWallet = ({ fetchWallet, wallet, setOpen, open }) => {
               />
             </DialogContentText>
             <DialogContentText id="alert-dialog-description" sx={{ mt: 1 }}>
-              <p style={{ color: "white", marginLeft: "15px" }}>Email</p>
+              <p style={{ color: "white", marginLeft: "15px" }}>Private Key</p>
               <input
                 onChange={(e) => setEmail(e.target.value)}
                 className="border inputfWW"
