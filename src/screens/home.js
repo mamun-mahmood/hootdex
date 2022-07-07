@@ -179,86 +179,90 @@ export default function Home() {
   };
   return (
     <>
-      <Particles
-        options={{
-          fpsLimit: 40,
-          interactivity: {
-            events: {
-              onClick: {
+      <div style={{ position: 'absolute', zIndex: "-1", width: '100%', height: "100%" }}>
+        <Particles
+        style={{ position: 'absolute', zIndex: "-100", width: '100%', height: "100%" }}
+          options={{
+            fpsLimit: 40,
+            interactivity: {
+              events: {
+                onClick: {
+                  enable: true,
+                  mode: "push",
+                },
+                onHover: {
+                  enable: true,
+                  mode: "repulse",
+                },
+                resize: true,
+              },
+              modes: {
+                push: {
+                  quantity: 2,
+                },
+                repulse: {
+                  distance: 100,
+                  duration: 0.8,
+                },
+              },
+            },
+            particles: {
+              zIndex: {
+                value: 10,
+              },
+              color: {
+                value: "#ffffff",
+              },
+              links: {
+                color: "#ffffff",
+                distance: 150,
                 enable: true,
-                mode: "push",
+                opacity: 0.5,
+                width: 1,
               },
-              onHover: {
+              collisions: {
+                enable: false,
+              },
+              move: {
+                direction: "none",
                 enable: true,
-                mode: "repulse",
+                outModes: {
+                  default: "bounce",
+                },
+                random: false,
+                speed: 2,
+                straight: false,
               },
-              resize: true,
-            },
-            modes: {
-              push: {
-                quantity: 2,
+              number: {
+                density: {
+                  enable: true,
+                  area: 1200,
+                },
+                value: 80,
               },
-              repulse: {
-                distance: 100,
-                duration: 0.8,
+              opacity: {
+                value: 0.5,
+              },
+              shape: {
+                type: "circle",
+              },
+              size: {
+                value: { min: 1, max: 5 },
               },
             },
-          },
-          particles: {
-            color: {
-              value: "#ffffff",
-            },
-            links: {
-              color: "#ffffff",
-              distance: 150,
-              enable: true,
-              opacity: 0.3,
-              width: 1,
-            },
-            collisions: {
-              enable: false,
-            },
-            move: {
-              direction: "none",
-              enable: true,
-              outModes: {
-                default: "bounce",
-              },
-              random: false,
-              speed: 2,
-              straight: false,
-            },
-            number: {
-              density: {
-                enable: true,
-                area: 1200,
-              },
-              value: 50,
-            },
-            opacity: {
-              value: 0.3,
-            },
-            shape: {
-              type: "circle",
-            },
-            size: {
-              value: { min: 1, max: 5 },
-            },
-          },
-          detectRetina: true,
-        }}
-        id="tsparticles"
-        init={particlesInit}
-        loaded={particlesLoaded}
-      />
-      <div className="screen">
+            detectRetina: true,
+          }}
+          id="tsparticles"
+          init={particlesInit}
+          loaded={particlesLoaded}
+        />
+      </div>
+      <div className="screen" style={{zIndex: "100", position: 'sticky', width: '100%', }}>
         {/* <div className="banner-hero" >   <h1 className="primary__title">Available Pools</h1>
     <p style={{color:'orange'}}>Swap, earn, and build on the leading decentralized crypto trading protocol.</p>
     </div> */}
-        <div>
-          <Chart />
+          <Chart style={{backgroundColor: "green" }} />
           {/* <h1 className="primary__title">Listed Tokens</h1> */}
-        </div>
         <div
           style={{
             textAlign: "center",
@@ -310,7 +314,7 @@ export default function Home() {
                       cursor: "pointer",
                     }}
                   >
-                    Info
+                    Visit👀
                   </button>
                 </Link>
               </tr>
