@@ -2,7 +2,6 @@ import {
   Alert,
   Collapse,
   Divider,
-  IconButton,
   LinearProgress
 } from '@mui/material';
 import { Box } from '@mui/system';
@@ -76,6 +75,7 @@ export default function TokenPage(props) {
         </div>
         <div className="banner-right">
           <div className="banner-right-h">
+          <span className="heading-btn">Buy</span>
             <span className="heading-btn">Summary</span>
             <span className="heading-btn">Finances</span>
             <span className="heading-btn">Technology</span>

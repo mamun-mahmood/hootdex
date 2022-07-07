@@ -10,7 +10,7 @@ import { useEffect, useState } from "react";
 function DashboardContent({ user }) {
   const [pendingToken, setPendingToken] = useState([]);
   const username = user.username;
-  useEffect(() => {
+  const fetchTokens = () => {
     if (username) {
       axios
         .get(`https://api.pecunovus.net/hootdex/all-token/Pending`)
@@ -18,6 +18,10 @@ function DashboardContent({ user }) {
           setPendingToken(res.data.reverse());
         });
     }
+  }
+  useEffect(() => {
+    fetchTokens()
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [username]);
   return (
     <>
@@ -170,7 +174,7 @@ function DashboardContent({ user }) {
                   <small>Status</small>
                 </div>
                 {pendingToken.map((each, index) => (
-                  <TokenRequest user={user} each={each} index={index} key={index} />
+                  <TokenRequest fetchTokens={fetchTokens} user={user} each={each} index={index} key={index} />
                 ))}
                 {!pendingToken.length && <div className="bg2 twhite"><small>No Pending Request</small></div> }
               </Paper>

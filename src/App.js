@@ -2,7 +2,7 @@ import './App.css';
 import Home from './screens/home';
 import Nav from './components/nav/nav';
 import Footer from './components/footer/footer';
-import { BrowserRouter, Routes, Route, useNavigate } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, } from 'react-router-dom';
 import CreateToken from './screens/createToken';
 import Wallet from './screens/wallet';
 import Login from './screens/login';

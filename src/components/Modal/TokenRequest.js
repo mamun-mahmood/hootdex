@@ -20,7 +20,7 @@ const style = {
   pb: 3,
 };
 
-export default function TokenRequest({ each, index, user}) {
+export default function TokenRequest({ each, index, user, fetchTokens }) {
   const [open, setOpen] = useState(false);
   const handleOpen = () => {
     setOpen(true);
@@ -38,6 +38,7 @@ export default function TokenRequest({ each, index, user}) {
         .post(`https://api.pecunovus.net/hootdex/approve-token/${each.createdBy}/${user.username}`)
         .then((res) => {
           if(res.data.affectedRows > 0) {
+            fetchTokens()
             handleClose()
           }
         });
