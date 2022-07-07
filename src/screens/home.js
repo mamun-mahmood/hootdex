@@ -212,7 +212,7 @@ export default function Home() {
               color: "#ffffff",
               distance: 150,
               enable: true,
-              opacity: 0.5,
+              opacity: 0.3,
               width: 1,
             },
             collisions: {
@@ -233,10 +233,10 @@ export default function Home() {
                 enable: true,
                 area: 1200,
               },
-              value: 80,
+              value: 50,
             },
             opacity: {
-              value: 0.5,
+              value: 0.3,
             },
             shape: {
               type: "circle",
@@ -310,7 +310,7 @@ export default function Home() {
                       cursor: "pointer",
                     }}
                   >
-                    Visit👀
+                    Info
                   </button>
                 </Link>
               </tr>

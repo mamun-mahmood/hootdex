@@ -69,7 +69,7 @@ function DashboardContent({ user, pecuCoins }) {
                   className="rounded center-width tUpper"
                   style={{ backgroundColor: "#002945" }}
                 >
-                  <h3>Pecu Connected</h3>
+                  <h3>Connected Wallet</h3>
                 </div>
                 <p className="fontS22 tlower">
                   {wallet?.userFound ? pecuCoins?.coin : "Wallet Disconnected"}
@@ -77,7 +77,7 @@ function DashboardContent({ user, pecuCoins }) {
               </div>
             </Paper>
           </Grid>
-          <Grid item xs={12} md={6} lg={4}>
+          {/* <Grid item xs={12} md={6} lg={4}>
             <Paper
               style={{
                 textAlign: "center",
@@ -100,8 +100,8 @@ function DashboardContent({ user, pecuCoins }) {
                 <p className="fontS22">0</p>
               </div>
             </Paper>
-          </Grid>
-          <Grid item xs={12} md={6} lg={4}>
+          </Grid> */}
+          {/* <Grid item xs={12} md={6} lg={4}>
             <Paper
               style={{
                 textAlign: "center",
@@ -121,12 +121,12 @@ function DashboardContent({ user, pecuCoins }) {
                   className="rounded center-width tUpper"
                   style={{ backgroundColor: "#002945" }}
                 >
-                  <h3>Token Purchased</h3>
+                  <h3>Current Holdings</h3>
                 </div>
                 <p className="fontS22">0</p>
               </div>
             </Paper>
-          </Grid>
+          </Grid> */}
           <Grid item xs={12} md={6} lg={4}>
             <Paper
               style={{
@@ -153,7 +153,7 @@ function DashboardContent({ user, pecuCoins }) {
               </div>
             </Paper>
           </Grid>
-          <Grid item xs={12} md={6} lg={4}>
+          {/* <Grid item xs={12} md={6} lg={4}>
             <Paper
               style={{
                 textAlign: "center",
@@ -178,7 +178,7 @@ function DashboardContent({ user, pecuCoins }) {
                 <p className="fontS22 tlower">Token</p>
               </div>
             </Paper>
-          </Grid>
+          </Grid> */}
           <Grid item xs={12} md={6} lg={4}>
             <Paper
               style={{
@@ -197,7 +197,7 @@ function DashboardContent({ user, pecuCoins }) {
                   className="rounded center-width tUpper"
                   style={{ backgroundColor: "#002945" }}
                 >
-                  <h3>Token Shop</h3>
+                  <h3>Token Swap</h3>
                 </div>
                 <p className="fontS22">{"< >"} </p>
               </div>
@@ -263,7 +263,7 @@ function DashboardContent({ user, pecuCoins }) {
                   className="rounded center-width tUpper"
                   style={{ backgroundColor: "#002945" }}
                 >
-                  <h3>Create New</h3>
+                  <h3>Create New Token</h3>
                 </div>
                 <p className="fontS22 tlower">
                   {!wallet?.userFound ? "Wallet Disconnected" : "Token"}
@@ -292,6 +292,100 @@ function DashboardContent({ user, pecuCoins }) {
                   style={{ backgroundColor: "#002945" }}
                 >
                   <h3>Token Pending</h3>
+                </div>
+                <p className="fontS22">{pendingToken.length}</p>
+              </div>
+            </Paper>
+          </Grid>
+        </Grid>
+      </Box>
+      {/* Third row */}
+      <Box
+        className="rounded shadow"
+        sx={{
+          padding: 1,
+          width: "95%",
+          ml: "2.5%",
+          mt: 3,
+          mb: 1,
+        }}
+      >
+        <Grid container spacing={5} sx={{ p: 1 }}>
+          <Grid item xs={12} md={6} lg={4}>
+            <Paper
+              style={{
+                textAlign: "center",
+                backgroundColor: "#00071a",
+                cursor: "pointer",
+              }}
+              onClick={() => handleOpen(2)}
+              className="border"
+            >
+              <div
+                style={{
+                  color: "white",
+                  wordWrap: "break-word",
+                }}
+              >
+                <div
+                  className="rounded center-width tUpper"
+                  style={{ backgroundColor: "#002945" }}
+                >
+                  <h3>Pecu Price</h3>
+                </div>
+                <p className="fontS22">{"46"}</p>
+              </div>
+            </Paper>
+          </Grid>
+          <Grid item xs={12} md={6} lg={4} >
+            <Paper
+              style={{
+                textAlign: "center",
+                backgroundColor: "#00071a",
+                cursor: "pointer",
+              }}
+              className="border"
+              onClick={() => wallet?.userFound && navigate("/create-token")}
+            >
+              <div
+                style={{
+                  color: "white",
+                  wordWrap: "break-word",
+                }}
+              >
+                <div
+                  className="rounded center-width tUpper"
+                  style={{ backgroundColor: "#002945" }}
+                >
+                  <h3>Current Token Price</h3>
+                </div>
+                <p className="fontS22 tlower">
+                 46
+                </p>
+              </div>
+            </Paper>
+          </Grid>
+          <Grid item xs={12} md={6} lg={4}>
+          <Paper
+              style={{
+                textAlign: "center",
+                backgroundColor: "#00071a",
+                cursor: "pointer",
+              }}
+              onClick={() => handleOpen(1)}
+              className="border"
+            >
+              <div
+                style={{
+                  color: "white",
+                  wordWrap: "break-word",
+                }}
+              >
+                <div
+                  className="rounded center-width tUpper"
+                  style={{ backgroundColor: "#002945" }}
+                >
+                  <h3>Current Balance</h3>
                 </div>
                 <p className="fontS22">{pendingToken.length}</p>
               </div>
