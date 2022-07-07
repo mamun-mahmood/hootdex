@@ -87,6 +87,7 @@ export default function Chart() {
         <ResponsiveContainer
           width={window.screen.availWidth / 1.2}
           height={window.screen.availHeight / 2}
+          style={{zIndex: "100", position: 'absolute'}}
         >
           <AreaChart
             data={chartData}
@@ -128,6 +129,8 @@ export default function Chart() {
               stroke="rgb(255, 145, 0)"
               fillOpacity={1}
               fill="url(#colorUv)"
+
+          style={{position: 'absolute', zIndex: "100", width: '100%', }}
             />
           </AreaChart>
         </ResponsiveContainer>
