@@ -79,7 +79,7 @@ export default function Nav({ fetchWallet, wallet }) {
               )}
               <Link to="/dashboard">
                 {' '}
-                <button className="button ">Dashboard</button>
+                <button className="button ">MVault</button>
               </Link>
             </>
           ) : (
