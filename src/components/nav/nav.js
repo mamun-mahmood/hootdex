@@ -58,7 +58,7 @@ export default function Nav({ fetchWallet, wallet }) {
             {' '}
             <button className="button header-link">FAQ</button>
           </Link>
-          {user && user.loggedIn ? (
+          {true? (
             <>
               {JSON.parse(
                 localStorage.getItem('hootdex_secretcookie_wallet')
