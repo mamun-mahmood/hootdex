@@ -21,7 +21,7 @@ export default function Chart() {
           e.value = e.today_value;
           localData.push(e);
           if (localData.length == res.data.length) {
-            setChartData(localData);
+            setChartData(localData.reverse());
           }
         });
       })
