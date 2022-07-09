@@ -12,10 +12,13 @@ function DashboardContent({ user, pecuCoins }) {
   const navigate = useNavigate();
   const [tokenCreated, setTokenCreated] = React.useState([]);
   const [pendingToken, setPendingTokens] = React.useState([]);
+  const [totalCoins, setTotalCoins] = React.useState("")
+  const [totalValue,setTotalValue]=React.useState("")
   const username = user.username;
   const wallet = JSON.parse(
     localStorage.getItem("hootdex_secretcookie_wallet")
   );
+  console.log(wallet)
   const [modal, setModal] = React.useState(0);
   const [open, setOpen] = React.useState(false);
   const handleOpen = (e) => {
@@ -26,6 +29,18 @@ function DashboardContent({ user, pecuCoins }) {
     setOpen(false);
   };
 
+  const getMyCoins=(id)=>{
+    if (id) {
+      axios.post(`${"https://api.pecunovus.net"}/wallet/getMycoins`,{
+      user_id:id
+    }).then((res)=>{
+     const {total_coins,value}=res.data
+      setTotalCoins(total_coins)
+      setTotalValue(value)
+    })
+   }
+   
+  }
   useEffect(() => {
     if (username) {
       axios
@@ -38,6 +53,13 @@ function DashboardContent({ user, pecuCoins }) {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [username]);
+
+  useEffect(() => {
+    if (wallet && wallet.uid) {
+        getMyCoins(wallet.uid)
+    }
+  
+  },[wallet])
   return (
     <>
       <Box
@@ -72,7 +94,9 @@ function DashboardContent({ user, pecuCoins }) {
                   <h3>Connected Wallet</h3>
                 </div>
                 <p className="fontS22 tlower">
-                  {wallet?.userFound ? pecuCoins?.coin : "Wallet Disconnected"}
+                  {wallet?.uid ? <> <img src={'https://pecunovus.net/static/media/icon.25c8ec299d961b9dd524.ico'} />
+                 
+                  </> : "Wallet Disconnected"}
                 </p>
               </div>
             </Paper>
@@ -149,7 +173,10 @@ function DashboardContent({ user, pecuCoins }) {
                 >
                   <h3>Current Holdings</h3>
                 </div>
-                <p className="fontS22">0</p>
+               {wallet&&wallet.uid?<><p>Pecu Coins: {totalCoins}</p>
+                    <br></br>
+                <p>Total Value: $ { parseFloat(totalValue).toLocaleString('en-US')}</p>
+               </>:"Wallet Disconnected"}
               </div>
             </Paper>
           </Grid>
@@ -161,7 +188,7 @@ function DashboardContent({ user, pecuCoins }) {
                 cursor: "pointer",
               }}
               className="border"
-              // onClick={() => wallet?.userFound && navigate("/create-token")}
+              // onClick={() => wallet?.uid && navigate("/create-token")}
             >
               <div
                 style={{
@@ -251,7 +278,7 @@ function DashboardContent({ user, pecuCoins }) {
                 cursor: "pointer",
               }}
               className="border"
-              onClick={() => wallet?.userFound && navigate("/create-token")}
+              onClick={() => wallet?.uid && navigate("/create-token")}
             >
               <div
                 style={{
@@ -266,7 +293,7 @@ function DashboardContent({ user, pecuCoins }) {
                   <h3>Create New Token</h3>
                 </div>
                 <p className="fontS22 tlower">
-                  {!wallet?.userFound ? "Wallet Disconnected" : "Token"}
+                  {!wallet?.uid ? "Wallet Disconnected" : "Token"}
                 </p>
               </div>
             </Paper>
@@ -345,7 +372,7 @@ function DashboardContent({ user, pecuCoins }) {
                 cursor: "pointer",
               }}
               className="border"
-              onClick={() => wallet?.userFound && navigate("/create-token")}
+              onClick={() => wallet?.uid && navigate("/create-token")}
             >
               <div
                 style={{

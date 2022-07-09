@@ -25,13 +25,14 @@ const ConnectWallet = ({ fetchWallet, wallet, setOpen, open }) => {
     setOpen(false);
   };
   const handleSubmit = () => {
+    
     if (email) {
       setLoading(true);
       axios
-        .get(`https://api.pecunovus.net/hootdex/checkUser/${email}`)
+        .post(`https://api.pecunovus.net/hootdex/connect-wallet`,{private_key:email})
         .then((res) => {
           setLoading(false);
-          if (res.data.userFound) {
+          if (res.data) {
             localStorage.setItem(
               "hootdex_secretcookie_wallet",
               JSON.stringify(res.data)
@@ -68,13 +69,13 @@ const ConnectWallet = ({ fetchWallet, wallet, setOpen, open }) => {
         .catch((err) => {
           setLoading(false);
           setAlert({
-            msg: "There was an error!",
+            msg: "No account found with this key!",
             type: "error",
             show: true,
           });
           setTimeout(() => {
             setAlert({
-              msg: "There was an error!",
+              msg: "No account found with this key!",
               type: "error",
               show: false,
             });

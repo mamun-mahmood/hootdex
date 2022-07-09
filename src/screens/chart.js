@@ -17,12 +17,8 @@ export default function Chart() {
       .get(`https://api.pecunovus.net/wallet/get_change_index_coin_${filter}`)
       .then((res) => {
         res.data.forEach((e) => {
-          e.chart_date = new Date(e.chart_date).toLocaleDateString();
-          e.value = e.today_value;
-          localData.push(e);
-          if (localData.length == res.data.length) {
-            setChartData(localData.reverse());
-          }
+          let localData=res.data
+          setChartData(localData.reverse());
         });
       })
       .catch((err) => getChatData(filter));
@@ -125,7 +121,7 @@ export default function Chart() {
             <Tooltip />
             <Area
               type="monotone"
-              dataKey="value"
+              dataKey="today_value"
               stroke="rgb(255, 145, 0)"
               fillOpacity={1}
               fill="url(#colorUv)"

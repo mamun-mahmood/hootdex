@@ -29,7 +29,7 @@ export default function Login(props) {
             props.loginData(res.data);
           }
 
-          navigate('/dashboard');
+          navigate('/');
         }
         console.log(res.data);
       })
