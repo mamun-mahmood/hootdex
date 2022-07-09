@@ -10,6 +10,7 @@ import React from 'react';
 import { useEffect } from 'react';
 import { useState } from 'react';
 import { useParams } from 'react-router-dom';
+import BuyToken from '../components/Modal/BuyToken';
 import Chart from './chart';
 
 export default function TokenPage(props) {
@@ -67,7 +68,7 @@ export default function TokenPage(props) {
             className="rounded"
             style={{width: '200px', height: '150px'}}
             src={
-              `https://api.pecunovus.net/hootdex/images/${token.logo_src}`
+              `https://api.pecunovus.net/hootdex/images/${token?.logo_src}`
             }
             alt="token logo"
           />
@@ -75,7 +76,7 @@ export default function TokenPage(props) {
         </div>
         <div className="banner-right">
           <div className="banner-right-h">
-          <span className="heading-btn">Buy</span>
+            <BuyToken each={token}/>
             <span className="heading-btn">Summary</span>
             <span className="heading-btn">Finances</span>
             <span className="heading-btn">Technology</span>
