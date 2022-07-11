@@ -58,7 +58,7 @@ const DashboardIndex = ({ user, pecuCoins }) => {
       <Divider color="black" />
       <div style={{ display: 'flex', backgroundColor: '#091e17' }}>
         {/* Sidebar */}
-        <Box sx={{ minHeight: '50vh', backgroundColor: '#002945' }}>
+        <Box sx={{ minHeight: '100vh',height:'100vh', backgroundColor: '#002945' }}>
           <ClickAwayListener onClickAway={() => setOpen(false)}>
             <Drawer
               variant="permanent"
