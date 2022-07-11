@@ -1,4 +1,4 @@
-import { LinearProgress } from "@mui/material";
+import { Button, LinearProgress } from "@mui/material";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
@@ -215,19 +215,17 @@ export default function Home() {
                 <td className="td">{e.pecuCoin}</td>
                 <td className="td">{e.rate}</td>
                 <Link to={`/t/${e.tokenName}`}>
-                  <button
-                    style={{
-                      width: "100%",
-                      padding: "1rem",
-                      backgroundColor: "rgb(244, 169, 50)",
-                      fontSize: "14px",
-                      border: "none",
-                      borderRadius: "5px",
-                      cursor: "pointer",
+                  <Button
+                    variant="outlined"
+                    sx={{
+                        color: 'white',
+                        textTransform: 'capitalize',
+                      m: 1,
+                        width:'80%'
                     }}
                   >
-                    Visit👀
-                  </button>
+                    Visit
+                  </Button>
                 </Link>
               </tr>
             ))}

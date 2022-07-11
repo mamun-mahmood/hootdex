@@ -4,6 +4,7 @@ import { Link, useLocation } from 'react-router-dom';
 import logo from '../../assets/images/logo.png';
 
 import ConnectWallet from '../Modal/ConnectWallet';
+import { Button } from '@mui/material';
 export default function Nav({ fetchWallet, wallet }) {
   const [user, setUser] = useState(null);
   const [open, setOpen] = useState(false);
@@ -36,56 +37,141 @@ export default function Nav({ fetchWallet, wallet }) {
         <div className="right__nav">
           <Link to="/wallet">
             {' '}
-            <button className="button header-link">Ecosystem</button>
+            <Button
+              variant="outlined"
+              sx={{
+                color: 'white',
+                textTransform: 'capitalize',
+                m: 1
+              }}
+            >
+              Ecosystem
+            </Button>
           </Link>
           <Link to="/Community">
             {' '}
-            <button className="button header-link">Community</button>
+            <Button
+              variant="outlined"
+              sx={{
+                color: 'white',
+                textTransform: 'capitalize',
+                m: 1
+              }}
+            >
+              Community
+            </Button>
           </Link>
           <Link to="/">
             {' '}
-            <button className="button header-link">Tokens</button>
+            <Button
+              variant="outlined"
+              sx={{
+                color: 'white',
+                textTransform: 'capitalize',
+                m: 1
+              }}
+            >
+              Tokens
+            </Button>
           </Link>
           <Link to="/Developers">
             {' '}
-            <button className="button header-link">Developers</button>
+            <Button
+              variant="outlined"
+              sx={{
+                color: 'white',
+                textTransform: 'capitalize',
+                m: 1
+              }}
+            >
+              Developers
+            </Button>
           </Link>
           <Link to="/Blog">
             {' '}
-            <button className="button header-link">Blog</button>
+            <Button
+              variant="outlined"
+              sx={{
+                color: 'white',
+                textTransform: 'capitalize',
+                m: 1
+              }}
+            >
+              Blog
+            </Button>
           </Link>
           <Link to="/Faq">
             {' '}
-            <button className="button header-link">FAQ</button>
+            <Button
+              variant="outlined"
+              sx={{
+                color: 'white',
+                textTransform: 'capitalize',
+                m: 1
+              }}
+            >
+              FAQ
+            </Button>
           </Link>
-          {true? (
+          {true ? (
             <>
               {JSON.parse(
                 localStorage.getItem('hootdex_secretcookie_wallet')
               ) ? (
-                <button
-                  className="button"
+                <Button
+                  variant="outlined"
+                  sx={{
+                    color: 'white',
+                    textTransform: 'capitalize',
+                    m: 1
+                  }}
                   onClick={() => {
                     localStorage.removeItem('hootdex_secretcookie_wallet');
                     fetchWallet();
                   }}
                 >
                   Disconnect Wallet
-                </button>
+                </Button>
               ) : (
-                <button className="button " onClick={handleOpen}>
+                <Button
+                  variant="outlined"
+                  sx={{
+                    color: 'white',
+                    textTransform: 'capitalize',
+                    m: 1
+                  }}
+                  onClick={handleOpen}
+                >
                   Connect Wallet
-                </button>
+                </Button>
               )}
               <Link to="/dashboard">
                 {' '}
-                <button className="button ">MVault</button>
+                <Button
+                  variant="outlined"
+                  sx={{
+                    color: 'white',
+                    textTransform: 'capitalize',
+                    m: 1
+                  }}
+                >
+                  MVault
+                </Button>
               </Link>
             </>
           ) : (
             <Link to="/login">
               {' '}
-              <button className="button">Login</button>
+              <Button
+                variant="outlined"
+                sx={{
+                  color: 'white',
+                  textTransform: 'capitalize',
+                  m: 1
+                }}
+              >
+                Login
+              </Button>
             </Link>
           )}
         </div>

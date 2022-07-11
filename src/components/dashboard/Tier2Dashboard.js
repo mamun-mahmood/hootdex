@@ -120,7 +120,7 @@ function DashboardContent({ user, pecuCoins }) {
             <Paper
               style={{
                 textAlign: "center",
-                backgroundColor: "#00071a",
+                backgroundColor: "grey",
               }}
               className="border tShadow"
             >
@@ -132,7 +132,7 @@ function DashboardContent({ user, pecuCoins }) {
               >
                 <div
                   className="rounded center-width tUpper"
-                  style={{ backgroundColor: "#002945" }}
+                  style={{ backgroundColor: "#01402b" }}
                 >
                   <h3>Connected Wallet</h3>
                 </div>
@@ -148,7 +148,7 @@ function DashboardContent({ user, pecuCoins }) {
             <Paper
               style={{
                 textAlign: "center",
-                backgroundColor: "#00071a",
+                backgroundColor: "grey",
               }}
               className="border"
             >
@@ -160,7 +160,7 @@ function DashboardContent({ user, pecuCoins }) {
               >
                 <div
                   className="rounded center-width tUpper"
-                  style={{ backgroundColor: "#002945" }}
+                  style={{ backgroundColor: "#01402b" }}
                 >
                   <h3>Connected Wallet</h3>
                 </div>
@@ -172,7 +172,7 @@ function DashboardContent({ user, pecuCoins }) {
             <Paper
               style={{
                 textAlign: "center",
-                backgroundColor: "#00071a",
+                backgroundColor: "grey",
                 cursor: "pointer",
               }}
               // onClick={() => handleOpen(1)}
@@ -186,7 +186,7 @@ function DashboardContent({ user, pecuCoins }) {
               >
                 <div
                   className="rounded center-width tUpper"
-                  style={{ backgroundColor: "#002945" }}
+                  style={{ backgroundColor: "#01402b" }}
                 >
                   <h3>Current Holdings</h3>
                 </div>
@@ -198,7 +198,7 @@ function DashboardContent({ user, pecuCoins }) {
             <Paper
               style={{
                 textAlign: "center",
-                backgroundColor: "#00071a",
+                backgroundColor: "grey",
                 cursor: "pointer",
               }}
               // onClick={() => handleOpen(2)}
@@ -212,7 +212,7 @@ function DashboardContent({ user, pecuCoins }) {
               >
                 <div
                   className="rounded center-width tUpper"
-                  style={{ backgroundColor: "#002945" }}
+                  style={{ backgroundColor: "#01402b" }}
                 >
                   <h3>Current Holdings</h3>
                 </div>
@@ -227,7 +227,7 @@ function DashboardContent({ user, pecuCoins }) {
             <Paper
               style={{
                 textAlign: "center",
-                backgroundColor: "#00071a",
+                backgroundColor: "grey",
                 cursor: "pointer",
               }}
               className="border"
@@ -241,7 +241,7 @@ function DashboardContent({ user, pecuCoins }) {
               >
                 <div
                   className="rounded center-width tUpper"
-                  style={{ backgroundColor: "#002945" }}
+                  style={{ backgroundColor: "#01402b" }}
                 >
                   <h3>Buy New</h3>
                 </div>
@@ -253,7 +253,7 @@ function DashboardContent({ user, pecuCoins }) {
             <Paper
               style={{
                 textAlign: "center",
-                backgroundColor: "#00071a",
+                backgroundColor: "grey",
               }}
               className="border"
             >
@@ -265,7 +265,7 @@ function DashboardContent({ user, pecuCoins }) {
               >
                 <div
                   className="rounded center-width tUpper"
-                  style={{ backgroundColor: "#002945" }}
+                  style={{ backgroundColor: "#01402b" }}
                 >
                   <h3>Token Swap</h3>
                 </div>
@@ -298,7 +298,7 @@ function DashboardContent({ user, pecuCoins }) {
             <Paper
               style={{
                 textAlign: "center",
-                backgroundColor: "#00071a",
+                backgroundColor: "grey",
                 cursor: "pointer",
               }}
               onClick={() => handleOpen(2)}
@@ -312,7 +312,7 @@ function DashboardContent({ user, pecuCoins }) {
               >
                 <div
                   className="rounded center-width tUpper"
-                  style={{ backgroundColor: "#002945" }}
+                  style={{ backgroundColor: "#01402b" }}
                 >
                   <h3>Token Created</h3>
                 </div>
@@ -324,7 +324,7 @@ function DashboardContent({ user, pecuCoins }) {
             <Paper
               style={{
                 textAlign: "center",
-                backgroundColor: "#00071a",
+                backgroundColor: "grey",
                 cursor: "pointer",
               }}
               className="border"
@@ -338,7 +338,7 @@ function DashboardContent({ user, pecuCoins }) {
               >
                 <div
                   className="rounded center-width tUpper"
-                  style={{ backgroundColor: "#002945" }}
+                  style={{ backgroundColor: "#01402b" }}
                 >
                   <h3>Create New Token</h3>
                 </div>
@@ -352,7 +352,7 @@ function DashboardContent({ user, pecuCoins }) {
           <Paper
               style={{
                 textAlign: "center",
-                backgroundColor: "#00071a",
+                backgroundColor: "grey",
                 cursor: "pointer",
               }}
               onClick={() => handleOpen(1)}
@@ -366,7 +366,7 @@ function DashboardContent({ user, pecuCoins }) {
               >
                 <div
                   className="rounded center-width tUpper"
-                  style={{ backgroundColor: "#002945" }}
+                  style={{ backgroundColor: "#01402b" }}
                 >
                   <h3>Token Pending</h3>
                 </div>
@@ -394,7 +394,7 @@ function DashboardContent({ user, pecuCoins }) {
             <Paper
               style={{
                 textAlign: "center",
-                backgroundColor: "#00071a",
+                backgroundColor: "grey",
                 cursor: "pointer",
               }}
               onClick={() => handleOpen(2)}
@@ -408,7 +408,7 @@ function DashboardContent({ user, pecuCoins }) {
               >
                 <div
                   className="rounded center-width tUpper"
-                  style={{ backgroundColor: "#002945" }}
+                  style={{ backgroundColor: "#01402b" }}
                 >
                   <h3>MVAULT </h3>
                   
@@ -421,7 +421,7 @@ function DashboardContent({ user, pecuCoins }) {
             <Paper
               style={{
                 textAlign: "center",
-                backgroundColor: "#00071a",
+                backgroundColor: "grey",
                 cursor: "pointer",
               }}
               className="border"
@@ -435,7 +435,7 @@ function DashboardContent({ user, pecuCoins }) {
               >
                 <div
                   className="rounded center-width tUpper"
-                  style={{ backgroundColor: "#002945" }}
+                  style={{ backgroundColor: "#01402b" }}
                 >
                   <h3>Coin Holdings</h3>
                 </div>
@@ -456,7 +456,7 @@ function DashboardContent({ user, pecuCoins }) {
           <Paper
               style={{
                 textAlign: "center",
-                backgroundColor: "#00071a",
+                backgroundColor: "grey",
                 cursor: "pointer",
               }}
               // onClick={() => handleOpen(1)}
@@ -470,7 +470,7 @@ function DashboardContent({ user, pecuCoins }) {
               >
                 <div
                   className="rounded center-width tUpper"
-                  style={{ backgroundColor: "#002945" }}
+                  style={{ backgroundColor: "#01402b" }}
                 >
                   <h3>NFT Holdings</h3>
                 </div>

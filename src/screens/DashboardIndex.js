@@ -52,7 +52,8 @@ const DashboardIndex = ({ user, pecuCoins }) => {
   };
   const [tab, setTab] = React.useState(0);
 
-  let tier = user.tier || 2;
+  // let tier = user.tier || 2;
+  const tier=2||user.tier
   return (
     <>
       <Divider color="black" />
@@ -71,7 +72,7 @@ const DashboardIndex = ({ user, pecuCoins }) => {
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'flex-end',
-                  backgroundColor: '#002945',
+                  backgroundColor: '#01402b',
                   textAlign: 'center'
                 }}
               >
@@ -84,9 +85,9 @@ const DashboardIndex = ({ user, pecuCoins }) => {
               </Toolbar>
               <List
                 sx={{
-                  backgroundColor: '#002945',
+                  backgroundColor: '#01402b',
                   minWidth: '100%',
-                  // height: '98vh',
+                   height: '100vh',
                   overflowX: 'hidden'
                 }}
               >

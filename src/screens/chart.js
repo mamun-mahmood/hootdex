@@ -18,7 +18,7 @@ export default function Chart() {
       .then((res) => {
         res.data.forEach((e) => {
           let localData=res.data
-          setChartData(localData.reverse());
+          setChartData(localData);
         });
       })
       .catch((err) => getChatData(filter));
@@ -32,7 +32,7 @@ export default function Chart() {
       <div
         style={{
           display: 'flex',
-          flexDirection: 'row',
+          flexDirection: 'row-reverse',
           justifyContent: 'center',
           marginTop: '1rem'
         }}
