@@ -43,7 +43,8 @@ function DashboardContent({ user, pecuCoins }) {
    
   }
 
-  const getMyCoinsVault=(id)=>{
+  const getMyCoinsVault = (id) => {
+    
     if (id) {
       axios.post(`${"https://api.pecunovus.net"}/vault/getCoins`,{
       uid:id
@@ -82,13 +83,25 @@ function DashboardContent({ user, pecuCoins }) {
   }, [username]);
 
   useEffect(() => {
+    
     if (wallet && wallet.uid) {
       getMyCoins(wallet.uid)
-      getMyCoinsVault(wallet.uid)
-      getNftCount(wallet.email)
+     
     }
   
-  },[wallet])
+  }, [wallet])
+
+  useEffect(() => {
+    let data = localStorage.getItem('hootdex_secretcookie');
+    data= JSON.parse(data)
+    if (data && data.user_id) {
+   
+      getMyCoinsVault(data.user_id)
+      getNftCount(data.email)
+    }
+  
+  })
+  
   return (
     <>
       <Box
@@ -446,7 +459,7 @@ function DashboardContent({ user, pecuCoins }) {
                 backgroundColor: "#00071a",
                 cursor: "pointer",
               }}
-              onClick={() => handleOpen(1)}
+              // onClick={() => handleOpen(1)}
               className="border"
             >
               <div
