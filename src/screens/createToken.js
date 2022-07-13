@@ -9,12 +9,9 @@ export default function CreateToken({ user, pecuCoins }) {
     type: "",
     loading: false,
   });
-  const [file, setFile] = useState();
-
-  const [fileName, setFileName] = useState("");
 
   const [inputData, setInputData] = useState({
-    createdBy: user?.username,
+    createdBy: user.username,
     tokenName: "",
     totalToken: "",
     investementAmount: "",
@@ -23,7 +20,8 @@ export default function CreateToken({ user, pecuCoins }) {
     status: "Pending",
     tokenSymbol: "",
     fileName: "",
-    approvedBy: ""
+    approvedBy: "",
+    cTime: new Date(),
   });
   const saveFile = (e) => {
     const formData = new FormData();
@@ -54,7 +52,9 @@ export default function CreateToken({ user, pecuCoins }) {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (pecuCoins?.coin >= inputData.pecuCoin) {
+    if (
+      // pecuCoins?.coin >=
+       inputData.pecuCoin) {
       axios
         .post("https://api.pecunovus.net/hootdex/create-tokens", inputData)
         .then((res) => {
@@ -75,7 +75,7 @@ export default function CreateToken({ user, pecuCoins }) {
           if (res.data.affectedRows > 0) {
             window.scrollTo(0, 0);
             setInputData({
-              createdBy: user?.username,
+              createdBy: user.username,
               tokenName: "",
               totalToken: "",
               investementAmount: "",

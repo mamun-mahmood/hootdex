@@ -13,7 +13,7 @@ import { useParams } from 'react-router-dom';
 import BuyToken from '../components/Modal/BuyToken';
 import Chart from './chart';
 
-export default function TokenPage(props) {
+export default function TokenPage({pecuCoins, user}) {
   const tokenName = useParams().tokenName;
   const [token, setToken] = useState({});
   const [loading, setLoading] = useState(false);
@@ -76,7 +76,7 @@ export default function TokenPage(props) {
         </div>
         <div className="banner-right">
           <div className="banner-right-h">
-            <BuyToken each={token}/>
+            <BuyToken each={token} pecuCoins={pecuCoins} user={user} />
             <span className="heading-btn">Summary</span>
             <span className="heading-btn">Finances</span>
             <span className="heading-btn">Technology</span>

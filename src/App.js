@@ -56,14 +56,15 @@ function App() {
             path="/create-token"
             element={
               (user?.tier === 2 || 'null') &&
-              wallet?.userFound && (
+              // wallet?.userFound && 
+              (
                 <CreateToken user={user} pecuCoins={pecuCoins} />
               )
             }
           />
           <Route path="/" element={<Home />} />
           <Route path="/wallet" element={<Wallet />} />
-          <Route path="/t/:tokenName" element={<TokenPage />} />
+          <Route path="/t/:tokenName" element={<TokenPage user={user} pecuCoins={pecuCoins} />} />
           <Route
             path="/login"
             element={
