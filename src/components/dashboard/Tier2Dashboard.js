@@ -75,12 +75,16 @@ function DashboardContent({ user, pecuCoins }) {
         .get(`https://api.pecunovus.net/hootdex/token/${username}`)
         .then((res) => {
           setTokenCreated(res.data.reverse());
-          setPendingTokens(res.data.filter((e) => e.status === "Pending"));
           
         });
+        console.log(username);
+        axios.get(`https://api.pecunovus.net/hootdex/token-buying-request/${username}`)
+        .then(res => {
+          setPendingTokens(res.data)
+        })
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [username]);
+  }, [username]); 
 
   useEffect(() => {
     
@@ -368,7 +372,7 @@ function DashboardContent({ user, pecuCoins }) {
                   className="rounded center-width tUpper"
                   style={{ backgroundColor: "#01402b" }}
                 >
-                  <h3>Token Pending</h3>
+                  <h3>Token Buying Request</h3>
                 </div>
                 <p className="fontS22">{pendingToken.length}</p>
               </div>

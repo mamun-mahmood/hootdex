@@ -1,4 +1,4 @@
-import { Modal, Paper, StepConnector, Typography } from '@mui/material';
+import { Button, Modal, Paper, StepConnector, Typography } from '@mui/material';
 import { Box } from '@mui/system';
 import React, { useState } from 'react';
 const style = {
@@ -55,6 +55,7 @@ const TokenList = ({open, handleClose, tokens, modal}) => {
               <p>Name</p>
               <p>Amount</p>
               <p>Status</p>
+              <p>Action</p>
             </div>
           </Paper>
           {tokens.length &&
@@ -82,6 +83,7 @@ const TokenList = ({open, handleClose, tokens, modal}) => {
                   </div>
                   <h4>{each?.totalToken}</h4>
                   <p>{each?.status}</p>
+                  <Button variant='outline' >Approve</Button>
                 </div>
               </Paper>
             ))}
