@@ -75,7 +75,7 @@ export default function Chart() {
             getChatData('hourly');
           }}
         >
-          Hourly
+          1D
         </button>
       </div>
 

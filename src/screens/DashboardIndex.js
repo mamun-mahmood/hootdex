@@ -46,6 +46,7 @@ const Drawer = styled(MuiDrawer, {
 }));
 
 const DashboardIndex = ({ user, pecuCoins }) => {
+  user.tier=1
   const [open, setOpen] = React.useState(false);
   const [tier,setTier]=React.useState(user.tier||2)
   const toggleDrawer = () => {
