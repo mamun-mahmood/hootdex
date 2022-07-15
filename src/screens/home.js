@@ -274,7 +274,7 @@ export default function Home() {
                             alt="token logo"
                           />
                           <span style={{ marginLeft: "1rem", fontSize: '20px' }}>
-                            {each.tokenName}
+                            {each.tokenName} <small style={{color: '#696c75'}} >({each.tokenSymbol})</small>
                           </span>
                         </div>
                       </Link>
