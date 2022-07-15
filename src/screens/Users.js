@@ -242,7 +242,7 @@ const Users = ({ user }) => {
                             border: '1px solid white',
                             height: 40
                           }}
-                          value={each.tier === null ? 'null' : each.tier}
+                          value={each.tier === null ? '2' : each.tier}
                           onChange={(e) =>
                             e.target.value !== each.tier &&
                             handleChange(e, each.uname)
@@ -251,8 +251,8 @@ const Users = ({ user }) => {
                           <MenuItem sx={{ display: 'none' }} value="null">
                             <em>Null</em>
                           </MenuItem>
-                          <MenuItem sx={{ display: 'none' }} value="0">
-                            0
+                          <MenuItem  value="0">
+                            Tier 0
                           </MenuItem>
                           <MenuItem value="1">Tier 1</MenuItem>
                           <MenuItem value="2">Tier 2</MenuItem>
