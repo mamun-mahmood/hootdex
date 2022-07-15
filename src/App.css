@@ -293,3 +293,6 @@ html {
 .tlower {
   text-transform: capitalize;
 }
+.wallet:hover {
+  border: 1px solid red !important;
+}
