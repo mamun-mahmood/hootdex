@@ -17,6 +17,7 @@ import MuiDrawer from "@mui/material/Drawer";
 import MyProfile from "../components/dashboard/MyProfile";
 import GroupIcon from "@mui/icons-material/Group";
 import Users from "./Users";
+import { Link } from "react-router-dom";
 const drawerWidth = 240;
 
 const Drawer = styled(MuiDrawer, {
@@ -46,7 +47,6 @@ const Drawer = styled(MuiDrawer, {
 }));
 
 const DashboardIndex = ({ user, pecuCoins }) => {
-  user.tier=1
   const [open, setOpen] = React.useState(false);
   const [tier,setTier]=React.useState(user.tier||2)
   const toggleDrawer = () => {
@@ -71,7 +71,19 @@ const DashboardIndex = ({ user, pecuCoins }) => {
                       color: 'white',
                       textTransform: 'capitalize',
                       m: 1
-        }}>Tier { tier}</Button>} 
+        }}>Tier {tier}</Button>} 
+        {(user.tier==0|| user.tier==1)&&<Link to="/create-token" params={{ user:user}}><Button onClick={()=>{switchTier()}} variant="outlined"
+                    sx={{
+                      color: 'white',
+                      textTransform: 'capitalize',
+                      m: 1
+        }}>Create Wrap Token</Button></Link>} 
+        {(user.tier==0|| user.tier==1)&&<Link to="/create-token"><Button onClick={()=>{switchTier()}} variant="outlined"
+                    sx={{
+                      color: 'white',
+                      textTransform: 'capitalize',
+                      m: 1
+        }}>Create Cash Token</Button></Link>} 
       <div style={{ display: "flex", backgroundColor: "#091e17" }}>
         {/* Sidebar */}
        

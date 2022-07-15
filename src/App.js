@@ -55,11 +55,7 @@ function App() {
           <Route
             path="/create-token"
             element={
-              (user?.tier === 2 || 'null') &&
-              // wallet?.userFound && 
-              (
-                <CreateToken user={user} pecuCoins={pecuCoins} />
-              )
+              <CreateToken />
             }
           />
           <Route path="/" element={<Home />} />
