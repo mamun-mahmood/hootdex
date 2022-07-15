@@ -224,7 +224,7 @@ export default function Home() {
             p: 1,
             backgroundColor: "#1a1b1f",
             mb: 1,
-            borderRadius: "1rem"
+            borderRadius: "1rem",
           }}
           component={Paper}
         >
@@ -261,17 +261,23 @@ export default function Home() {
                       {each.id}
                     </TableCell>
                     <TableCell className="twhite" align="left">
-                      <div style={{
-                        display: "flex",
-                        alignItems: 'center',
-                      }}>
-                      <Avatar
-                        className="rounded"
-                        src={`http://localhost:3001/hootdex/images/${each?.logo_src}`}
-                        alt="token logo"
-                      />
-                      <span style={{marginLeft: "1rem"}} >{each.tokenName}</span>
-                      </div>
+                      <Link to={`/t/${each.tokenName}`}>
+                        <div
+                          style={{
+                            display: "flex",
+                            alignItems: "center",
+                          }}
+                        >
+                          <Avatar
+                            className="rounded"
+                            src={`http://localhost:3001/hootdex/images/${each?.logo_src}`}
+                            alt="token logo"
+                          />
+                          <span style={{ marginLeft: "1rem", fontSize: '20px' }}>
+                            {each.tokenName}
+                          </span>
+                        </div>
+                      </Link>
                     </TableCell>
                     <TableCell className="twhite" align="center">
                       {each.tokenPrice}
