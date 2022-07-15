@@ -9,6 +9,9 @@ import { useEffect, useState } from "react";
 
 function DashboardContent({ user }) {
   const [pendingToken, setPendingToken] = useState([]);
+  const [totalCoins, setTotalCoins] = useState("")
+  const [totalValue, setTotalValue] = useState("")
+  const [totalToken, setTotalToken] = useState([])
   const username = user.username;
   const fetchTokens = () => {
     if (username) {
@@ -19,8 +22,33 @@ function DashboardContent({ user }) {
         });
     }
   }
+  const gettotalTokens = () => {
+    axios
+    .get(`https://api.pecunovus.net/hootdex/all-token-reqs`)
+    .then((res) => {
+      setTotalToken(res.data.reverse());
+      console.log(res.data)
+    });
+    
+  }
+
+  const getMyCoins=(id)=>{
+    if (id) {
+      axios.post(`${"https://api.pecunovus.net"}/wallet/getMycoins`,{
+      user_id:id
+    }).then((res)=>{
+     const {total_coins,value}=res.data
+      setTotalCoins(total_coins)
+      setTotalValue(value)
+    })
+   }
+   
+  }
   useEffect(() => {
+    let user_id=user.user_id
     fetchTokens()
+    getMyCoins(user_id)
+    gettotalTokens()
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [username]);
   return (
@@ -56,9 +84,9 @@ function DashboardContent({ user }) {
                     className="rounded center-width tUpper"
                     style={{ backgroundColor: "#002945" }}
                   >
-                    <h3>Total Tokens</h3>
+                    <h3>Issued Tokens</h3>
                   </div>
-                  <p className="fontS22">54546</p>
+                  <p className="fontS22">{ totalToken.length}</p>
                 </div>
               </Paper>
             </Grid>
@@ -82,7 +110,7 @@ function DashboardContent({ user }) {
                   >
                     <h3>Total Value</h3>
                   </div>
-                  <p className="fontS22">54546</p>
+                  <p className="fontS22">${totalToken.reduce((a,b)=>a+b.investementAmount,0) }</p>
                 </div>
               </Paper>
             </Grid>
@@ -104,9 +132,9 @@ function DashboardContent({ user }) {
                     className="rounded center-width tUpper"
                     style={{ backgroundColor: "#002945" }}
                   >
-                    <h3>Total Coin</h3>
+                    <h3>Total Tokens</h3>
                   </div>
-                  <p className="fontS22">54546</p>
+                  <p className="fontS22">{ totalToken.reduce((a,b)=>a+b.totalToken,0)}</p>
                 </div>
               </Paper>
             </Grid>
@@ -215,7 +243,7 @@ function DashboardContent({ user }) {
                 >
                   <h3>Total XMG</h3>
                 </div>
-                <p className="fontS22">54546</p>
+                <p className="fontS22">$ 3,000,000,000</p>
               </div>
             </Paper>
           </Grid>
@@ -239,7 +267,31 @@ function DashboardContent({ user }) {
                 >
                   <h3>Total Pecu Coin</h3>
                 </div>
-                <p className="fontS22">65746554546</p>
+                <p className="fontS22">{ totalCoins}</p>
+              </div>
+            </Paper>
+          </Grid>
+          <Grid item xs={12} md={6} lg={4} xl={3}>
+            <Paper
+              style={{
+                textAlign: "center",
+                backgroundColor: "#00071a",
+              }}
+              className="border"
+            >
+              <div
+                style={{
+                  color: "white",
+                  wordWrap: "break-word",
+                }}
+              >
+                <div
+                  className="rounded center-width tUpper"
+                  style={{ backgroundColor: "#002945" }}
+                >
+                  <h3>Total PECU Value</h3>
+                </div>
+                <p className="fontS22">$ { totalValue}</p>
               </div>
             </Paper>
           </Grid>
@@ -263,31 +315,7 @@ function DashboardContent({ user }) {
                 >
                   <h3>Current Balance</h3>
                 </div>
-                <p className="fontS22">$ 4546</p>
-              </div>
-            </Paper>
-          </Grid>
-          <Grid item xs={12} md={6} lg={4} xl={3}>
-            <Paper
-              style={{
-                textAlign: "center",
-                backgroundColor: "#00071a",
-              }}
-              className="border"
-            >
-              <div
-                style={{
-                  color: "white",
-                  wordWrap: "break-word",
-                }}
-              >
-                <div
-                  className="rounded center-width tUpper"
-                  style={{ backgroundColor: "#002945" }}
-                >
-                  <h3>Current Balance</h3>
-                </div>
-                <p className="fontS22">$ 4546</p>
+                <p className="fontS22">$ {parseInt(totalToken.reduce((a,b)=>a+b.investementAmount,0))+parseInt(totalValue)+3000000000}</p>
               </div>
             </Paper>
           </Grid>

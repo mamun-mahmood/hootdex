@@ -1,4 +1,4 @@
-import { Box, ClickAwayListener, ListItemIcon } from "@mui/material";
+import { Box, Button, ClickAwayListener, ListItemIcon } from "@mui/material";
 import Tier0Dashboard from "../components/dashboard/Tier0Dashboard";
 import Tier1Dashboard from "../components/dashboard/Tier1Dashboard";
 import Tier2Dashboard from "../components/dashboard/Tier2Dashboard";
@@ -47,19 +47,35 @@ const Drawer = styled(MuiDrawer, {
 
 const DashboardIndex = ({ user, pecuCoins }) => {
   const [open, setOpen] = React.useState(false);
+  const [tier,setTier]=React.useState(user.tier||2)
   const toggleDrawer = () => {
     setOpen(!open);
   };
   const [tab, setTab] = React.useState(0);
-
-  // let tier = user.tier || 2;
-  const tier = 2 || user.tier;
+  const switchTier = () => {
+    if (tier <2) {
+      setTier(tier+1)
+    }
+    if (tier === 2) {
+      setTier(0)
+    }
+    
+}
+  
   return (
     <>
       <Divider color="black" />
+     {(user.tier==0|| user.tier==1)&&<Button onClick={()=>{switchTier()}} variant="outlined"
+                    sx={{
+                      color: 'white',
+                      textTransform: 'capitalize',
+                      m: 1
+        }}>Tier { tier}</Button>} 
       <div style={{ display: "flex", backgroundColor: "#091e17" }}>
         {/* Sidebar */}
+       
         <Box sx={{ height: "100vh", backgroundColor: "#002945" }}>
+     
           <ClickAwayListener onClickAway={() => setOpen(false)}>
             <Drawer
               variant="permanent"
@@ -67,6 +83,7 @@ const DashboardIndex = ({ user, pecuCoins }) => {
               sx={{ minHeight: "100%", backgroundColor: "#002945" }}
               onClose={() => setOpen(!open)}
             >
+
               <Toolbar
                 sx={{
                   display: "flex",
@@ -76,6 +93,7 @@ const DashboardIndex = ({ user, pecuCoins }) => {
                   textAlign: "center",
                 }}
               >
+                
                 <div onClick={toggleDrawer} style={{ cursor: "pointer" }}>
                   {open === false && (
                     <MenuIcon sx={{ width: 40, height: 40 }} />
@@ -148,6 +166,7 @@ const DashboardIndex = ({ user, pecuCoins }) => {
             </Drawer>
           </ClickAwayListener>
         </Box>
+     
         {/* showing dashboard based on user tier level */}
         <Box sx={{ flex: 1, mt: 1 }}>
           {tier === 0 && tab === 0 && (

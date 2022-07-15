@@ -19,9 +19,9 @@ function DashboardContent({ user }) {
       });
   };
 
-  // React.useEffect(() => {
-  //   get_current_index_coin();
-  // }, [user]);
+  React.useEffect(() => {
+    get_current_index_coin();
+  }, [user]);
   return (
     <>
       <Box
