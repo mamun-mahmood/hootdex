@@ -103,9 +103,10 @@ const ConnectWallet = ({ fetchWallet, wallet, setOpen, open }) => {
         onClose={handleClose}
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
+        sx={{borderRadius: '1rem'}}
       >
         {" "}
-        <div style={{ backgroundColor: "black" }} className="border">
+        <div style={{ backgroundColor: "black", borderRadius: '1rem'}} className="border">
           <DialogTitle
             className="twhite tcenter fontS22"
             id="alert-dialog-title"
