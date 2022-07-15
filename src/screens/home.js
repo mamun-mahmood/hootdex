@@ -1,17 +1,28 @@
-import { Button, LinearProgress } from "@mui/material";
+import {
+  Avatar,
+  Button,
+  FormControl,
+  LinearProgress,
+  Paper,
+  Table,
+  TableBody,
+  TableCell,
+  tableCellClasses,
+  TableContainer,
+  TableHead,
+  TableRow,
+} from "@mui/material";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Chart from "./chart";
 export default function Home() {
-
   const poolTableAttributes = [
-    "Id",
+    "#",
     "Name",
-    "Token",
+    "Price",
     "Available Coins",
-    "Rate Pecu/Token",
-    "Info",
+    "Volume",
   ];
   const [loading, setLoading] = useState(false);
   // const poolData = [
@@ -166,15 +177,23 @@ export default function Home() {
   };
   return (
     <>
-      <div style={{ position: 'absolute', zIndex: "-1", width: '100%', height: "100%" }}>
-      
-      </div>
-      <div className="screen" style={{zIndex: "100", position: 'sticky', width: '100%', }}>
+      <div
+        style={{
+          position: "absolute",
+          zIndex: "-1",
+          width: "100%",
+          height: "100%",
+        }}
+      ></div>
+      <div
+        className="screen"
+        style={{ zIndex: "100", position: "sticky", width: "100%" }}
+      >
         {/* <div className="banner-hero" >   <h1 className="primary__title">Available Pools</h1>
     <p style={{color:'orange'}}>Swap, earn, and build on the leading decentralized crypto trading protocol.</p>
     </div> */}
-          <Chart style={{backgroundColor: "green" }} />
-          {/* <h1 className="primary__title">Listed Tokens</h1> */}
+        <Chart style={{ backgroundColor: "green" }} />
+        {/* <h1 className="primary__title">Listed Tokens</h1> */}
         <div
           style={{
             textAlign: "center",
@@ -198,39 +217,81 @@ export default function Home() {
           </form>
           <div className="center-width">{loading && <LinearProgress />}</div>
         </div>
-        <div className="table__container">
-          <table className="table">
-            <tr className="tr">
-              {poolTableAttributes.map((e, index) => (
-                <th className="th" key={index}>
-                  {e}
-                </th>
-              ))}
-            </tr>
-            {tokens.map((e, index) => (
-              <tr className="tr" key={index}>
-                <td className="td">{e.id}</td>
-                <td className="td">{e.tokenName}</td>
-                <td className="td">{e.totalToken}</td>
-                <td className="td">{e.pecuCoin}</td>
-                <td className="td">{e.rate}</td>
-                <Link to={`/t/${e.tokenName}`}>
-                  <Button
-                    variant="outlined"
-                    sx={{
-                        color: 'white',
-                        textTransform: 'capitalize',
-                      m: 1,
-                        width:'80%'
-                    }}
-                  >
-                    Visit
-                  </Button>
-                </Link>
-              </tr>
-            ))}
-          </table>
-        </div>
+        <TableContainer
+          sx={{
+            width: "80%",
+            // ml: '10%',
+            p: 1,
+            backgroundColor: "#1a1b1f",
+            mb: 1,
+            borderRadius: "1rem"
+          }}
+          component={Paper}
+        >
+          <Table
+            sx={{
+              [`& .${tableCellClasses.root}`]: {
+                borderBottom: " 1px solid #1e2128",
+              },
+            }}
+          >
+            <TableHead className="">
+              <TableRow className="">
+                {/* {poolTableAttributes.map((e, index) => ( */}
+                <TableCell className="twhite" component="th" scope="row">
+                  #
+                </TableCell>
+                <TableCell className="twhite">Name</TableCell>
+                <TableCell className="twhite" align="center">
+                  Price
+                </TableCell>
+                <TableCell className="twhite" align="center">
+                  Available Tokens
+                </TableCell>
+                <TableCell className="twhite" align="center">
+                  Volume
+                </TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {tokens.length &&
+                tokens.map((each, index) => (
+                  <TableRow key={each.id}>
+                    <TableCell className="twhite" component="th" scope="row">
+                      {each.id}
+                    </TableCell>
+                    <TableCell className="twhite" align="left">
+                      <div style={{
+                        display: "flex",
+                        alignItems: 'center',
+                      }}>
+                      <Avatar
+                        className="rounded"
+                        src={`http://localhost:3001/hootdex/images/${each?.logo_src}`}
+                        alt="token logo"
+                      />
+                      <span style={{marginLeft: "1rem"}} >{each.tokenName}</span>
+                      </div>
+                    </TableCell>
+                    <TableCell className="twhite" align="center">
+                      {each.tokenPrice}
+                    </TableCell>
+                    <TableCell className="twhite" align="center">
+                      {each.totalToken}
+                    </TableCell>
+                    <TableCell className="twhite" align="center">
+                      {each.investementAmount}
+                    </TableCell>
+                  </TableRow>
+                ))}
+              {/* <TablePagination
+                sx={{ color: "white" }}
+                rowsPerPageOptions={[10, 50]}
+                onChange={(e) => setRows(e)}
+              /> */}
+            </TableBody>
+          </Table>
+        </TableContainer>
       </div>
     </>
   );
