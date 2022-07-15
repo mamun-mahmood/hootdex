@@ -72,18 +72,7 @@ const DashboardIndex = ({ user, pecuCoins }) => {
                       textTransform: 'capitalize',
                       m: 1
         }}>Tier {tier}</Button>} 
-        {(user.tier==0|| user.tier==1)&&<Link to="/create-token" params={{ user:user}}><Button onClick={()=>{switchTier()}} variant="outlined"
-                    sx={{
-                      color: 'white',
-                      textTransform: 'capitalize',
-                      m: 1
-        }}>Create Wrap Token</Button></Link>} 
-        {(user.tier==0|| user.tier==1)&&<Link to="/create-token"><Button onClick={()=>{switchTier()}} variant="outlined"
-                    sx={{
-                      color: 'white',
-                      textTransform: 'capitalize',
-                      m: 1
-        }}>Create Cash Token</Button></Link>} 
+        
       <div style={{ display: "flex", backgroundColor: "#091e17" }}>
         {/* Sidebar */}
        
