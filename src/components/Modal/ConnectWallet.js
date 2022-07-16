@@ -17,7 +17,7 @@ import axios from "axios";
 import CloseIcon from "@mui/icons-material/Close";
 const ConnectWallet = ({ fetchWallet, wallet, setOpen, open }) => {
   const [loading, setLoading] = useState(false);
-  const [showForm,setShowForm]=useState(false)
+  const [showForm, setShowForm] = useState(false);
   const [alert, setAlert] = useState({
     msg: "",
     type: "",
@@ -26,13 +26,12 @@ const ConnectWallet = ({ fetchWallet, wallet, setOpen, open }) => {
   const [email, setEmail] = useState("");
   const handleClose = () => {
     setOpen(false);
-    setShowForm(false)
+    setShowForm(false);
   };
   const availableWallet = [
     {
       name: "PecuNovus",
-      icon:
-        "https://pecunovus.net/static/media/icon.25c8ec299d961b9dd524.ico",
+      icon: "https://pecunovus.net/static/media/icon.25c8ec299d961b9dd524.ico",
     },
     {
       name: "MetaMask",
@@ -142,10 +141,7 @@ const ConnectWallet = ({ fetchWallet, wallet, setOpen, open }) => {
           },
         }}
       >
-        
-   
-           
-          <Box
+        <Box
           sx={{
             width: 400,
             p: 2,
@@ -170,57 +166,91 @@ const ConnectWallet = ({ fetchWallet, wallet, setOpen, open }) => {
             </p>
           </div>
           <div>
-            {showForm?<div style={{ backgroundColor: "black", borderRadius: '1rem' }} className="border">
-          <DialogTitle
-            className="twhite tcenter fontS22"
-            id="alert-dialog-title"
-          >
-            Connect your wallet
-          </DialogTitle>
-          <Divider sx={{ backgroundColor: "#091e17", height: "2px" }} />
-          {loading && <LinearProgress />}
-          <div style={{ display: "flex", justifyContent: "center" }}>
-            <Collapse in={alert.show} sx={{ maxWidth: 400, position: "fixed" }}>
-              <Alert
-                variant="outlined"
-                severity={alert.type}
-                sx={{ mb: 2, backgroundColor: "white", fontSize: "18px" }}
-              >
-                {alert.msg}
-              </Alert>
-            </Collapse>
-          </div>
-          <DialogContent>
-            <DialogContentText id="alert-dialog-description">
-              <p style={{ color: "white", marginLeft: "15px" }}>Wallet Name</p>
-              <input
-                className="border inputfWW"
-                type="text"
-                name="walletName"
-              />
-            </DialogContentText>
-            <DialogContentText id="alert-dialog-description" sx={{ mt: 1 }}>
-              <p style={{ color: "white", marginLeft: "15px" }}>Private Key</p>
-              <input
-                onChange={(e) => setEmail(e.target.value)}
-                className="border inputfWW"
-                type="text"
-                name="email"
-                required
-              />
-            </DialogContentText>
-          </DialogContent>
-          <DialogActions>
-            <Button
+            <Dialog
+              open={showForm}
+              PaperProps={{
+                style: {
+                  backgroundColor: "transparent",
+                  boxShadow: "none",
+                },
+              }}
               className="border"
-              sx={{ color: "white" }}
-              onClick={handleSubmit}
-              autoFocus
+              onClose={() => setShowForm(false)}
             >
-              Connect
-            </Button>
-          </DialogActions>
-        </div>:availableWallet.map((e) => (
+              <Box
+                sx={{
+                  width: 400,
+                  p: 2,
+                  borderRadius: "1rem",
+                  backgroundColor: "#002945",
+                }}
+              >
+                <DialogTitle
+                  className="twhite tcenter fontS22"
+                  id="alert-dialog-title"
+                >
+                  Connect PecuNovus
+                </DialogTitle>
+                <Divider sx={{ backgroundColor: "#091e17", height: "2px" }} />
+                {loading && <LinearProgress />}
+                <div style={{ display: "flex", justifyContent: "center" }}>
+                  <Collapse
+                    in={alert.show}
+                    sx={{ maxWidth: 400, position: "fixed" }}
+                  >
+                    <Alert
+                      variant="outlined"
+                      severity={alert.type}
+                      sx={{
+                        mb: 2,
+                        backgroundColor: "white",
+                        fontSize: "18px",
+                      }}
+                    >
+                      {alert.msg}
+                    </Alert>
+                  </Collapse>
+                </div>
+                <DialogContent>
+                  <DialogContentText id="alert-dialog-description">
+                    <p style={{ color: "white", marginLeft: "15px" }}>
+                      Wallet Name
+                    </p>
+                    <input
+                      className="border inputfWW"
+                      type="text"
+                      name="walletName"
+                    />
+                  </DialogContentText>
+                  <DialogContentText
+                    id="alert-dialog-description"
+                    sx={{ mt: 1 }}
+                  >
+                    <p style={{ color: "white", marginLeft: "15px" }}>
+                      Private Key
+                    </p>
+                    <input
+                      onChange={(e) => setEmail(e.target.value)}
+                      className="border inputfWW"
+                      type="text"
+                      name="email"
+                      required
+                    />
+                  </DialogContentText>
+                </DialogContent>
+                <DialogActions>
+                  <Button
+                    className="border"
+                    sx={{ color: "white" }}
+                    onClick={handleSubmit}
+                    autoFocus
+                  >
+                    Connect
+                  </Button>
+                </DialogActions>
+              </Box>
+            </Dialog>
+            {availableWallet.map((e) => (
               <div
                 className="wallet"
                 style={{
@@ -234,7 +264,11 @@ const ConnectWallet = ({ fetchWallet, wallet, setOpen, open }) => {
                   border: "1px solid grey",
                   cursor: "pointer",
                 }}
-                onClick={()=>{if(e.name=="PecuNovus"){setShowForm(true)}}}
+                onClick={() => {
+                  if (e.name === "PecuNovus") {
+                    setShowForm(true);
+                  }
+                }}
               >
                 <p style={{ fontWeight: "600" }}>{e.name}</p>
                 <img
@@ -244,7 +278,7 @@ const ConnectWallet = ({ fetchWallet, wallet, setOpen, open }) => {
                 />
               </div>
             ))}
-            
+
             <div
               style={{
                 display: "flex",
@@ -283,7 +317,6 @@ const ConnectWallet = ({ fetchWallet, wallet, setOpen, open }) => {
             </div>
           </div>
         </Box>
-       
       </Dialog>
     </>
   );
