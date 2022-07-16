@@ -258,7 +258,7 @@ const ConnectWallet = ({ fetchWallet, wallet, setOpen, open }) => {
               }}
             >
               <p style={{ fontSize: "10px", fontWeight: "600" }}>
-                By connecting a wallet, you agree to Hootdex Labs’{" "}
+                By connecting a wallet, you agree to MegaHoot’{" "}
                 <span
                   style={{
                     textDecoration: "underline",
@@ -276,7 +276,7 @@ const ConnectWallet = ({ fetchWallet, wallet, setOpen, open }) => {
                     fontWeight: "700",
                   }}
                 >
-                  Protocol Disclaimer
+                  Legal Disclaimer
                 </span>
                 .
               </p>

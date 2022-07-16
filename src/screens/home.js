@@ -64,7 +64,7 @@ export default function Home() {
     </div> */}
         <Chart style={{ backgroundColor: "green" }} />
         {/* <h1 className="primary__title">Listed Tokens</h1> */}
-        <div
+        {/* <div
           style={{
             textAlign: "center",
             marginBottom: "1rem",
@@ -85,7 +85,7 @@ export default function Home() {
               onChange={(e) => setSearchKey(e.target.value)}
             />
           </form>
-        </div>
+        </div> */}
         <TableContainer
           sx={{
             width: "80%",
@@ -96,7 +96,9 @@ export default function Home() {
             borderRadius: "1rem",
           }}
           component={Paper}
-        ><div className="">{loading && <LinearProgress />}</div>
+        ><div className="">{loading && <LinearProgress />}
+           <h1 style={{color:'#fff',fontSize:'1.5rem',textAlign:'center',backgroundColor:'green'}}>Wrap Tokens</h1>
+          </div>
           <Table
             sx={{
               [`& .${tableCellClasses.root}`]: {
@@ -104,6 +106,7 @@ export default function Home() {
               },
             }}
           >
+           
             <TableHead className="">
               <TableRow className="">
                 {/* {poolTableAttributes.map((e, index) => ( */}
@@ -123,7 +126,7 @@ export default function Home() {
               </TableRow>
             </TableHead>
             <TableBody>
-              {tokens.length &&
+            {tokens.length &&
                 tokens.map((each, index) => (
                   <TableRow key={each.id}>
                     <TableCell className="twhite" component="th" scope="row">
@@ -148,17 +151,107 @@ export default function Home() {
                         </div>
                       </Link>
                     </TableCell>
-                    <TableCell className="twhite" align="center">
+                    <TableCell className="twhite green" align="center">
                       {each.tokenPrice}
                     </TableCell>
-                    <TableCell className="twhite" align="center">
+                    <TableCell className="twhite yellow" align="center">
                       {each.totalToken}
                     </TableCell>
-                    <TableCell className="twhite" align="center">
+                    <TableCell className="twhite pink" align="center">
                       {each.investementAmount}
                     </TableCell>
                   </TableRow>
                 ))}
+            
+           
+              
+              {/* <TablePagination
+                sx={{ color: "white" }}
+                rowsPerPageOptions={[10, 50]}
+                onChange={(e) => setRows(e)}
+              /> */}
+            </TableBody>
+          </Table>
+        </TableContainer>
+      
+        <TableContainer
+          sx={{
+            width: "80%",
+            // ml: '10%',
+            p: 1,
+            backgroundColor: "#1a1b1f",
+            mb: 1,
+            borderRadius: "1rem",
+          }}
+          component={Paper}
+        ><div className="">{loading && <LinearProgress />}
+            <h1 style={{color:'#fff',fontSize:'1.5rem',textAlign:'center',backgroundColor:'green'}}>Pool Tokens</h1>
+          </div>
+          <Table
+            sx={{
+              [`& .${tableCellClasses.root}`]: {
+                borderBottom: " 1px solid #1e2128",
+              },
+            }}
+          >
+            <TableHead className="">
+              <TableRow className="">
+                {/* {poolTableAttributes.map((e, index) => ( */}
+                <TableCell className="twhite" component="th" scope="row">
+                  #
+                </TableCell>
+                <TableCell className="twhite">Name</TableCell>
+                <TableCell className="twhite" align="center">
+                  Price
+                </TableCell>
+                <TableCell className="twhite" align="center" >
+                  Available Tokens
+                </TableCell>
+                <TableCell className="twhite" align="center">
+                  Volume
+                </TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+            {tokens.length &&
+                tokens.map((each, index) => (
+                  <TableRow key={each.id}>
+                    <TableCell className="twhite" component="th" scope="row">
+                      {each.id}
+                    </TableCell>
+                    <TableCell className="twhite" align="left">
+                      <Link to={`/t/${each.tokenName}`}>
+                        <div
+                          style={{
+                            display: "flex",
+                            alignItems: "center",
+                          }}
+                        >
+                          <Avatar
+                            className="rounded"
+                            src={`http://localhost:3001/hootdex/images/${each?.logo_src}`}
+                            alt="token logo"
+                          />
+                          <span style={{ marginLeft: "1rem", fontSize: '20px' }}>
+                            {each.tokenName} <small style={{color: '#696c75'}} >({each.tokenSymbol})</small>
+                          </span>
+                        </div>
+                      </Link>
+                    </TableCell>
+                    <TableCell className="twhite green" align="center">
+                      {each.tokenPrice}
+                    </TableCell>
+                    <TableCell className="twhite yellow" align="center">
+                      {each.totalToken}
+                    </TableCell>
+                    <TableCell className="twhite pink" align="center">
+                      {each.investementAmount}
+                    </TableCell>
+                  </TableRow>
+                ))}
+            
+           
+              
               {/* <TablePagination
                 sx={{ color: "white" }}
                 rowsPerPageOptions={[10, 50]}
