@@ -1,10 +1,11 @@
-import React, {  useState } from "react";
+import React, { useState } from "react";
 
 import {
+  Box,
+  Dialog,
   Alert,
   Button,
   Collapse,
-  Dialog,
   DialogActions,
   DialogContent,
   DialogContentText,
@@ -13,8 +14,10 @@ import {
   LinearProgress,
 } from "@mui/material";
 import axios from "axios";
+import CloseIcon from "@mui/icons-material/Close";
 const ConnectWallet = ({ fetchWallet, wallet, setOpen, open }) => {
   const [loading, setLoading] = useState(false);
+  const [showForm,setShowForm]=useState(false)
   const [alert, setAlert] = useState({
     msg: "",
     type: "",
@@ -23,13 +26,42 @@ const ConnectWallet = ({ fetchWallet, wallet, setOpen, open }) => {
   const [email, setEmail] = useState("");
   const handleClose = () => {
     setOpen(false);
+    setShowForm(false)
   };
+  const availableWallet = [
+    {
+      name: "PecuNovus",
+      icon:
+        "https://pecunovus.net/static/media/icon.25c8ec299d961b9dd524.ico",
+    },
+    {
+      name: "MetaMask",
+      icon:
+        "https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/MetaMask_Fox.svg/1200px-MetaMask_Fox.svg.png",
+    },
+    {
+      name: "Coinbase Wallet",
+      icon:
+        "https://www.yadawallets.com/wp-content/uploads/2020/11/Coinbase-dapp-wallet-logo.png",
+    },
+    {
+      name: "WalletConnect",
+      icon:
+        "https://seeklogo.com/images/W/walletconnect-logo-EE83B50C97-seeklogo.com.png",
+    },
+    {
+      name: "Fortmatic",
+      icon:
+        "https://media.glassdoor.com/sqll/3204214/fortmatic-squarelogo-1582267622143.png",
+    },
+  ];
   const handleSubmit = () => {
-    
     if (email) {
       setLoading(true);
       axios
-        .post(`https://api.pecunovus.net/hootdex/connect-wallet`,{private_key:email})
+        .post(`https://api.pecunovus.net/hootdex/connect-wallet`, {
+          private_key: email,
+        })
         .then((res) => {
           setLoading(false);
           if (res.data) {
@@ -103,10 +135,42 @@ const ConnectWallet = ({ fetchWallet, wallet, setOpen, open }) => {
         onClose={handleClose}
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
-        sx={{borderRadius: '1rem'}}
+        PaperProps={{
+          style: {
+            backgroundColor: "transparent",
+            boxShadow: "none",
+          },
+        }}
       >
-        {" "}
-        <div style={{ backgroundColor: "black", borderRadius: '1rem'}} className="border">
+        
+   
+           
+          <Box
+          sx={{
+            width: 400,
+            p: 2,
+            borderRadius: "1rem",
+            backgroundColor: "#002945",
+          }}
+        >
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "space-between",
+            }}
+          >
+            <p style={{ fontWeight: "600", color: "white", fontSize: "18px" }}>
+              Connect a wallet
+            </p>
+            <p>
+              <CloseIcon
+                sx={{ color: "white", cursor: "pointer" }}
+                onClick={handleClose}
+              />
+            </p>
+          </div>
+          <div>
+            {showForm?<div style={{ backgroundColor: "black", borderRadius: '1rem' }} className="border">
           <DialogTitle
             className="twhite tcenter fontS22"
             id="alert-dialog-title"
@@ -156,7 +220,70 @@ const ConnectWallet = ({ fetchWallet, wallet, setOpen, open }) => {
               Connect
             </Button>
           </DialogActions>
-        </div>
+        </div>:availableWallet.map((e) => (
+              <div
+                className="wallet"
+                style={{
+                  display: "flex",
+                  justifyContent: "space-between",
+                  alignItems: "center",
+                  backgroundColor: "#edeef2",
+                  padding: "1rem",
+                  margin: "0.7rem",
+                  borderRadius: "1rem",
+                  border: "1px solid grey",
+                  cursor: "pointer",
+                }}
+                onClick={()=>{if(e.name=="PecuNovus"){setShowForm(true)}}}
+              >
+                <p style={{ fontWeight: "600" }}>{e.name}</p>
+                <img
+                  style={{ width: "30px" }}
+                  src={`${e.icon}`}
+                  alt="wallet icon"
+                />
+              </div>
+            ))}
+            
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "center",
+                backgroundColor: "#edeef2",
+                padding: "1rem",
+                margin: "0.7rem",
+                borderRadius: "1rem",
+                cursor: "pointer",
+              }}
+            >
+              <p style={{ fontSize: "10px", fontWeight: "600" }}>
+                By connecting a wallet, you agree to Hootdex Labs’{" "}
+                <span
+                  style={{
+                    textDecoration: "underline",
+                    color: "#002945",
+                    fontWeight: "700",
+                  }}
+                >
+                  Terms of Service
+                </span>{" "}
+                and acknowledge that you have read and understand the Hootdex{" "}
+                <span
+                  style={{
+                    textDecoration: "underline",
+                    color: "#002945",
+                    fontWeight: "700",
+                  }}
+                >
+                  Protocol Disclaimer
+                </span>
+                .
+              </p>
+            </div>
+          </div>
+        </Box>
+       
       </Dialog>
     </>
   );
