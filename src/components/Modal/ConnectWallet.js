@@ -3,11 +3,21 @@ import React, { useState } from "react";
 import {
   Box,
   Dialog,
+  Alert,
+  Button,
+  Collapse,
+  DialogActions,
+  DialogContent,
+  DialogContentText,
+  DialogTitle,
+  Divider,
+  LinearProgress,
 } from "@mui/material";
 import axios from "axios";
 import CloseIcon from "@mui/icons-material/Close";
 const ConnectWallet = ({ fetchWallet, wallet, setOpen, open }) => {
   const [loading, setLoading] = useState(false);
+  const [showForm,setShowForm]=useState(false)
   const [alert, setAlert] = useState({
     msg: "",
     type: "",
@@ -16,8 +26,14 @@ const ConnectWallet = ({ fetchWallet, wallet, setOpen, open }) => {
   const [email, setEmail] = useState("");
   const handleClose = () => {
     setOpen(false);
+    setShowForm(false)
   };
   const availableWallet = [
+    {
+      name: "PecuNovus",
+      icon:
+        "https://pecunovus.net/static/media/icon.25c8ec299d961b9dd524.ico",
+    },
     {
       name: "MetaMask",
       icon:
@@ -126,7 +142,10 @@ const ConnectWallet = ({ fetchWallet, wallet, setOpen, open }) => {
           },
         }}
       >
-        <Box
+        
+   
+           
+          <Box
           sx={{
             width: 400,
             p: 2,
@@ -151,68 +170,7 @@ const ConnectWallet = ({ fetchWallet, wallet, setOpen, open }) => {
             </p>
           </div>
           <div>
-            {availableWallet.map((e) => (
-              <div
-                className="wallet"
-                style={{
-                  display: "flex",
-                  justifyContent: "space-between",
-                  alignItems: "center",
-                  backgroundColor: "#edeef2",
-                  padding: "1rem",
-                  margin: "0.7rem",
-                  borderRadius: "1rem",
-                  border: "1px solid grey",
-                  cursor: "pointer",
-                }}
-              >
-                <p style={{ fontWeight: "600" }}>{e.name}</p>
-                <img
-                  style={{ width: "30px" }}
-                  src={`${e.icon}`}
-                  alt="wallet icon"
-                />
-              </div>
-            ))}
-            <div
-              style={{
-                display: "flex",
-                justifyContent: "space-between",
-                alignItems: "center",
-                backgroundColor: "#edeef2",
-                padding: "1rem",
-                margin: "0.7rem",
-                borderRadius: "1rem",
-                cursor: "pointer",
-              }}
-            >
-              <p style={{ fontSize: "10px", fontWeight: "600" }}>
-                By connecting a wallet, you agree to Hootdex Labs’{" "}
-                <span
-                  style={{
-                    textDecoration: "underline",
-                    color: "#002945",
-                    fontWeight: "700",
-                  }}
-                >
-                  Terms of Service
-                </span>{" "}
-                and acknowledge that you have read and understand the Hootdex{" "}
-                <span
-                  style={{
-                    textDecoration: "underline",
-                    color: "#002945",
-                    fontWeight: "700",
-                  }}
-                >
-                  Protocol Disclaimer
-                </span>
-                .
-              </p>
-            </div>
-          </div>
-        </Box>{" "}
-        {/* <div style={{ backgroundColor: "black", borderRadius: '1rem'}} className="border">
+            {showForm?<div style={{ backgroundColor: "black", borderRadius: '1rem' }} className="border">
           <DialogTitle
             className="twhite tcenter fontS22"
             id="alert-dialog-title"
@@ -262,7 +220,70 @@ const ConnectWallet = ({ fetchWallet, wallet, setOpen, open }) => {
               Connect
             </Button>
           </DialogActions>
-        </div> */}
+        </div>:availableWallet.map((e) => (
+              <div
+                className="wallet"
+                style={{
+                  display: "flex",
+                  justifyContent: "space-between",
+                  alignItems: "center",
+                  backgroundColor: "#edeef2",
+                  padding: "1rem",
+                  margin: "0.7rem",
+                  borderRadius: "1rem",
+                  border: "1px solid grey",
+                  cursor: "pointer",
+                }}
+                onClick={()=>{if(e.name=="PecuNovus"){setShowForm(true)}}}
+              >
+                <p style={{ fontWeight: "600" }}>{e.name}</p>
+                <img
+                  style={{ width: "30px" }}
+                  src={`${e.icon}`}
+                  alt="wallet icon"
+                />
+              </div>
+            ))}
+            
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "center",
+                backgroundColor: "#edeef2",
+                padding: "1rem",
+                margin: "0.7rem",
+                borderRadius: "1rem",
+                cursor: "pointer",
+              }}
+            >
+              <p style={{ fontSize: "10px", fontWeight: "600" }}>
+                By connecting a wallet, you agree to Hootdex Labs’{" "}
+                <span
+                  style={{
+                    textDecoration: "underline",
+                    color: "#002945",
+                    fontWeight: "700",
+                  }}
+                >
+                  Terms of Service
+                </span>{" "}
+                and acknowledge that you have read and understand the Hootdex{" "}
+                <span
+                  style={{
+                    textDecoration: "underline",
+                    color: "#002945",
+                    fontWeight: "700",
+                  }}
+                >
+                  Protocol Disclaimer
+                </span>
+                .
+              </p>
+            </div>
+          </div>
+        </Box>
+       
       </Dialog>
     </>
   );

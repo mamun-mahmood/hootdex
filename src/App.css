@@ -284,11 +284,12 @@ html {
   padding: 15px;
 }
 .inputfWW {
-  background-color: black;
-  border-radius: 20px;
-  color: white;
+  background-color: rgb(246, 242, 242);
+  border-radius: 10px;
+  color: rgb(22, 22, 22);
   font-size: 24px;
-  padding: 15px;
+  padding: 6px;
+  width: 90%;
 }
 .tlower {
   text-transform: capitalize;
