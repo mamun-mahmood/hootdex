@@ -17,6 +17,7 @@ import MuiDrawer from "@mui/material/Drawer";
 import MyProfile from "../components/dashboard/MyProfile";
 import GroupIcon from "@mui/icons-material/Group";
 import Users from "./Users";
+import { Link } from "react-router-dom";
 const drawerWidth = 240;
 
 const Drawer = styled(MuiDrawer, {
@@ -70,7 +71,8 @@ const DashboardIndex = ({ user, pecuCoins }) => {
                       color: 'white',
                       textTransform: 'capitalize',
                       m: 1
-        }}>Tier { tier}</Button>} 
+        }}>Tier {tier}</Button>} 
+        
       <div style={{ display: "flex", backgroundColor: "#091e17" }}>
         {/* Sidebar */}
        

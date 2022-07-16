@@ -242,7 +242,7 @@ const Users = ({ user }) => {
                             border: '1px solid white',
                             height: 40
                           }}
-                          value={each.tier === null ? '2' : each.tier}
+                          value={each.tier === null ? 'null' : each.tier}
                           onChange={(e) =>
                             e.target.value !== each.tier &&
                             handleChange(e, each.uname)

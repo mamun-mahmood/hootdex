@@ -3,7 +3,9 @@ import axios from "axios";
 
 import React, { useEffect, useState } from "react";
 
-export default function CreateToken({ user, pecuCoins }) {
+export default function CreateToken() {
+
+const [user,setUser]=useState("")
   const [alert, setAlert] = useState({
     msg: "",
     type: "",
@@ -23,6 +25,18 @@ export default function CreateToken({ user, pecuCoins }) {
     approvedBy: "",
     cTime: new Date(),
   });
+  const [currentValue, setCurrentValue] = useState(0);
+  const get_current_index_coin = () => {
+    axios
+      .get(`https://api.pecunovus.net/wallet/get_current_index_coin`)
+      .then((res) => {
+        setCurrentValue(res.data[0].value);
+      
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
   const saveFile = (e) => {
     const formData = new FormData();
     formData.append("image", e.target.files[0]);
@@ -52,9 +66,7 @@ export default function CreateToken({ user, pecuCoins }) {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (
-      // pecuCoins?.coin >=
-       inputData.pecuCoin) {
+    if (inputData.pecuCoin) {
       axios
         .post("https://api.pecunovus.net/hootdex/create-tokens", inputData)
         .then((res) => {
@@ -132,12 +144,13 @@ export default function CreateToken({ user, pecuCoins }) {
     let changeData = { ...inputData };
     let name = e.target.name;
     let value = e.target.value;
+    
     changeData[name] = value;
     setInputData(changeData);
   };
 
   useEffect(() => {
-    let pecuRate = 42.64;
+    let pecuRate =currentValue;
     let changeData = { ...inputData };
     let totalPecuCoin = inputData.investementAmount / pecuRate;
     let tokenPrice = totalPecuCoin / inputData.totalToken;
@@ -147,10 +160,27 @@ export default function CreateToken({ user, pecuCoins }) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [inputData.investementAmount, inputData.totalToken]);
 
+
+  useEffect(() => {
+    let data = localStorage.getItem('hootdex_secretcookie');
+
+    if (data) {
+      setUser(JSON.parse(data));
+      get_current_index_coin()
+    }
+  
+  }, []);
+
+  useEffect(() => {
+    setInputData({...inputData, createdBy:user.username})
+  },[user])
   return (
-    <div className="screen">
+user&&user.username?
+    <div className="screen" style={{ padding: '1rem' }}>
+      
       <Box sx={{ mt: 2, position: "fixed", zIndex: 1000, top: 0 }}>
         <div style={{ display: "flex", justifyContent: "center" }}>
+         
           <Collapse in={alert.show} sx={{ maxWidth: 400, position: "fixed" }}>
             <Alert
               variant="outlined"
@@ -164,6 +194,7 @@ export default function CreateToken({ user, pecuCoins }) {
       </Box>
       <form id="myForm" className="form" onSubmit={handleSubmit}>
         <h3>Create Token</h3>
+     
         <label className="label">Token Name</label>
         <input
           className="input"
@@ -205,7 +236,7 @@ export default function CreateToken({ user, pecuCoins }) {
           required
         ></input>
 
-        <label className="label">
+        {/* <label className="label">
           Investement equivalent Pecu Coins. You have ({pecuCoins?.coin})
           available
         </label>
@@ -216,7 +247,7 @@ export default function CreateToken({ user, pecuCoins }) {
           type={"number"}
           placeholder="Enter"
           required
-        ></input>
+        ></input> */}
 
         <label className="label">Token price (USD)</label>
         <input
@@ -239,6 +270,6 @@ export default function CreateToken({ user, pecuCoins }) {
           Submit Request
         </button>
       </form>
-    </div>
+    </div>:<div className="screen" style={{ padding: '1rem' }}><h1 style={{color:'#fff'}}>Loading...</h1></div>
   );
 }
