@@ -1,6 +1,6 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap");
 * {
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
 }
 body {
   background-color: #091e17;
@@ -298,14 +298,61 @@ html {
   border: 1px solid red !important;
 }
 
-.yellow{
-  color:yellow !important
+.yellow {
+  color: yellow !important;
 }
 
-.green{
+.green {
   color: green !important;
 }
 
-.pink{
+.pink {
   color: pink !important;
+}
+.dfelxJsb {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.dfelxalitemC {
+  display: flex;
+  /* justify-content: space-around; */
+  align-items: center;
+}
+.dsparound {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.token-page-btn {
+  color: rgb(195, 197, 203);
+  padding: 8px 16px;
+  border-radius: 12px;
+  cursor: pointer;
+}
+.token-page-t1 {
+  font-size: 18px;
+  color: rgb(195, 197, 203);
+}
+.token-page-t2{
+  color: white;
+  font-size: 36px;
+  font-weight: 500;
+  font-family: Iner var sans-serif
+}
+.mb-1 {
+  margin-bottom: 3px;
+}
+.chart_btn {
+  color: rgb(195, 197, 203);
+  padding: 0.1rem 1.5rem;
+  cursor: pointer;
+  margin: 2px;
+  border-radius: 12px;
+}
+.chart_btn:hover {
+  background-color: #00071a;
+}
+.chart_btn_selected {
+  background-color: #00071a;
 }
