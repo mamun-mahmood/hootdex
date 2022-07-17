@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from "react";
 import {
   ResponsiveContainer,
   Tooltip,
@@ -6,9 +6,9 @@ import {
   YAxis,
   CartesianGrid,
   AreaChart,
-  Area
-} from 'recharts';
-import axios from 'axios';
+  Area,
+} from "recharts";
+import axios from "axios";
 export default function Chart() {
   const [chartData, setChartData] = useState([]);
   const getChatData = (filter) => {
@@ -17,7 +17,7 @@ export default function Chart() {
       .get(`https://api.pecunovus.net/wallet/get_change_index_coin_${filter}`)
       .then((res) => {
         res.data.forEach((e) => {
-          let localData=res.data
+          let localData = res.data;
           setChartData(localData);
         });
       })
@@ -25,22 +25,31 @@ export default function Chart() {
   };
 
   useEffect(() => {
-    getChatData('yearly');
+    getChatData("yearly");
   }, []);
   return (
-    <div style={{ display: 'flex', flexDirection: 'column' }}>
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        backgroundColor: "#1a1b1f",
+        borderRadius: "1rem",
+        marginTop: '2rem',
+        // padding: '1rem',
+      }}
+    >
       <div
         style={{
-          display: 'flex',
-          flexDirection: 'row-reverse',
-          justifyContent: 'center',
-          marginTop: '1rem'
+          display: "flex",
+          flexDirection: "row-reverse",
+          justifyContent: "center",
+          marginTop: "1rem",
         }}
       >
         <button
           className="header-link button"
           onClick={() => {
-            getChatData('yearly');
+            getChatData("yearly");
           }}
         >
           12M
@@ -48,7 +57,7 @@ export default function Chart() {
         <button
           className="header-link button"
           onClick={() => {
-            getChatData('quaterly');
+            getChatData("quaterly");
           }}
         >
           3M
@@ -56,7 +65,7 @@ export default function Chart() {
         <button
           className="header-link button"
           onClick={() => {
-            getChatData('monthly');
+            getChatData("monthly");
           }}
         >
           1M
@@ -64,7 +73,7 @@ export default function Chart() {
         <button
           className="header-link button"
           onClick={() => {
-            getChatData('weekly');
+            getChatData("weekly");
           }}
         >
           7D
@@ -72,7 +81,7 @@ export default function Chart() {
         <button
           className="header-link button"
           onClick={() => {
-            getChatData('hourly');
+            getChatData("hourly");
           }}
         >
           1D
@@ -81,9 +90,8 @@ export default function Chart() {
 
       {chartData.length > 0 ? (
         <ResponsiveContainer
-          width={window.screen.availWidth / 1.2}
+          width={window.screen.availWidth / 1.5}
           height={window.screen.availHeight / 2}
-          style={{zIndex: "100", position: 'absolute'}}
         >
           <AreaChart
             data={chartData}
@@ -116,8 +124,8 @@ export default function Chart() {
               </linearGradient>
             </defs>
             <XAxis dataKey="chart_date" />
-            <YAxis />
-            <CartesianGrid strokeDasharray="3 3" />
+            {/* <YAxis /> */}
+            {/* <CartesianGrid strokeDasharray="3 3" /> */}
             <Tooltip />
             <Area
               type="monotone"
@@ -125,8 +133,7 @@ export default function Chart() {
               stroke="rgb(255, 145, 0)"
               fillOpacity={1}
               fill="url(#colorUv)"
-
-          style={{position: 'absolute', zIndex: "100", width: '100%', }}
+              style={{ position: "absolute", zIndex: "100", width: "100%" }}
             />
           </AreaChart>
         </ResponsiveContainer>

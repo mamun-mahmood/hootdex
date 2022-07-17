@@ -51,7 +51,7 @@ function App() {
     <BrowserRouter>
       <div>
         <Nav wallet={wallet} fetchWallet={fetchWallet} />
-        <div style={{ paddingTop: '90px' }} >
+        <div style={{ paddingTop: '70px',  }} >
           <Routes>
             <Route path="/create-token" element={<CreateToken />} />
             <Route path="/" element={<Home />} />

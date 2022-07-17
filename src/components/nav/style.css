@@ -8,6 +8,7 @@
   width: 100%;
   z-index: 2000;
   justify-content: space-around;
+  height: 60px;
 }
 
 a {

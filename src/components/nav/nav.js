@@ -141,19 +141,6 @@ export default function Nav({ fetchWallet, wallet }) {
                   Tokens
                 </Button>
               </Link>
-              <Link to="/dashboard">
-                {" "}
-                <Button
-                  variant="outlined"
-                  sx={{
-                    color: "white",
-                    textTransform: "capitalize",
-                    m: 1,
-                  }}
-                >
-                  MVault
-                </Button>
-              </Link>
               <Link to="/Developers">
                 {" "}
                 <Button
@@ -165,6 +152,19 @@ export default function Nav({ fetchWallet, wallet }) {
                   }}
                 >
                   Developers
+                </Button>
+              </Link>
+              <Link to="/dashboard">
+                {" "}
+                <Button
+                  variant="outlined"
+                  sx={{
+                    color: "white",
+                    textTransform: "capitalize",
+                    m: 1,
+                  }}
+                >
+                  MVault
                 </Button>
               </Link>
             </>
