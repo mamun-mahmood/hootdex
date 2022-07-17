@@ -4,13 +4,29 @@ import { Link, useLocation } from "react-router-dom";
 import logo from "../../assets/images/logo.png";
 
 import ConnectWallet from "../Modal/ConnectWallet";
-import { Button, div } from "@mui/material";
+import {
+  Avatar,
+  Button,
+  ClickAwayListener,
+  div,
+  Paper,
+  Table,
+  TableBody,
+  TableCell,
+  tableCellClasses,
+  TableContainer,
+  TableHead,
+  TableRow,
+} from "@mui/material";
+import axios from "axios";
+import { Box } from "@mui/system";
 export default function Nav({ fetchWallet, wallet }) {
   const [user, setUser] = useState(null);
   const [open, setOpen] = useState(false);
   const handleOpen = () => {
     setOpen(true);
   };
+  const [showSugesstion, setShowSugesstion] = useState(false);
   const findUser = async () => {
     let data = localStorage.getItem("hootdex_secretcookie");
     if (data) {
@@ -33,6 +49,29 @@ export default function Nav({ fetchWallet, wallet }) {
     //   fetchToken(searchKey);
     // } else fetchToken("all");
   };
+  const [loading, setLoading] = useState(false);
+  const [tokens, setTokens] = useState([]);
+  const fetchToken = (target) => {
+    if (target === "all") {
+      setLoading(true);
+      axios
+        .get("https://api.pecunovus.net/hootdex/available-tokens")
+        .then((res) => {
+          setTokens(res.data);
+          setLoading(false);
+        })
+        .catch((err) => {
+          setLoading(false);
+        });
+    } else {
+      setLoading(true);
+      setTokens(tokens.filter((each) => each.tokenName === target));
+      setLoading(false);
+    }
+  };
+  useEffect(() => {
+    fetchToken("all");
+  }, []);
   return (
     <>
       <div container spacing={1} className="nav">
@@ -69,7 +108,7 @@ export default function Nav({ fetchWallet, wallet }) {
             </Button>
           </Link>
         </div>
-        <div item xs={12} md={6} lg={4}>
+        <Box sx={{ width: 500 }}>
           <form
             style={{
               textAlign: "center",
@@ -79,20 +118,120 @@ export default function Nav({ fetchWallet, wallet }) {
             className="form-control"
             onSubmit={handleSubmit}
           >
-            <input
-              style={{
-                width: "100%",
-                height: "0.8rem",
-              }}
-              className="border inputField"
-              type="text"
-              placeholder="Search for token..."
-              name="searchKey"
-              value={searchKey}
-              onChange={(e) => setSearchKey(e.target.value)}
-            />
+            <ClickAwayListener onClickAway={() => setShowSugesstion(false)}>
+              <input
+                style={{
+                  width: "100%",
+                  height: "0.8rem",
+                }}
+                onClick={() => setShowSugesstion(true)}
+                className="border inputField searchField "
+                type="text"
+                placeholder="Search for token..."
+                name="searchKey"
+                value={searchKey}
+                autocomplete="off"
+                onChange={(e) => setSearchKey(e.target.value)}
+              />
+            </ClickAwayListener>
           </form>
-        </div>
+          {/* <div className="search-sugesstion-container"> */}
+          {showSugesstion && (
+            <TableContainer
+              sx={{
+                backgroundColor: "#1a1b1f",
+                // mt: "70px",
+                borderBottomLeftRadius: "1rem",
+                borderBottomRightRadius: "1rem",
+                position: "absolute",
+                // left: 0,
+                width: 500,
+                animation: "fadeIn 0.4s ease-in-out",
+                // mt:"1px"
+              }}
+              component={Paper}
+            >
+              <Table
+                sx={{
+                  [`& .${tableCellClasses.root}`]: {
+                    borderBottom: " 1px solid #1e2128",
+                  },
+                }}
+              >
+                <TableHead className="">
+                  <TableRow className="">
+                    {/* {poolTableAttributes.map((e, index) => ( */}
+                    {/* <TableCell className="twhite" component="th" scope="row">
+                    #
+                  </TableCell> */}
+                    <TableCell className="twhite">Name</TableCell>
+                    <TableCell className="twhite" align="center">
+                      Price
+                    </TableCell>
+                    <TableCell className="twhite" align="center">
+                      Available Tokens
+                    </TableCell>
+                    <TableCell className="twhite" align="center">
+                      Volume
+                    </TableCell>
+                  </TableRow>
+                </TableHead>
+                <TableBody>
+                  {tokens.length &&
+                    tokens.map((each, index) => (
+                      <TableRow key={each.id}>
+                        {/* <TableCell className="twhite" component="th" scope="row">
+                        {each.id}
+                      </TableCell> */}
+                        <TableCell className="twhite" align="left">
+                          <Link to={`/t/${each.tokenName}`}>
+                            <div
+                              style={{
+                                display: "flex",
+                                alignItems: "center",
+                              }}
+                            >
+                              <Avatar
+                                className="rounded"
+                                src={`http://localhost:3001/hootdex/images/${each?.logo_src}`}
+                                alt="token logo"
+                              />
+                              <span
+                                style={{
+                                  marginLeft: "1rem",
+                                  fontSize: "20px",
+                                }}
+                              >
+                                {each.tokenName}{" "}
+                                <small style={{ color: "#696c75" }}>
+                                  ({each.tokenSymbol})
+                                </small>
+                              </span>
+                            </div>
+                          </Link>
+                        </TableCell>
+                        <TableCell className="twhite green" align="center">
+                          {each.tokenPrice}
+                        </TableCell>
+                        <TableCell className="twhite yellow" align="center">
+                          {each.totalToken}
+                        </TableCell>
+                        <TableCell className="twhite pink" align="center">
+                          {each.investementAmount}
+                        </TableCell>
+                      </TableRow>
+                    ))}
+                  {/* <TablePagination
+                sx={{ color: "white" }}
+                rowsPerPageOptions={[10, 50]}
+                onChange={(e) => setRows(e)}
+              /> */}
+                </TableBody>
+              </Table>
+            </TableContainer>
+          )}
+        </Box>
+        {/* </div> */}
         <div item xs={6} md={6} lg={2}>
           {true ? (
             <>

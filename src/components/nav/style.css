@@ -40,3 +40,19 @@ a {
   border: none;
   outline: none;
 }
+.searchField:focus {
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  outline: none;
+  border: none;
+}
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(-2rem);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(-0);
+  }
+}

@@ -3,7 +3,7 @@
   font-family: "Poppins", sans-serif;
 }
 body {
-  background-color: #091e17;
+  background-image: linear-gradient(to right, #04251a, #032c1e, #033223, #023927, #01402b);
 }
 .table {
   font-family: arial, sans-serif;
@@ -241,10 +241,10 @@ html {
   box-shadow: 0px 0px 6px 0px #21242b;
 }
 .border {
-  border-top: 2px solid #091e17 !important;
-  border-left: 2px solid #091e17 !important;
-  border-bottom: 4px solid #091e17 !important;
-  border-right: 4px solid #091e17 !important;
+  border-top: 2px solid #091e17 ;
+  border-left: 2px solid #091e17 ;
+  border-bottom: 4px solid #091e17 ;
+  border-right: 4px solid #091e17 ;
 }
 .borderS {
   border-top: 2px solid #091e17 !important;
@@ -336,13 +336,13 @@ html {
 .token-page-t1 {
   font-size: 16px;
   color: rgb(195, 197, 203);
-  font-weight:600;
+  font-weight: 600;
 }
-.token-page-t2{
+.token-page-t2 {
   color: white;
   font-size: 28px;
-  font-weight:600;
-  font-family: Iner var sans-serif
+  font-weight: 600;
+  font-family: Iner var sans-serif;
 }
 .mb-1 {
   margin-bottom: 3px;
