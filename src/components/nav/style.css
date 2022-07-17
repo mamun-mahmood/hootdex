@@ -40,6 +40,14 @@ a {
   border: none;
   outline: none;
 }
+.searchField {
+  width: 100%;
+  background-color: black;
+  border-radius: 20px;
+  color: white;
+  font-size: 20px;
+  padding: 15px;
+}
 .searchField:focus {
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;

@@ -125,7 +125,7 @@ export default function Nav({ fetchWallet, wallet }) {
                   height: "0.8rem",
                 }}
                 onClick={() => setShowSugesstion(true)}
-                className="border inputField searchField "
+                className="border searchField "
                 type="text"
                 placeholder="Search for token..."
                 name="searchKey"
