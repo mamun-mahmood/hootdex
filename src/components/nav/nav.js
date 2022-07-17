@@ -149,85 +149,90 @@ export default function Nav({ fetchWallet, wallet }) {
                 animation: "fadeIn 0.4s ease-in-out",
                 // mt:"1px"
               }}
+              className="borderGrey"
               component={Paper}
             >
-              <Table
-                sx={{
-                  [`& .${tableCellClasses.root}`]: {
-                    borderBottom: " 1px solid #1e2128",
-                  },
-                }}
-              >
-                <TableHead className="">
-                  <TableRow className="">
-                    {/* {poolTableAttributes.map((e, index) => ( */}
-                    {/* <TableCell className="twhite" component="th" scope="row">
+              {tokens.length ? (
+                <Table
+                  sx={{
+                    [`& .${tableCellClasses.root}`]: {
+                      borderBottom: " 1px solid #1e2128",
+                    },
+                  }}
+                >
+                  <TableHead className="">
+                    <TableRow className="">
+                      {/* {poolTableAttributes.map((e, index) => ( */}
+                      {/* <TableCell className="twhite" component="th" scope="row">
                     #
                   </TableCell> */}
-                    <TableCell className="twhite">Name</TableCell>
-                    <TableCell className="twhite" align="center">
-                      Price
-                    </TableCell>
-                    <TableCell className="twhite" align="center">
-                      Available Tokens
-                    </TableCell>
-                    <TableCell className="twhite" align="center">
-                      Volume
-                    </TableCell>
-                  </TableRow>
-                </TableHead>
-                <TableBody>
-                  {tokens.length &&
-                    tokens.map((each, index) => (
-                      <TableRow key={each.id}>
-                        {/* <TableCell className="twhite" component="th" scope="row">
+                      <TableCell className="twhite">Name</TableCell>
+                      <TableCell className="twhite" align="center">
+                        Price
+                      </TableCell>
+                      <TableCell className="twhite" align="center">
+                        Available Tokens
+                      </TableCell>
+                      <TableCell className="twhite" align="center">
+                        Volume
+                      </TableCell>
+                    </TableRow>
+                  </TableHead>
+                  <TableBody>
+                    {tokens.length &&
+                      tokens.map((each, index) => (
+                        <TableRow key={each.id}>
+                          {/* <TableCell className="twhite" component="th" scope="row">
                         {each.id}
                       </TableCell> */}
-                        <TableCell className="twhite" align="left">
-                          <Link to={`/t/${each.tokenName}`}>
-                            <div
-                              style={{
-                                display: "flex",
-                                alignItems: "center",
-                              }}
-                            >
-                              <Avatar
-                                className="rounded"
-                                src={`http://localhost:3001/hootdex/images/${each?.logo_src}`}
-                                alt="token logo"
-                              />
-                              <span
+                          <TableCell className="twhite" align="left">
+                            <Link to={`/t/${each.tokenName}`}>
+                              <div
                                 style={{
-                                  marginLeft: "1rem",
-                                  fontSize: "20px",
+                                  display: "flex",
+                                  alignItems: "center",
                                 }}
                               >
-                                {each.tokenName}{" "}
-                                <small style={{ color: "#696c75" }}>
-                                  ({each.tokenSymbol})
-                                </small>
-                              </span>
-                            </div>
-                          </Link>
-                        </TableCell>
-                        <TableCell className="twhite green" align="center">
-                          {each.tokenPrice}
-                        </TableCell>
-                        <TableCell className="twhite yellow" align="center">
-                          {each.totalToken}
-                        </TableCell>
-                        <TableCell className="twhite pink" align="center">
-                          {each.investementAmount}
-                        </TableCell>
-                      </TableRow>
-                    ))}
-                  {/* <TablePagination
+                                <Avatar
+                                  className="rounded"
+                                  src={`https://api.pecunovus.net/hootdex/images/${each?.logo_src}`}
+                                  alt="token logo"
+                                />
+                                <span
+                                  style={{
+                                    marginLeft: "1rem",
+                                    fontSize: "20px",
+                                  }}
+                                >
+                                  {each.tokenName}{" "}
+                                  <small style={{ color: "#696c75" }}>
+                                    ({each.tokenSymbol})
+                                  </small>
+                                </span>
+                              </div>
+                            </Link>
+                          </TableCell>
+                          <TableCell className="twhite green" align="center">
+                            {each.tokenPrice}
+                          </TableCell>
+                          <TableCell className="twhite yellow" align="center">
+                            {each.totalToken}
+                          </TableCell>
+                          <TableCell className="twhite pink" align="center">
+                            {each.investementAmount}
+                          </TableCell>
+                        </TableRow>
+                      ))}
+                    {/* <TablePagination
                 sx={{ color: "white" }}
                 rowsPerPageOptions={[10, 50]}
                 onChange={(e) => setRows(e)}
               /> */}
-                </TableBody>
-              </Table>
+                  </TableBody>
+                </Table>
+              ) : (
+                <p style={{ textAlign: "center", color: "white" }}>Nothing to show !</p>
+              )}
             </TableContainer>
           )}
         </Box>

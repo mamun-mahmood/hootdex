@@ -105,7 +105,7 @@ const WarpTokens = () => {
                       >
                         <Avatar
                           className="rounded"
-                          src={`http://localhost:3001/hootdex/images/${each?.logo_src}`}
+                          src={`https://api.pecunovus.net/hootdex/images/${each?.logo_src}`}
                           alt="token logo"
                         />
                         <span style={{ marginLeft: "1rem", fontSize: "20px" }}>
