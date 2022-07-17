@@ -49,17 +49,18 @@ const PoolTokens = () => {
         component={Paper}
       >
         <div className="">
-          {loading && <LinearProgress />}
-          <h1
+          <p
             style={{
-              color: "#fff",
-              fontSize: "1.5rem",
+              color: "rgb(195, 197, 203)",
+              fontSize: "1.4rem",
+              fontWeight: "600",
               textAlign: "center",
-              backgroundColor: "green",
+              backgroundColor: "#21242b",
             }}
           >
             Pool Tokens
-          </h1>
+          </p>
+              {loading && <LinearProgress color="inherit" />}
         </div>
         <Table
           sx={{

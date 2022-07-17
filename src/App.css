@@ -237,6 +237,9 @@ html {
 .shadow {
   box-shadow: 0px 0px 6px 0px rgba(255, 255, 255, 1);
 }
+.shadowGrey {
+  box-shadow: 0px 0px 6px 0px #21242b;
+}
 .border {
   border-top: 2px solid #091e17 !important;
   border-left: 2px solid #091e17 !important;
@@ -331,13 +334,14 @@ html {
   cursor: pointer;
 }
 .token-page-t1 {
-  font-size: 18px;
+  font-size: 16px;
   color: rgb(195, 197, 203);
+  font-weight:600;
 }
 .token-page-t2{
   color: white;
-  font-size: 36px;
-  font-weight: 500;
+  font-size: 24px;
+  font-weight:600;
   font-family: Iner var sans-serif
 }
 .mb-1 {

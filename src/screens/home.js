@@ -17,7 +17,7 @@ export default function Home() {
         {/* <div className="banner-hero" >   <h1 className="primary__title">Available Pools</h1>
     <p style={{color:'orange'}}>Swap, earn, and build on the leading decentralized crypto trading protocol.</p>
     </div> */}
-        <Chart style={{ backgroundColor: "green" }} />
+        <Chart />
         {/* <h1 className="primary__title">Listed Tokens</h1> */}
         {/* <div
           style={{

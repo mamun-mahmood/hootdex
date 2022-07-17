@@ -7,6 +7,8 @@ import {
   CartesianGrid,
   Tooltip,
   ResponsiveContainer,
+  LineChart,
+  Line,
 } from "recharts";
 const AssetChart = () => {
   const data = [
@@ -54,7 +56,7 @@ const AssetChart = () => {
     },
   ];
   return (
-    <div>
+    <>
       {/* <div
           style={{
             display: "flex",
@@ -106,26 +108,15 @@ const AssetChart = () => {
           </button>
         </div> */}
       <ResponsiveContainer
-        width={window.screen.availWidth / 2}
-        height={window.screen.availHeight / 2}
+        width= {500}
+        height= {300}
+        
       >
-        <AreaChart
-          data={data}
-          margin={{
-            top: 10,
-            right: 30,
-            left: 0,
-            bottom: 0,
-          }}
-        >
-          {/* <CartesianGrid strokeDasharray="3 3" /> */}
-          <XAxis dataKey="name" />
-          {/* <YAxis /> */}
-          <Tooltip />
-          <Area type="monotone" dataKey="uv" stroke="#8884d8" fill="#8884d8" />
-        </AreaChart>
+         <LineChart style={{maxWidth: '100%'}} data={data}>
+          <Line type="monotone" dataKey="pv" stroke="#8884d8" strokeWidth={2} />
+        </LineChart>
       </ResponsiveContainer>
-    </div>
+    </>
   );
 };
 

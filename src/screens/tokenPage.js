@@ -59,7 +59,7 @@ export default function TokenPage({ pecuCoins, user }) {
   }, [tokenName]);
 
   return (
-    <div style={{ backgroundColor: "", padding: "3rem" }}>
+    <div style={{ padding: "3rem" }}>
       {loading && <LinearProgress />}
       <Grid container spacing={2} mb={1}>
         <Grid item xs={12} md={6}>
@@ -87,6 +87,7 @@ export default function TokenPage({ pecuCoins, user }) {
               className="token-page-t2"
               style={{
                 marginTop: "0.5rem",
+                fontSize: '36px'
               }}
             >
               ${token?.investementAmount}{" "}
@@ -141,6 +142,7 @@ export default function TokenPage({ pecuCoins, user }) {
               height: "100%",
               padding: "1.5rem",
             }}
+            className="shadowGrey"
           >
             <div style={{ marginBottom: "1rem" }}>
               <p className="token-page-t1 mb-1">TVL</p>
@@ -182,6 +184,7 @@ export default function TokenPage({ pecuCoins, user }) {
               borderRadius: "20px",
               padding: "1.5rem",
             }}
+            className="shadowGrey"
           >
             <div className="dfelxJsb">
               <div>
