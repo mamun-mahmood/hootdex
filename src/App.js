@@ -1,20 +1,20 @@
-import './App.css';
-import Home from './screens/home';
-import Nav from './components/nav/nav';
-import Footer from './components/footer/footer';
-import { BrowserRouter, Routes, Route, } from 'react-router-dom';
-import CreateToken from './screens/createToken';
-import Wallet from './screens/wallet';
-import Login from './screens/login';
-import { useEffect, useState } from 'react';
-import DashboardIndex from './screens/DashboardIndex';
-import TokenPage from './screens/tokenPage';
-import axios from 'axios';
+import "./App.css";
+import Home from "./screens/home";
+import Nav from "./components/nav/nav";
+import Footer from "./components/footer/footer";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import CreateToken from "./screens/createToken";
+import Wallet from "./screens/wallet";
+import Login from "./screens/login";
+import { useEffect, useState } from "react";
+import DashboardIndex from "./screens/DashboardIndex";
+import TokenPage from "./screens/tokenPage";
+import axios from "axios";
 
 function App() {
   const [user, setUser] = useState(null);
   const findUser = async () => {
-    let data = localStorage.getItem('hootdex_secretcookie');
+    let data = localStorage.getItem("hootdex_secretcookie");
     if (data) {
       setUser(JSON.parse(data));
     }
@@ -24,7 +24,7 @@ function App() {
   const [wallet, setWallet] = useState({});
   const fetchWallet = () => {
     const wall = JSON.parse(
-      localStorage.getItem('hootdex_secretcookie_wallet')
+      localStorage.getItem("hootdex_secretcookie_wallet")
     );
     setWallet(wall);
     if (wall?.userFound) {
@@ -36,7 +36,7 @@ function App() {
     }
   };
   useEffect(() => {
-    let data = localStorage.getItem('hootdex_secretcookie');
+    let data = localStorage.getItem("hootdex_secretcookie");
 
     if (data) {
       setUser(JSON.parse(data));
@@ -51,37 +51,37 @@ function App() {
     <BrowserRouter>
       <div>
         <Nav wallet={wallet} fetchWallet={fetchWallet} />
-        <Routes>
-          <Route
-            path="/create-token"
-            element={
-              <CreateToken />
-            }
-          />
-          <Route path="/" element={<Home />} />
-          <Route path="/wallet" element={<Wallet />} />
-          <Route path="/t/:tokenName" element={<TokenPage user={user} pecuCoins={pecuCoins} />} />
-          <Route
-            path="/login"
-            element={
-              <Login
-                loginData={(e) => {
-                  handleUserToken(e);
-                }}
-              />
-            }
-          />
-          <Route
-            path="/dashboard"
-            element={
-              user && user.loggedIn ? (
-                <DashboardIndex user={user} pecuCoins={pecuCoins} />
-              ) : (
-                <Login />
-              )
-            }
-          />
-        </Routes>
+        <div style={{ paddingTop: '90px' }} >
+          <Routes>
+            <Route path="/create-token" element={<CreateToken />} />
+            <Route path="/" element={<Home />} />
+            <Route path="/wallet" element={<Wallet />} />
+            <Route
+              path="/t/:tokenName"
+              element={<TokenPage user={user} pecuCoins={pecuCoins} />}
+            />
+            <Route
+              path="/login"
+              element={
+                <Login
+                  loginData={(e) => {
+                    handleUserToken(e);
+                  }}
+                />
+              }
+            />
+            <Route
+              path="/dashboard"
+              element={
+                user && user.loggedIn ? (
+                  <DashboardIndex user={user} pecuCoins={pecuCoins} />
+                ) : (
+                  <Login />
+                )
+              }
+            />
+          </Routes>
+        </div>
       </div>
       <Footer />
     </BrowserRouter>

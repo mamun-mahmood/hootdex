@@ -146,7 +146,7 @@ const ConnectWallet = ({ fetchWallet, wallet, setOpen, open }) => {
             width: 400,
             p: 2,
             borderRadius: "1rem",
-            backgroundColor: "#002945",
+            backgroundColor: "#091e17",
           }}
         >
           <div
@@ -182,15 +182,17 @@ const ConnectWallet = ({ fetchWallet, wallet, setOpen, open }) => {
                   width: 400,
                   p: 2,
                   borderRadius: "1rem",
-                  backgroundColor: "#002945",
+                  backgroundColor: "#040b1e",
                 }}
               >
-                <DialogTitle
+                <div
                   className="twhite tcenter fontS22"
                   id="alert-dialog-title"
+                  style={{display: "flex", justifyContent: "center", margin: '2px'}}
                 >
-                  Connect PecuNovus
-                </DialogTitle>
+                  PecuNovus
+                  <img style={{width: "30px", marginLeft: "1rem"}} src="https://pecunovus.net/static/media/icon.25c8ec299d961b9dd524.ico" alt="" />
+                </div>
                 <Divider sx={{ backgroundColor: "#091e17", height: "2px" }} />
                 {loading && <LinearProgress />}
                 <div style={{ display: "flex", justifyContent: "center" }}>
@@ -263,6 +265,7 @@ const ConnectWallet = ({ fetchWallet, wallet, setOpen, open }) => {
                   borderRadius: "1rem",
                   border: "1px solid grey",
                   cursor: "pointer",
+                  opacity: "0.8"
                 }}
                 onClick={() => {
                   if (e.name === "PecuNovus") {
@@ -289,6 +292,7 @@ const ConnectWallet = ({ fetchWallet, wallet, setOpen, open }) => {
                 margin: "0.7rem",
                 borderRadius: "1rem",
                 cursor: "pointer",
+                opacity: "0.6"
               }}
             >
               <p style={{ fontSize: "10px", fontWeight: "600" }}>

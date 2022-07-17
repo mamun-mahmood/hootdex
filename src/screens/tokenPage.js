@@ -4,6 +4,7 @@ import {
   Collapse,
   Divider,
   Grid,
+  IconButton,
   LinearProgress,
 } from "@mui/material";
 import { Box } from "@mui/system";
@@ -59,192 +60,204 @@ export default function TokenPage({ pecuCoins, user }) {
   }, [tokenName]);
 
   return (
-    <div style={{ padding: "3rem" }}>
-      {loading && <LinearProgress />}
-      <Grid container spacing={2} mb={1}>
-        <Grid item xs={12} md={6}>
-          <div className="dfelxalitemC">
-            <Avatar
-              src={`https://api.pecunovus.net/hootdex/images/${token?.logo_src}`}
-            />
-            <p
-              style={{
-                color: "white",
-                marginLeft: "1rem",
-                fontSize: "26px",
-                fontWeight: "500",
-                fontFamily: "Iner var sans-serif",
-              }}
-            >
-              {token?.tokenName}{" "}
-              <span style={{ fontSize: "20px", color: "rgb(195, 197, 203)" }}>
-                ({token?.tokenSymbol})
-              </span>{" "}
-            </p>
-          </div>
-          <div>
-            <p
-              className="token-page-t2"
-              style={{
-                marginTop: "0.5rem",
-                fontSize: '36px'
-              }}
-            >
-              ${token?.investementAmount}{" "}
-              <small style={{ fontSize: "18px", color: "#4caf50" }}>
-                (<ArrowUpwardIcon sx={{ fontSize: "18px" }} />
-                10.89%)
-              </small>{" "}
-            </p>
-          </div>
-        </Grid>
-        <Grid item xs={12} md={6}>
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "end",
-              marginTop: "3rem",
-            }}
-          >
-            <div
-              className="dfelxalitemC"
-              style={{
-                backgroundColor: "rgb(64, 68, 79)",
-                color: "rgb(195, 197, 203)",
-                padding: "8px 16px",
-                borderRadius: "12px",
-                cursor: "pointer",
-                width: "170px",
-                marginRight: "1rem",
-              }}
-            >
-              <GetAppIcon />
-              <p>Add Liquidity</p>
-            </div>
-            <div
-              style={{
-                backgroundColor: "rgb(120, 134, 134)",
-                color: "white",
-                padding: "8px 16px",
-                borderRadius: "12px",
-                cursor: "pointer",
-              }}
-            >
-              <p>Trade</p>
-            </div>
-          </div>
-        </Grid>
-        <Grid item xs={12} md={4} mt={5}>
-          <div
-            style={{
-              backgroundColor: "rgb(25, 27, 31)",
-              borderRadius: "20px",
-              height: "100%",
-              padding: "1.5rem",
-            }}
-            className="shadowGrey"
-          >
-            <div style={{ marginBottom: "1rem" }}>
-              <p className="token-page-t1 mb-1">TVL</p>
-              <p className="token-page-t2 mb-1">${token?.investementAmount}</p>
-              <small style={{ fontSize: "18px", color: "red" }}>
-                <ArrowDownwardIcon sx={{ fontSize: "18px" }} />
-                10.89%
-              </small>{" "}
-            </div>
-            <div style={{ marginBottom: "1rem" }}>
-              <p className="token-page-t1 mb-1">24h Trading Vol</p>
-              <p className="token-page-t2 mb-1">${token?.investementAmount}</p>
-              <small style={{ fontSize: "18px", color: "red" }}>
-                <ArrowDownwardIcon sx={{ fontSize: "18px" }} />
-                10.89%
-              </small>{" "}
-            </div>
-            <div style={{ marginBottom: "1rem" }}>
-              <p className="token-page-t1 mb-1">7d Trading Vol</p>
-              <p className="token-page-t2 mb-1">${token?.investementAmount}</p>
-            </div>
-            <div style={{ marginBottom: "1rem" }}>
-              <p className="token-page-t1 mb-1">24h Fees</p>
-              <p className="token-page-t2 mb-1">${token?.investementAmount}</p>
-            </div>
-          </div>
-        </Grid>
-        <Grid
-          item
-          xs={12}
-          md={8}
-          mt={5}
-          // ml={5}
-        >
-          <div
-            style={{
-              backgroundColor: "rgb(25, 27, 31)",
-              height: "100%",
-              borderRadius: "20px",
-              padding: "1.5rem",
-            }}
-            className="shadowGrey"
-          >
-            <div className="dfelxJsb">
-              <div>
-                <p className="token-page-t2">$2.15k</p>
-                <p className="token-page-t1">{date}</p>
-              </div>
-              <div
+    <>
+      {loading && <LinearProgress sx={{backgroundColor: 'grey'}} />}
+      <div style={{ padding: "3rem" }}>
+        <Grid container spacing={3} mb={1}>
+          <Grid item xs={12} md={6}>
+            <div className="dfelxalitemC">
+              <Avatar
+                src={`https://api.pecunovus.net/hootdex/images/${token?.logo_src}`}
+              />
+              <p
                 style={{
-                  backgroundColor: "rgb(44, 47, 54)",
-                  borderRadius: "12px",
+                  color: "white",
+                  marginLeft: "1rem",
+                  fontSize: "26px",
+                  fontWeight: "500",
+                  fontFamily: "Iner var sans-serif",
                 }}
-                className="dsparound"
               >
-                <p
-                  className={`${
-                    chartBtn === 1 && "chart_btn_selected"
-                  } chart_btn`}
-                  onClick={() => setChartBtn(1)}
-                >
-                  Volume
+                {token?.tokenName}{" "}
+                <span style={{ fontSize: "20px", color: "rgb(195, 197, 203)" }}>
+                  ({token?.tokenSymbol})
+                </span>{" "}
+              </p>
+            </div>
+            <div>
+              <p
+                className="token-page-t2"
+                style={{
+                  marginTop: "0.5rem",
+                  fontSize: "36px",
+                }}
+              >
+                ${token?.investementAmount}{" "}
+                <small style={{ fontSize: "18px", color: "#4caf50" }}>
+                  (<ArrowUpwardIcon sx={{ fontSize: "18px" }} />
+                  10.89%)
+                </small>{" "}
+              </p>
+            </div>
+          </Grid>
+          <Grid item xs={12} md={6}>
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "end",
+                marginTop: "3rem",
+              }}
+            >
+              <IconButton
+                className="dfelxalitemC shadow"
+                sx={{
+                  backgroundColor: "rgb(64, 68, 79)",
+                  color: "rgb(195, 197, 203)",
+                  // padding: "8px 14px",
+                  borderRadius: "12px",
+                  cursor: "pointer",
+                  // width: "170px",
+                  marginRight: "1rem",
+                  fontWeight: "800",
+                }}
+              >
+                <GetAppIcon />
+                <p>Add Liquidity</p>
+              </IconButton>
+              <IconButton
+                sx={{
+                  backgroundColor: "#091e17",
+                  color: "white",
+                  padding: "8px 16px",
+                  borderRadius: "12px",
+                  cursor: "pointer",
+                }}
+                className="shadow"
+              >
+                <p>Trade</p>
+              </IconButton>
+            </div>
+          </Grid>
+          <Grid item xs={12} md={4} mt={3}>
+            <div
+              style={{
+                backgroundColor: "rgb(25, 27, 31)",
+                borderRadius: "20px",
+                height: "100%",
+                padding: "1.5rem",
+              }}
+              className="shadowGrey"
+            >
+              <div style={{ marginBottom: "1rem" }}>
+                <p className="token-page-t1 mb-1">TVL</p>
+                <p className="token-page-t2 mb-1">
+                  ${token?.investementAmount}
                 </p>
-                <p
-                  className={`${
-                    chartBtn === 2 && "chart_btn_selected"
-                  } chart_btn`}
-                  onClick={() => setChartBtn(2)}
-                >
-                  TVL
+                <small style={{ fontSize: "18px", color: "red" }}>
+                  <ArrowDownwardIcon sx={{ fontSize: "18px" }} />
+                  10.89%
+                </small>{" "}
+              </div>
+              <div style={{ marginBottom: "1rem" }}>
+                <p className="token-page-t1 mb-1">24h Trading Vol</p>
+                <p className="token-page-t2 mb-1">
+                  ${token?.investementAmount}
                 </p>
-                <p
-                  className={`${
-                    chartBtn === 3 && "chart_btn_selected"
-                  } chart_btn`}
-                  onClick={() => setChartBtn(3)}
-                >
-                  Price
+                <small style={{ fontSize: "18px", color: "red" }}>
+                  <ArrowDownwardIcon sx={{ fontSize: "18px" }} />
+                  10.89%
+                </small>{" "}
+              </div>
+              <div style={{ marginBottom: "1rem" }}>
+                <p className="token-page-t1 mb-1">7d Trading Vol</p>
+                <p className="token-page-t2 mb-1">
+                  ${token?.investementAmount}
+                </p>
+              </div>
+              <div style={{ marginBottom: "1rem" }}>
+                <p className="token-page-t1 mb-1">24h Fees</p>
+                <p className="token-page-t2 mb-1">
+                  ${token?.investementAmount}
                 </p>
               </div>
             </div>
-            <div style={{ display: "flex", justifyContent: "center" }}>
-              <AssetChart />
-            </div>
-          </div>
-        </Grid>
-        <Grid item xs={12} mt={5} >
-          <WarpTokens />
-          <PoolTokens />
-        </Grid>
-      </Grid>
-      <div style={{ display: "flex", justifyContent: "center" }}>
-        <Collapse in={alert.show} sx={{ maxWidth: 400, position: "fixed" }}>
-          <Alert
-            variant="outlined"
-            severity={alert.type}
-            sx={{ mb: 2, backgroundColor: "white", fontSize: "18px" }}
+          </Grid>
+          <Grid
+            item
+            xs={12}
+            md={8}
+            mt={3}
+            // ml={5}
           >
-            {alert.msg}
-          </Alert>
-        </Collapse>
+            <div
+              style={{
+                backgroundColor: "rgb(25, 27, 31)",
+                height: "100%",
+                borderRadius: "20px",
+                padding: "1.5rem",
+              }}
+              className="shadowGrey"
+            >
+              <div className="dfelxJsb">
+                <div>
+                  <p className="token-page-t2">$2.15k</p>
+                  <p className="token-page-t1">{date}</p>
+                </div>
+                <div
+                  style={{
+                    backgroundColor: "rgb(44, 47, 54)",
+                    borderRadius: "12px",
+                  }}
+                  className="dsparound"
+                >
+                  <p
+                    className={`${
+                      chartBtn === 1 && "chart_btn_selected"
+                    } chart_btn`}
+                    onClick={() => setChartBtn(1)}
+                  >
+                    Volume
+                  </p>
+                  <p
+                    className={`${
+                      chartBtn === 2 && "chart_btn_selected"
+                    } chart_btn`}
+                    onClick={() => setChartBtn(2)}
+                  >
+                    TVL
+                  </p>
+                  <p
+                    className={`${
+                      chartBtn === 3 && "chart_btn_selected"
+                    } chart_btn`}
+                    onClick={() => setChartBtn(3)}
+                  >
+                    Price
+                  </p>
+                </div>
+              </div>
+              <div style={{ display: "flex", justifyContent: "center" }}>
+                <AssetChart />
+              </div>
+            </div>
+          </Grid>
+          <Grid item xs={12} mt={5}>
+            <WarpTokens />
+            <PoolTokens />
+          </Grid>
+        </Grid>
+        <div style={{ display: "flex", justifyContent: "center" }}>
+          <Collapse in={alert.show} sx={{ maxWidth: 400, position: "fixed" }}>
+            <Alert
+              variant="outlined"
+              severity={alert.type}
+              sx={{ mb: 2, backgroundColor: "white", fontSize: "18px" }}
+            >
+              {alert.msg}
+            </Alert>
+          </Collapse>
+        </div>
       </div>
-    </div>
+    </>
   );
 }
