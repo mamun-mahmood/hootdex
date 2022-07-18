@@ -107,11 +107,18 @@ const PoolTokens = () => {
                           className="rounded"
                           src={`https://api.pecunovus.net/hootdex/images/${each?.logo_src}`}
                           alt="token logo"
+                          style={{width:'20px',height:'20px'}}
+                        />
+                          <Avatar
+                          className="rounded"
+                          src={`https://pecunovus.net/static/media/icon.25c8ec299d961b9dd524.ico`}
+                          alt="token logo"
+                          style={{width:'20px',height:'20px'}}
                         />
                         <span style={{ marginLeft: "1rem", fontSize: "20px" }}>
                           {each.tokenName}{" "}
                           <small style={{ color: "#696c75" }}>
-                            ({each.tokenSymbol})
+                            ({`${each.tokenSymbol}/PECU`})
                           </small>
                         </span>
                       </div>

@@ -55,9 +55,12 @@ export default function Nav({ fetchWallet, wallet }) {
     if (target === "all") {
       setLoading(true);
       axios
-        .get("https://api.pecunovus.net/hootdex/available-tokens")
+        .get("https://api.pecunovus.net/wallet/get_all_tokens_wrap")
         .then((res) => {
-          setTokens(res.data);
+          if (res.data.status) {
+             setTokens(res.data.tokens);
+          }
+         
           setLoading(false);
         })
         .catch((err) => {
@@ -65,7 +68,7 @@ export default function Nav({ fetchWallet, wallet }) {
         });
     } else {
       setLoading(true);
-      setTokens(tokens.filter((each) => each.tokenName === target));
+      setTokens(tokens.filter((each) => each.symbol === target));
       setLoading(false);
     }
   };
@@ -179,56 +182,52 @@ export default function Nav({ fetchWallet, wallet }) {
                     </TableRow>
                   </TableHead>
                   <TableBody>
-                    {tokens.length &&
-                      tokens.map((each, index) => (
-                        <TableRow key={each.id}>
-                          {/* <TableCell className="twhite" component="th" scope="row">
-                        {each.id}
-                      </TableCell> */}
-                          <TableCell className="twhite" align="left">
-                            <Link to={`/t/${each.tokenName}`}>
-                              <div
-                                style={{
-                                  display: "flex",
-                                  alignItems: "center",
-                                }}
-                              >
-                                <Avatar
-                                  className="rounded"
-                                  src={`https://api.pecunovus.net/hootdex/images/${each?.logo_src}`}
-                                  alt="token logo"
-                                />
-                                <span
-                                  style={{
-                                    marginLeft: "1rem",
-                                    fontSize: "20px",
-                                  }}
-                                >
-                                  {each.tokenName}{" "}
-                                  <small style={{ color: "#696c75" }}>
-                                    ({each.tokenSymbol})
-                                  </small>
-                                </span>
-                              </div>
-                            </Link>
-                          </TableCell>
-                          <TableCell className="twhite green" align="center">
-                            {each.tokenPrice}
-                          </TableCell>
-                          <TableCell className="twhite yellow" align="center">
-                            {each.totalToken}
-                          </TableCell>
-                          <TableCell className="twhite pink" align="center">
-                            {each.investementAmount}
-                          </TableCell>
-                        </TableRow>
-                      ))}
-                    {/* <TablePagination
+            {tokens.length &&
+              tokens.map((each, index) => (
+                <TableRow key={each.id}>
+                  {/* <TableCell className="twhite" component="th" scope="row">
+                    {each.id}
+                  </TableCell> */}
+                  <TableCell className="twhite" align="left">
+                    <Link to={`/t/${each.symbol}`}>
+                      <div
+                        style={{
+                          display: "flex",
+                          alignItems: "center",
+                        }}
+                      >
+                        <Avatar
+                      
+                          className="rounded"
+                          src={`https://api.pecunovus.net/hootdex/images/${each?.logo_src}`}
+                          alt={each.symbol.slice(1)}
+                        />
+                        <span style={{ marginLeft: "1rem", fontSize: "20px" }}>
+                          {each.tokenName}{" "}
+                          <small style={{ color: "#696c75" }}>
+                            ({each.symbol})
+                          </small>
+                        </span>
+                      </div>
+                    </Link>
+                  </TableCell>
+                  <TableCell className="twhite green" align="left">
+                    $ {each.initialFinal}
+                  </TableCell>
+                  <TableCell className="twhite yellow" align="left">
+                    {each.wrapAmount}
+                  </TableCell>
+                  <TableCell className="twhite pink" align="left">
+                    {each.wrapAmount*each.initialFinal}
+                  </TableCell>
+                </TableRow>
+              ))}
+            {/* <TablePagination
                 sx={{ color: "white" }}
                 rowsPerPageOptions={[10, 50]}
                 onChange={(e) => setRows(e)}
               /> */}
-                  </TableBody>
+          </TableBody>
                 </Table>
               ) : (
                 <p style={{ textAlign: "center", color: "white" }}>Nothing to show !</p>
