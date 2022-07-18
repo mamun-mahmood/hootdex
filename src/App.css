@@ -360,3 +360,6 @@ html {
 .chart_btn_selected {
   background-color: #00071a;
 }
+.button-hover:hover {
+  background-color: "" !important ;
+}
