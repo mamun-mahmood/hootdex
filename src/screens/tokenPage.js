@@ -32,6 +32,18 @@ export default function TokenPage({ pecuCoins, user }) {
     type: "",
     show: false,
   });
+  const [currentValue, setCurrentValue] = useState(0);
+  const get_current_index_coin = () => {
+    axios
+      .get(`https://api.pecunovus.net/wallet/get_current_index_coin`)
+      .then((res) => {
+        setCurrentValue(res.data[0].value);
+      
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
   const date = new Date().toLocaleDateString();
   useEffect(() => {
     setLoading(true);
@@ -58,6 +70,9 @@ export default function TokenPage({ pecuCoins, user }) {
         console.log(err);
       });
   }, [tokenName]);
+  useEffect(() => {
+    get_current_index_coin()
+  },[])
 
   return (
     <>
@@ -68,6 +83,7 @@ export default function TokenPage({ pecuCoins, user }) {
             <div className="dfelxalitemC">
               <Avatar
                 src={`https://api.pecunovus.net/hootdex/images/${token?.logo_src}`}
+                alt={token.tokenName}
               />
               <p
                 style={{
@@ -92,7 +108,7 @@ export default function TokenPage({ pecuCoins, user }) {
                   fontSize: "36px",
                 }}
               >
-                ${token?.investementAmount}{" "}
+                ${Math.ceil(token.totalToken*token.tokenPrice*currentValue)}{" "}
                 <small style={{ fontSize: "18px", color: "#4caf50" }}>
                   (<ArrowUpwardIcon sx={{ fontSize: "18px" }} />
                   10.89%)
