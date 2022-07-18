@@ -63,7 +63,7 @@ const WarpTokens = () => {
               backgroundColor: "#21242b",
             }}
           >
-            Wrap Tokens
+             Tokens
           </p>
           {loading && <LinearProgress color="inherit" />}
         </div>
