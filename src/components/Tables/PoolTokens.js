@@ -77,13 +77,13 @@ const PoolTokens = () => {
                 #
               </TableCell>
               <TableCell className="twhite">Name</TableCell>
-              <TableCell className="twhite" align="center">
+              <TableCell className="twhite" align="left">
                 Price
               </TableCell>
-              <TableCell className="twhite" align="center">
+              <TableCell className="twhite" align="left">
                 Available Tokens
               </TableCell>
-              <TableCell className="twhite" align="center">
+              <TableCell className="twhite" align="left">
                 Volume
               </TableCell>
             </TableRow>
@@ -117,13 +117,13 @@ const PoolTokens = () => {
                       </div>
                     </Link>
                   </TableCell>
-                  <TableCell className="twhite green" align="center">
+                  <TableCell className="twhite green" align="left">
                     {each.tokenPrice}
                   </TableCell>
-                  <TableCell className="twhite yellow" align="center">
+                  <TableCell className="twhite yellow" align="left">
                     {each.totalToken}
                   </TableCell>
-                  <TableCell className="twhite pink" align="center">
+                  <TableCell className="twhite pink" align="left">
                     {each.investementAmount}
                   </TableCell>
                 </TableRow>

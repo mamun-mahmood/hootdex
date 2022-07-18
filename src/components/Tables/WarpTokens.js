@@ -22,9 +22,13 @@ const WarpTokens = () => {
     if (target === "all") {
       setLoading(true);
       axios
-        .get("https://api.pecunovus.net/hootdex/available-tokens")
+        .get("https://api.pecunovus.net/wallet/get_all_tokens_wrap")
         .then((res) => {
-          setTokens(res.data);
+    
+          if (res.data.status) {
+            setTokens(res.data.tokens); 
+          }
+          
           setLoading(false);
         })
         .catch((err) => {
@@ -77,13 +81,13 @@ const WarpTokens = () => {
                 #
               </TableCell>
               <TableCell className="twhite">Name</TableCell>
-              <TableCell className="twhite" align="center">
+              <TableCell className="twhite" align="left">
                 Price
               </TableCell>
-              <TableCell className="twhite" align="center">
+              <TableCell className="twhite" align="left">
                 Available Tokens
               </TableCell>
-              <TableCell className="twhite" align="center">
+              <TableCell className="twhite" align="left">
                 Volume
               </TableCell>
             </TableRow>
@@ -96,7 +100,7 @@ const WarpTokens = () => {
                     {each.id}
                   </TableCell>
                   <TableCell className="twhite" align="left">
-                    <Link to={`/t/${each.tokenName}`}>
+                    <Link to={`/t/${each.symbol}`}>
                       <div
                         style={{
                           display: "flex",
@@ -104,27 +108,28 @@ const WarpTokens = () => {
                         }}
                       >
                         <Avatar
+                      
                           className="rounded"
                           src={`https://api.pecunovus.net/hootdex/images/${each?.logo_src}`}
-                          alt="token logo"
+                          alt={each.symbol.slice(1)}
                         />
                         <span style={{ marginLeft: "1rem", fontSize: "20px" }}>
                           {each.tokenName}{" "}
                           <small style={{ color: "#696c75" }}>
-                            ({each.tokenSymbol})
+                            ({each.symbol})
                           </small>
                         </span>
                       </div>
                     </Link>
                   </TableCell>
-                  <TableCell className="twhite green" align="center">
-                    {each.tokenPrice}
+                  <TableCell className="twhite green" align="left">
+                    $ {each.initialFinal}
                   </TableCell>
-                  <TableCell className="twhite yellow" align="center">
-                    {each.totalToken}
+                  <TableCell className="twhite yellow" align="left">
+                    {each.wrapAmount}
                   </TableCell>
-                  <TableCell className="twhite pink" align="center">
-                    {each.investementAmount}
+                  <TableCell className="twhite pink" align="left">
+                    {each.wrapAmount*each.initialFinal}
                   </TableCell>
                 </TableRow>
               ))}
