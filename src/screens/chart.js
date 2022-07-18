@@ -90,8 +90,8 @@ export default function Chart() {
 
       {chartData.length > 0 ? (
         <ResponsiveContainer
-          width={window.screen.availWidth / 1.5}
-          height={window.screen.availHeight / 2}
+          width={window.screen.availWidth / 1.3}
+          height={window.screen.availHeight / 2.2}
         >
           <AreaChart
             data={chartData}

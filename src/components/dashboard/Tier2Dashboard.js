@@ -155,7 +155,7 @@ function DashboardContent({ user, pecuCoins }) {
   const toggleDrawer = () => {
     setOpenD(!openD);
   };
-  const [tab, setTab] = React.useState("Wallet");
+  const [tab, setTab] = React.useState("Vault");
   return (
     <>
       <div style={{ display: "flex", backgroundColor: "#091e17" }}>
@@ -191,7 +191,24 @@ function DashboardContent({ user, pecuCoins }) {
                   height: "100vh",
                   overflowX: "hidden",
                 }}
-              >
+              >    <ListItemButton
+              sx={{
+                color: "white",
+                backgroundColor: "#00071a",
+                borderTopRightRadius: "20px",
+                borderBottomRightRadius: "20px",
+                width: "95%",
+                mb: 1,
+                border: "1px solid #091e17",
+              }}
+              onClick={() => setTab("Vault")}
+            >
+              <ListItemIcon>
+                <img src={Vault} alt="vault icon" />
+              </ListItemIcon>
+              <ListItemText primary="Vault" />
+            </ListItemButton>
+           
                 <ListItemButton
                   sx={{
                     color: "white",
@@ -245,24 +262,7 @@ function DashboardContent({ user, pecuCoins }) {
                   </ListItemIcon>
                   <ListItemText primary="Tokens" />
                 </ListItemButton>
-                <ListItemButton
-                  sx={{
-                    color: "white",
-                    backgroundColor: "#00071a",
-                    borderTopRightRadius: "20px",
-                    borderBottomRightRadius: "20px",
-                    width: "95%",
-                    mb: 1,
-                    border: "1px solid #091e17",
-                  }}
-                  onClick={() => setTab("Vault")}
-                >
-                  <ListItemIcon>
-                    <img src={Vault} alt="vault icon" />
-                  </ListItemIcon>
-                  <ListItemText primary="Vault" />
-                </ListItemButton>
-                <ListItemButton
+             <ListItemButton
                   sx={{
                     color: "white",
                     backgroundColor: "#00071a",

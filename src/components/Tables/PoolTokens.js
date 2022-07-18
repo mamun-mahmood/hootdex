@@ -59,7 +59,7 @@ const PoolTokens = () => {
               backgroundColor: "#21242b",
             }}
           >
-            Pool Tokens
+          Tokens
           </p>
               {loading && <LinearProgress color="inherit" />}
         </div>
