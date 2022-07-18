@@ -55,11 +55,9 @@ export default function Nav({ fetchWallet, wallet }) {
     if (target === "all") {
       setLoading(true);
       axios
-        .get("https://api.pecunovus.net/wallet/get_all_tokens_wrap")
+        .get("https://api.pecunovus.net/hootdex/available-tokens")
         .then((res) => {
-          if (res.data.status) {
-             setTokens(res.data.tokens);
-          }
+          setTokens(res.data);
          
           setLoading(false);
         })
@@ -185,11 +183,11 @@ export default function Nav({ fetchWallet, wallet }) {
             {tokens.length &&
               tokens.map((each, index) => (
                 <TableRow key={each.id}>
-                  {/* <TableCell className="twhite" component="th" scope="row">
+                  <TableCell className="twhite" component="th" scope="row">
                     {each.id}
-                  </TableCell> */}
+                  </TableCell>
                   <TableCell className="twhite" align="left">
-                    <Link to={`/t/${each.symbol}`}>
+                    <Link to={`/t/${each.tokenName}`}>
                       <div
                         style={{
                           display: "flex",
@@ -197,31 +195,38 @@ export default function Nav({ fetchWallet, wallet }) {
                         }}
                       >
                         <Avatar
-                      
                           className="rounded"
                           src={`https://api.pecunovus.net/hootdex/images/${each?.logo_src}`}
-                          alt={each.symbol.slice(1)}
+                          alt="token logo"
+                          style={{width:'20px',height:'20px'}}
+                        />
+                          <Avatar
+                          className="rounded"
+                          src={`https://pecunovus.net/static/media/icon.25c8ec299d961b9dd524.ico`}
+                          alt="token logo"
+                          style={{width:'20px',height:'20px'}}
                         />
                         <span style={{ marginLeft: "1rem", fontSize: "20px" }}>
                           {each.tokenName}{" "}
                           <small style={{ color: "#696c75" }}>
-                            ({each.symbol})
+                            ({`${each.tokenSymbol}/PECU`})
                           </small>
                         </span>
                       </div>
                     </Link>
                   </TableCell>
                   <TableCell className="twhite green" align="left">
-                    $ {each.initialFinal}
+                    {each.tokenPrice}
                   </TableCell>
                   <TableCell className="twhite yellow" align="left">
-                    {each.wrapAmount}
+                    {each.totalToken}
                   </TableCell>
                   <TableCell className="twhite pink" align="left">
-                    {each.wrapAmount*each.initialFinal}
+                    {each.investementAmount}
                   </TableCell>
                 </TableRow>
               ))}
+
             {/* <TablePagination
                 sx={{ color: "white" }}
                 rowsPerPageOptions={[10, 50]}

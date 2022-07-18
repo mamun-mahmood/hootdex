@@ -242,7 +242,7 @@ export default function TokenPage({ pecuCoins, user }) {
             </div>
           </Grid>
           <Grid item xs={12} mt={5}>
-            <WarpTokens />
+            {/* <WarpTokens /> */}
             <PoolTokens />
           </Grid>
         </Grid>
