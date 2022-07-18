@@ -18,7 +18,7 @@ export default function Home() {
             width: "80%",
           }}
         >
-          <WarpTokens />
+          {/* <WarpTokens /> */}
           <PoolTokens />
         </div>
       </div>

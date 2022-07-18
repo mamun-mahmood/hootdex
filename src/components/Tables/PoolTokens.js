@@ -17,6 +17,18 @@ import { Link } from "react-router-dom";
 const PoolTokens = () => {
   const [loading, setLoading] = useState(false);
   const [tokens, setTokens] = useState([]);
+  const [currentValue, setCurrentValue] = useState(0);
+  const get_current_index_coin = () => {
+    axios
+      .get(`https://api.pecunovus.net/wallet/get_current_index_coin`)
+      .then((res) => {
+        setCurrentValue(res.data[0].value);
+      
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
   const fetchToken = (target) => {
     if (target === "all") {
       setLoading(true);
@@ -37,6 +49,7 @@ const PoolTokens = () => {
   };
   useEffect(() => {
     fetchToken("all");
+    get_current_index_coin()
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return (
@@ -78,10 +91,10 @@ const PoolTokens = () => {
               </TableCell>
               <TableCell className="twhite">Name</TableCell>
               <TableCell className="twhite" align="left">
-                Price
+                Price(PECU)
               </TableCell>
               <TableCell className="twhite" align="left">
-                Available Tokens
+                Total Tokens
               </TableCell>
               <TableCell className="twhite" align="left">
                 Volume
@@ -131,7 +144,7 @@ const PoolTokens = () => {
                     {each.totalToken}
                   </TableCell>
                   <TableCell className="twhite pink" align="left">
-                    {each.investementAmount}
+                    {Math.ceil(each.totalToken*each.tokenPrice*currentValue)}
                   </TableCell>
                 </TableRow>
               ))}

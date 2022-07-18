@@ -63,7 +63,7 @@ const WarpTokens = () => {
               backgroundColor: "#21242b",
             }}
           >
-            Wrap Tokens
+             Tokens
           </p>
           {loading && <LinearProgress color="inherit" />}
         </div>
@@ -85,7 +85,7 @@ const WarpTokens = () => {
                 Price
               </TableCell>
               <TableCell className="twhite" align="left">
-                Available Tokens
+                Total Tokens
               </TableCell>
               <TableCell className="twhite" align="left">
                 Volume
