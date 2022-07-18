@@ -81,7 +81,7 @@ const PoolTokens = () => {
                 Price
               </TableCell>
               <TableCell className="twhite" align="left">
-                Available Tokens
+                Total Tokens
               </TableCell>
               <TableCell className="twhite" align="left">
                 Volume
