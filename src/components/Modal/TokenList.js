@@ -1,23 +1,36 @@
-import { Button, Modal, Paper, StepConnector, Typography } from '@mui/material';
-import { Box } from '@mui/system';
-import React, { useState } from 'react';
+import { Button, Modal, Paper, StepConnector, Typography } from "@mui/material";
+import { Box } from "@mui/system";
+import axios from "axios";
+import React, { useState } from "react";
 const style = {
-    position: "absolute",
-    top: "50%",
-    left: "50%",
-    transform: "translate(-50%, -50%)",
-    width: 400,
-    bgcolor: "drak",
-    border: "2px solid #000",
-    boxShadow: 24,
-    pt: 2,
-    px: 4,
-    pb: 3,
+  position: "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  width: 400,
+  bgcolor: "drak",
+  border: "2px solid #000",
+  boxShadow: 24,
+  pt: 2,
+  px: 4,
+  pb: 3,
+};
+const TokenList = ({ open, handleClose, tokens, modal }) => {
+  const handleSubmit = (data) => {
+    axios
+      .post("http://localhost:3001/hootdex/sell-token", {
+        data: data,
+        timestamp: new Date(),
+      })
+      .then((res) => {
+        handleClose();
+      })
+      .catch((err) => {});
   };
-const TokenList = ({open, handleClose, tokens, modal}) => {
-    return (
-        <div>
-            <Modal
+  // console.log(tokens);
+  return (
+    <div>
+      <Modal
         open={open}
         onClose={handleClose}
         aria-labelledby="parent-modal-title"
@@ -33,7 +46,9 @@ const TokenList = ({open, handleClose, tokens, modal}) => {
             overflowY: "scroll",
           }}
         >
-          <p className="twhite tcenter fontS22">Your {modal === 2 ? "All" : "Pending"} Tokens</p>
+          <p className="twhite tcenter fontS22">
+            {modal === 2 ? "Your all tokens" : "Token Buying Request"}
+          </p>
           <StepConnector sx={{ mt: 1 }} />
           <Paper
             sx={{
@@ -55,12 +70,18 @@ const TokenList = ({open, handleClose, tokens, modal}) => {
               <p>Name</p>
               <p>Amount</p>
               <p>Status</p>
-              <p>Action</p>
+
+              {modal === 1 && (
+                <>
+                  <p>By</p> <p>Action</p>
+                </>
+              )}
             </div>
           </Paper>
           {tokens.length &&
             tokens?.map((each, index) => (
               <Paper
+                key={index}
                 sx={{
                   textAlign: "center",
                   backgroundColor: "#00071a",
@@ -83,14 +104,24 @@ const TokenList = ({open, handleClose, tokens, modal}) => {
                   </div>
                   <h4>{each?.totalToken}</h4>
                   <p>{each?.status}</p>
-                  <Button variant='outline' >Approve</Button>
+                  {modal === 1 && (
+                    <>
+                      <p>{each?.owner}</p>{" "}
+                      <Button
+                        variant="outline"
+                        onClick={() => handleSubmit(each)}
+                      >
+                        Approve
+                      </Button>
+                    </>
+                  )}
                 </div>
               </Paper>
             ))}
         </Box>
       </Modal>
-        </div>
-    );
+    </div>
+  );
 };
 
 export default TokenList;

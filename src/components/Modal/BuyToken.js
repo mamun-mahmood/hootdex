@@ -37,7 +37,7 @@ export default function BuyToken({ each, user, pecuCoins }) {
   const handleClose = () => {
     setOpen(false);
   };
-  const [totalToken, setTotalToken] = useState(0)
+  const [totalToken, setTotalToken] = useState(0);
   const inputData = {
     createdBy: user?.username,
     tokenName: each.tokenName,
@@ -47,7 +47,7 @@ export default function BuyToken({ each, user, pecuCoins }) {
     status: "Pending",
     tokenSymbol: each?.tokenSymbol,
     fileName: each.logo_src,
-    approvedBy: each.approvedBy
+    approvedBy: each.approvedBy,
   };
   const handleChange = (e) => {
     // setInputData({ ...inputData, [e.target.name]: e.target.value });
@@ -56,7 +56,7 @@ export default function BuyToken({ each, user, pecuCoins }) {
     // let value = e.target.value;
     // changeData[name] = value;
     // setInputData(changeData);
-    setTotalToken(e.target.value)
+    setTotalToken(e.target.value);
   };
   const [alert, setAlert] = useState({
     msg: "",
@@ -64,60 +64,60 @@ export default function BuyToken({ each, user, pecuCoins }) {
     loading: false,
   });
   const handleSubmit = (e) => {
-
     // if ( totalToken > 0 && pecuCoins?.coin >= inputData.pecuCoin) {
-      axios
-        .post("https://api.pecunovus.net/hootdex/buy-tokens", {
-          userName: user.username,
-          totalToken: totalToken,
-          inputData: inputData,
-          bTime: new Date(),
-        })
-        .then((res) => {
-          if (res.data.status === "error") {
-            setAlert({
-              msg: res.data.msg,
-              type: "error",
-              show: true,
-            });
-            setTimeout(() => {
-              setAlert({
-                msg: res.data.msg,
-                type: "error",
-                show: false,
-              });
-            }, 4000);
-          }
-          if (res.data.affectedRows > 0) {
-            window.scrollTo(0, 0);
-            setAlert({
-              msg: "Token Purchased!",
-              type: "success",
-              show: true,
-            });
-            setTimeout(() => {
-              setAlert({
-                msg: "Token Purchased!",
-                type: "success",
-                show: false,
-              });
-            }, 3000);
-          }
-        })
-        .catch((err) => {
+    axios
+      .post("http://localhost:3001/hootdex/buy-tokens", {
+        userName: user.username,
+        totalToken: totalToken,
+        inputData: inputData,
+        reqId: Math.floor((Math.random()*1000000)+1),
+        bTime: new Date(),
+      })
+      .then((res) => {
+        if (res.data.status === "error") {
           setAlert({
-            msg: "There was an error!",
+            msg: res.data.msg,
             type: "error",
             show: true,
           });
           setTimeout(() => {
             setAlert({
-              msg: "There was an error!",
+              msg: res.data.msg,
               type: "error",
               show: false,
             });
+          }, 4000);
+        }
+        if (res.data.affectedRows > 0) {
+          window.scrollTo(0, 0);
+          setAlert({
+            msg: "Token Purchased!",
+            type: "success",
+            show: true,
+          });
+          setTimeout(() => {
+            setAlert({
+              msg: "Token Purchased!",
+              type: "success",
+              show: false,
+            });
           }, 3000);
+        }
+      })
+      .catch((err) => {
+        setAlert({
+          msg: "There was an error!",
+          type: "error",
+          show: true,
         });
+        setTimeout(() => {
+          setAlert({
+            msg: "There was an error!",
+            type: "error",
+            show: false,
+          });
+        }, 3000);
+      });
     // } else {
     //   setAlert({
     //     msg: "You don't have enough Pecu coin!",
@@ -135,9 +135,19 @@ export default function BuyToken({ each, user, pecuCoins }) {
   };
   return (
     <>
-      <span onClick={handleOpen} className="heading-btn">
-        Buy
-      </span>
+      <IconButton
+        sx={{
+          backgroundColor: "#091e17",
+          color: "white",
+          padding: "8px 16px",
+          borderRadius: "12px",
+          cursor: "pointer",
+        }}
+        className="shadow"
+        onClick={handleOpen}
+      >
+        <p>Trade</p>
+      </IconButton>
       <Modal
         open={open}
         onClose={handleClose}
@@ -148,21 +158,23 @@ export default function BuyToken({ each, user, pecuCoins }) {
           className="border"
           sx={{ ...style, width: 800, backdropFilter: "blur(5px)" }}
         >
-          <h2 className="twhite tcenter">Buy Token</h2>
           <StepConnector />
           <Box sx={{ mt: 2, position: "fixed", zIndex: 1000, top: 0 }}>
-        <div style={{ display: "flex", justifyContent: "center" }}>
-          <Collapse in={alert.show} sx={{ maxWidth: 400, position: "fixed" }}>
-            <Alert
-              variant="outlined"
-              severity={alert.type}
-              sx={{ mb: 2, backgroundColor: "white", fontSize: "18px" }}
-            >
-              {alert.msg}
-            </Alert>
-          </Collapse>
-        </div>
-      </Box>
+            <div style={{ display: "flex", justifyContent: "center" }}>
+              <Collapse
+                in={alert.show}
+                sx={{ maxWidth: 400, position: "fixed" }}
+              >
+                <Alert
+                  variant="outlined"
+                  severity={alert.type}
+                  sx={{ mb: 2, backgroundColor: "white", fontSize: "18px" }}
+                >
+                  {alert.msg}
+                </Alert>
+              </Collapse>
+            </div>
+          </Box>
           <Grid container spacing={5}>
             <Grid item xs={6} md={4} sx={{ mt: 3 }}>
               <Paper

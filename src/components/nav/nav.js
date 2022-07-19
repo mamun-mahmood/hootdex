@@ -184,9 +184,9 @@ export default function Nav({ fetchWallet, wallet }) {
             {tokens.length &&
               tokens.map((each, index) => (
                 <TableRow key={each.id}>
-                  <TableCell className="twhite" component="th" scope="row">
+                  {/* <TableCell className="twhite" component="th" scope="row">
                     {each.id}
-                  </TableCell>
+                  </TableCell> */}
                   <TableCell className="twhite" align="left">
                     <Link to={`/t/${each.tokenName}`}>
                       <div
