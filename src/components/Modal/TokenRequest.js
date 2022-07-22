@@ -36,8 +36,10 @@ export default function TokenRequest({ each, index, user, fetchTokens }) {
     if (user.username) {
       axios
         .post(`https://api.pecunovus.net/hootdex/approve-token`, {
+          id: each.id,
           approvedBy: user?.username,
           tokenName: each.tokenName,
+          tokenPrice: each.tokenPrice,
           aTime: new Date(),
         })
         .then((res) => {

@@ -38,17 +38,6 @@ export default function BuyToken({ each, user, pecuCoins }) {
     setOpen(false);
   };
   const [totalToken, setTotalToken] = useState(0);
-  const inputData = {
-    createdBy: user?.username,
-    tokenName: each.tokenName,
-    investementAmount: each?.investementAmount,
-    pecuCoin: each.pecuCoin,
-    tokenPrice: each.tokenPrice,
-    status: "Pending",
-    tokenSymbol: each?.tokenSymbol,
-    fileName: each.logo_src,
-    approvedBy: each.approvedBy,
-  };
   const handleChange = (e) => {
     // setInputData({ ...inputData, [e.target.name]: e.target.value });
     // let changeData = { ...inputData };
@@ -66,10 +55,10 @@ export default function BuyToken({ each, user, pecuCoins }) {
   const handleSubmit = (e) => {
     // if ( totalToken > 0 && pecuCoins?.coin >= inputData.pecuCoin) {
     axios
-      .post("http://localhost:3001/hootdex/buy-tokens", {
+      .post("https://api.pecunovus.net/hootdex/buy-tokens", {
         userName: user.username,
-        totalToken: totalToken,
-        inputData: inputData,
+        tokenAmount: totalToken,
+        token: each,
         reqId: Math.floor((Math.random()*1000000)+1),
         bTime: new Date(),
       })

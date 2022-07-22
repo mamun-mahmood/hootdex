@@ -8,9 +8,9 @@ export default function CreateToken() {
   const [alert, setAlert] = useState({
     msg: "",
     type: "",
-    loading: false,
+    show: false,
   });
-
+  const [currentValue, setCurrentValue] = useState(null);
   const [inputData, setInputData] = useState({
     createdBy: user.username,
     tokenName: "",
@@ -22,9 +22,9 @@ export default function CreateToken() {
     tokenSymbol: "",
     fileName: "",
     approvedBy: "",
+    pecuRate: currentValue,
     cTime: new Date(),
   });
-  const [currentValue, setCurrentValue] = useState(0);
   const get_current_index_coin = () => {
     axios
       .get(`https://api.pecunovus.net/wallet/get_current_index_coin`)
@@ -63,7 +63,7 @@ export default function CreateToken() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (inputData.pecuCoin) {
+    if (inputData.pecuCoin && currentValue) {
       axios
         .post("https://api.pecunovus.net/hootdex/create-tokens", inputData)
         .then((res) => {
@@ -153,6 +153,7 @@ export default function CreateToken() {
     let tokenPrice = totalPecuCoin / inputData.totalToken;
     changeData["pecuCoin"] = totalPecuCoin;
     changeData["tokenPrice"] = tokenPrice;
+    changeData["pecuRate"] = pecuRate;
     setInputData(changeData);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [inputData.investementAmount, inputData.totalToken]);
@@ -171,7 +172,7 @@ export default function CreateToken() {
   }, [user]);
   return user && user.username ? (
     <div className="screen" style={{ padding: "1rem" }}>
-      <Box sx={{ mt: 2, position: "fixed", zIndex: 1000, top: 0 }}>
+      <Box sx={{ mt: 2, position: "fixed", zIndex: 1002, top: 80 }}>
         <div style={{ display: "flex", justifyContent: "center" }}>
           <Collapse in={alert.show} sx={{ maxWidth: 400, position: "fixed" }}>
             <Alert

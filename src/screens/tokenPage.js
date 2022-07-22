@@ -107,7 +107,10 @@ export default function TokenPage({ pecuCoins, user }) {
                   fontSize: "36px",
                 }}
               >
-                ${Math.ceil(token.totalToken * token.tokenPrice * currentValue)}{" "}
+                $
+                {Math.ceil(
+                  token.totalToken * token.currentPrice * currentValue
+                )}{" "}
                 <small style={{ fontSize: "18px", color: "#4caf50" }}>
                   (<ArrowUpwardIcon sx={{ fontSize: "18px" }} />
                   10.89%)
@@ -242,7 +245,7 @@ export default function TokenPage({ pecuCoins, user }) {
                 </div>
               </div>
               <div style={{ display: "flex", justifyContent: "center" }}>
-                <AssetChart />
+                <AssetChart tokenName={tokenName} />
               </div>
             </div>
           </Grid>
