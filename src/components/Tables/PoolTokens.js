@@ -39,7 +39,7 @@ const PoolTokens = () => {
           setLoading(false);
         })
         .catch((err) => {
-          setLoading(false);
+          setLoading(false); 
         });
     } else {
       setLoading(true);
@@ -138,13 +138,13 @@ const PoolTokens = () => {
                     </Link>
                   </TableCell>
                   <TableCell className="twhite green" align="left">
-                    {each.tokenPrice}
+                    {each.currentPrice}
                   </TableCell>
                   <TableCell className="twhite yellow" align="left">
                     {each.totalToken}
                   </TableCell>
                   <TableCell className="twhite pink" align="left">
-                    {Math.ceil(each.totalToken*each.tokenPrice*currentValue)}
+                    {Math.ceil(each.totalToken* each.currentPrice *currentValue)}
                   </TableCell>
                 </TableRow>
               ))}

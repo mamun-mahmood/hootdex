@@ -4,14 +4,13 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 
 export default function CreateToken() {
-
-const [user,setUser]=useState("")
+  const [user, setUser] = useState("");
   const [alert, setAlert] = useState({
     msg: "",
     type: "",
-    loading: false,
+    show: false,
   });
-
+  const [currentValue, setCurrentValue] = useState(null);
   const [inputData, setInputData] = useState({
     createdBy: user.username,
     tokenName: "",
@@ -23,17 +22,16 @@ const [user,setUser]=useState("")
     tokenSymbol: "",
     fileName: "",
     approvedBy: "",
+    pecuRate: currentValue,
     cTime: new Date(),
   });
-  const [currentValue, setCurrentValue] = useState(0);
   const get_current_index_coin = () => {
     axios
       .get(`https://api.pecunovus.net/wallet/get_current_index_coin`)
       .then((res) => {
         setCurrentValue(res.data[0].value);
-      
       })
-      .catch(err => {
+      .catch((err) => {
         console.log(err);
       });
   };
@@ -46,8 +44,7 @@ const [user,setUser]=useState("")
       .then((res) => {
         if (res.data.status === "ok") {
           setInputData({ ...inputData, fileName: res.data.fileName });
-        }
-        else {
+        } else {
           setAlert({
             msg: "Image upload failed",
             type: "error",
@@ -66,7 +63,7 @@ const [user,setUser]=useState("")
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (inputData.pecuCoin) {
+    if (inputData.pecuCoin && currentValue) {
       axios
         .post("https://api.pecunovus.net/hootdex/create-tokens", inputData)
         .then((res) => {
@@ -144,43 +141,39 @@ const [user,setUser]=useState("")
     let changeData = { ...inputData };
     let name = e.target.name;
     let value = e.target.value;
-    
+
     changeData[name] = value;
     setInputData(changeData);
   };
 
   useEffect(() => {
-    let pecuRate =currentValue;
+    let pecuRate = currentValue;
     let changeData = { ...inputData };
     let totalPecuCoin = inputData.investementAmount / pecuRate;
     let tokenPrice = totalPecuCoin / inputData.totalToken;
     changeData["pecuCoin"] = totalPecuCoin;
     changeData["tokenPrice"] = tokenPrice;
+    changeData["pecuRate"] = pecuRate;
     setInputData(changeData);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [inputData.investementAmount, inputData.totalToken]);
 
-
   useEffect(() => {
-    let data = localStorage.getItem('hootdex_secretcookie');
+    let data = localStorage.getItem("hootdex_secretcookie");
 
     if (data) {
       setUser(JSON.parse(data));
-      get_current_index_coin()
+      get_current_index_coin();
     }
-  
   }, []);
 
   useEffect(() => {
-    setInputData({...inputData, createdBy:user.username})
-  },[user])
-  return (
-user&&user.username?
-    <div className="screen" style={{ padding: '1rem' }}>
-      
-      <Box sx={{ mt: 2, position: "fixed", zIndex: 1000, top: 0 }}>
+    setInputData({ ...inputData, createdBy: user.username });
+  }, [user]);
+  return user && user.username ? (
+    <div className="screen" style={{ padding: "1rem" }}>
+      <Box sx={{ mt: 2, position: "fixed", zIndex: 1002, top: 80 }}>
         <div style={{ display: "flex", justifyContent: "center" }}>
-         
           <Collapse in={alert.show} sx={{ maxWidth: 400, position: "fixed" }}>
             <Alert
               variant="outlined"
@@ -194,7 +187,7 @@ user&&user.username?
       </Box>
       <form id="myForm" className="form" onSubmit={handleSubmit}>
         <h3>Create Token</h3>
-     
+
         <label className="label">Token Name</label>
         <input
           className="input"
@@ -270,6 +263,10 @@ user&&user.username?
           Submit Request
         </button>
       </form>
-    </div>:<div className="screen" style={{ padding: '1rem' }}><h1 style={{color:'#fff'}}>Loading...</h1></div>
+    </div>
+  ) : (
+    <div className="screen" style={{ padding: "1rem" }}>
+      <h1 style={{ color: "#fff" }}>Loading...</h1>
+    </div>
   );
 }

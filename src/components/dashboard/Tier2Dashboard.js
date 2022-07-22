@@ -158,61 +158,70 @@ function DashboardContent({ user, pecuCoins }) {
   const [tab, setTab] = React.useState("Vault");
   return (
     <>
-      <div style={{ display: "flex", backgroundColor: "#091e17" }}>
+      <div style={{ display: "flex" }}>
         {/* Sidebar */}
-        <Box sx={{ backgroundColor: "#002945" }}>
+        <Box>
           <ClickAwayListener onClickAway={() => setOpenD(false)}>
             <Drawer
               variant="permanent"
               open={openD}
-              sx={{ backgroundColor: "#002945" }}
+              sx={{ border: 'none' }}
               onClose={() => setOpenD(!openD)}
+              PaperProps={{style: {border: 'none', borderRight: "2px solid #01402b"}}}
             >
-              <Toolbar
-                sx={{
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "flex-end",
-                  backgroundColor: "#01402b",
-                  textAlign: "center",
-                }}
-              >
-                <div onClick={toggleDrawer} style={{ cursor: "pointer" }}>
-                  {openD === false && (
-                    <MenuIcon sx={{ width: 40, height: 40 }} />
-                  )}
-                  {openD && <ChevronLeftIcon sx={{ width: 40, height: 40 }} />}
-                </div>
-              </Toolbar>
               <List
                 sx={{
-                  backgroundColor: "#01402b",
-                  minWidth: "100%",
+                  backgroundColor: '#04251a',
+                  // background:
+                  //   "linear-gradient(to bottom, #01402b, #023927, #033223, #032c1e, #04251a)",
+                  width: "100%",
                   height: "100vh",
                   overflowX: "hidden",
                 }}
-              >    <ListItemButton
-              sx={{
-                color: "white",
-                backgroundColor: "#00071a",
-                borderTopRightRadius: "20px",
-                borderBottomRightRadius: "20px",
-                width: "95%",
-                mb: 1,
-                border: "1px solid #091e17",
-              }}
-              onClick={() => setTab("Vault")}
-            >
-              <ListItemIcon>
-                <img src={Vault} alt="vault icon" />
-              </ListItemIcon>
-              <ListItemText primary="Vault" />
-            </ListItemButton>
-           
+              >
                 <ListItemButton
                   sx={{
                     color: "white",
-                    backgroundColor: "#00071a",
+                    // width: "95%",
+                    mb: 1,
+                    borderBottom: "1px solid #091e17",
+                    borderTop: "1px solid #091e17",
+                  }}
+                  onClick={toggleDrawer}
+                  // className={`${tab === 'Vault' && "button-hover"}`}
+                >
+                   <ListItemIcon sx={{color: "#00071a",}} >
+                   {openD === false && (
+                      <MenuIcon sx={{ width: 40, height: 40 }} />
+                    )}
+                    {openD && (
+                      <ChevronLeftIcon sx={{ width: 40, height: 40, textAlign: "end" }} />
+                    )}
+                  </ListItemIcon>
+                </ListItemButton>{" "}
+                <ListItemButton
+                  sx={{
+                    color: "white",
+                    backgroundColor: `${tab === "Vault" ? "" : "#00071a"}`,
+                    borderTopRightRadius: "20px",
+                    borderBottomRightRadius: "20px",
+                    width: "95%",
+                    mb: 1,
+                    border: "1px solid #091e17",
+                  }}
+                  onClick={() => setTab("Vault")}
+
+                  // className={`${tab === 'Vault' && "button-hover"}`}
+                >
+                  <ListItemIcon>
+                    <img src={Vault} alt="vault icon" />
+                  </ListItemIcon>
+                  <ListItemText primary="Vault" />
+                </ListItemButton>
+                <ListItemButton
+                  sx={{
+                    color: "white",
+                    backgroundColor: `${tab === "Wallet" ? "" : "#00071a"}`,
                     borderTopRightRadius: "20px",
                     borderBottomRightRadius: "20px",
                     width: "95%",
@@ -230,7 +239,7 @@ function DashboardContent({ user, pecuCoins }) {
                   <ListItemButton
                     sx={{
                       color: "white",
-                      backgroundColor: "#00071a",
+                      backgroundColor: `${tab === "Users" ? "" : "#00071a"}`,
                       borderTopRightRadius: "20px",
                       borderBottomRightRadius: "20px",
                       width: "95%",
@@ -248,7 +257,7 @@ function DashboardContent({ user, pecuCoins }) {
                 <ListItemButton
                   sx={{
                     color: "white",
-                    backgroundColor: "#00071a",
+                    backgroundColor: `${tab === "Token" ? "" : "#00071a"}`,
                     borderTopRightRadius: "20px",
                     borderBottomRightRadius: "20px",
                     width: "95%",
@@ -262,10 +271,10 @@ function DashboardContent({ user, pecuCoins }) {
                   </ListItemIcon>
                   <ListItemText primary="Tokens" />
                 </ListItemButton>
-             <ListItemButton
+                <ListItemButton
                   sx={{
                     color: "white",
-                    backgroundColor: "#00071a",
+                    backgroundColor: `${tab === "Profile" ? "" : "#00071a"}`,
                     borderTopRightRadius: "20px",
                     borderBottomRightRadius: "20px",
                     width: "95%",

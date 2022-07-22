@@ -27,6 +27,7 @@ export default function Chart() {
   useEffect(() => {
     getChatData("yearly");
   }, []);
+  // console.log(chartData);
   return (
     <div
       style={{

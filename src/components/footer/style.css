@@ -6,7 +6,8 @@
   padding: 0.7rem, 0;
   color: #fff;
   text-align: center;
-  background-color: #01402b;
+  background-image: linear-gradient(to right, #04251a, #032c1e, #033223, #023927, #01402b);
+  box-shadow: 0px 0px 1px 0px rgba(255, 255, 255, 1);
   
 }
 

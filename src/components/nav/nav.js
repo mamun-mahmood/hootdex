@@ -146,11 +146,11 @@ export default function Nav({ fetchWallet, wallet }) {
                 borderBottomRightRadius: "1rem",
                 position: "absolute",
                 // left: 0,
-                width: 500,
+                maxWidth: 500,
                 animation: "fadeIn 0.4s ease-in-out",
                 // mt:"1px"
               }}
-              className="borderGrey"
+              className="borderGrey hide-scrollbar "
               component={Paper}
             >
               {tokens.length ? (
@@ -159,6 +159,7 @@ export default function Nav({ fetchWallet, wallet }) {
                     [`& .${tableCellClasses.root}`]: {
                       borderBottom: " 1px solid #1e2128",
                     },
+                    width: "100%",
                   }}
                 >
                   <TableHead className="">
@@ -183,9 +184,9 @@ export default function Nav({ fetchWallet, wallet }) {
             {tokens.length &&
               tokens.map((each, index) => (
                 <TableRow key={each.id}>
-                  <TableCell className="twhite" component="th" scope="row">
+                  {/* <TableCell className="twhite" component="th" scope="row">
                     {each.id}
-                  </TableCell>
+                  </TableCell> */}
                   <TableCell className="twhite" align="left">
                     <Link to={`/t/${each.tokenName}`}>
                       <div
@@ -232,10 +233,12 @@ export default function Nav({ fetchWallet, wallet }) {
                 rowsPerPageOptions={[10, 50]}
                 onChange={(e) => setRows(e)}
               /> */}
-          </TableBody>
+                  </TableBody>
                 </Table>
               ) : (
-                <p style={{ textAlign: "center", color: "white" }}>Nothing to show !</p>
+                <p style={{ textAlign: "center", color: "white" }}>
+                  Nothing to show !
+                </p>
               )}
             </TableContainer>
           )}

@@ -38,9 +38,8 @@ export default function TokenPage({ pecuCoins, user }) {
       .get(`https://api.pecunovus.net/wallet/get_current_index_coin`)
       .then((res) => {
         setCurrentValue(res.data[0].value);
-      
       })
-      .catch(err => {
+      .catch((err) => {
         console.log(err);
       });
   };
@@ -71,12 +70,12 @@ export default function TokenPage({ pecuCoins, user }) {
       });
   }, [tokenName]);
   useEffect(() => {
-    get_current_index_coin()
-  },[])
+    get_current_index_coin();
+  }, []);
 
   return (
     <>
-      {loading && <LinearProgress sx={{backgroundColor: 'grey'}} />}
+      {loading && <LinearProgress sx={{ backgroundColor: "grey" }} />}
       <div style={{ padding: "3rem" }}>
         <Grid container spacing={3} mb={1}>
           <Grid item xs={12} md={6}>
@@ -108,7 +107,10 @@ export default function TokenPage({ pecuCoins, user }) {
                   fontSize: "36px",
                 }}
               >
-                ${Math.ceil(token.totalToken*token.tokenPrice*currentValue)}{" "}
+                $
+                {Math.ceil(
+                  token.totalToken * token.currentPrice * currentValue
+                )}{" "}
                 <small style={{ fontSize: "18px", color: "#4caf50" }}>
                   (<ArrowUpwardIcon sx={{ fontSize: "18px" }} />
                   10.89%)
@@ -140,18 +142,8 @@ export default function TokenPage({ pecuCoins, user }) {
                 <GetAppIcon />
                 <p>Add Liquidity</p>
               </IconButton>
-              <IconButton
-                sx={{
-                  backgroundColor: "#091e17",
-                  color: "white",
-                  padding: "8px 16px",
-                  borderRadius: "12px",
-                  cursor: "pointer",
-                }}
-                className="shadow"
-              >
-                <p>Trade</p>
-              </IconButton>
+              {/* buy token modal */}
+              <BuyToken each={token} pecuCoins={pecuCoins} user={user} />
             </div>
           </Grid>
           <Grid item xs={12} md={4} mt={3}>
@@ -253,7 +245,7 @@ export default function TokenPage({ pecuCoins, user }) {
                 </div>
               </div>
               <div style={{ display: "flex", justifyContent: "center" }}>
-                <AssetChart />
+                <AssetChart tokenName={tokenName} />
               </div>
             </div>
           </Grid>
