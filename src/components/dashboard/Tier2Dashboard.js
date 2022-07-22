@@ -81,7 +81,7 @@ function DashboardContent({ user, pecuCoins }) {
   const getMyCoins = (id) => {
     if (id) {
       axios
-        .post(`${"https://api.pecunovus.net"}/wallet/getMycoins`, {
+        .post(`${"http://localhost:3001"}/wallet/getMycoins`, {
           user_id: id,
         })
         .then((res) => {
@@ -95,7 +95,7 @@ function DashboardContent({ user, pecuCoins }) {
   const getMyCoinsVault = (id) => {
     if (id) {
       axios
-        .post(`${"https://api.pecunovus.net"}/vault/getCoins`, {
+        .post(`${"http://localhost:3001"}/vault/getCoins`, {
           uid: id,
         })
         .then((res) => {
@@ -108,7 +108,7 @@ function DashboardContent({ user, pecuCoins }) {
   const getNftCount = (email) => {
     if (email) {
       axios
-        .post(`https://api.pecunovus.net/vault/getNftCount`, {
+        .post(`http://localhost:3001/vault/getNftCount`, {
           email: email,
         })
         .then((res) => {
@@ -120,14 +120,14 @@ function DashboardContent({ user, pecuCoins }) {
   useEffect(() => {
     if (username) {
       axios
-        .get(`https://api.pecunovus.net/hootdex/token/${username}`)
+        .get(`http://localhost:3001/hootdex/token/${username}`)
         .then((res) => {
           setTokenCreated(res.data.reverse());
         });
       console.log(username);
       axios
         .get(
-          `https://api.pecunovus.net/hootdex/token-buying-request/${username}`
+          `http://localhost:3001/hootdex/token-buying-request/${username}`
         )
         .then((res) => {
           setPendingTokens(res.data);

@@ -27,7 +27,7 @@ export default function CreateToken() {
   });
   const get_current_index_coin = () => {
     axios
-      .get(`https://api.pecunovus.net/wallet/get_current_index_coin`)
+      .get(`http://localhost:3001/wallet/get_current_index_coin`)
       .then((res) => {
         setCurrentValue(res.data[0].value);
       })
@@ -40,7 +40,7 @@ export default function CreateToken() {
     formData.append("image", e.target.files[0]);
     formData.append("fileName", e.target.files[0].name);
     axios
-      .post("https://api.pecunovus.net/hootdex/token-logo-upload", formData)
+      .post("http://localhost:3001/hootdex/token-logo-upload", formData)
       .then((res) => {
         if (res.data.status === "ok") {
           setInputData({ ...inputData, fileName: res.data.fileName });
@@ -65,7 +65,7 @@ export default function CreateToken() {
 
     if (inputData.pecuCoin && currentValue) {
       axios
-        .post("https://api.pecunovus.net/hootdex/create-tokens", inputData)
+        .post("http://localhost:3001/hootdex/create-tokens", inputData)
         .then((res) => {
           if (res.data.status === "error") {
             setAlert({
