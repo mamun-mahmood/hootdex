@@ -5,33 +5,33 @@ import {
   Divider,
   Grid,
   IconButton,
-  LinearProgress
-} from '@mui/material';
-import { Box } from '@mui/system';
-import axios from 'axios';
-import React from 'react';
-import { useEffect } from 'react';
-import { useState } from 'react';
-import { useParams } from 'react-router-dom';
-import BuyToken from '../components/Modal/BuyToken';
-import Chart from './chart';
-import GetAppIcon from '@mui/icons-material/GetApp';
-import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
-import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
-import TinyLineChart from '../components/Charts/TinyLineChart';
-import AssetChart from '../components/dashboard/AssetChart';
-import WarpTokens from '../components/Tables/WarpTokens';
-import PoolTokens from '../components/Tables/PoolTokens';
-import url from '../serverUrl';
+  LinearProgress,
+} from "@mui/material";
+import { Box } from "@mui/system";
+import axios from "axios";
+import React from "react";
+import { useEffect } from "react";
+import { useState } from "react";
+import { useParams } from "react-router-dom";
+import BuyToken from "../components/Modal/BuyToken";
+import Chart from "./chart";
+import GetAppIcon from "@mui/icons-material/GetApp";
+import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
+import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
+import TinyLineChart from "../components/Charts/TinyLineChart";
+import AssetChart from "../components/dashboard/AssetChart";
+import WarpTokens from "../components/Tables/WarpTokens";
+import PoolTokens from "../components/Tables/PoolTokens";
+import url from "../serverUrl";
 export default function TokenPage({ pecuCoins, user }) {
   const tokenName = useParams().tokenName;
   const [token, setToken] = useState({});
   const [loading, setLoading] = useState(false);
   const [chartBtn, setChartBtn] = useState(2);
   const [alert, setAlert] = useState({
-    msg: '',
-    type: '',
-    show: false
+    msg: "",
+    type: "",
+    show: false,
   });
   const [currentValue, setCurrentValue] = useState(0);
   const get_current_index_coin = () => {
@@ -56,15 +56,15 @@ export default function TokenPage({ pecuCoins, user }) {
       .catch((err) => {
         setLoading(false);
         setAlert({
-          msg: 'There was an error',
-          type: 'error',
-          show: true
+          msg: "There was an error",
+          type: "error",
+          show: true,
         });
         setTimeout(() => {
           setAlert({
-            msg: 'There was an error',
-            type: 'error',
-            show: false
+            msg: "There was an error",
+            type: "error",
+            show: false,
           });
         }, 3000);
         console.log(err);
@@ -73,11 +73,34 @@ export default function TokenPage({ pecuCoins, user }) {
   useEffect(() => {
     get_current_index_coin();
   }, []);
-
+  const [tokenPrice, setTokenPrice] = useState([
+    {
+      currentPrice: null,
+      previousPrice: null,
+    },
+  ]);
+  const currentPrice = tokenPrice[0]?.currentPrice;
+  const previousPrice = tokenPrice[0]?.previousPrice;
+  console.log(tokenPrice);
+  // const [priceUp, setPriceUp] = useState(true);
+  // const [priceVarriation, setPriceVarriation] = useState(0);
+  let priceUp = true;
+  let priceVarriation = false;
+  if (currentPrice && previousPrice && currentPrice > previousPrice) {
+    priceVarriation = currentPrice - previousPrice;
+    priceUp = true;
+  }
+  if (currentPrice && previousPrice && currentPrice < previousPrice) {
+    priceVarriation = previousPrice - currentPrice;
+    priceUp = false;
+  }
+  const tokenPriceIncreasePercentage = (priceVarriation / previousPrice) * 100;
+  console.log(token);
+  // const timeofL = token?.aTime?.toDateString()
   return (
     <>
-      {loading && <LinearProgress sx={{ backgroundColor: 'grey' }} />}
-      <div style={{ padding: '3rem' }}>
+      {loading && <LinearProgress sx={{ backgroundColor: "grey" }} />}
+      <div style={{ padding: "3rem" }}>
         <Grid container spacing={3} mb={1}>
           <Grid item xs={12} md={6}>
             <div className="dfelxalitemC">
@@ -87,57 +110,62 @@ export default function TokenPage({ pecuCoins, user }) {
               />
               <p
                 style={{
-                  color: 'white',
-                  marginLeft: '1rem',
-                  fontSize: '26px',
-                  fontWeight: '500',
-                  fontFamily: 'Iner var sans-serif'
+                  color: "white",
+                  marginLeft: "1rem",
+                  fontSize: "26px",
+                  fontWeight: "500",
+                  fontFamily: "Iner var sans-serif",
                 }}
               >
-                {token?.tokenName}{' '}
-                <span style={{ fontSize: '20px', color: 'rgb(195, 197, 203)' }}>
+                {token?.tokenName}{" "}
+                <span style={{ fontSize: "20px", color: "rgb(195, 197, 203)" }}>
                   ({token?.tokenSymbol})
-                </span>{' '}
+                </span>{" "}
               </p>
             </div>
             <div>
               <p
                 className="token-page-t2"
                 style={{
-                  marginTop: '0.5rem',
-                  fontSize: '36px'
+                  marginTop: "0.5rem",
+                  fontSize: "32px",
                 }}
               >
-                $
-                {Math.ceil(
-                  token.totalToken * token.currentPrice * currentValue
-                )}{' '}
-                <small style={{ fontSize: '18px', color: '#4caf50' }}>
-                  (<ArrowUpwardIcon sx={{ fontSize: '18px' }} />
-                  10.89%)
-                </small>{' '}
+                ${token?.currentPrice?.toFixed(5)}{" "}
+                {/* {tokenPrice[0]?.previousPrice} */}
+                {priceUp ? (
+                  <small style={{ fontSize: "18px", color: "#4caf50" }}>
+                    (<ArrowUpwardIcon sx={{ fontSize: "18px" }} />
+                    {tokenPriceIncreasePercentage?.toFixed(2)}%)
+                  </small>
+                ) : (
+                  <small style={{ fontSize: "18px", color: "red" }}>
+                    (<ArrowDownwardIcon sx={{ fontSize: "18px" }} />
+                    {tokenPriceIncreasePercentage?.toFixed(2)}%)
+                  </small>
+                )}
               </p>
             </div>
           </Grid>
           <Grid item xs={12} md={6}>
             <div
               style={{
-                display: 'flex',
-                justifyContent: 'end',
-                marginTop: '3rem'
+                display: "flex",
+                justifyContent: "end",
+                marginTop: "3rem",
               }}
             >
               <IconButton
                 className="dfelxalitemC shadow"
                 sx={{
-                  backgroundColor: 'rgb(64, 68, 79)',
-                  color: 'rgb(195, 197, 203)',
+                  backgroundColor: "rgb(64, 68, 79)",
+                  color: "rgb(195, 197, 203)",
                   // padding: "8px 14px",
-                  borderRadius: '12px',
-                  cursor: 'pointer',
+                  borderRadius: "12px",
+                  cursor: "pointer",
                   // width: "170px",
-                  marginRight: '1rem',
-                  fontWeight: '800'
+                  marginRight: "1rem",
+                  fontWeight: "800",
                 }}
               >
                 <GetAppIcon />
@@ -150,43 +178,46 @@ export default function TokenPage({ pecuCoins, user }) {
           <Grid item xs={12} md={4} mt={3}>
             <div
               style={{
-                backgroundColor: 'rgb(25, 27, 31)',
-                borderRadius: '20px',
-                height: '100%',
-                padding: '1.5rem'
+                backgroundColor: "rgb(25, 27, 31)",
+                borderRadius: "20px",
+                height: "100%",
+                padding: "1.5rem",
               }}
               className="shadowGrey"
             >
-              <div style={{ marginBottom: '1rem' }}>
+              <div style={{ marginBottom: "1rem" }}>
                 <p className="token-page-t1 mb-1">TVL</p>
                 <p className="token-page-t2 mb-1">
                   ${token?.investementAmount}
                 </p>
-                <small style={{ fontSize: '18px', color: 'red' }}>
-                  <ArrowDownwardIcon sx={{ fontSize: '18px' }} />
+                {/* <small style={{ fontSize: "18px", color: "red" }}>
+                  <ArrowDownwardIcon sx={{ fontSize: "18px" }} />
                   10.89%
-                </small>{' '}
+                </small>{" "} */}
               </div>
-              <div style={{ marginBottom: '1rem' }}>
-                <p className="token-page-t1 mb-1">24h Trading Vol</p>
+              <div style={{ marginBottom: "1rem" }}>
+                {/* <p className="token-page-t1 mb-1">24h Trading Vol</p> */}
+                <p className="token-page-t1 mb-1">Available</p>
                 <p className="token-page-t2 mb-1">
-                  ${token?.investementAmount}
+                  ${token?.totalToken}
                 </p>
-                <small style={{ fontSize: '18px', color: 'red' }}>
-                  <ArrowDownwardIcon sx={{ fontSize: '18px' }} />
+                {/* <small style={{ fontSize: "18px", color: "red" }}>
+                  <ArrowDownwardIcon sx={{ fontSize: "18px" }} />
                   10.89%
-                </small>{' '}
+                </small>{" "} */}
               </div>
-              <div style={{ marginBottom: '1rem' }}>
-                <p className="token-page-t1 mb-1">7d Trading Vol</p>
+              <div style={{ marginBottom: "1rem" }}>
+                {/* <p className="token-page-t1 mb-1">7d Trading Vol</p> */}
+                <p className="token-page-t1 mb-1">Initial Price</p>
                 <p className="token-page-t2 mb-1">
-                  ${token?.investementAmount}
+                  ${token?.tokenPrice?.toFixed(5)}
                 </p>
               </div>
-              <div style={{ marginBottom: '1rem' }}>
-                <p className="token-page-t1 mb-1">24h Fees</p>
+              <div style={{ marginBottom: "1rem" }}>
+                {/* <p className="token-page-t1 mb-1">24h Fees</p> */}
+                <p className="token-page-t1 mb-1">Created By</p>
                 <p className="token-page-t2 mb-1">
-                  ${token?.investementAmount}
+                  ${token?.createdBy}
                 </p>
               </div>
             </div>
@@ -200,28 +231,33 @@ export default function TokenPage({ pecuCoins, user }) {
           >
             <div
               style={{
-                backgroundColor: 'rgb(25, 27, 31)',
-                height: '100%',
-                borderRadius: '20px',
-                padding: '1.5rem'
+                backgroundColor: "rgb(25, 27, 31)",
+                height: "100%",
+                borderRadius: "20px",
+                padding: "1.5rem",
               }}
               className="shadowGrey"
             >
               <div className="dfelxJsb">
                 <div>
-                  <p className="token-page-t2">$2.15k</p>
+                  <p className="token-page-t2">
+                    $
+                    {Math.ceil(
+                      token.totalToken * token.currentPrice * currentValue
+                    )}
+                  </p>
                   <p className="token-page-t1">{date}</p>
                 </div>
                 <div
                   style={{
-                    backgroundColor: 'rgb(44, 47, 54)',
-                    borderRadius: '12px'
+                    backgroundColor: "rgb(44, 47, 54)",
+                    borderRadius: "12px",
                   }}
                   className="dsparound"
                 >
                   <p
                     className={`${
-                      chartBtn === 1 && 'chart_btn_selected'
+                      chartBtn === 1 && "chart_btn_selected"
                     } chart_btn`}
                     onClick={() => setChartBtn(1)}
                   >
@@ -229,7 +265,7 @@ export default function TokenPage({ pecuCoins, user }) {
                   </p>
                   <p
                     className={`${
-                      chartBtn === 2 && 'chart_btn_selected'
+                      chartBtn === 2 && "chart_btn_selected"
                     } chart_btn`}
                     onClick={() => setChartBtn(2)}
                   >
@@ -237,7 +273,7 @@ export default function TokenPage({ pecuCoins, user }) {
                   </p>
                   <p
                     className={`${
-                      chartBtn === 3 && 'chart_btn_selected'
+                      chartBtn === 3 && "chart_btn_selected"
                     } chart_btn`}
                     onClick={() => setChartBtn(3)}
                   >
@@ -245,8 +281,11 @@ export default function TokenPage({ pecuCoins, user }) {
                   </p>
                 </div>
               </div>
-              <div style={{ display: 'flex', justifyContent: 'center' }}>
-                <AssetChart tokenName={tokenName} />
+              <div style={{ display: "flex", justifyContent: "center" }}>
+                <AssetChart
+                  tokenName={tokenName}
+                  setTokenPrice={setTokenPrice}
+                />
               </div>
             </div>
           </Grid>
@@ -255,12 +294,12 @@ export default function TokenPage({ pecuCoins, user }) {
             <PoolTokens />
           </Grid>
         </Grid>
-        <div style={{ display: 'flex', justifyContent: 'center' }}>
-          <Collapse in={alert.show} sx={{ maxWidth: 400, position: 'fixed' }}>
+        <div style={{ display: "flex", justifyContent: "center" }}>
+          <Collapse in={alert.show} sx={{ maxWidth: 400, position: "fixed" }}>
             <Alert
               variant="outlined"
               severity={alert.type}
-              sx={{ mb: 2, backgroundColor: 'white', fontSize: '18px' }}
+              sx={{ mb: 2, backgroundColor: "white", fontSize: "18px" }}
             >
               {alert.msg}
             </Alert>

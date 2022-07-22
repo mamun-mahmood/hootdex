@@ -1,6 +1,7 @@
-import { Typography } from '@mui/material';
-import axios from 'axios';
-import { useEffect, useState } from 'react';
+import { Typography } from "@mui/material";
+import { red } from "@mui/material/colors";
+import axios from "axios";
+import { useEffect, useState } from "react";
 import {
   AreaChart,
   Area,
@@ -10,22 +11,28 @@ import {
   Tooltip,
   ResponsiveContainer,
   LineChart,
-  Line
-} from 'recharts';
-import url from '../../serverUrl';
-const AssetChart = ({ tokenName }) => {
-  const data = [];
+  Line,
+} from "recharts";
+import url from "../../serverUrl";
+const AssetChart = ({ tokenName, setTokenPrice }) => {
   const [chartData, setChartData] = useState([]);
   useEffect(() => {
     axios
       .get(`${url}/hootdex/token-info-chart/${tokenName}`)
       .then((res) => {
         setChartData(res.data);
+        let i = 0;
+        i = res.data?.length-1;
+        const data = [{
+          currentPrice: res?.data[i]?.today_value,
+          previousPrice: res?.data[i - 1]?.today_value
+        }]
+        setTokenPrice(data);
       })
       .catch((err) => {
         console.log(err);
       });
-  }, []);
+  }, [setTokenPrice, tokenName]);
 
   return (
     <>
@@ -80,7 +87,7 @@ const AssetChart = ({ tokenName }) => {
           </button>
         </div> */}
       <ResponsiveContainer width={500} height={300}>
-        <LineChart style={{ maxWidth: '100%' }} data={chartData}>
+        <LineChart style={{ maxWidth: "100%" }} data={chartData}>
           <Line
             type="monotone"
             dataKey="today_value"
