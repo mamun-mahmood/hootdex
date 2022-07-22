@@ -22,7 +22,7 @@ const WarpTokens = () => {
     if (target === "all") {
       setLoading(true);
       axios
-        .get("https://api.pecunovus.net/wallet/get_all_tokens_wrap")
+        .get("http://localhost:3001/wallet/get_all_tokens_wrap")
         .then((res) => {
     
           if (res.data.status) {
@@ -110,7 +110,7 @@ const WarpTokens = () => {
                         <Avatar
                       
                           className="rounded"
-                          src={`https://api.pecunovus.net/hootdex/images/${each?.logo_src}`}
+                          src={`http://localhost:3001/hootdex/images/${each?.logo_src}`}
                           alt={each.symbol.slice(1)}
                         />
                         <span style={{ marginLeft: "1rem", fontSize: "20px" }}>

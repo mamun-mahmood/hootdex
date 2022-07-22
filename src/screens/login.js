@@ -41,7 +41,7 @@ export default function Login(props) {
       return;
     }
     axios
-      .post(`https://api.pecunovus.net/user/login`, {
+      .post(`http://localhost:3001/user/login`, {
         email: inputData.email,
         password: inputData.password
       })

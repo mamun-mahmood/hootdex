@@ -16,7 +16,7 @@ function DashboardContent({ user }) {
   const fetchTokens = () => {
     if (username) {
       axios
-        .get(`https://api.pecunovus.net/hootdex/all-token/Pending`)
+        .get(`http://localhost:3001/hootdex/all-token/Pending`)
         .then((res) => {
           setPendingToken(res.data.reverse());
         });
@@ -24,7 +24,7 @@ function DashboardContent({ user }) {
   }
   const gettotalTokens = () => {
     axios
-    .get(`https://api.pecunovus.net/hootdex/all-token-reqs`)
+    .get(`http://localhost:3001/hootdex/all-token-reqs`)
     .then((res) => {
       setTotalToken(res.data.reverse());
       console.log(res.data)
@@ -34,7 +34,7 @@ function DashboardContent({ user }) {
 
   const getMyCoins=(id)=>{
     if (id) {
-      axios.post(`${"https://api.pecunovus.net"}/wallet/getMycoins`,{
+      axios.post(`${"http://localhost:3001"}/wallet/getMycoins`,{
       user_id:id
     }).then((res)=>{
      const {total_coins,value}=res.data
