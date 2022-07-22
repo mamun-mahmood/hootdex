@@ -1,33 +1,33 @@
-import { Alert, Box, Collapse } from "@mui/material";
-import axios from "axios";
-
-import React, { useEffect, useState } from "react";
+import { Alert, Box, Collapse } from '@mui/material';
+import axios from 'axios';
+import url from '../serverUrl';
+import React, { useEffect, useState } from 'react';
 
 export default function CreateToken() {
-  const [user, setUser] = useState("");
+  const [user, setUser] = useState('');
   const [alert, setAlert] = useState({
-    msg: "",
-    type: "",
-    show: false,
+    msg: '',
+    type: '',
+    show: false
   });
   const [currentValue, setCurrentValue] = useState(null);
   const [inputData, setInputData] = useState({
     createdBy: user.username,
-    tokenName: "",
-    totalToken: "",
-    investementAmount: "",
-    pecuCoin: "",
-    tokenPrice: "",
-    status: "Pending",
-    tokenSymbol: "",
-    fileName: "",
-    approvedBy: "",
+    tokenName: '',
+    totalToken: '',
+    investementAmount: '',
+    pecuCoin: '',
+    tokenPrice: '',
+    status: 'Pending',
+    tokenSymbol: '',
+    fileName: '',
+    approvedBy: '',
     pecuRate: currentValue,
-    cTime: new Date(),
+    cTime: new Date()
   });
   const get_current_index_coin = () => {
     axios
-      .get(`http://localhost:3001/wallet/get_current_index_coin`)
+      .get(`${url}/wallet/get_current_index_coin`)
       .then((res) => {
         setCurrentValue(res.data[0].value);
       })
@@ -37,47 +37,45 @@ export default function CreateToken() {
   };
   const saveFile = (e) => {
     const formData = new FormData();
-    formData.append("image", e.target.files[0]);
-    formData.append("fileName", e.target.files[0].name);
-    axios
-      .post("http://localhost:3001/hootdex/token-logo-upload", formData)
-      .then((res) => {
-        if (res.data.status === "ok") {
-          setInputData({ ...inputData, fileName: res.data.fileName });
-        } else {
+    formData.append('image', e.target.files[0]);
+    formData.append('fileName', e.target.files[0].name);
+    axios.post(`${url}/hootdex/token-logo-upload`, formData).then((res) => {
+      if (res.data.status === 'ok') {
+        setInputData({ ...inputData, fileName: res.data.fileName });
+      } else {
+        setAlert({
+          msg: 'Image upload failed',
+          type: 'error',
+          show: true
+        });
+        setTimeout(() => {
           setAlert({
-            msg: "Image upload failed",
-            type: "error",
-            show: true,
+            msg: 'Image upload failed',
+            type: 'error',
+            show: false
           });
-          setTimeout(() => {
-            setAlert({
-              msg: "Image upload failed",
-              type: "error",
-              show: false,
-            });
-          }, 3000);
-        }
-      });
+        }, 3000);
+      }
+    });
   };
   const handleSubmit = (e) => {
     e.preventDefault();
 
     if (inputData.pecuCoin && currentValue) {
       axios
-        .post("http://localhost:3001/hootdex/create-tokens", inputData)
+        .post(`${url}/hootdex/create-tokens`, inputData)
         .then((res) => {
-          if (res.data.status === "error") {
+          if (res.data.status === 'error') {
             setAlert({
               msg: res.data.msg,
-              type: "error",
-              show: true,
+              type: 'error',
+              show: true
             });
             setTimeout(() => {
               setAlert({
                 msg: res.data.msg,
-                type: "error",
-                show: false,
+                type: 'error',
+                show: false
               });
             }, 4000);
           }
@@ -85,53 +83,53 @@ export default function CreateToken() {
             window.scrollTo(0, 0);
             setInputData({
               createdBy: user.username,
-              tokenName: "",
-              totalToken: "",
-              investementAmount: "",
-              pecuCoin: "",
-              tokenPrice: "",
-              status: "Pending",
-              tokenSymbol: "",
+              tokenName: '',
+              totalToken: '',
+              investementAmount: '',
+              pecuCoin: '',
+              tokenPrice: '',
+              status: 'Pending',
+              tokenSymbol: ''
             });
             setAlert({
-              msg: "Token Created!",
-              type: "success",
-              show: true,
+              msg: 'Token Created!',
+              type: 'success',
+              show: true
             });
             setTimeout(() => {
               setAlert({
-                msg: "Token Created!",
-                type: "success",
-                show: false,
+                msg: 'Token Created!',
+                type: 'success',
+                show: false
               });
             }, 3000);
           }
         })
         .catch((err) => {
           setAlert({
-            msg: "There was an error!",
-            type: "error",
-            show: true,
+            msg: 'There was an error!',
+            type: 'error',
+            show: true
           });
           setTimeout(() => {
             setAlert({
-              msg: "There was an error!",
-              type: "error",
-              show: false,
+              msg: 'There was an error!',
+              type: 'error',
+              show: false
             });
           }, 3000);
         });
     } else {
       setAlert({
         msg: "You don't have enough Pecu coin!",
-        type: "error",
-        show: true,
+        type: 'error',
+        show: true
       });
       setTimeout(() => {
         setAlert({
           msg: "You don't have enough Pecu coin!",
-          type: "error",
-          show: false,
+          type: 'error',
+          show: false
         });
       }, 3000);
     }
@@ -151,15 +149,15 @@ export default function CreateToken() {
     let changeData = { ...inputData };
     let totalPecuCoin = inputData.investementAmount / pecuRate;
     let tokenPrice = totalPecuCoin / inputData.totalToken;
-    changeData["pecuCoin"] = totalPecuCoin;
-    changeData["tokenPrice"] = tokenPrice;
-    changeData["pecuRate"] = pecuRate;
+    changeData['pecuCoin'] = totalPecuCoin;
+    changeData['tokenPrice'] = tokenPrice;
+    changeData['pecuRate'] = pecuRate;
     setInputData(changeData);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [inputData.investementAmount, inputData.totalToken]);
 
   useEffect(() => {
-    let data = localStorage.getItem("hootdex_secretcookie");
+    let data = localStorage.getItem('hootdex_secretcookie');
 
     if (data) {
       setUser(JSON.parse(data));
@@ -171,14 +169,14 @@ export default function CreateToken() {
     setInputData({ ...inputData, createdBy: user.username });
   }, [user]);
   return user && user.username ? (
-    <div className="screen" style={{ padding: "1rem" }}>
-      <Box sx={{ mt: 2, position: "fixed", zIndex: 1002, top: 80 }}>
-        <div style={{ display: "flex", justifyContent: "center" }}>
-          <Collapse in={alert.show} sx={{ maxWidth: 400, position: "fixed" }}>
+    <div className="screen" style={{ padding: '1rem' }}>
+      <Box sx={{ mt: 2, position: 'fixed', zIndex: 1002, top: 80 }}>
+        <div style={{ display: 'flex', justifyContent: 'center' }}>
+          <Collapse in={alert.show} sx={{ maxWidth: 400, position: 'fixed' }}>
             <Alert
               variant="outlined"
               severity={alert.type}
-              sx={{ mb: 2, backgroundColor: "white", fontSize: "18px" }}
+              sx={{ mb: 2, backgroundColor: 'white', fontSize: '18px' }}
             >
               {alert.msg}
             </Alert>
@@ -191,7 +189,7 @@ export default function CreateToken() {
         <label className="label">Token Name</label>
         <input
           className="input"
-          name={"tokenName"}
+          name={'tokenName'}
           value={inputData.tokenName}
           onChange={handleChange}
           placeholder="Enter"
@@ -201,30 +199,30 @@ export default function CreateToken() {
         <label className="label">Token Symbol</label>
         <input
           className="input"
-          name={"tokenSymbol"}
+          name={'tokenSymbol'}
           value={inputData.tokenSymbol}
           onChange={handleChange}
-          type={"text"}
+          type={'text'}
           placeholder="Enter"
           required
         ></input>
         <label className="label">Total Token issue</label>
         <input
           className="input"
-          name={"totalToken"}
+          name={'totalToken'}
           value={inputData.totalToken}
           onChange={handleChange}
-          type={"number"}
+          type={'number'}
           placeholder="Enter"
           required
         ></input>
         <label className="label">Value Investement (USD)</label>
         <input
           className="input"
-          name={"investementAmount"}
+          name={'investementAmount'}
           value={inputData.investementAmount}
           onChange={handleChange}
-          type={"number"}
+          type={'number'}
           placeholder="Enter"
           required
         ></input>
@@ -247,7 +245,7 @@ export default function CreateToken() {
           className="input"
           value={inputData.tokenPrice}
           disabled
-          type={"number"}
+          type={'number'}
           placeholder="Enter"
           required
         ></input>
@@ -265,8 +263,8 @@ export default function CreateToken() {
       </form>
     </div>
   ) : (
-    <div className="screen" style={{ padding: "1rem" }}>
-      <h1 style={{ color: "#fff" }}>Loading...</h1>
+    <div className="screen" style={{ padding: '1rem' }}>
+      <h1 style={{ color: '#fff' }}>Loading...</h1>
     </div>
   );
 }

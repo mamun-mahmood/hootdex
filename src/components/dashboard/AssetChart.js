@@ -1,6 +1,6 @@
-import { Typography } from "@mui/material";
-import axios from "axios";
-import { useEffect, useState } from "react";
+import { Typography } from '@mui/material';
+import axios from 'axios';
+import { useEffect, useState } from 'react';
 import {
   AreaChart,
   Area,
@@ -8,16 +8,17 @@ import {
   YAxis,
   CartesianGrid,
   Tooltip,
-  ResponsiveContainer, 
+  ResponsiveContainer,
   LineChart,
-  Line,
-} from "recharts";
+  Line
+} from 'recharts';
+import url from '../../serverUrl';
 const AssetChart = ({ tokenName }) => {
   const data = [];
-  const [chartData, setChartData] = useState([])
+  const [chartData, setChartData] = useState([]);
   useEffect(() => {
     axios
-      .get(`http://localhost:3001/hootdex/token-info-chart/${tokenName}`)
+      .get(`${url}/hootdex/token-info-chart/${tokenName}`)
       .then((res) => {
         setChartData(res.data);
       })
@@ -79,8 +80,13 @@ const AssetChart = ({ tokenName }) => {
           </button>
         </div> */}
       <ResponsiveContainer width={500} height={300}>
-        <LineChart style={{ maxWidth: "100%" }} data={chartData}>
-          <Line type="monotone" dataKey="today_value" stroke="#8884d8" strokeWidth={2} />
+        <LineChart style={{ maxWidth: '100%' }} data={chartData}>
+          <Line
+            type="monotone"
+            dataKey="today_value"
+            stroke="#8884d8"
+            strokeWidth={2}
+          />
           <Tooltip />
         </LineChart>
       </ResponsiveContainer>

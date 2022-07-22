@@ -1,20 +1,20 @@
-import "./App.css";
-import Home from "./screens/home";
-import Nav from "./components/nav/nav";
-import Footer from "./components/footer/footer";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import CreateToken from "./screens/createToken";
-import Wallet from "./screens/wallet";
-import Login from "./screens/login";
-import { useEffect, useState } from "react";
-import DashboardIndex from "./screens/DashboardIndex";
-import TokenPage from "./screens/tokenPage";
-import axios from "axios";
-
+import './App.css';
+import Home from './screens/home';
+import Nav from './components/nav/nav';
+import Footer from './components/footer/footer';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import CreateToken from './screens/createToken';
+import Wallet from './screens/wallet';
+import Login from './screens/login';
+import { useEffect, useState } from 'react';
+import DashboardIndex from './screens/DashboardIndex';
+import TokenPage from './screens/tokenPage';
+import axios from 'axios';
+import url from './serverUrl';
 function App() {
   const [user, setUser] = useState(null);
   const findUser = async () => {
-    let data = localStorage.getItem("hootdex_secretcookie");
+    let data = localStorage.getItem('hootdex_secretcookie');
     if (data) {
       setUser(JSON.parse(data));
     }
@@ -24,19 +24,17 @@ function App() {
   const [wallet, setWallet] = useState({});
   const fetchWallet = () => {
     const wall = JSON.parse(
-      localStorage.getItem("hootdex_secretcookie_wallet")
+      localStorage.getItem('hootdex_secretcookie_wallet')
     );
     setWallet(wall);
     if (wall?.userFound) {
-      axios
-        .get(`http://localhost:3001/hootdex/getMycoins/${wall.uid}`)
-        .then((res) => {
-          setPecuCoins(res.data[0]);
-        });
+      axios.get(`${url}//hootdex/getMycoins/${wall.uid}`).then((res) => {
+        setPecuCoins(res.data[0]);
+      });
     }
   };
   useEffect(() => {
-    let data = localStorage.getItem("hootdex_secretcookie");
+    let data = localStorage.getItem('hootdex_secretcookie');
 
     if (data) {
       setUser(JSON.parse(data));
@@ -51,7 +49,7 @@ function App() {
     <BrowserRouter>
       <div>
         <Nav wallet={wallet} fetchWallet={fetchWallet} />
-        <div style={{ paddingTop: '70px',  }} >
+        <div style={{ paddingTop: '70px' }}>
           <Routes>
             <Route path="/create-token" element={<CreateToken />} />
             <Route path="/" element={<Home />} />

@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from "react";
-import "./style.css";
-import { Link, useLocation } from "react-router-dom";
-import logo from "../../assets/images/logo.png";
+import React, { useEffect, useState } from 'react';
+import './style.css';
+import { Link, useLocation } from 'react-router-dom';
+import logo from '../../assets/images/logo.png';
 
-import ConnectWallet from "../Modal/ConnectWallet";
+import ConnectWallet from '../Modal/ConnectWallet';
 import {
   Avatar,
   Button,
@@ -16,10 +16,11 @@ import {
   tableCellClasses,
   TableContainer,
   TableHead,
-  TableRow,
-} from "@mui/material";
-import axios from "axios";
-import { Box } from "@mui/system";
+  TableRow
+} from '@mui/material';
+import axios from 'axios';
+import { Box } from '@mui/system';
+import url from '../../serverUrl';
 export default function Nav({ fetchWallet, wallet }) {
   const [user, setUser] = useState(null);
   const [open, setOpen] = useState(false);
@@ -28,7 +29,7 @@ export default function Nav({ fetchWallet, wallet }) {
   };
   const [showSugesstion, setShowSugesstion] = useState(false);
   const findUser = async () => {
-    let data = localStorage.getItem("hootdex_secretcookie");
+    let data = localStorage.getItem('hootdex_secretcookie');
     if (data) {
       setUser(JSON.parse(data));
     }
@@ -42,7 +43,7 @@ export default function Nav({ fetchWallet, wallet }) {
   useEffect(() => {
     findUser();
   }, []);
-  const [searchKey, setSearchKey] = useState("");
+  const [searchKey, setSearchKey] = useState('');
   const handleSubmit = (e) => {
     e.preventDefault();
     // if (searchKey) {
@@ -52,13 +53,13 @@ export default function Nav({ fetchWallet, wallet }) {
   const [loading, setLoading] = useState(false);
   const [tokens, setTokens] = useState([]);
   const fetchToken = (target) => {
-    if (target === "all") {
+    if (target === 'all') {
       setLoading(true);
       axios
-        .get("http://localhost:3001/hootdex/available-tokens")
+        .get(`${url}/hootdex/available-tokens`)
         .then((res) => {
           setTokens(res.data);
-         
+
           setLoading(false);
         })
         .catch((err) => {
@@ -71,7 +72,7 @@ export default function Nav({ fetchWallet, wallet }) {
     }
   };
   useEffect(() => {
-    fetchToken("all");
+    fetchToken('all');
   }, []);
   return (
     <>
@@ -81,28 +82,28 @@ export default function Nav({ fetchWallet, wallet }) {
             <img src={logo} alt="nav_logo" width={200} />
           </Link>
         </div>
-        <div item sm={6} md={6} lg={2} sx={{ textAlign: "end" }}>
+        <div item sm={6} md={6} lg={2} sx={{ textAlign: 'end' }}>
           <Link to="/wallet">
-            {" "}
+            {' '}
             <Button
               variant="outlined"
               sx={{
-                color: "white",
-                textTransform: "capitalize",
-                m: 1,
+                color: 'white',
+                textTransform: 'capitalize',
+                m: 1
               }}
             >
               Ecosystem
             </Button>
           </Link>
           <Link to="/Community">
-            {" "}
+            {' '}
             <Button
               variant="outlined"
               sx={{
-                color: "white",
-                textTransform: "capitalize",
-                m: 1,
+                color: 'white',
+                textTransform: 'capitalize',
+                m: 1
               }}
             >
               Community
@@ -112,9 +113,9 @@ export default function Nav({ fetchWallet, wallet }) {
         <Box sx={{ width: 500 }}>
           <form
             style={{
-              textAlign: "center",
-              display: "flex",
-              justifyContent: "center",
+              textAlign: 'center',
+              display: 'flex',
+              justifyContent: 'center'
             }}
             className="form-control"
             onSubmit={handleSubmit}
@@ -122,8 +123,8 @@ export default function Nav({ fetchWallet, wallet }) {
             <ClickAwayListener onClickAway={() => setShowSugesstion(false)}>
               <input
                 style={{
-                  width: "100%",
-                  height: "0.8rem",
+                  width: '100%',
+                  height: '0.8rem'
                 }}
                 onClick={() => setShowSugesstion(true)}
                 className="border searchField "
@@ -140,14 +141,14 @@ export default function Nav({ fetchWallet, wallet }) {
           {showSugesstion && (
             <TableContainer
               sx={{
-                backgroundColor: "#1a1b1f",
+                backgroundColor: '#1a1b1f',
                 // mt: "70px",
-                borderBottomLeftRadius: "1rem",
-                borderBottomRightRadius: "1rem",
-                position: "absolute",
+                borderBottomLeftRadius: '1rem',
+                borderBottomRightRadius: '1rem',
+                position: 'absolute',
                 // left: 0,
                 maxWidth: 500,
-                animation: "fadeIn 0.4s ease-in-out",
+                animation: 'fadeIn 0.4s ease-in-out'
                 // mt:"1px"
               }}
               className="borderGrey hide-scrollbar "
@@ -157,9 +158,9 @@ export default function Nav({ fetchWallet, wallet }) {
                 <Table
                   sx={{
                     [`& .${tableCellClasses.root}`]: {
-                      borderBottom: " 1px solid #1e2128",
+                      borderBottom: ' 1px solid #1e2128'
                     },
-                    width: "100%",
+                    width: '100%'
                   }}
                 >
                   <TableHead className="">
@@ -181,54 +182,59 @@ export default function Nav({ fetchWallet, wallet }) {
                     </TableRow>
                   </TableHead>
                   <TableBody>
-            {tokens.length &&
-              tokens.map((each, index) => (
-                <TableRow key={each.id}>
-                  {/* <TableCell className="twhite" component="th" scope="row">
+                    {tokens.length &&
+                      tokens.map((each, index) => (
+                        <TableRow key={each.id}>
+                          {/* <TableCell className="twhite" component="th" scope="row">
                     {each.id}
                   </TableCell> */}
-                  <TableCell className="twhite" align="left">
-                    <Link to={`/t/${each.tokenName}`}>
-                      <div
-                        style={{
-                          display: "flex",
-                          alignItems: "center",
-                        }}
-                      >
-                        <Avatar
-                          className="rounded"
-                          src={`http://localhost:3001/hootdex/images/${each?.logo_src}`}
-                          alt="token logo"
-                          style={{width:'20px',height:'20px'}}
-                        />
-                          <Avatar
-                          className="rounded"
-                          src={`https://pecunovus.net/static/media/icon.25c8ec299d961b9dd524.ico`}
-                          alt="token logo"
-                          style={{width:'20px',height:'20px'}}
-                        />
-                        <span style={{ marginLeft: "1rem", fontSize: "20px" }}>
-                          {each.tokenName}{" "}
-                          <small style={{ color: "#696c75" }}>
-                            ({`${each.tokenSymbol}/PECU`})
-                          </small>
-                        </span>
-                      </div>
-                    </Link>
-                  </TableCell>
-                  <TableCell className="twhite green" align="left">
-                    {each.tokenPrice}
-                  </TableCell>
-                  <TableCell className="twhite yellow" align="left">
-                    {each.totalToken}
-                  </TableCell>
-                  <TableCell className="twhite pink" align="left">
-                    {each.investementAmount}
-                  </TableCell>
-                </TableRow>
-              ))}
+                          <TableCell className="twhite" align="left">
+                            <Link to={`/t/${each.tokenName}`}>
+                              <div
+                                style={{
+                                  display: 'flex',
+                                  alignItems: 'center'
+                                }}
+                              >
+                                <Avatar
+                                  className="rounded"
+                                  src={`${url}/hootdex/images/${each?.logo_src}`}
+                                  alt="token logo"
+                                  style={{ width: '20px', height: '20px' }}
+                                />
+                                <Avatar
+                                  className="rounded"
+                                  src={`https://pecunovus.net/static/media/icon.25c8ec299d961b9dd524.ico`}
+                                  alt="token logo"
+                                  style={{ width: '20px', height: '20px' }}
+                                />
+                                <span
+                                  style={{
+                                    marginLeft: '1rem',
+                                    fontSize: '20px'
+                                  }}
+                                >
+                                  {each.tokenName}{' '}
+                                  <small style={{ color: '#696c75' }}>
+                                    ({`${each.tokenSymbol}/PECU`})
+                                  </small>
+                                </span>
+                              </div>
+                            </Link>
+                          </TableCell>
+                          <TableCell className="twhite green" align="left">
+                            {each.tokenPrice}
+                          </TableCell>
+                          <TableCell className="twhite yellow" align="left">
+                            {each.totalToken}
+                          </TableCell>
+                          <TableCell className="twhite pink" align="left">
+                            {each.investementAmount}
+                          </TableCell>
+                        </TableRow>
+                      ))}
 
-            {/* <TablePagination
+                    {/* <TablePagination
                 sx={{ color: "white" }}
                 rowsPerPageOptions={[10, 50]}
                 onChange={(e) => setRows(e)}
@@ -236,7 +242,7 @@ export default function Nav({ fetchWallet, wallet }) {
                   </TableBody>
                 </Table>
               ) : (
-                <p style={{ textAlign: "center", color: "white" }}>
+                <p style={{ textAlign: 'center', color: 'white' }}>
                   Nothing to show !
                 </p>
               )}
@@ -248,17 +254,17 @@ export default function Nav({ fetchWallet, wallet }) {
           {true ? (
             <>
               {JSON.parse(
-                localStorage.getItem("hootdex_secretcookie_wallet")
+                localStorage.getItem('hootdex_secretcookie_wallet')
               ) ? (
                 <Link to="">
                   <Button
                     variant="outlined"
                     sx={{
-                      color: "white",
-                      textTransform: "capitalize",
+                      color: 'white',
+                      textTransform: 'capitalize'
                     }}
                     onClick={() => {
-                      localStorage.removeItem("hootdex_secretcookie_wallet");
+                      localStorage.removeItem('hootdex_secretcookie_wallet');
                       fetchWallet();
                     }}
                   >
@@ -270,8 +276,8 @@ export default function Nav({ fetchWallet, wallet }) {
                   <Button
                     variant="outlined"
                     sx={{
-                      color: "white",
-                      textTransform: "capitalize",
+                      color: 'white',
+                      textTransform: 'capitalize'
                     }}
                     onClick={handleOpen}
                   >
@@ -280,39 +286,39 @@ export default function Nav({ fetchWallet, wallet }) {
                 </Link>
               )}
               <Link to="/">
-                {" "}
+                {' '}
                 <Button
                   variant="outlined"
                   sx={{
-                    color: "white",
-                    textTransform: "capitalize",
-                    m: 1,
+                    color: 'white',
+                    textTransform: 'capitalize',
+                    m: 1
                   }}
                 >
                   Tokens
                 </Button>
               </Link>
               <Link to="/Developers">
-                {" "}
+                {' '}
                 <Button
                   variant="outlined"
                   sx={{
-                    color: "white",
-                    textTransform: "capitalize",
-                    m: 1,
+                    color: 'white',
+                    textTransform: 'capitalize',
+                    m: 1
                   }}
                 >
                   Developers
                 </Button>
               </Link>
               <Link to="/dashboard">
-                {" "}
+                {' '}
                 <Button
                   variant="outlined"
                   sx={{
-                    color: "white",
-                    textTransform: "capitalize",
-                    m: 1,
+                    color: 'white',
+                    textTransform: 'capitalize',
+                    m: 1
                   }}
                 >
                   MVault
@@ -321,13 +327,13 @@ export default function Nav({ fetchWallet, wallet }) {
             </>
           ) : (
             <Link to="/login">
-              {" "}
+              {' '}
               <Button
                 variant="outlined"
                 sx={{
-                  color: "white",
-                  textTransform: "capitalize",
-                  m: 1,
+                  color: 'white',
+                  textTransform: 'capitalize',
+                  m: 1
                 }}
               >
                 Login

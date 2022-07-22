@@ -21,6 +21,7 @@ import Paper from '@mui/material/Paper';
 import { useState } from 'react';
 import { useEffect } from 'react';
 import axios from 'axios';
+import url from '../serverUrl';
 const Users = ({ user }) => {
   const [allUsers, setAllUsers] = useState([]);
   const [users, setUsers] = useState([]);
@@ -42,7 +43,7 @@ const Users = ({ user }) => {
     if (target === 'all') {
       setLoading(true);
       await axios
-        .get('http://localhost:3001/hootdex/alluser')
+        .get(`${url}/hootdex/alluser`)
         .then((res) => {
           setUsers(res.data);
           setAllUsers(res.data);
@@ -80,9 +81,7 @@ const Users = ({ user }) => {
   const handleChange = async (e, uname) => {
     setLoading(true);
     await axios
-      .post(
-        `http://localhost:3001/hootdex/update-tier-level/${uname}/${e.target.value}`
-      )
+      .post(`${url}/hootdex/update-tier-level/${uname}/${e.target.value}`)
       .then((res) => {
         setLoading(false);
         setRefresh(!refresh);
@@ -251,9 +250,7 @@ const Users = ({ user }) => {
                           <MenuItem sx={{ display: 'none' }} value="null">
                             <em>Null</em>
                           </MenuItem>
-                          <MenuItem  value="0">
-                            Tier 0
-                          </MenuItem>
+                          <MenuItem value="0">Tier 0</MenuItem>
                           <MenuItem value="1">Tier 1</MenuItem>
                           <MenuItem value="2">Tier 2</MenuItem>
                         </Select>

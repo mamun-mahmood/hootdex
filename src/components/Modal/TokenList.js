@@ -5,42 +5,43 @@ import {
   Modal,
   Paper,
   StepConnector,
-  Typography,
-} from "@mui/material";
-import { Box } from "@mui/system";
-import axios from "axios";
-import React, { useState } from "react";
-import { useEffect } from "react";
+  Typography
+} from '@mui/material';
+import { Box } from '@mui/system';
+import axios from 'axios';
+import React, { useState } from 'react';
+import { useEffect } from 'react';
+import url from '../../serverUrl';
 const style = {
-  position: "absolute",
-  top: "50%",
-  left: "50%",
-  transform: "translate(-50%, -50%)",
+  position: 'absolute',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
   width: 400,
-  bgcolor: "drak",
-  border: "2px solid #000",
+  bgcolor: 'drak',
+  border: '2px solid #000',
   boxShadow: 24,
   pt: 2,
   px: 4,
-  pb: 3,
+  pb: 3
 };
 const TokenList = ({
   open,
   handleClose,
   tokens,
   modal,
-  fetchTokenBuyingRequest,
+  fetchTokenBuyingRequest
 }) => {
   const [alert, setAlert] = useState({
-    msg: "",
-    type: "",
-    show: false,
+    msg: '',
+    type: '',
+    show: false
   });
   //fetch pecuPrice
   const [currentValue, setCurrentValue] = useState(null);
   useEffect(() => {
     axios
-      .get(`http://localhost:3001/wallet/get_current_index_coin`)
+      .get(`${url}/wallet/get_current_index_coin`)
       .then((res) => {
         setCurrentValue(res.data[0].value);
       })
@@ -51,10 +52,10 @@ const TokenList = ({
   const handleSubmit = (data) => {
     if (currentValue) {
       axios
-        .post("http://localhost:3001/hootdex/sell-token", {
+        .post(`${url}/hootdex/sell-token`, {
           data: data,
           timestamp: new Date(),
-          pecuPrice: currentValue,
+          pecuPrice: currentValue
         })
         .then((res) => {
           handleClose();
@@ -65,15 +66,15 @@ const TokenList = ({
         });
     } else {
       setAlert({
-        msg: "Unable to fecth Pecu price",
-        type: "error",
-        show: true,
+        msg: 'Unable to fecth Pecu price',
+        type: 'error',
+        show: true
       });
       setTimeout(() => {
         setAlert({
-          msg: "Unable to fecth Pecu price",
-          type: "error",
-          show: false,
+          msg: 'Unable to fecth Pecu price',
+          type: 'error',
+          show: false
         });
       }, 4000);
     }
@@ -93,20 +94,20 @@ const TokenList = ({
             ...style,
             width: 800,
             maxHeight: 300,
-            backdropFilter: "blur(5px)",
-            overflowY: "scroll",
+            backdropFilter: 'blur(5px)',
+            overflowY: 'scroll'
           }}
         >
           <Box>
-            <div style={{ display: "flex", justifyContent: "center" }}>
+            <div style={{ display: 'flex', justifyContent: 'center' }}>
               <Collapse
                 in={alert.show}
-                sx={{ maxWidth: 400, position: "fixed" }}
+                sx={{ maxWidth: 400, position: 'fixed' }}
               >
                 <Alert
                   variant="outlined"
                   severity={alert.type}
-                  sx={{ mb: 2, backgroundColor: "white", fontSize: "18px" }}
+                  sx={{ mb: 2, backgroundColor: 'white', fontSize: '18px' }}
                 >
                   {alert.msg}
                 </Alert>
@@ -114,24 +115,24 @@ const TokenList = ({
             </div>
           </Box>
           <p className="twhite tcenter fontS22">
-            {modal === 2 ? "Your all tokens" : "Token Buying Request"}
+            {modal === 2 ? 'Your all tokens' : 'Token Buying Request'}
           </p>
           <StepConnector sx={{ mt: 1 }} />
           <Paper
             sx={{
-              textAlign: "center",
-              backgroundColor: "#00071a",
+              textAlign: 'center',
+              backgroundColor: '#00071a',
               m: 1,
-              mt: 2,
+              mt: 2
             }}
             className="center-width border"
           >
             <div
               style={{
-                display: "flex",
-                justifyContent: "space-around",
-                alignItems: "center",
-                color: "white",
+                display: 'flex',
+                justifyContent: 'space-around',
+                alignItems: 'center',
+                color: 'white'
               }}
             >
               <p>Name</p>
@@ -150,18 +151,18 @@ const TokenList = ({
               <Paper
                 key={index}
                 sx={{
-                  textAlign: "center",
-                  backgroundColor: "#00071a",
-                  m: 1,
+                  textAlign: 'center',
+                  backgroundColor: '#00071a',
+                  m: 1
                 }}
                 className="hover-grey center-width border"
               >
                 <div
                   style={{
-                    display: "flex",
-                    justifyContent: "space-around",
-                    alignItems: "center",
-                    color: "white",
+                    display: 'flex',
+                    justifyContent: 'space-around',
+                    alignItems: 'center',
+                    color: 'white'
                   }}
                 >
                   <div>
@@ -169,11 +170,15 @@ const TokenList = ({
                       {each?.tokenName}
                     </Typography>
                   </div>
-                  {modal === 2 ? <h4>{each?.totalToken}</h4> : <h4>{each?.tokenAmount}</h4>}
+                  {modal === 2 ? (
+                    <h4>{each?.totalToken}</h4>
+                  ) : (
+                    <h4>{each?.tokenAmount}</h4>
+                  )}
                   <p>{each?.status}</p>
                   {modal === 1 && (
                     <>
-                      <p>{each?.owner}</p>{" "}
+                      <p>{each?.owner}</p>{' '}
                       <Button
                         variant="outline"
                         onClick={() => handleSubmit(each)}

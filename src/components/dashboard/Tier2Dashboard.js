@@ -1,72 +1,73 @@
-import * as React from "react";
-import { Box, Button, ClickAwayListener, ListItemIcon } from "@mui/material";
-import Typography from "@mui/material/Typography";
-import Grid from "@mui/material/Grid";
-import { Paper } from "@mui/material";
-import AssetChart from "./AssetChart";
-import { useNavigate } from "react-router-dom";
-import { useEffect } from "react";
-import axios from "axios";
-import TokenList from "../Modal/TokenList";
-import MenuIcon from "@mui/icons-material/Menu";
-import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
-import ListItemButton from "@mui/material/ListItemButton";
-import ListItemText from "@mui/material/ListItemText";
-import DashboardIcon from "@mui/icons-material/Dashboard";
-import AccountCircleIcon from "@mui/icons-material/AccountCircle";
-import Toolbar from "@mui/material/Toolbar";
-import List from "@mui/material/List";
-import Divider from "@mui/material/Divider";
-import GroupIcon from "@mui/icons-material/Group";
-import { Link } from "react-router-dom";
-import { styled } from "@mui/material/styles";
-import MuiDrawer from "@mui/material/Drawer";
-import AccountBalanceWalletIcon from "@mui/icons-material/AccountBalanceWallet";
-import TokenIcon from "@mui/icons-material/Token";
-import Vault from "../../assets/images/vault-svgrepo-com.svg";
-import WalletDashboard from "./WalletDashboard";
-import TokenDashboard from "./TokenDashboard";
-import VaultDashboard from "./VaultDashboard";
-import MyProfile from "./MyProfile";
+import * as React from 'react';
+import { Box, Button, ClickAwayListener, ListItemIcon } from '@mui/material';
+import Typography from '@mui/material/Typography';
+import Grid from '@mui/material/Grid';
+import { Paper } from '@mui/material';
+import AssetChart from './AssetChart';
+import { useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
+import axios from 'axios';
+import TokenList from '../Modal/TokenList';
+import MenuIcon from '@mui/icons-material/Menu';
+import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
+import ListItemButton from '@mui/material/ListItemButton';
+import ListItemText from '@mui/material/ListItemText';
+import DashboardIcon from '@mui/icons-material/Dashboard';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import Toolbar from '@mui/material/Toolbar';
+import List from '@mui/material/List';
+import Divider from '@mui/material/Divider';
+import GroupIcon from '@mui/icons-material/Group';
+import { Link } from 'react-router-dom';
+import { styled } from '@mui/material/styles';
+import MuiDrawer from '@mui/material/Drawer';
+import AccountBalanceWalletIcon from '@mui/icons-material/AccountBalanceWallet';
+import TokenIcon from '@mui/icons-material/Token';
+import Vault from '../../assets/images/vault-svgrepo-com.svg';
+import WalletDashboard from './WalletDashboard';
+import TokenDashboard from './TokenDashboard';
+import VaultDashboard from './VaultDashboard';
+import MyProfile from './MyProfile';
+import url from '../../serverUrl';
 
 const drawerWidth = 240;
 const Drawer = styled(MuiDrawer, {
-  shouldForwardProp: (prop) => prop !== "open",
+  shouldForwardProp: (prop) => prop !== 'open'
 })(({ theme, open }) => ({
-  "& .MuiDrawer-paper": {
-    position: "relative",
-    whiteSpace: "nowrap",
+  '& .MuiDrawer-paper': {
+    position: 'relative',
+    whiteSpace: 'nowrap',
     width: drawerWidth,
-    transition: theme.transitions.create("width", {
+    transition: theme.transitions.create('width', {
       easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.enteringScreen,
+      duration: theme.transitions.duration.enteringScreen
     }),
-    boxSizing: "border-box",
+    boxSizing: 'border-box',
     ...(!open && {
-      overflowX: "hidden",
-      transition: theme.transitions.create("width", {
+      overflowX: 'hidden',
+      transition: theme.transitions.create('width', {
         easing: theme.transitions.easing.sharp,
-        duration: theme.transitions.duration.leavingScreen,
+        duration: theme.transitions.duration.leavingScreen
       }),
       width: theme.spacing(7),
-      [theme.breakpoints.up("sm")]: {
-        width: theme.spacing(9),
-      },
-    }),
-  },
+      [theme.breakpoints.up('sm')]: {
+        width: theme.spacing(9)
+      }
+    })
+  }
 }));
 
 function DashboardContent({ user, pecuCoins }) {
   const navigate = useNavigate();
   const [tokenCreated, setTokenCreated] = React.useState([]);
   const [pendingToken, setPendingTokens] = React.useState([]);
-  const [totalCoins, setTotalCoins] = React.useState("");
-  const [totalValue, setTotalValue] = React.useState("");
-  const [nftCount, setNftCount] = React.useState("");
-  const [totalCoinsVault, setTotalCoinsVault] = React.useState("");
+  const [totalCoins, setTotalCoins] = React.useState('');
+  const [totalValue, setTotalValue] = React.useState('');
+  const [nftCount, setNftCount] = React.useState('');
+  const [totalCoinsVault, setTotalCoinsVault] = React.useState('');
   const username = user.username;
   const wallet = JSON.parse(
-    localStorage.getItem("hootdex_secretcookie_wallet")
+    localStorage.getItem('hootdex_secretcookie_wallet')
   );
   const [modal, setModal] = React.useState(0);
   const [open, setOpen] = React.useState(false);
@@ -81,8 +82,8 @@ function DashboardContent({ user, pecuCoins }) {
   const getMyCoins = (id) => {
     if (id) {
       axios
-        .post(`${"http://localhost:3001"}/wallet/getMycoins`, {
-          user_id: id,
+        .post(`${url}/wallet/getMycoins`, {
+          user_id: id
         })
         .then((res) => {
           const { total_coins, value } = res.data;
@@ -95,8 +96,8 @@ function DashboardContent({ user, pecuCoins }) {
   const getMyCoinsVault = (id) => {
     if (id) {
       axios
-        .post(`${"http://localhost:3001"}/vault/getCoins`, {
-          uid: id,
+        .post(`${url}/vault/getCoins`, {
+          uid: id
         })
         .then((res) => {
           const { coin } = res.data;
@@ -108,8 +109,8 @@ function DashboardContent({ user, pecuCoins }) {
   const getNftCount = (email) => {
     if (email) {
       axios
-        .post(`http://localhost:3001/vault/getNftCount`, {
-          email: email,
+        .post(`${url}/vault/getNftCount`, {
+          email: email
         })
         .then((res) => {
           const { nft } = res.data;
@@ -119,16 +120,12 @@ function DashboardContent({ user, pecuCoins }) {
   };
   useEffect(() => {
     if (username) {
-      axios
-        .get(`http://localhost:3001/hootdex/token/${username}`)
-        .then((res) => {
-          setTokenCreated(res.data.reverse());
-        });
+      axios.get(`${url}/hootdex/token/${username}`).then((res) => {
+        setTokenCreated(res.data.reverse());
+      });
       console.log(username);
       axios
-        .get(
-          `http://localhost:3001/hootdex/token-buying-request/${username}`
-        )
+        .get(`${url}/hootdex/token-buying-request/${username}`)
         .then((res) => {
           setPendingTokens(res.data);
         });
@@ -143,7 +140,7 @@ function DashboardContent({ user, pecuCoins }) {
   }, [wallet]);
 
   useEffect(() => {
-    let data = localStorage.getItem("hootdex_secretcookie");
+    let data = localStorage.getItem('hootdex_secretcookie');
     data = JSON.parse(data);
     if (data && data.user_id) {
       getMyCoinsVault(data.user_id);
@@ -155,10 +152,10 @@ function DashboardContent({ user, pecuCoins }) {
   const toggleDrawer = () => {
     setOpenD(!openD);
   };
-  const [tab, setTab] = React.useState("Vault");
+  const [tab, setTab] = React.useState('Vault');
   return (
     <>
-      <div style={{ display: "flex" }}>
+      <div style={{ display: 'flex' }}>
         {/* Sidebar */}
         <Box>
           <ClickAwayListener onClickAway={() => setOpenD(false)}>
@@ -167,49 +164,53 @@ function DashboardContent({ user, pecuCoins }) {
               open={openD}
               sx={{ border: 'none' }}
               onClose={() => setOpenD(!openD)}
-              PaperProps={{style: {border: 'none', borderRight: "2px solid #01402b"}}}
+              PaperProps={{
+                style: { border: 'none', borderRight: '2px solid #01402b' }
+              }}
             >
               <List
                 sx={{
                   backgroundColor: '#04251a',
                   // background:
                   //   "linear-gradient(to bottom, #01402b, #023927, #033223, #032c1e, #04251a)",
-                  width: "100%",
-                  height: "100vh",
-                  overflowX: "hidden",
+                  width: '100%',
+                  height: '100vh',
+                  overflowX: 'hidden'
                 }}
               >
                 <ListItemButton
                   sx={{
-                    color: "white",
+                    color: 'white',
                     // width: "95%",
                     mb: 1,
-                    borderBottom: "1px solid #091e17",
-                    borderTop: "1px solid #091e17",
+                    borderBottom: '1px solid #091e17',
+                    borderTop: '1px solid #091e17'
                   }}
                   onClick={toggleDrawer}
                   // className={`${tab === 'Vault' && "button-hover"}`}
                 >
-                   <ListItemIcon sx={{color: "#00071a",}} >
-                   {openD === false && (
+                  <ListItemIcon sx={{ color: '#00071a' }}>
+                    {openD === false && (
                       <MenuIcon sx={{ width: 40, height: 40 }} />
                     )}
                     {openD && (
-                      <ChevronLeftIcon sx={{ width: 40, height: 40, textAlign: "end" }} />
+                      <ChevronLeftIcon
+                        sx={{ width: 40, height: 40, textAlign: 'end' }}
+                      />
                     )}
                   </ListItemIcon>
-                </ListItemButton>{" "}
+                </ListItemButton>{' '}
                 <ListItemButton
                   sx={{
-                    color: "white",
-                    backgroundColor: `${tab === "Vault" ? "" : "#00071a"}`,
-                    borderTopRightRadius: "20px",
-                    borderBottomRightRadius: "20px",
-                    width: "95%",
+                    color: 'white',
+                    backgroundColor: `${tab === 'Vault' ? '' : '#00071a'}`,
+                    borderTopRightRadius: '20px',
+                    borderBottomRightRadius: '20px',
+                    width: '95%',
                     mb: 1,
-                    border: "1px solid #091e17",
+                    border: '1px solid #091e17'
                   }}
-                  onClick={() => setTab("Vault")}
+                  onClick={() => setTab('Vault')}
 
                   // className={`${tab === 'Vault' && "button-hover"}`}
                 >
@@ -220,71 +221,71 @@ function DashboardContent({ user, pecuCoins }) {
                 </ListItemButton>
                 <ListItemButton
                   sx={{
-                    color: "white",
-                    backgroundColor: `${tab === "Wallet" ? "" : "#00071a"}`,
-                    borderTopRightRadius: "20px",
-                    borderBottomRightRadius: "20px",
-                    width: "95%",
+                    color: 'white',
+                    backgroundColor: `${tab === 'Wallet' ? '' : '#00071a'}`,
+                    borderTopRightRadius: '20px',
+                    borderBottomRightRadius: '20px',
+                    width: '95%',
                     mb: 1,
-                    border: "1px solid #091e17",
+                    border: '1px solid #091e17'
                   }}
-                  onClick={() => setTab("Wallet")}
+                  onClick={() => setTab('Wallet')}
                 >
                   <ListItemIcon>
-                    <AccountBalanceWalletIcon sx={{ color: "white" }} />
+                    <AccountBalanceWalletIcon sx={{ color: 'white' }} />
                   </ListItemIcon>
                   <ListItemText primary="Wallet" />
                 </ListItemButton>
                 {tier === 0 && (
                   <ListItemButton
                     sx={{
-                      color: "white",
-                      backgroundColor: `${tab === "Users" ? "" : "#00071a"}`,
-                      borderTopRightRadius: "20px",
-                      borderBottomRightRadius: "20px",
-                      width: "95%",
+                      color: 'white',
+                      backgroundColor: `${tab === 'Users' ? '' : '#00071a'}`,
+                      borderTopRightRadius: '20px',
+                      borderBottomRightRadius: '20px',
+                      width: '95%',
                       mb: 1,
-                      border: "1px solid #091e17",
+                      border: '1px solid #091e17'
                     }}
-                    onClick={() => setTab("Users")}
+                    onClick={() => setTab('Users')}
                   >
                     <ListItemIcon>
-                      <GroupIcon sx={{ color: "white" }} />
+                      <GroupIcon sx={{ color: 'white' }} />
                     </ListItemIcon>
                     <ListItemText primary="Users" />
                   </ListItemButton>
                 )}
                 <ListItemButton
                   sx={{
-                    color: "white",
-                    backgroundColor: `${tab === "Token" ? "" : "#00071a"}`,
-                    borderTopRightRadius: "20px",
-                    borderBottomRightRadius: "20px",
-                    width: "95%",
+                    color: 'white',
+                    backgroundColor: `${tab === 'Token' ? '' : '#00071a'}`,
+                    borderTopRightRadius: '20px',
+                    borderBottomRightRadius: '20px',
+                    width: '95%',
                     mb: 1,
-                    border: "1px solid #091e17",
+                    border: '1px solid #091e17'
                   }}
-                  onClick={() => setTab("Token")}
+                  onClick={() => setTab('Token')}
                 >
                   <ListItemIcon>
-                    <TokenIcon sx={{ color: "white" }} />
+                    <TokenIcon sx={{ color: 'white' }} />
                   </ListItemIcon>
                   <ListItemText primary="Tokens" />
                 </ListItemButton>
                 <ListItemButton
                   sx={{
-                    color: "white",
-                    backgroundColor: `${tab === "Profile" ? "" : "#00071a"}`,
-                    borderTopRightRadius: "20px",
-                    borderBottomRightRadius: "20px",
-                    width: "95%",
+                    color: 'white',
+                    backgroundColor: `${tab === 'Profile' ? '' : '#00071a'}`,
+                    borderTopRightRadius: '20px',
+                    borderBottomRightRadius: '20px',
+                    width: '95%',
                     mb: 1,
-                    border: "1px solid #091e17",
+                    border: '1px solid #091e17'
                   }}
-                  onClick={() => setTab("Profile")}
+                  onClick={() => setTab('Profile')}
                 >
                   <ListItemIcon>
-                    <AccountCircleIcon sx={{ color: "white" }} />
+                    <AccountCircleIcon sx={{ color: 'white' }} />
                   </ListItemIcon>
                   <ListItemText primary="My Profile" />
                 </ListItemButton>
@@ -295,18 +296,18 @@ function DashboardContent({ user, pecuCoins }) {
         {/* showing dashboard based on user tier level */}
         <Box sx={{ flex: 1, mt: 1 }}>
           {/* wallet dashboard */}
-          {tab === "Wallet" && (
+          {tab === 'Wallet' && (
             <WalletDashboard user={user} pecuCoins={pecuCoins} />
           )}
           {/* Token Dashboard  */}
-          {tab === "Token" && (
+          {tab === 'Token' && (
             <TokenDashboard user={user} pecuCoins={pecuCoins} />
           )}
           {/* Vault dashboard */}
-          {tab === "Vault" && (
+          {tab === 'Vault' && (
             <VaultDashboard user={user} pecuCoins={pecuCoins} />
           )}
-          {tab === "Profile" && <MyProfile user={user} />}
+          {tab === 'Profile' && <MyProfile user={user} />}
         </Box>
       </div>
     </>

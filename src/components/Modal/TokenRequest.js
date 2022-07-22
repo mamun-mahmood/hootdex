@@ -1,23 +1,24 @@
-import Box from "@mui/material/Box";
-import Modal from "@mui/material/Modal";
-import Button from "@mui/material/Button";
-import { Grid, Paper, StepConnector, Typography } from "@mui/material";
+import Box from '@mui/material/Box';
+import Modal from '@mui/material/Modal';
+import Button from '@mui/material/Button';
+import { Grid, Paper, StepConnector, Typography } from '@mui/material';
 
-import { useEffect, useState } from "react";
-import axios from "axios";
+import { useEffect, useState } from 'react';
+import axios from 'axios';
+import url from '../../serverUrl';
 
 const style = {
-  position: "absolute",
-  top: "50%",
-  left: "50%",
-  transform: "translate(-50%, -50%)",
+  position: 'absolute',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
   width: 400,
-  bgcolor: "drak",
-  border: "2px solid #000",
+  bgcolor: 'drak',
+  border: '2px solid #000',
   boxShadow: 24,
   pt: 2,
   px: 4,
-  pb: 3,
+  pb: 3
 };
 
 export default function TokenRequest({ each, index, user, fetchTokens }) {
@@ -35,45 +36,45 @@ export default function TokenRequest({ each, index, user, fetchTokens }) {
   const handleSubmit = () => {
     if (user.username) {
       axios
-        .post(`http://localhost:3001/hootdex/approve-token`, {
+        .post(`${url}/hootdex/approve-token`, {
           id: each.id,
           approvedBy: user?.username,
           tokenName: each.tokenName,
           tokenPrice: each.tokenPrice,
-          aTime: new Date(),
+          aTime: new Date()
         })
         .then((res) => {
-          if(res.data.affectedRows > 0) {
-            fetchTokens()
-            handleClose()
+          if (res.data.affectedRows > 0) {
+            fetchTokens();
+            handleClose();
           }
         });
     }
-  }
+  };
   return (
     <>
       <div
         onClick={handleOpen}
         style={{
-          display: "flex",
-          justifyContent: "center",
-          cursor: "pointer",
+          display: 'flex',
+          justifyContent: 'center',
+          cursor: 'pointer'
         }}
       >
         <Paper
           sx={{
-            textAlign: "center",
-            backgroundColor: "#00071a",
-            m: 1,
+            textAlign: 'center',
+            backgroundColor: '#00071a',
+            m: 1
           }}
           className="hover-grey center-width border"
         >
           <div
             style={{
-              display: "flex",
-              justifyContent: "space-around",
-              alignItems: "center",
-              color: "white",
+              display: 'flex',
+              justifyContent: 'space-around',
+              alignItems: 'center',
+              color: 'white'
             }}
           >
             <div>
@@ -94,28 +95,28 @@ export default function TokenRequest({ each, index, user, fetchTokens }) {
       >
         <Box
           className="border"
-          sx={{ ...style, width: 800, backdropFilter: "blur(5px)" }}
+          sx={{ ...style, width: 800, backdropFilter: 'blur(5px)' }}
         >
           <h2 className="twhite tcenter">Token details</h2>
-          <StepConnector/>
+          <StepConnector />
           <Grid container spacing={5}>
             <Grid item xs={6} md={4} sx={{ mt: 3 }}>
               <Paper
                 style={{
-                  textAlign: "center",
-                  backgroundColor: "#00071a",
+                  textAlign: 'center',
+                  backgroundColor: '#00071a'
                 }}
                 className="border tShadow"
               >
                 <div
                   style={{
-                    color: "white",
-                    wordWrap: "break-word",
+                    color: 'white',
+                    wordWrap: 'break-word'
                   }}
                 >
                   <div
                     className="rounded center-width tUpper"
-                    style={{ backgroundColor: "#002945" }}
+                    style={{ backgroundColor: '#002945' }}
                   >
                     <h3>Name</h3>
                   </div>
@@ -126,20 +127,20 @@ export default function TokenRequest({ each, index, user, fetchTokens }) {
             <Grid item xs={6} md={4} sx={{ mt: 3 }}>
               <Paper
                 style={{
-                  textAlign: "center",
-                  backgroundColor: "#00071a",
+                  textAlign: 'center',
+                  backgroundColor: '#00071a'
                 }}
                 className="border tShadow"
               >
                 <div
                   style={{
-                    color: "white",
-                    wordWrap: "break-word",
+                    color: 'white',
+                    wordWrap: 'break-word'
                   }}
                 >
                   <div
                     className="rounded center-width tUpper"
-                    style={{ backgroundColor: "#002945" }}
+                    style={{ backgroundColor: '#002945' }}
                   >
                     <h3>Amount</h3>
                   </div>
@@ -150,20 +151,20 @@ export default function TokenRequest({ each, index, user, fetchTokens }) {
             <Grid item xs={6} md={4} sx={{ mt: 3 }}>
               <Paper
                 style={{
-                  textAlign: "center",
-                  backgroundColor: "#00071a",
+                  textAlign: 'center',
+                  backgroundColor: '#00071a'
                 }}
                 className="border tShadow"
               >
                 <div
                   style={{
-                    color: "white",
-                    wordWrap: "break-word",
+                    color: 'white',
+                    wordWrap: 'break-word'
                   }}
                 >
                   <div
                     className="rounded center-width tUpper"
-                    style={{ backgroundColor: "#002945" }}
+                    style={{ backgroundColor: '#002945' }}
                   >
                     <h3>Price</h3>
                   </div>
@@ -174,20 +175,20 @@ export default function TokenRequest({ each, index, user, fetchTokens }) {
             <Grid item xs={6} md={4} sx={{ mt: 3 }}>
               <Paper
                 style={{
-                  textAlign: "center",
-                  backgroundColor: "#00071a",
+                  textAlign: 'center',
+                  backgroundColor: '#00071a'
                 }}
                 className="border tShadow"
               >
                 <div
                   style={{
-                    color: "white",
-                    wordWrap: "break-word",
+                    color: 'white',
+                    wordWrap: 'break-word'
                   }}
                 >
                   <div
                     className="rounded center-width tUpper"
-                    style={{ backgroundColor: "#002945" }}
+                    style={{ backgroundColor: '#002945' }}
                   >
                     <h3>Value (USD)</h3>
                   </div>
@@ -198,20 +199,20 @@ export default function TokenRequest({ each, index, user, fetchTokens }) {
             <Grid item xs={6} md={4} sx={{ mt: 3 }}>
               <Paper
                 style={{
-                  textAlign: "center",
-                  backgroundColor: "#00071a",
+                  textAlign: 'center',
+                  backgroundColor: '#00071a'
                 }}
                 className="border tShadow"
               >
                 <div
                   style={{
-                    color: "white",
-                    wordWrap: "break-word",
+                    color: 'white',
+                    wordWrap: 'break-word'
                   }}
                 >
                   <div
                     className="rounded center-width tUpper"
-                    style={{ backgroundColor: "#002945" }}
+                    style={{ backgroundColor: '#002945' }}
                   >
                     <h3>Pecu Coin (EQ)</h3>
                   </div>
@@ -222,20 +223,20 @@ export default function TokenRequest({ each, index, user, fetchTokens }) {
             <Grid item xs={6} md={4} sx={{ mt: 3 }}>
               <Paper
                 style={{
-                  textAlign: "center",
-                  backgroundColor: "#00071a",
+                  textAlign: 'center',
+                  backgroundColor: '#00071a'
                 }}
                 className="border tShadow"
               >
                 <div
                   style={{
-                    color: "white",
-                    wordWrap: "break-word",
+                    color: 'white',
+                    wordWrap: 'break-word'
                   }}
                 >
                   <div
                     className="rounded center-width tUpper"
-                    style={{ backgroundColor: "#002945" }}
+                    style={{ backgroundColor: '#002945' }}
                   >
                     <h3>Created By</h3>
                   </div>
@@ -244,8 +245,13 @@ export default function TokenRequest({ each, index, user, fetchTokens }) {
               </Paper>
             </Grid>
             <Grid item xs={12}>
-              <div style={{textAlign: 'center'}}>
-                <Button onClick={handleSubmit} className="border" variant="contained" sx={{ color: "white", backgroundColor: "#00071a" }}>
+              <div style={{ textAlign: 'center' }}>
+                <Button
+                  onClick={handleSubmit}
+                  className="border"
+                  variant="contained"
+                  sx={{ color: 'white', backgroundColor: '#00071a' }}
+                >
                   Approve
                 </Button>
               </div>

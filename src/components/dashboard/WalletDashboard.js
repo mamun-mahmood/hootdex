@@ -1,22 +1,23 @@
-import React from "react";
-import { Box, Button } from "@mui/material";
-import Grid from "@mui/material/Grid";
-import { Paper } from "@mui/material";
-import { useEffect } from "react";
-import axios from "axios";
+import React from 'react';
+import { Box, Button } from '@mui/material';
+import Grid from '@mui/material/Grid';
+import { Paper } from '@mui/material';
+import { useEffect } from 'react';
+import axios from 'axios';
+import url from '../../serverUrl';
 const WalletDashboard = ({ user, pecuCoins }) => {
-  const [totalCoins, setTotalCoins] = React.useState("");
-  const [totalValue, setTotalValue] = React.useState("");
+  const [totalCoins, setTotalCoins] = React.useState('');
+  const [totalValue, setTotalValue] = React.useState('');
   // const username = user.username;
   const wallet = JSON.parse(
-    localStorage.getItem("hootdex_secretcookie_wallet")
+    localStorage.getItem('hootdex_secretcookie_wallet')
   );
 
   const getMyCoins = (id) => {
     if (id) {
       axios
-        .post(`${"http://localhost:3001"}/wallet/getMycoins`, {
-          user_id: id,
+        .post(`${url}/wallet/getMycoins`, {
+          user_id: id
         })
         .then((res) => {
           const { total_coins, value } = res.data;
@@ -37,50 +38,50 @@ const WalletDashboard = ({ user, pecuCoins }) => {
       className="rounded shadow"
       sx={{
         padding: 1,
-        width: "95%",
-        ml: "2.5%",
+        width: '95%',
+        ml: '2.5%',
         mt: 1,
-        pb: 2,
+        pb: 2
       }}
     >
-      <h2 style={{ color: "#fff", textAlign: "center", fontWeight: "bold" }}>
+      <h2 style={{ color: '#fff', textAlign: 'center', fontWeight: 'bold' }}>
         Wallet Dashboard
       </h2>
-      <Grid container spacing={5} sx={{ textTransform: "uppercase", p: 10 }}>
+      <Grid container spacing={5} sx={{ textTransform: 'uppercase', p: 10 }}>
         <Grid item xs={12} md={6} lg={4}>
           <Paper
             style={{
-              textAlign: "center",
-              backgroundColor: "grey",
+              textAlign: 'center',
+              backgroundColor: 'grey'
             }}
             className="border tShadow"
           >
             <div
               style={{
-                color: "white",
-                wordWrap: "break-word",
+                color: 'white',
+                wordWrap: 'break-word'
               }}
             >
               <div
                 className="rounded center-width tUpper"
-                style={{ backgroundColor: "#01402b" }}
+                style={{ backgroundColor: '#01402b' }}
               >
                 <h3>Connected Wallet</h3>
               </div>
               <>
                 {wallet?.uid ? (
                   <>
-                    {" "}
+                    {' '}
                     <img
                       src={
-                        "https://pecunovus.net/static/media/icon.25c8ec299d961b9dd524.ico"
+                        'https://pecunovus.net/static/media/icon.25c8ec299d961b9dd524.ico'
                       }
                       alt="pecu wallet"
                     />
                     <p>PECU WALLET</p>
                   </>
                 ) : (
-                  "Wallet Disconnected"
+                  'Wallet Disconnected'
                 )}
               </>
             </div>
@@ -139,22 +140,22 @@ const WalletDashboard = ({ user, pecuCoins }) => {
         <Grid item xs={12} md={6} lg={4}>
           <Paper
             style={{
-              textAlign: "center",
-              backgroundColor: "grey",
-              cursor: "pointer",
+              textAlign: 'center',
+              backgroundColor: 'grey',
+              cursor: 'pointer'
             }}
             // onClick={() => handleOpen(2)}
             className="border"
           >
             <div
               style={{
-                color: "white",
-                wordWrap: "break-word",
+                color: 'white',
+                wordWrap: 'break-word'
               }}
             >
               <div
                 className="rounded center-width tUpper"
-                style={{ backgroundColor: "#01402b" }}
+                style={{ backgroundColor: '#01402b' }}
               >
                 <h3>Current Holdings</h3>
               </div>
@@ -163,12 +164,12 @@ const WalletDashboard = ({ user, pecuCoins }) => {
                   <p>Pecu Coins: {totalCoins}</p>
                   <br></br>
                   <p>
-                    Total Value: ${" "}
-                    {parseFloat(totalValue).toLocaleString("en-US")}
+                    Total Value: ${' '}
+                    {parseFloat(totalValue).toLocaleString('en-US')}
                   </p>
                 </>
               ) : (
-                "Wallet Disconnected"
+                'Wallet Disconnected'
               )}
             </div>
           </Paper>
@@ -202,20 +203,20 @@ const WalletDashboard = ({ user, pecuCoins }) => {
         <Grid item xs={12} md={6} lg={4}>
           <Paper
             style={{
-              textAlign: "center",
-              backgroundColor: "grey",
+              textAlign: 'center',
+              backgroundColor: 'grey'
             }}
             className="border"
           >
             <div
               style={{
-                color: "white",
-                wordWrap: "break-word",
+                color: 'white',
+                wordWrap: 'break-word'
               }}
             >
               <div
                 className="rounded center-width tUpper"
-                style={{ backgroundColor: "#01402b" }}
+                style={{ backgroundColor: '#01402b' }}
               >
                 <h3>Token Swap</h3>
               </div>
@@ -223,15 +224,15 @@ const WalletDashboard = ({ user, pecuCoins }) => {
                 <Button
                   variant="outlined"
                   sx={{
-                    color: "white",
-                    textTransform: "capitalize",
-                    m: 1,
+                    color: 'white',
+                    textTransform: 'capitalize',
+                    m: 1
                   }}
                 >
                   SWAP
                 </Button>
               ) : (
-                "Wallet Disconnected"
+                'Wallet Disconnected'
               )}
             </div>
           </Paper>

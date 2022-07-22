@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import {
   Avatar,
   LinearProgress,
@@ -9,26 +9,26 @@ import {
   tableCellClasses,
   TableContainer,
   TableHead,
-  TableRow,
-} from "@mui/material";
-import axios from "axios";
-import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+  TableRow
+} from '@mui/material';
+import axios from 'axios';
+import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
+import url from '../../serverUrl';
 
 const WarpTokens = () => {
   const [loading, setLoading] = useState(false);
   const [tokens, setTokens] = useState([]);
   const fetchToken = (target) => {
-    if (target === "all") {
+    if (target === 'all') {
       setLoading(true);
       axios
-        .get("http://localhost:3001/wallet/get_all_tokens_wrap")
+        .get(`${url}/wallet/get_all_tokens_wrap`)
         .then((res) => {
-    
           if (res.data.status) {
-            setTokens(res.data.tokens); 
+            setTokens(res.data.tokens);
           }
-          
+
           setLoading(false);
         })
         .catch((err) => {
@@ -41,37 +41,37 @@ const WarpTokens = () => {
     }
   };
   useEffect(() => {
-    fetchToken("all");
+    fetchToken('all');
   }, []);
   return (
     <>
       <TableContainer
         sx={{
-          backgroundColor: "#1a1b1f",
+          backgroundColor: '#1a1b1f',
           mt: 5,
-          borderRadius: "1rem",
+          borderRadius: '1rem'
         }}
         component={Paper}
       >
         <div className="">
           <p
             style={{
-              color: "rgb(195, 197, 203)",
-              fontSize: "1.4rem",
-              fontWeight: "600",
-              textAlign: "center",
-              backgroundColor: "#21242b",
+              color: 'rgb(195, 197, 203)',
+              fontSize: '1.4rem',
+              fontWeight: '600',
+              textAlign: 'center',
+              backgroundColor: '#21242b'
             }}
           >
-             Tokens
+            Tokens
           </p>
           {loading && <LinearProgress color="inherit" />}
         </div>
         <Table
           sx={{
             [`& .${tableCellClasses.root}`]: {
-              borderBottom: " 1px solid #1e2128",
-            },
+              borderBottom: ' 1px solid #1e2128'
+            }
           }}
         >
           <TableHead className="">
@@ -103,19 +103,18 @@ const WarpTokens = () => {
                     <Link to={`/t/${each.symbol}`}>
                       <div
                         style={{
-                          display: "flex",
-                          alignItems: "center",
+                          display: 'flex',
+                          alignItems: 'center'
                         }}
                       >
                         <Avatar
-                      
                           className="rounded"
-                          src={`http://localhost:3001/hootdex/images/${each?.logo_src}`}
+                          src={`${url}/hootdex/images/${each?.logo_src}`}
                           alt={each.symbol.slice(1)}
                         />
-                        <span style={{ marginLeft: "1rem", fontSize: "20px" }}>
-                          {each.tokenName}{" "}
-                          <small style={{ color: "#696c75" }}>
+                        <span style={{ marginLeft: '1rem', fontSize: '20px' }}>
+                          {each.tokenName}{' '}
+                          <small style={{ color: '#696c75' }}>
                             ({each.symbol})
                           </small>
                         </span>
@@ -129,7 +128,7 @@ const WarpTokens = () => {
                     {each.wrapAmount}
                   </TableCell>
                   <TableCell className="twhite pink" align="left">
-                    {each.wrapAmount*each.initialFinal}
+                    {each.wrapAmount * each.initialFinal}
                   </TableCell>
                 </TableRow>
               ))}

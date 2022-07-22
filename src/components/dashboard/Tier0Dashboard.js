@@ -1,20 +1,21 @@
-import * as React from "react";
-import Box from "@mui/material/Box";
-import Grid from "@mui/material/Grid";
-import { Paper } from "@mui/material";
-import Chart from "../../screens/chart";
-import CircularChart from "./CircularChart";
-import axios from "axios";
+import * as React from 'react';
+import Box from '@mui/material/Box';
+import Grid from '@mui/material/Grid';
+import { Paper } from '@mui/material';
+import Chart from '../../screens/chart';
+import CircularChart from './CircularChart';
+import axios from 'axios';
+import url from '../../serverUrl';
 function DashboardContent({ user }) {
   const [currentValue, setCurrentValue] = React.useState(0);
   const get_current_index_coin = () => {
     axios
-      .get(`http://localhost:3001/wallet/get_current_index_coin`)
+      .get(`${url}/wallet/get_current_index_coin`)
       .then((res) => {
         setCurrentValue(res.data[0].value);
         console.log(res.data[0]);
       })
-      .catch(err => {
+      .catch((err) => {
         console.log(err);
       });
   };
@@ -28,32 +29,32 @@ function DashboardContent({ user }) {
         className="rounded shadow"
         sx={{
           padding: 1,
-          width: "95%",
-          ml: "2.5%",
+          width: '95%',
+          ml: '2.5%',
           mt: 1,
-          pb: 2,
+          pb: 2
         }}
       >
-        <Grid container spacing={5} sx={{ textTransform: "uppercase", p: 5 }}>
+        <Grid container spacing={5} sx={{ textTransform: 'uppercase', p: 5 }}>
           <Grid item xs={12} md={6} lg={3} mt={5}>
             {/* dashboard left */}
             <Grid sx={{ mt: 3 }}>
               <Paper
                 style={{
-                  textAlign: "center",
-                  backgroundColor: "#00071a",
+                  textAlign: 'center',
+                  backgroundColor: '#00071a'
                 }}
                 className="border"
               >
                 <div
                   style={{
-                    color: "white",
-                    wordWrap: "break-word",
+                    color: 'white',
+                    wordWrap: 'break-word'
                   }}
                 >
                   <div
                     className="rounded center-width tUpper"
-                    style={{ backgroundColor: "#002945" }}
+                    style={{ backgroundColor: '#002945' }}
                   >
                     <h3>Total XMG</h3>
                   </div>
@@ -64,20 +65,20 @@ function DashboardContent({ user }) {
             <Grid sx={{ mt: 3 }}>
               <Paper
                 style={{
-                  textAlign: "center",
-                  backgroundColor: "#00071a",
+                  textAlign: 'center',
+                  backgroundColor: '#00071a'
                 }}
                 className="border"
               >
                 <div
                   style={{
-                    color: "white",
-                    wordWrap: "break-word",
+                    color: 'white',
+                    wordWrap: 'break-word'
                   }}
                 >
                   <div
                     className="rounded center-width tUpper"
-                    style={{ backgroundColor: "#002945" }}
+                    style={{ backgroundColor: '#002945' }}
                   >
                     <h3>Total Value</h3>
                   </div>
@@ -88,20 +89,20 @@ function DashboardContent({ user }) {
             <Grid sx={{ mt: 3 }}>
               <Paper
                 style={{
-                  textAlign: "center",
-                  backgroundColor: "#00071a",
+                  textAlign: 'center',
+                  backgroundColor: '#00071a'
                 }}
                 className="border"
               >
                 <div
                   style={{
-                    color: "white",
-                    wordWrap: "break-word",
+                    color: 'white',
+                    wordWrap: 'break-word'
                   }}
                 >
                   <div
                     className="rounded center-width tUpper"
-                    style={{ backgroundColor: "#002945" }}
+                    style={{ backgroundColor: '#002945' }}
                   >
                     <h3>Total Coin</h3>
                   </div>
@@ -117,20 +118,20 @@ function DashboardContent({ user }) {
             <Grid sx={{ mt: 3 }}>
               <Paper
                 style={{
-                  textAlign: "center",
-                  backgroundColor: "#00071a",
+                  textAlign: 'center',
+                  backgroundColor: '#00071a'
                 }}
                 className="border"
               >
                 <div
                   style={{
-                    color: "white",
-                    wordWrap: "break-word",
+                    color: 'white',
+                    wordWrap: 'break-word'
                   }}
                 >
                   <div
                     className="rounded center-width tUpper"
-                    style={{ backgroundColor: "#002945" }}
+                    style={{ backgroundColor: '#002945' }}
                   >
                     <h3>Total PECU</h3>
                   </div>
@@ -141,20 +142,20 @@ function DashboardContent({ user }) {
             <Grid sx={{ mt: 3 }}>
               <Paper
                 style={{
-                  textAlign: "center",
-                  backgroundColor: "#00071a",
+                  textAlign: 'center',
+                  backgroundColor: '#00071a'
                 }}
                 className="border"
               >
                 <div
                   style={{
-                    color: "white",
-                    wordWrap: "break-word",
+                    color: 'white',
+                    wordWrap: 'break-word'
                   }}
                 >
                   <div
                     className="rounded center-width tUpper"
-                    style={{ backgroundColor: "#002945" }}
+                    style={{ backgroundColor: '#002945' }}
                   >
                     <h3>Total Value</h3>
                   </div>
@@ -165,20 +166,20 @@ function DashboardContent({ user }) {
             <Grid sx={{ mt: 3 }}>
               <Paper
                 style={{
-                  textAlign: "center",
-                  backgroundColor: "#00071a",
+                  textAlign: 'center',
+                  backgroundColor: '#00071a'
                 }}
                 className="border"
               >
                 <div
                   style={{
-                    color: "white",
-                    wordWrap: "break-word",
+                    color: 'white',
+                    wordWrap: 'break-word'
                   }}
                 >
                   <div
                     className="rounded center-width tUpper"
-                    style={{ backgroundColor: "#002945" }}
+                    style={{ backgroundColor: '#002945' }}
                   >
                     <h3>Total Pecu Coin</h3>
                   </div>
@@ -194,10 +195,10 @@ function DashboardContent({ user }) {
         className="rounded shadow"
         sx={{
           padding: 1,
-          width: "95%",
-          ml: "2.5%",
+          width: '95%',
+          ml: '2.5%',
           mt: 3,
-          mb: 1,
+          mb: 1
         }}
       >
         <Chart />
@@ -207,31 +208,31 @@ function DashboardContent({ user }) {
         className="rounded shadow"
         sx={{
           padding: 1,
-          width: "95%",
-          ml: "2.5%",
+          width: '95%',
+          ml: '2.5%',
           mt: 3,
-          backgroundColor: "black",
-          mb: 1,
+          backgroundColor: 'black',
+          mb: 1
         }}
       >
         <Grid container spacing={5} sx={{ p: 1 }}>
           <Grid item xs={12} md={6} lg={4} xl={3}>
             <Paper
               style={{
-                textAlign: "center",
-                backgroundColor: "#00071a",
+                textAlign: 'center',
+                backgroundColor: '#00071a'
               }}
               className="border "
             >
               <div
                 style={{
-                  color: "white",
-                  wordWrap: "break-word",
+                  color: 'white',
+                  wordWrap: 'break-word'
                 }}
               >
                 <div
                   className="rounded center-width tUpper"
-                  style={{ backgroundColor: "#002945" }}
+                  style={{ backgroundColor: '#002945' }}
                 >
                   <h3>Current Pool Balance</h3>
                 </div>
@@ -242,20 +243,20 @@ function DashboardContent({ user }) {
           <Grid item xs={12} md={6} lg={4} xl={3}>
             <Paper
               style={{
-                textAlign: "center",
-                backgroundColor: "#00071a",
+                textAlign: 'center',
+                backgroundColor: '#00071a'
               }}
               className="border"
             >
               <div
                 style={{
-                  color: "white",
-                  wordWrap: "break-word",
+                  color: 'white',
+                  wordWrap: 'break-word'
                 }}
               >
                 <div
                   className="rounded center-width tUpper"
-                  style={{ backgroundColor: "#002945" }}
+                  style={{ backgroundColor: '#002945' }}
                 >
                   <h3>Current PECU Price</h3>
                 </div>
@@ -266,20 +267,20 @@ function DashboardContent({ user }) {
           <Grid item xs={12} md={6} lg={4} xl={3}>
             <Paper
               style={{
-                textAlign: "center",
-                backgroundColor: "#00071a",
+                textAlign: 'center',
+                backgroundColor: '#00071a'
               }}
               className="border"
             >
               <div
                 style={{
-                  color: "white",
-                  wordWrap: "break-word",
+                  color: 'white',
+                  wordWrap: 'break-word'
                 }}
               >
                 <div
                   className="rounded center-width tUpper"
-                  style={{ backgroundColor: "#002945" }}
+                  style={{ backgroundColor: '#002945' }}
                 >
                   <h3>Current XMG Price</h3>
                 </div>
