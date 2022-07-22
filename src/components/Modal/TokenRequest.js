@@ -35,7 +35,7 @@ export default function TokenRequest({ each, index, user, fetchTokens }) {
   const handleSubmit = () => {
     if (user.username) {
       axios
-        .post(`http://localhost:3001/hootdex/approve-token`, {
+        .post(`https://api.pecunovus.net/hootdex/approve-token`, {
           id: each.id,
           approvedBy: user?.username,
           tokenName: each.tokenName,

@@ -15,7 +15,7 @@ const WalletDashboard = ({ user, pecuCoins }) => {
   const getMyCoins = (id) => {
     if (id) {
       axios
-        .post(`${"http://localhost:3001"}/wallet/getMycoins`, {
+        .post(`${"https://api.pecunovus.net"}/wallet/getMycoins`, {
           user_id: id,
         })
         .then((res) => {

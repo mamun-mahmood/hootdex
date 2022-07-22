@@ -40,7 +40,7 @@ const TokenList = ({
   const [currentValue, setCurrentValue] = useState(null);
   useEffect(() => {
     axios
-      .get(`http://localhost:3001/wallet/get_current_index_coin`)
+      .get(`https://api.pecunovus.net/wallet/get_current_index_coin`)
       .then((res) => {
         setCurrentValue(res.data[0].value);
       })
@@ -51,7 +51,7 @@ const TokenList = ({
   const handleSubmit = (data) => {
     if (currentValue) {
       axios
-        .post("http://localhost:3001/hootdex/sell-token", {
+        .post("https://api.pecunovus.net/hootdex/sell-token", {
           data: data,
           timestamp: new Date(),
           pecuPrice: currentValue,

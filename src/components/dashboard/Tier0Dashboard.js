@@ -9,7 +9,7 @@ function DashboardContent({ user }) {
   const [currentValue, setCurrentValue] = React.useState(0);
   const get_current_index_coin = () => {
     axios
-      .get(`http://localhost:3001/wallet/get_current_index_coin`)
+      .get(`https://api.pecunovus.net/wallet/get_current_index_coin`)
       .then((res) => {
         setCurrentValue(res.data[0].value);
         console.log(res.data[0]);

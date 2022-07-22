@@ -17,7 +17,7 @@ const AssetChart = ({ tokenName }) => {
   const [chartData, setChartData] = useState([])
   useEffect(() => {
     axios
-      .get(`http://localhost:3001/hootdex/token-info-chart/${tokenName}`)
+      .get(`https://api.pecunovus.net/hootdex/token-info-chart/${tokenName}`)
       .then((res) => {
         setChartData(res.data);
       })

@@ -58,7 +58,7 @@ const ConnectWallet = ({ fetchWallet, wallet, setOpen, open }) => {
     if (email) {
       setLoading(true);
       axios
-        .post(`http://localhost:3001/hootdex/connect-wallet`, {
+        .post(`https://api.pecunovus.net/hootdex/connect-wallet`, {
           private_key: email,
         })
         .then((res) => {

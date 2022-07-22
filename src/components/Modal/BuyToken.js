@@ -55,7 +55,7 @@ export default function BuyToken({ each, user, pecuCoins }) {
   const handleSubmit = (e) => {
     // if ( totalToken > 0 && pecuCoins?.coin >= inputData.pecuCoin) {
     axios
-      .post("http://localhost:3001/hootdex/buy-tokens", {
+      .post("https://api.pecunovus.net/hootdex/buy-tokens", {
         userName: user.username,
         tokenAmount: totalToken,
         token: each,

@@ -35,7 +35,7 @@ export default function TokenPage({ pecuCoins, user }) {
   const [currentValue, setCurrentValue] = useState(0);
   const get_current_index_coin = () => {
     axios
-      .get(`http://localhost:3001/wallet/get_current_index_coin`)
+      .get(`https://api.pecunovus.net/wallet/get_current_index_coin`)
       .then((res) => {
         setCurrentValue(res.data[0].value);
       })
@@ -47,7 +47,7 @@ export default function TokenPage({ pecuCoins, user }) {
   useEffect(() => {
     setLoading(true);
     axios
-      .get(`http://localhost:3001/hootdex/getToken/${tokenName}`)
+      .get(`https://api.pecunovus.net/hootdex/getToken/${tokenName}`)
       .then((res) => {
         setToken(res.data[0]);
         setLoading(false);
@@ -81,7 +81,7 @@ export default function TokenPage({ pecuCoins, user }) {
           <Grid item xs={12} md={6}>
             <div className="dfelxalitemC">
               <Avatar
-                src={`http://localhost:3001/hootdex/images/${token?.logo_src}`}
+                src={`https://api.pecunovus.net/hootdex/images/${token?.logo_src}`}
                 alt={token.tokenName}
               />
               <p
