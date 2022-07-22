@@ -20,7 +20,7 @@ const PoolTokens = () => {
   const [currentValue, setCurrentValue] = useState(0);
   const get_current_index_coin = () => {
     axios
-      .get(`http://localhost:3001/wallet/get_current_index_coin`)
+      .get(`https://api.pecunovus.net/wallet/get_current_index_coin`)
       .then((res) => {
         setCurrentValue(res.data[0].value);
       
@@ -33,7 +33,7 @@ const PoolTokens = () => {
     if (target === "all") {
       setLoading(true);
       axios
-        .get("http://localhost:3001/hootdex/available-tokens")
+        .get("https://api.pecunovus.net/hootdex/available-tokens")
         .then((res) => {
           setTokens(res.data);
           setLoading(false);
@@ -118,7 +118,7 @@ const PoolTokens = () => {
                       >
                         <Avatar
                           className="rounded"
-                          src={`http://localhost:3001/hootdex/images/${each?.logo_src}`}
+                          src={`https://api.pecunovus.net/hootdex/images/${each?.logo_src}`}
                           alt="token logo"
                           style={{width:'20px',height:'20px'}}
                         />
