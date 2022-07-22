@@ -81,6 +81,7 @@ const AssetChart = ({ tokenName }) => {
       <ResponsiveContainer width={500} height={300}>
         <LineChart style={{ maxWidth: "100%" }} data={chartData}>
           <Line type="monotone" dataKey="today_value" stroke="#8884d8" strokeWidth={2} />
+          <Tooltip />
         </LineChart>
       </ResponsiveContainer>
     </>
