@@ -13,7 +13,7 @@ import url from '../serverUrl';
 export default function Chart() {
   const [chartData, setChartData] = useState([]);
   const getChatData = (filter) => {
-    let localData = [];
+    // let localData = [];
     axios
       .get(`${url}/wallet/get_change_index_coin_${filter}`)
       .then((res) => {

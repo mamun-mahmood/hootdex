@@ -144,9 +144,7 @@ const PoolTokens = () => {
                     {each.totalToken}
                   </TableCell>
                   <TableCell className="twhite pink" align="left">
-                    {Math.ceil(
-                      each.totalToken * each.currentPrice * currentValue
-                    )}
+                    {each.volume.toFixed(2)}
                   </TableCell>
                 </TableRow>
               ))}
