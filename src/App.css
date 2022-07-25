@@ -269,6 +269,10 @@ html {
   background-color: rgb(244, 169, 50);
   color: #fff;
 }
+.activeButton {
+  background-color: rgb(244, 169, 50) !important;
+  color: #fff !important;
+}
 .rounded20 {
   border-radius: 20px !important;
 }

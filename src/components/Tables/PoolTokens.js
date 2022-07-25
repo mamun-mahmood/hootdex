@@ -144,7 +144,7 @@ const PoolTokens = () => {
                     {each.totalToken}
                   </TableCell>
                   <TableCell className="twhite pink" align="left">
-                    {each.volume.toFixed(2)}
+                    {each.volume?.toFixed(2)}
                   </TableCell>
                 </TableRow>
               ))}

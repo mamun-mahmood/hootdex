@@ -188,7 +188,7 @@ export default function TokenPage({ pecuCoins, user }) {
               <div style={{ marginBottom: "1rem" }}>
                 <p className="token-page-t1 mb-1">TVL</p>
                 <p className="token-page-t2 mb-1">
-                  ${token?.volume.toFixed(2)}
+                  ${token?.volume?.toFixed(2)}
                 </p>
                 {/* <small style={{ fontSize: "18px", color: "red" }}>
                   <ArrowDownwardIcon sx={{ fontSize: "18px" }} />
@@ -242,7 +242,7 @@ export default function TokenPage({ pecuCoins, user }) {
                 <div>
                   <p className="token-page-t2">
                     $
-                    {token?.volume.toFixed(2)}
+                    {token?.volume?.toFixed(2)}
                   </p>
                   <p className="token-page-t1">{date}</p>
                 </div>

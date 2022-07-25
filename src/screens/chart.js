@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from "react";
 import {
   ResponsiveContainer,
   Tooltip,
@@ -6,14 +6,16 @@ import {
   YAxis,
   CartesianGrid,
   AreaChart,
-  Area
-} from 'recharts';
-import axios from 'axios';
-import url from '../serverUrl';
+  Area,
+} from "recharts";
+import axios from "axios";
+import url from "../serverUrl";
 export default function Chart() {
   const [chartData, setChartData] = useState([]);
+  const [filter, setFilter] = useState("")
   const getChatData = (filter) => {
     // let localData = [];
+    setFilter(filter)
     axios
       .get(`${url}/wallet/get_change_index_coin_${filter}`)
       .then((res) => {
@@ -26,64 +28,84 @@ export default function Chart() {
   };
 
   useEffect(() => {
-    getChatData('yearly');
+    getChatData("yearly");
   }, []);
   // console.log(chartData);
   return (
     <div
       style={{
-        display: 'flex',
-        flexDirection: 'column',
-        backgroundColor: '#1a1b1f',
-        borderRadius: '1rem',
-        marginTop: '2rem'
+        display: "flex",
+        flexDirection: "column",
+        backgroundColor: "#1a1b1f",
+        borderRadius: "1rem",
+        marginTop: "2rem",
         // padding: '1rem',
       }}
     >
       <div
         style={{
-          display: 'flex',
-          flexDirection: 'row-reverse',
-          justifyContent: 'center',
-          marginTop: '1rem'
+          display: "flex",
+          flexDirection: "row-reverse",
+          justifyContent: "center",
+          marginTop: "1rem",
         }}
       >
         <button
-          className="header-link button"
+          className={`${
+            filter === "yearly"
+              ? "header-link button activeButton"
+              : "header-link button"
+          }`}
           onClick={() => {
-            getChatData('yearly');
+            getChatData("yearly");
           }}
         >
           12M
         </button>
         <button
-          className="header-link button"
+          className={`${
+            filter === "quaterly"
+              ? "header-link button activeButton"
+              : "header-link button"
+          }`}
           onClick={() => {
-            getChatData('quaterly');
+            getChatData("quaterly");
           }}
         >
           3M
         </button>
         <button
-          className="header-link button"
+          className={`${
+            filter === "monthly"
+              ? "header-link button activeButton"
+              : "header-link button"
+          }`}
           onClick={() => {
-            getChatData('monthly');
+            getChatData("monthly");
           }}
         >
           1M
         </button>
         <button
-          className="header-link button"
+          className={`${
+            filter === "weekly"
+              ? "header-link button activeButton"
+              : "header-link button"
+          }`}
           onClick={() => {
-            getChatData('weekly');
+            getChatData("weekly");
           }}
         >
           7D
         </button>
         <button
-          className="header-link button"
+          className={`${
+            filter === "hourly"
+              ? "header-link button activeButton"
+              : "header-link button"
+          }`}
           onClick={() => {
-            getChatData('hourly');
+            getChatData("hourly");
           }}
         >
           1D
@@ -135,7 +157,7 @@ export default function Chart() {
               stroke="rgb(255, 145, 0)"
               fillOpacity={1}
               fill="url(#colorUv)"
-              style={{ position: 'absolute', zIndex: '100', width: '100%' }}
+              style={{ position: "absolute", zIndex: "100", width: "100%" }}
             />
           </AreaChart>
         </ResponsiveContainer>
