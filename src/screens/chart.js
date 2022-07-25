@@ -37,7 +37,6 @@ export default function Chart() {
       style={{
         backgroundColor: "#1a1b1f",
         borderRadius: "1rem",
-        marginTop: "2rem",
         // padding: '1rem',
       }}
     >
@@ -116,7 +115,7 @@ export default function Chart() {
           sx={{ bgcolor: "#033223", mt:1 }}
           variant="rectangular"
           margin={"1rem"}
-          height={400}
+          height={300}
         />
       )}
       <Grid container>
