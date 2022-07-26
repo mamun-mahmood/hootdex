@@ -112,11 +112,10 @@ const TokenDashboard = ({ user, pecuCoins }) => {
     <Box
       className="rounded shadow"
       sx={{
-        padding: 1,
         width: '95%',
         ml: '2.5%',
         mt: 3,
-        mb: 1
+        mb: 1,
       }}
     >
       {' '}

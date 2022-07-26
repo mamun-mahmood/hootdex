@@ -37,17 +37,16 @@ const WalletDashboard = ({ user, pecuCoins }) => {
     <Box
       className="rounded shadow"
       sx={{
-        padding: 1,
         width: '95%',
         ml: '2.5%',
-        mt: 1,
-        pb: 2
+        mt: 3,
+        mb: 1,
       }}
     >
       <h2 style={{ color: '#fff', textAlign: 'center', fontWeight: 'bold' }}>
         Wallet Dashboard
       </h2>
-      <Grid container spacing={5} sx={{ textTransform: 'uppercase', p: 10 }}>
+      <Grid container spacing={3} sx={{ textTransform: 'uppercase',}}>
         <Grid item xs={12} md={6} lg={4}>
           <Paper
             style={{
