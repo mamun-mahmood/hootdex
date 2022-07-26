@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from "react";
 import {
   ResponsiveContainer,
   Tooltip,
@@ -6,14 +6,17 @@ import {
   YAxis,
   CartesianGrid,
   AreaChart,
-  Area
-} from 'recharts';
-import axios from 'axios';
-import url from '../serverUrl';
+  Area,
+} from "recharts";
+import axios from "axios";
+import url from "../serverUrl";
+import { Grid, Skeleton } from "@mui/material";
 export default function Chart() {
   const [chartData, setChartData] = useState([]);
+  const [filter, setFilter] = useState("");
   const getChatData = (filter) => {
-    let localData = [];
+    // let localData = [];
+    setFilter(filter);
     axios
       .get(`${url}/wallet/get_change_index_coin_${filter}`)
       .then((res) => {
@@ -26,78 +29,106 @@ export default function Chart() {
   };
 
   useEffect(() => {
-    getChatData('yearly');
+    getChatData("yearly");
   }, []);
   // console.log(chartData);
   return (
     <div
       style={{
-        display: 'flex',
-        flexDirection: 'column',
-        backgroundColor: '#1a1b1f',
-        borderRadius: '1rem',
-        marginTop: '2rem'
+        backgroundColor: "#1a1b1f",
+        borderRadius: "1rem",
         // padding: '1rem',
       }}
     >
       <div
         style={{
-          display: 'flex',
-          flexDirection: 'row-reverse',
-          justifyContent: 'center',
-          marginTop: '1rem'
+          display: "flex",
+          flexDirection: "row-reverse",
+          justifyContent: "center",
+          marginTop: "1rem",
         }}
       >
         <button
-          className="header-link button"
+          className={`${
+            filter === "yearly"
+              ? "header-link button activeButton"
+              : "header-link button"
+          }`}
           onClick={() => {
-            getChatData('yearly');
+            getChatData("yearly");
           }}
         >
           12M
         </button>
         <button
-          className="header-link button"
+          className={`${
+            filter === "quaterly"
+              ? "header-link button activeButton"
+              : "header-link button"
+          }`}
           onClick={() => {
-            getChatData('quaterly');
+            getChatData("quaterly");
           }}
         >
           3M
         </button>
         <button
-          className="header-link button"
+          className={`${
+            filter === "monthly"
+              ? "header-link button activeButton"
+              : "header-link button"
+          }`}
           onClick={() => {
-            getChatData('monthly');
+            getChatData("monthly");
           }}
         >
           1M
         </button>
         <button
-          className="header-link button"
+          className={`${
+            filter === "weekly"
+              ? "header-link button activeButton"
+              : "header-link button"
+          }`}
           onClick={() => {
-            getChatData('weekly');
+            getChatData("weekly");
           }}
         >
           7D
         </button>
         <button
-          className="header-link button"
+          className={`${
+            filter === "hourly"
+              ? "header-link button activeButton"
+              : "header-link button"
+          }`}
           onClick={() => {
-            getChatData('hourly');
+            getChatData("hourly");
           }}
         >
           1D
         </button>
       </div>
-
+      <div>
+      {!chartData.length && (
+        <Skeleton
+          sx={{ bgcolor: "#033223", mt:1 }}
+          variant="rectangular"
+          margin={"1rem"}
+          height={300}
+        />
+      )}
+      <Grid container>
       {chartData.length > 0 ? (
         <ResponsiveContainer
-          width={window.screen.availWidth / 1.3}
-          height={window.screen.availHeight / 2.2}
+          width={"100%"}
+          maxWidth={"100%"}
+          // height={window.screen.availHeight / 2.2}
+          aspect={3}
         >
           <AreaChart
             data={chartData}
-            margin={{ top: 10, right: 30, left: 0, bottom: 0 }}
+            margin={{ top: 10, left: 0, bottom: 0 }}
           >
             <defs>
               <linearGradient id="colorUv" x1="0" y1="0" x2="0" y2="1">
@@ -135,11 +166,13 @@ export default function Chart() {
               stroke="rgb(255, 145, 0)"
               fillOpacity={1}
               fill="url(#colorUv)"
-              style={{ position: 'absolute', zIndex: '100', width: '100%' }}
+              style={{ position: "absolute", zIndex: "100", width: "100%" }}
             />
           </AreaChart>
         </ResponsiveContainer>
       ) : null}
+      </Grid>
+      </div>
     </div>
   );
 }

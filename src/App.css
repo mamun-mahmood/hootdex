@@ -5,6 +5,11 @@
 body {
   background-image: linear-gradient(to right, #04251a, #032c1e, #033223, #023927, #01402b);
 }
+html, body, #root {
+  width: 100%;
+  height: 100%;
+}
+
 .table {
   font-family: arial, sans-serif;
   border-collapse: collapse;
@@ -268,6 +273,10 @@ html {
 .cbutton:hover {
   background-color: rgb(244, 169, 50);
   color: #fff;
+}
+.activeButton {
+  background-color: rgb(244, 169, 50) !important;
+  color: #fff !important;
 }
 .rounded20 {
   border-radius: 20px !important;

@@ -49,7 +49,6 @@ function App() {
     <BrowserRouter>
       <div>
         <Nav wallet={wallet} fetchWallet={fetchWallet} />
-        <div style={{ paddingTop: '70px' }}>
           <Routes>
             <Route path="/create-token" element={<CreateToken />} />
             <Route path="/" element={<Home />} />
@@ -80,7 +79,6 @@ function App() {
             />
           </Routes>
         </div>
-      </div>
       <Footer />
     </BrowserRouter>
   );
