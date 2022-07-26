@@ -97,7 +97,6 @@ export default function Nav({ fetchWallet, wallet }) {
               display: "flex",
               justifyContent: "center",
             }}
-            className="form-control"
             onSubmit={handleSubmit}
           >
             <ClickAwayListener onClickAway={() => setShowSugesstion(false)}>

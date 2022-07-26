@@ -100,8 +100,8 @@ export default function TokenPage({ pecuCoins, user }) {
   return (
     <>
       {loading && <LinearProgress sx={{ backgroundColor: "grey" }} />}
-      <div style={{ padding: "3rem" }}>
-        <Grid container spacing={3} mb={1}>
+      <div style={{ padding: "1rem" }}>
+        <Grid width={"100%"} container spacing={1} mb={1}>
           <Grid item xs={12} md={6}>
             <div className="dfelxalitemC">
               <Avatar
@@ -218,14 +218,8 @@ export default function TokenPage({ pecuCoins, user }) {
               </div>
             </div>
           </Grid>
-          <Grid
-            item
-            xs={12}
-            md={8}
-            mt={3}
-            // ml={5}
-          >
-            <Box sx={{ marginTop: { xs: 2, md: 0 }, height: "100%" }}>
+          <Grid item xs={12} md={8} sx={{marginTop: { xs: 8, md: 3 },}} >
+            <Box sx={{ height: "100%" }}>
               <div
                 style={{
                   backgroundColor: "rgb(25, 27, 31)",
@@ -235,7 +229,14 @@ export default function TokenPage({ pecuCoins, user }) {
                 }}
                 className="shadowGrey"
               >
-                <Box sx={{ display: {xs: "inline-block", sm: "flex"}, justifyContent: "space-between", width: "100%", height: 30}} >
+                <Box
+                  sx={{
+                    display: { xs: "inline-block", sm: "flex" },
+                    justifyContent: "space-between",
+                    width: "100%",
+                    height: 30,
+                  }}
+                >
                   <div>
                     <p className="token-page-t2">
                       ${token?.volume?.toFixed(2)}
@@ -246,7 +247,7 @@ export default function TokenPage({ pecuCoins, user }) {
                     style={{
                       backgroundColor: "rgb(44, 47, 54)",
                       borderRadius: "12px",
-                      textAlign: "center"
+                      textAlign: "center",
                     }}
                     className="dsparound"
                   >
@@ -281,7 +282,7 @@ export default function TokenPage({ pecuCoins, user }) {
                     display: "flex",
                     justifyContent: "center",
                     height: "100%",
-                    marginTop: '1rem'
+                    marginTop: "1rem",
                   }}
                 >
                   <AssetChart

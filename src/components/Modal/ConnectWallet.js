@@ -140,7 +140,7 @@ const ConnectWallet = ({ fetchWallet, wallet, setOpen, open }) => {
       >
         <Box
           sx={{
-            width: 400,
+            width: {sm: 400},
             p: 2,
             borderRadius: '1rem',
             backgroundColor: '#091e17'

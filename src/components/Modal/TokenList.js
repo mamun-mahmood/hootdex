@@ -92,7 +92,7 @@ const TokenList = ({
           className="border hide-scrollbar"
           sx={{
             ...style,
-            width: 800,
+            width: { xs: "80%", md: 800},
             maxHeight: 300,
             backdropFilter: 'blur(5px)',
             overflowY: 'scroll'

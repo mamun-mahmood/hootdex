@@ -62,20 +62,19 @@ const PoolTokens = () => {
         }}
         component={Paper}
       >
-        <div className="">
-          <p
-            style={{
-              color: "rgb(195, 197, 203)",
-              fontSize: "1.4rem",
-              fontWeight: "600",
-              textAlign: "center",
-              backgroundColor: "#21242b",
-            }}
-          >
-            Tokens
-          </p>
-          {loading && <LinearProgress color="inherit" />}
-        </div>
+        <p
+          style={{
+            color: "rgb(195, 197, 203)",
+            fontSize: "1.4rem",
+            fontWeight: "600",
+            textAlign: "center",
+            backgroundColor: "#21242b",
+            width: "100%",
+          }}
+        >
+          Tokens
+        </p>
+        {loading && <LinearProgress color="inherit" />}
         <Table
           sx={{
             [`& .${tableCellClasses.root}`]: {

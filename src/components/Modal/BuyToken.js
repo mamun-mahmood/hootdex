@@ -1,33 +1,36 @@
-import Box from '@mui/material/Box';
-import Modal from '@mui/material/Modal';
-import Button from '@mui/material/Button';
+import Box from "@mui/material/Box";
+import Modal from "@mui/material/Modal";
+import Button from "@mui/material/Button";
 import {
   Alert,
   Collapse,
+  Dialog,
+  DialogContent,
   Grid,
   IconButton,
   Paper,
   StepConnector,
-  Typography
-} from '@mui/material';
-import AddBoxIcon from '@mui/icons-material/AddBox';
-import IndeterminateCheckBoxIcon from '@mui/icons-material/IndeterminateCheckBox';
-import { useEffect, useState } from 'react';
-import axios from 'axios';
-import url from '../../serverUrl';
+  Typography,
+  useMediaQuery,
+  useTheme,
+} from "@mui/material";
+import AddBoxIcon from "@mui/icons-material/AddBox";
+import IndeterminateCheckBoxIcon from "@mui/icons-material/IndeterminateCheckBox";
+import { useEffect, useState } from "react";
+import axios from "axios";
+import url from "../../serverUrl";
 
 const style = {
-  position: 'absolute',
-  top: '50%',
-  left: '50%',
-  transform: 'translate(-50%, -50%)',
-  width: 400,
-  bgcolor: 'drak',
-  border: '2px solid #000',
+  position: "fixed",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  // width: 400,
+  bgcolor: "drak",
+  border: "2px solid #000",
   boxShadow: 24,
-  pt: 2,
-  px: 4,
-  pb: 3
+  maxHeight: "100%",
+  // p: 2
 };
 
 export default function BuyToken({ each, user, pecuCoins }) {
@@ -49,9 +52,9 @@ export default function BuyToken({ each, user, pecuCoins }) {
     setTotalToken(e.target.value);
   };
   const [alert, setAlert] = useState({
-    msg: '',
-    type: '',
-    loading: false
+    msg: "",
+    type: "",
+    loading: false,
   });
   const handleSubmit = (e) => {
     // if ( totalToken > 0 && pecuCoins?.coin >= inputData.pecuCoin) {
@@ -61,50 +64,50 @@ export default function BuyToken({ each, user, pecuCoins }) {
         tokenAmount: totalToken,
         token: each,
         reqId: Math.floor(Math.random() * 1000000 + 1),
-        bTime: new Date()
+        bTime: new Date(),
       })
       .then((res) => {
-        if (res.data.status === 'error') {
+        if (res.data.status === "error") {
           setAlert({
             msg: res.data.msg,
-            type: 'error',
-            show: true
+            type: "error",
+            show: true,
           });
           setTimeout(() => {
             setAlert({
               msg: res.data.msg,
-              type: 'error',
-              show: false
+              type: "error",
+              show: false,
             });
           }, 4000);
         }
         if (res.data.affectedRows > 0) {
           window.scrollTo(0, 0);
           setAlert({
-            msg: 'Token Purchased!',
-            type: 'success',
-            show: true
+            msg: "Token Purchased!",
+            type: "success",
+            show: true,
           });
           setTimeout(() => {
             setAlert({
-              msg: 'Token Purchased!',
-              type: 'success',
-              show: false
+              msg: "Token Purchased!",
+              type: "success",
+              show: false,
             });
           }, 3000);
         }
       })
       .catch((err) => {
         setAlert({
-          msg: 'There was an error!',
-          type: 'error',
-          show: true
+          msg: "There was an error!",
+          type: "error",
+          show: true,
         });
         setTimeout(() => {
           setAlert({
-            msg: 'There was an error!',
-            type: 'error',
-            show: false
+            msg: "There was an error!",
+            type: "error",
+            show: false,
           });
         }, 3000);
       });
@@ -123,66 +126,75 @@ export default function BuyToken({ each, user, pecuCoins }) {
     //   }, 3000);
     // }
   };
+  const theme = useTheme();
+
+  const fullScreen = useMediaQuery(theme.breakpoints.down("md"));
+
   return (
     <>
       <IconButton
         sx={{
-          backgroundColor: '#091e17',
-          color: 'white',
-          padding: '8px 16px',
-          borderRadius: '12px',
-          cursor: 'pointer'
+          backgroundColor: "#091e17",
+          color: "white",
+          padding: "8px 16px",
+          borderRadius: "12px",
+          cursor: "pointer",
         }}
         className="shadow"
         onClick={handleOpen}
       >
         <p>Trade</p>
       </IconButton>
-      <Modal
+      <Dialog
+        fullWidth={fullScreen}
         open={open}
         onClose={handleClose}
         aria-labelledby="parent-modal-title"
         aria-describedby="parent-modal-description"
+        PaperProps={{
+          style: {
+            backgroundColor: "transparent",
+            boxShadow: "none",
+          },
+        }}
+        disableScrollLock={true}
       >
-        <Box
-          className="border"
-          sx={{ ...style, width: 800, backdropFilter: 'blur(5px)' }}
-        >
-          <StepConnector />
-          <Box sx={{ mt: 2, position: 'fixed', zIndex: 1000, top: 0 }}>
-            <div style={{ display: 'flex', justifyContent: 'center' }}>
+        <Box className="border" sx={{ backdropFilter: "blur(5px)", p:3}}>
+          {/* <StepConnector /> */}
+          <Box sx={{ mt: 2, position: "fixed", zIndex: 1000, top: 0 }}>
+            <div style={{ display: "flex", justifyContent: "center" }}>
               <Collapse
                 in={alert.show}
-                sx={{ maxWidth: 400, position: 'fixed' }}
+                sx={{ maxWidth: 400, position: "fixed" }}
               >
                 <Alert
                   variant="outlined"
                   severity={alert.type}
-                  sx={{ mb: 2, backgroundColor: 'white', fontSize: '18px' }}
+                  sx={{ mb: 2, backgroundColor: "white", fontSize: "18px" }}
                 >
                   {alert.msg}
                 </Alert>
               </Collapse>
             </div>
           </Box>
-          <Grid container spacing={5}>
-            <Grid item xs={6} md={4} sx={{ mt: 3 }}>
+          <Grid container spacing={{ xs: 1, md: 2 }}>
+            <Grid item xs={12} md={4}>
               <Paper
                 style={{
-                  textAlign: 'center',
-                  backgroundColor: '#00071a'
+                  textAlign: "center",
+                  backgroundColor: "#00071a",
                 }}
                 className="border tShadow"
               >
                 <div
                   style={{
-                    color: 'white',
-                    wordWrap: 'break-word'
+                    color: "white",
+                    wordWrap: "break-word",
                   }}
                 >
                   <div
                     className="rounded center-width tUpper"
-                    style={{ backgroundColor: '#002945' }}
+                    style={{ backgroundColor: "#002945" }}
                   >
                     <h3>Name</h3>
                   </div>
@@ -190,23 +202,23 @@ export default function BuyToken({ each, user, pecuCoins }) {
                 </div>
               </Paper>
             </Grid>
-            <Grid item xs={6} md={4} sx={{ mt: 3 }}>
+            <Grid item xs={12} md={4}>
               <Paper
                 style={{
-                  textAlign: 'center',
-                  backgroundColor: '#00071a'
+                  textAlign: "center",
+                  backgroundColor: "#00071a",
                 }}
                 className="border tShadow"
               >
                 <div
                   style={{
-                    color: 'white',
-                    wordWrap: 'break-word'
+                    color: "white",
+                    wordWrap: "break-word",
                   }}
                 >
                   <div
                     className="rounded center-width tUpper"
-                    style={{ backgroundColor: '#002945' }}
+                    style={{ backgroundColor: "#002945" }}
                   >
                     <h3>Available</h3>
                   </div>
@@ -214,23 +226,23 @@ export default function BuyToken({ each, user, pecuCoins }) {
                 </div>
               </Paper>
             </Grid>
-            <Grid item xs={6} md={4} sx={{ mt: 3 }}>
+            <Grid item xs={12} md={4}>
               <Paper
                 style={{
-                  textAlign: 'center',
-                  backgroundColor: '#00071a'
+                  textAlign: "center",
+                  backgroundColor: "#00071a",
                 }}
                 className="border tShadow"
               >
                 <div
                   style={{
-                    color: 'white',
-                    wordWrap: 'break-word'
+                    color: "white",
+                    wordWrap: "break-word",
                   }}
                 >
                   <div
                     className="rounded center-width tUpper"
-                    style={{ backgroundColor: '#002945' }}
+                    style={{ backgroundColor: "#002945" }}
                   >
                     <h3>Price</h3>
                   </div>
@@ -238,23 +250,23 @@ export default function BuyToken({ each, user, pecuCoins }) {
                 </div>
               </Paper>
             </Grid>
-            <Grid item xs={6} md={4} sx={{ mt: 3 }}>
+            <Grid item xs={12} md={4}>
               <Paper
                 style={{
-                  textAlign: 'center',
-                  backgroundColor: '#00071a'
+                  textAlign: "center",
+                  backgroundColor: "#00071a",
                 }}
                 className="border tShadow"
               >
                 <div
                   style={{
-                    color: 'white',
-                    wordWrap: 'break-word'
+                    color: "white",
+                    wordWrap: "break-word",
                   }}
                 >
                   <div
                     className="rounded center-width tUpper"
-                    style={{ backgroundColor: '#002945' }}
+                    style={{ backgroundColor: "#002945" }}
                   >
                     <h3>Value (USD)</h3>
                   </div>
@@ -262,23 +274,23 @@ export default function BuyToken({ each, user, pecuCoins }) {
                 </div>
               </Paper>
             </Grid>
-            <Grid item xs={6} md={4} sx={{ mt: 3 }}>
+            <Grid item xs={12} md={4}>
               <Paper
                 style={{
-                  textAlign: 'center',
-                  backgroundColor: '#00071a'
+                  textAlign: "center",
+                  backgroundColor: "#00071a",
                 }}
                 className="border tShadow"
               >
                 <div
                   style={{
-                    color: 'white',
-                    wordWrap: 'break-word'
+                    color: "white",
+                    wordWrap: "break-word",
                   }}
                 >
                   <div
                     className="rounded center-width tUpper"
-                    style={{ backgroundColor: '#002945' }}
+                    style={{ backgroundColor: "#002945" }}
                   >
                     <h3>Select Amount </h3>
                   </div>
@@ -286,7 +298,7 @@ export default function BuyToken({ each, user, pecuCoins }) {
                     <input
                       className="tcenter"
                       style={{
-                        width: '3rem'
+                        width: "3rem",
                       }}
                       type="number"
                       onChange={handleChange}
@@ -296,23 +308,23 @@ export default function BuyToken({ each, user, pecuCoins }) {
                 </div>
               </Paper>
             </Grid>
-            <Grid item xs={6} md={4} sx={{ mt: 3 }}>
+            <Grid item xs={12} md={4}>
               <Paper
                 style={{
-                  textAlign: 'center',
-                  backgroundColor: '#00071a'
+                  textAlign: "center",
+                  backgroundColor: "#00071a",
                 }}
                 className="border tShadow"
               >
                 <div
                   style={{
-                    color: 'white',
-                    wordWrap: 'break-word'
+                    color: "white",
+                    wordWrap: "break-word",
                   }}
                 >
                   <div
                     className="rounded center-width tUpper"
-                    style={{ backgroundColor: '#002945' }}
+                    style={{ backgroundColor: "#002945" }}
                   >
                     <h3>Pecu Coin (EQ)</h3>
                   </div>
@@ -321,12 +333,12 @@ export default function BuyToken({ each, user, pecuCoins }) {
               </Paper>
             </Grid>
             <Grid item xs={12}>
-              <div style={{ textAlign: 'center' }}>
+              <div style={{ textAlign: "center" }}>
                 <Button
                   onClick={handleSubmit}
                   className="border"
                   variant="contained"
-                  sx={{ color: 'white', backgroundColor: '#00071a' }}
+                  sx={{ color: "white", backgroundColor: "#00071a" }}
                 >
                   Buy
                 </Button>
@@ -334,7 +346,7 @@ export default function BuyToken({ each, user, pecuCoins }) {
             </Grid>
           </Grid>
         </Box>
-      </Modal>
+      </Dialog>
     </>
   );
 }
