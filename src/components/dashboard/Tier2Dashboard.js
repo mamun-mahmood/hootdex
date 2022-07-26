@@ -195,7 +195,7 @@ function DashboardContent({ user, pecuCoins }) {
         className={`${tab === "Wallet" && "shadow" }`}
           sx={{
             ":hover": {
-              bgcolor: "#00071a", // theme.palette.primary.main
+              bgcolor: "#1a1b1f", // theme.palette.primary.main
               color: "white",
             },
             color: "white",
