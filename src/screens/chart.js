@@ -114,14 +114,6 @@ export default function Chart() {
         </Button>
       </div>
       <div>
-        {!chartData.length && (
-          <Skeleton
-            sx={{ bgcolor: "#21242b", mt: 1 }}
-            variant="rectangular"
-            margin={"1rem"}
-            height={400}
-          />
-        )}
         {chartData.length > 0 ? (
           <ResponsiveContainer
             width={"100%"}
@@ -173,7 +165,14 @@ export default function Chart() {
               />
             </AreaChart>
           </ResponsiveContainer>
-        ) : null}
+        ) : (
+          <Skeleton
+            sx={{ bgcolor: "#21242b", mt: 1 }}
+            variant="rectangular"
+            margin={"1rem"}
+            height={400}
+          />
+        )}
       </div>
     </Box>
   );

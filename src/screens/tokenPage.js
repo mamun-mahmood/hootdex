@@ -101,7 +101,13 @@ export default function TokenPage({ pecuCoins, user }) {
     <>
       {loading && <LinearProgress sx={{ backgroundColor: "grey" }} />}
       <div style={{ padding: "1rem" }}>
-        <Grid width={"100%"} container spacing={1} mb={1}>
+        <Grid
+          width={"100%"}
+          container
+          spacing={1}
+          padding={{ xs: 0, md: 5 }}
+          mb={1}
+        >
           <Grid item xs={12} md={6}>
             <div className="dfelxalitemC">
               <Avatar
@@ -218,7 +224,7 @@ export default function TokenPage({ pecuCoins, user }) {
               </div>
             </div>
           </Grid>
-          <Grid item xs={12} md={8} sx={{marginTop: { xs: 8, md: 3 },}} >
+          <Grid item xs={12} md={8} sx={{ marginTop: { xs: 8, md: 3 } }}>
             <Box sx={{ height: "100%" }}>
               <div
                 style={{
