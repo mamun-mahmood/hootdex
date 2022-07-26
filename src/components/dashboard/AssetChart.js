@@ -22,11 +22,13 @@ const AssetChart = ({ tokenName, setTokenPrice }) => {
       .then((res) => {
         setChartData(res.data);
         let i = 0;
-        i = res.data?.length-1;
-        const data = [{
-          currentPrice: res?.data[i]?.today_value,
-          previousPrice: res?.data[i - 1]?.today_value
-        }]
+        i = res.data?.length - 1;
+        const data = [
+          {
+            currentPrice: res?.data[i]?.today_value,
+            previousPrice: res?.data[i - 1]?.today_value,
+          },
+        ];
         setTokenPrice(data);
       })
       .catch((err) => {
@@ -86,12 +88,12 @@ const AssetChart = ({ tokenName, setTokenPrice }) => {
             Hourly
           </button>
         </div> */}
-      <ResponsiveContainer width={500} height={300}>
-        <LineChart style={{ maxWidth: "100%" }} data={chartData}>
+      <ResponsiveContainer width={"100%"} height={300}>
+        <LineChart height={'100%'} data={chartData}>
           <Line
             type="monotone"
             dataKey="today_value"
-            stroke="#8884d8"
+            stroke="#01402b"
             strokeWidth={2}
           />
           <Tooltip />

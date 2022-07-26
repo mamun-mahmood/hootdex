@@ -35,7 +35,8 @@ const Drawer = styled(MuiDrawer, {
   shouldForwardProp: (prop) => prop !== 'open'
 })(({ theme, open }) => ({
   '& .MuiDrawer-paper': {
-    position: 'relative',
+    // display: "none",
+    position: 'absolute',
     whiteSpace: 'nowrap',
     width: drawerWidth,
     transition: theme.transitions.create('width', {
@@ -155,7 +156,7 @@ function DashboardContent({ user, pecuCoins }) {
   const [tab, setTab] = React.useState('Vault');
   return (
     <>
-      <div style={{ display: 'flex' }}>
+      <div style={{ display: 'flex', }}>
         {/* Sidebar */}
         <Box>
           <ClickAwayListener onClickAway={() => setOpenD(false)}>
