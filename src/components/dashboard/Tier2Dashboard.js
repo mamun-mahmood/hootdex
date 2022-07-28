@@ -1,73 +1,73 @@
-import * as React from "react";
-import { Box, Button, ClickAwayListener, ListItemIcon } from "@mui/material";
-import Typography from "@mui/material/Typography";
-import Grid from "@mui/material/Grid";
-import { Paper } from "@mui/material";
-import AssetChart from "./AssetChart";
-import { useNavigate } from "react-router-dom";
-import { useEffect } from "react";
-import axios from "axios";
-import TokenList from "../Modal/TokenList";
-import MenuIcon from "@mui/icons-material/Menu";
-import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
-import ListItemButton from "@mui/material/ListItemButton";
-import ListItemText from "@mui/material/ListItemText";
-import DashboardIcon from "@mui/icons-material/Dashboard";
-import AccountCircleIcon from "@mui/icons-material/AccountCircle";
-import Toolbar from "@mui/material/Toolbar";
-import List from "@mui/material/List";
-import Divider from "@mui/material/Divider";
-import GroupIcon from "@mui/icons-material/Group";
-import { Link } from "react-router-dom";
-import { styled } from "@mui/material/styles";
-import MuiDrawer from "@mui/material/Drawer";
-import AccountBalanceWalletIcon from "@mui/icons-material/AccountBalanceWallet";
-import TokenIcon from "@mui/icons-material/Token";
-import Vault from "../../assets/images/vault-svgrepo-com.svg";
-import WalletDashboard from "./WalletDashboard";
-import TokenDashboard from "./TokenDashboard";
-import VaultDashboard from "./VaultDashboard";
-import MyProfile from "./MyProfile";
-import url from "../../serverUrl";
+import * as React from 'react';
+import { Box, Button, ClickAwayListener, ListItemIcon } from '@mui/material';
+import Typography from '@mui/material/Typography';
+import Grid from '@mui/material/Grid';
+import { Paper } from '@mui/material';
+import AssetChart from './AssetChart';
+import { useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
+import axios from 'axios';
+import TokenList from '../Modal/TokenList';
+import MenuIcon from '@mui/icons-material/Menu';
+import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
+import ListItemButton from '@mui/material/ListItemButton';
+import ListItemText from '@mui/material/ListItemText';
+import DashboardIcon from '@mui/icons-material/Dashboard';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import Toolbar from '@mui/material/Toolbar';
+import List from '@mui/material/List';
+import Divider from '@mui/material/Divider';
+import GroupIcon from '@mui/icons-material/Group';
+import { Link } from 'react-router-dom';
+import { styled } from '@mui/material/styles';
+import MuiDrawer from '@mui/material/Drawer';
+import AccountBalanceWalletIcon from '@mui/icons-material/AccountBalanceWallet';
+import TokenIcon from '@mui/icons-material/Token';
+import Vault from '../../assets/images/vault-svgrepo-com.svg';
+import WalletDashboard from './WalletDashboard';
+import TokenDashboard from './TokenDashboard';
+import VaultDashboard from './VaultDashboard';
+import MyProfile from './MyProfile';
+import url from '../../serverUrl';
 
 const drawerWidth = 240;
 const Drawer = styled(MuiDrawer, {
-  shouldForwardProp: (prop) => prop !== "open",
+  shouldForwardProp: (prop) => prop !== 'open'
 })(({ theme, open }) => ({
-  "& .MuiDrawer-paper": {
-    position: "relative",
-    whiteSpace: "nowrap",
+  '& .MuiDrawer-paper': {
+    position: 'relative',
+    whiteSpace: 'nowrap',
     width: drawerWidth,
-    transition: theme.transitions.create("width", {
+    transition: theme.transitions.create('width', {
       easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.enteringScreen,
+      duration: theme.transitions.duration.enteringScreen
     }),
-    boxSizing: "border-box",
+    boxSizing: 'border-box',
     ...(!open && {
-      overflowX: "hidden",
-      transition: theme.transitions.create("width", {
+      overflowX: 'hidden',
+      transition: theme.transitions.create('width', {
         easing: theme.transitions.easing.sharp,
-        duration: theme.transitions.duration.leavingScreen,
+        duration: theme.transitions.duration.leavingScreen
       }),
       width: theme.spacing(7),
-      [theme.breakpoints.up("sm")]: {
-        width: theme.spacing(9),
-      },
-    }),
-  },
+      [theme.breakpoints.up('sm')]: {
+        width: theme.spacing(9)
+      }
+    })
+  }
 }));
 
 function DashboardContent({ user, pecuCoins }) {
   const navigate = useNavigate();
   const [tokenCreated, setTokenCreated] = React.useState([]);
   const [pendingToken, setPendingTokens] = React.useState([]);
-  const [totalCoins, setTotalCoins] = React.useState("");
-  const [totalValue, setTotalValue] = React.useState("");
-  const [nftCount, setNftCount] = React.useState("");
-  const [totalCoinsVault, setTotalCoinsVault] = React.useState("");
+  const [totalCoins, setTotalCoins] = React.useState('');
+  const [totalValue, setTotalValue] = React.useState('');
+  const [nftCount, setNftCount] = React.useState('');
+  const [totalCoinsVault, setTotalCoinsVault] = React.useState('');
   const username = user.username;
   const wallet = JSON.parse(
-    localStorage.getItem("hootdex_secretcookie_wallet")
+    localStorage.getItem('hootdex_secretcookie_wallet')
   );
   const [modal, setModal] = React.useState(0);
   const [open, setOpen] = React.useState(false);
@@ -83,7 +83,7 @@ function DashboardContent({ user, pecuCoins }) {
     if (id) {
       axios
         .post(`${url}/wallet/getMycoins`, {
-          user_id: id,
+          user_id: id
         })
         .then((res) => {
           const { total_coins, value } = res.data;
@@ -97,7 +97,7 @@ function DashboardContent({ user, pecuCoins }) {
     if (id) {
       axios
         .post(`${url}/vault/getCoins`, {
-          uid: id,
+          uid: id
         })
         .then((res) => {
           const { coin } = res.data;
@@ -110,7 +110,7 @@ function DashboardContent({ user, pecuCoins }) {
     if (email) {
       axios
         .post(`${url}/vault/getNftCount`, {
-          email: email,
+          email: email
         })
         .then((res) => {
           const { nft } = res.data;
@@ -140,7 +140,7 @@ function DashboardContent({ user, pecuCoins }) {
   }, [wallet]);
 
   useEffect(() => {
-    let data = localStorage.getItem("hootdex_secretcookie");
+    let data = localStorage.getItem('hootdex_secretcookie');
     data = JSON.parse(data);
     if (data && data.user_id) {
       getMyCoinsVault(data.user_id);
@@ -152,34 +152,35 @@ function DashboardContent({ user, pecuCoins }) {
   const toggleDrawer = () => {
     setOpenD(!openD);
   };
-  const [tab, setTab] = React.useState("Vault");
+  const [tab, setTab] = React.useState('Vault');
   return (
     <>
-      {" "}
+      {' '}
       <Box
         sx={{
-          display: "flex",
-          justifyContent: "space-around",
+          display: 'flex',
+          justifyContent: 'space-around',
           mt: 1,
-          width: "95%",
-          ml: "2.5%",
-          mb: 1,
+          width: '95%',
+          ml: '2.5%',
+
+          mb: 1
         }}
       >
         <ListItemButton
-         className={`${tab === "Vault" && "shadow" }`}
+          className={`${tab === 'Vault' && 'shadow'}`}
           sx={{
-            ":hover": {
-              bgcolor: "#1a1b1f", // theme.palette.primary.main
-              color: "white",
+            ':hover': {
+              bgcolor: '#1a1b1f', // theme.palette.primary.main
+              color: 'white'
             },
-            color: "white",
-            backgroundColor: "#00071a",
-            borderRadius: "20px",
+            color: 'white',
+            backgroundColor: '#00071a',
+            borderRadius: '20px',
             m: 1,
-            border: "1px solid #091e17",
+            border: '1px solid #091e17'
           }}
-          onClick={() => setTab("Vault")}
+          onClick={() => setTab('Vault')}
 
           // className={`${tab === 'Vault' && "button-hover"}`}
         >
@@ -187,98 +188,98 @@ function DashboardContent({ user, pecuCoins }) {
             <img src={Vault} alt="vault icon" />
           </ListItemIcon>
           <ListItemText
-            sx={{ display: { xs: "none", sm: "block" } }}
+            sx={{ display: { xs: 'none', sm: 'block' } }}
             primary="Vault"
           />
         </ListItemButton>
         <ListItemButton
-        className={`${tab === "Wallet" && "shadow" }`}
+          className={`${tab === 'Wallet' && 'shadow'}`}
           sx={{
-            ":hover": {
-              bgcolor: "#1a1b1f", // theme.palette.primary.main
-              color: "white",
+            ':hover': {
+              bgcolor: '#1a1b1f', // theme.palette.primary.main
+              color: 'white'
             },
-            color: "white",
-            backgroundColor: "#00071a",
-            borderRadius: "20px",
+            color: 'white',
+            backgroundColor: '#00071a',
+            borderRadius: '20px',
             m: 1,
-            border: "1px solid #091e17",
+            border: '1px solid #091e17'
           }}
-          onClick={() => setTab("Wallet")}
+          onClick={() => setTab('Wallet')}
         >
           <ListItemIcon>
-            <AccountBalanceWalletIcon sx={{ color: "white" }} />
+            <AccountBalanceWalletIcon sx={{ color: 'white' }} />
           </ListItemIcon>
           <ListItemText
-            sx={{ display: { xs: "none", sm: "block" } }}
+            sx={{ display: { xs: 'none', sm: 'block' } }}
             primary="Wallet"
           />
         </ListItemButton>
         {tier === 0 && (
           <ListItemButton
-          className={`${tab === "Users" && "shadow" }`}
+            className={`${tab === 'Users' && 'shadow'}`}
             sx={{
-              ":hover": {
-                bgcolor: "#1a1b1f", // theme.palette.primary.main
-                color: "white",
+              ':hover': {
+                bgcolor: '#1a1b1f', // theme.palette.primary.main
+                color: 'white'
               },
-              color: "white",
-              backgroundColor: "#00071a",
-              borderRadius: "20px",
+              color: 'white',
+              backgroundColor: '#00071a',
+              borderRadius: '20px',
               m: 1,
-              border: "1px solid #091e17",
+              border: '1px solid #091e17'
             }}
-            onClick={() => setTab("Users")}
+            onClick={() => setTab('Users')}
           >
             <ListItemIcon>
-              <GroupIcon sx={{ color: "white" }} />
+              <GroupIcon sx={{ color: 'white' }} />
             </ListItemIcon>
             <ListItemText primary="Users" />
           </ListItemButton>
         )}
         <ListItemButton
-        className={`${tab === "Token" && "shadow" }`}
+          className={`${tab === 'Token' && 'shadow'}`}
           sx={{
-            ":hover": {
-              bgcolor: "#1a1b1f", // theme.palette.primary.main
-              color: "white",
+            ':hover': {
+              bgcolor: '#1a1b1f', // theme.palette.primary.main
+              color: 'white'
             },
-            color: "white",
-            backgroundColor: "#00071a",
-            borderRadius: "20px",
+            color: 'white',
+            backgroundColor: '#00071a',
+            borderRadius: '20px',
             m: 1,
-            border: "1px solid #091e17",
+            border: '1px solid #091e17'
           }}
-          onClick={() => setTab("Token")}
+          onClick={() => setTab('Token')}
         >
           <ListItemIcon>
-            <TokenIcon sx={{ color: "white" }} />
+            <TokenIcon sx={{ color: 'white' }} />
           </ListItemIcon>
           <ListItemText
-            sx={{ display: { xs: "none", sm: "block" } }}
+            sx={{ display: { xs: 'none', sm: 'block' } }}
             primary="Tokens"
           />
         </ListItemButton>
         <ListItemButton
-        className={`${tab === "Profile" && "shadow" }`}
+          className={`${tab === 'Profile' && 'shadow'}`}
           sx={{
-            ":hover": {
-              bgcolor: "#1a1b1f", // theme.palette.primary.main
-              color: "white",
+            ':hover': {
+              bgcolor: '#1a1b1f', // theme.palette.primary.main
+              color: 'white'
             },
-            color: "white",
-            backgroundColor: "#00071a",
-            borderRadius: "20px",
+            color: 'white',
+            backgroundColor: '#00071a',
+            borderRadius: '20px',
             m: 1,
-            border: "1px solid #091e17",
+            border: '1px solid #091e17'
           }}
-          onClick={() => setTab("Profile")}
+          onClick={() => setTab('Profile')}
         >
           <ListItemIcon>
-            <AccountCircleIcon sx={{ color: "white" }} />
+            <AccountCircleIcon sx={{ color: 'white' }} />
           </ListItemIcon>
           <ListItemText
-            sx={{ display: { xs: "none", sm: "block" } }}
+            sx={{ display: { xs: 'none', sm: 'block' } }}
             primary="My Profile"
           />
         </ListItemButton>
@@ -286,18 +287,18 @@ function DashboardContent({ user, pecuCoins }) {
       {/* showing dashboard based on user tier level */}
       <Box sx={{ flex: 1, mt: 1 }}>
         {/* wallet dashboard */}
-        {tab === "Wallet" && (
+        {tab === 'Wallet' && (
           <WalletDashboard user={user} pecuCoins={pecuCoins} />
         )}
         {/* Token Dashboard  */}
-        {tab === "Token" && (
+        {tab === 'Token' && (
           <TokenDashboard user={user} pecuCoins={pecuCoins} />
         )}
         {/* Vault dashboard */}
-        {tab === "Vault" && (
+        {tab === 'Vault' && (
           <VaultDashboard user={user} pecuCoins={pecuCoins} />
         )}
-        {tab === "Profile" && <MyProfile user={user} />}
+        {tab === 'Profile' && <MyProfile user={user} />}
       </Box>
     </>
   );

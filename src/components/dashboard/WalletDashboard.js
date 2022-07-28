@@ -41,12 +41,13 @@ const WalletDashboard = ({ user, pecuCoins }) => {
         ml: '2.5%',
         mt: 3,
         mb: 1,
+        height: '100vh'
       }}
     >
       <h2 style={{ color: '#fff', textAlign: 'center', fontWeight: 'bold' }}>
         Wallet Dashboard
       </h2>
-      <Grid container spacing={3} sx={{ textTransform: 'uppercase',}}>
+      <Grid container spacing={3} sx={{ textTransform: 'uppercase' }}>
         <Grid item xs={12} md={6} lg={4}>
           <Paper
             style={{

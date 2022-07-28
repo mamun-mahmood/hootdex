@@ -116,6 +116,7 @@ const TokenDashboard = ({ user, pecuCoins }) => {
         ml: '2.5%',
         mt: 3,
         mb: 1,
+        height: '100vh'
       }}
     >
       {' '}

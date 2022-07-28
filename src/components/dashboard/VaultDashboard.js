@@ -111,6 +111,7 @@ const VaultDashboard = ({ user, pecuCoins }) => {
         ml: '2.5%',
         mt: 3,
         mb: 1,
+        height: '100vh'
       }}
     >
       <h2 style={{ color: '#fff', textAlign: 'center', fontWeight: 'bold' }}>
