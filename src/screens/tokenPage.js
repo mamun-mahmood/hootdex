@@ -188,7 +188,7 @@ export default function TokenPage({ pecuCoins, user }) {
               <div style={{ marginBottom: "1rem" }}>
                 <p className="token-page-t1 mb-1">TVL</p>
                 <p className="token-page-t2 mb-1">
-                  ${token?.investementAmount}
+                  ${token?.volume?.toFixed(2)}
                 </p>
                 {/* <small style={{ fontSize: "18px", color: "red" }}>
                   <ArrowDownwardIcon sx={{ fontSize: "18px" }} />
@@ -198,9 +198,7 @@ export default function TokenPage({ pecuCoins, user }) {
               <div style={{ marginBottom: "1rem" }}>
                 {/* <p className="token-page-t1 mb-1">24h Trading Vol</p> */}
                 <p className="token-page-t1 mb-1">Available</p>
-                <p className="token-page-t2 mb-1">
-                  ${token?.totalToken}
-                </p>
+                <p className="token-page-t2 mb-1">${token?.totalToken}</p>
                 {/* <small style={{ fontSize: "18px", color: "red" }}>
                   <ArrowDownwardIcon sx={{ fontSize: "18px" }} />
                   10.89%
@@ -216,9 +214,7 @@ export default function TokenPage({ pecuCoins, user }) {
               <div style={{ marginBottom: "1rem" }}>
                 {/* <p className="token-page-t1 mb-1">24h Fees</p> */}
                 <p className="token-page-t1 mb-1">Created By</p>
-                <p className="token-page-t2 mb-1">
-                  ${token?.createdBy}
-                </p>
+                <p className="token-page-t2 mb-1">${token?.createdBy}</p>
               </div>
             </div>
           </Grid>
@@ -229,65 +225,64 @@ export default function TokenPage({ pecuCoins, user }) {
             mt={3}
             // ml={5}
           >
-            <div
-              style={{
-                backgroundColor: "rgb(25, 27, 31)",
-                height: "100%",
-                borderRadius: "20px",
-                padding: "1.5rem",
-              }}
-              className="shadowGrey"
-            >
-              <div className="dfelxJsb">
-                <div>
-                  <p className="token-page-t2">
-                    $
-                    {Math.ceil(
-                      token.totalToken * token.currentPrice * currentValue
-                    )}
-                  </p>
-                  <p className="token-page-t1">{date}</p>
+            <Box sx={{ marginTop: { xs: 2, md: 0 }, height: '100%' }}>
+              <div
+                style={{
+                  backgroundColor: "rgb(25, 27, 31)",
+                  height: "100%",
+                  borderRadius: "20px",
+                  padding: "1.5rem",
+                }}
+                className="shadowGrey"
+              >
+                <div className="dfelxJsb">
+                  <div>
+                    <p className="token-page-t2">
+                      ${token?.volume?.toFixed(2)}
+                    </p>
+                    <p className="token-page-t1">{date}</p>
+                  </div>
+                  <div
+                    style={{
+                      backgroundColor: "rgb(44, 47, 54)",
+                      borderRadius: "12px",
+                    }}
+                    className="dsparound"
+                  >
+                    <p
+                      className={`${
+                        chartBtn === 1 && "chart_btn_selected"
+                      } chart_btn`}
+                      onClick={() => setChartBtn(1)}
+                    >
+                      Volume
+                    </p>
+                    <p
+                      className={`${
+                        chartBtn === 2 && "chart_btn_selected"
+                      } chart_btn`}
+                      onClick={() => setChartBtn(2)}
+                    >
+                      TVL
+                    </p>
+                    <p
+                      className={`${
+                        chartBtn === 3 && "chart_btn_selected"
+                      } chart_btn`}
+                      onClick={() => setChartBtn(3)}
+                    >
+                      Price
+                    </p>
+                  </div>
                 </div>
-                <div
-                  style={{
-                    backgroundColor: "rgb(44, 47, 54)",
-                    borderRadius: "12px",
-                  }}
-                  className="dsparound"
-                >
-                  <p
-                    className={`${
-                      chartBtn === 1 && "chart_btn_selected"
-                    } chart_btn`}
-                    onClick={() => setChartBtn(1)}
-                  >
-                    Volume
-                  </p>
-                  <p
-                    className={`${
-                      chartBtn === 2 && "chart_btn_selected"
-                    } chart_btn`}
-                    onClick={() => setChartBtn(2)}
-                  >
-                    TVL
-                  </p>
-                  <p
-                    className={`${
-                      chartBtn === 3 && "chart_btn_selected"
-                    } chart_btn`}
-                    onClick={() => setChartBtn(3)}
-                  >
-                    Price
-                  </p>
+                <div style={{ display: "flex", justifyContent: "center" }}>
+                  <AssetChart
+                    tokenName={tokenName}
+                    setTokenPrice={setTokenPrice}
+                  />
                 </div>
               </div>
-              <div style={{ display: "flex", justifyContent: "center" }}>
-                <AssetChart
-                  tokenName={tokenName}
-                  setTokenPrice={setTokenPrice}
-                />
-              </div>
-            </div>
+            </Box>
           </Grid>
           <Grid item xs={12} mt={5}>
             {/* <WarpTokens /> */}
