@@ -155,161 +155,151 @@ function DashboardContent({ user, pecuCoins }) {
   const [tab, setTab] = React.useState('Vault');
   return (
     <>
-      <div style={{ display: 'flex' }}>
-        {/* Sidebar */}
-        <Box>
-          <ClickAwayListener onClickAway={() => setOpenD(false)}>
-            <Drawer
-              variant="permanent"
-              open={openD}
-              sx={{ border: 'none' }}
-              onClose={() => setOpenD(!openD)}
-              PaperProps={{
-                style: { border: 'none', borderRight: '2px solid #01402b' }
-              }}
-            >
-              <List
-                sx={{
-                  backgroundColor: '#04251a',
-                  // background:
-                  //   "linear-gradient(to bottom, #01402b, #023927, #033223, #032c1e, #04251a)",
-                  width: '100%',
-                  height: '100vh',
-                  overflowX: 'hidden'
-                }}
-              >
-                <ListItemButton
-                  sx={{
-                    color: 'white',
-                    // width: "95%",
-                    mb: 1,
-                    borderBottom: '1px solid #091e17',
-                    borderTop: '1px solid #091e17'
-                  }}
-                  onClick={toggleDrawer}
-                  // className={`${tab === 'Vault' && "button-hover"}`}
-                >
-                  <ListItemIcon sx={{ color: '#00071a' }}>
-                    {openD === false && (
-                      <MenuIcon sx={{ width: 40, height: 40 }} />
-                    )}
-                    {openD && (
-                      <ChevronLeftIcon
-                        sx={{ width: 40, height: 40, textAlign: 'end' }}
-                      />
-                    )}
-                  </ListItemIcon>
-                </ListItemButton>{' '}
-                <ListItemButton
-                  sx={{
-                    color: 'white',
-                    backgroundColor: `${tab === 'Vault' ? '' : '#00071a'}`,
-                    borderTopRightRadius: '20px',
-                    borderBottomRightRadius: '20px',
-                    width: '95%',
-                    mb: 1,
-                    border: '1px solid #091e17'
-                  }}
-                  onClick={() => setTab('Vault')}
+      {' '}
+      <Box
+        sx={{
+          display: 'flex',
+          justifyContent: 'space-around',
+          mt: 1,
+          width: '95%',
+          ml: '2.5%',
 
-                  // className={`${tab === 'Vault' && "button-hover"}`}
-                >
-                  <ListItemIcon>
-                    <img src={Vault} alt="vault icon" />
-                  </ListItemIcon>
-                  <ListItemText primary="Vault" />
-                </ListItemButton>
-                <ListItemButton
-                  sx={{
-                    color: 'white',
-                    backgroundColor: `${tab === 'Wallet' ? '' : '#00071a'}`,
-                    borderTopRightRadius: '20px',
-                    borderBottomRightRadius: '20px',
-                    width: '95%',
-                    mb: 1,
-                    border: '1px solid #091e17'
-                  }}
-                  onClick={() => setTab('Wallet')}
-                >
-                  <ListItemIcon>
-                    <AccountBalanceWalletIcon sx={{ color: 'white' }} />
-                  </ListItemIcon>
-                  <ListItemText primary="Wallet" />
-                </ListItemButton>
-                {tier === 0 && (
-                  <ListItemButton
-                    sx={{
-                      color: 'white',
-                      backgroundColor: `${tab === 'Users' ? '' : '#00071a'}`,
-                      borderTopRightRadius: '20px',
-                      borderBottomRightRadius: '20px',
-                      width: '95%',
-                      mb: 1,
-                      border: '1px solid #091e17'
-                    }}
-                    onClick={() => setTab('Users')}
-                  >
-                    <ListItemIcon>
-                      <GroupIcon sx={{ color: 'white' }} />
-                    </ListItemIcon>
-                    <ListItemText primary="Users" />
-                  </ListItemButton>
-                )}
-                <ListItemButton
-                  sx={{
-                    color: 'white',
-                    backgroundColor: `${tab === 'Token' ? '' : '#00071a'}`,
-                    borderTopRightRadius: '20px',
-                    borderBottomRightRadius: '20px',
-                    width: '95%',
-                    mb: 1,
-                    border: '1px solid #091e17'
-                  }}
-                  onClick={() => setTab('Token')}
-                >
-                  <ListItemIcon>
-                    <TokenIcon sx={{ color: 'white' }} />
-                  </ListItemIcon>
-                  <ListItemText primary="Tokens" />
-                </ListItemButton>
-                <ListItemButton
-                  sx={{
-                    color: 'white',
-                    backgroundColor: `${tab === 'Profile' ? '' : '#00071a'}`,
-                    borderTopRightRadius: '20px',
-                    borderBottomRightRadius: '20px',
-                    width: '95%',
-                    mb: 1,
-                    border: '1px solid #091e17'
-                  }}
-                  onClick={() => setTab('Profile')}
-                >
-                  <ListItemIcon>
-                    <AccountCircleIcon sx={{ color: 'white' }} />
-                  </ListItemIcon>
-                  <ListItemText primary="My Profile" />
-                </ListItemButton>
-              </List>
-            </Drawer>
-          </ClickAwayListener>
-        </Box>
-        {/* showing dashboard based on user tier level */}
-        <Box sx={{ flex: 1, mt: 1 }}>
-          {/* wallet dashboard */}
-          {tab === 'Wallet' && (
-            <WalletDashboard user={user} pecuCoins={pecuCoins} />
-          )}
-          {/* Token Dashboard  */}
-          {tab === 'Token' && (
-            <TokenDashboard user={user} pecuCoins={pecuCoins} />
-          )}
-          {/* Vault dashboard */}
-          {tab === 'Vault' && (
-            <VaultDashboard user={user} pecuCoins={pecuCoins} />
-          )}
-          {tab === 'Profile' && <MyProfile user={user} />}
-        </Box>
-      </div>
+          mb: 1
+        }}
+      >
+        <ListItemButton
+          className={`${tab === 'Vault' && 'shadow'}`}
+          sx={{
+            ':hover': {
+              bgcolor: '#1a1b1f', // theme.palette.primary.main
+              color: 'white'
+            },
+            color: 'white',
+            backgroundColor: '#00071a',
+            borderRadius: '20px',
+            m: 1,
+            border: '1px solid #091e17'
+          }}
+          onClick={() => setTab('Vault')}
+
+          // className={`${tab === 'Vault' && "button-hover"}`}
+        >
+          <ListItemIcon>
+            <img src={Vault} alt="vault icon" />
+          </ListItemIcon>
+          <ListItemText
+            sx={{ display: { xs: 'none', sm: 'block' } }}
+            primary="Vault"
+          />
+        </ListItemButton>
+        <ListItemButton
+          className={`${tab === 'Wallet' && 'shadow'}`}
+          sx={{
+            ':hover': {
+              bgcolor: '#1a1b1f', // theme.palette.primary.main
+              color: 'white'
+            },
+            color: 'white',
+            backgroundColor: '#00071a',
+            borderRadius: '20px',
+            m: 1,
+            border: '1px solid #091e17'
+          }}
+          onClick={() => setTab('Wallet')}
+        >
+          <ListItemIcon>
+            <AccountBalanceWalletIcon sx={{ color: 'white' }} />
+          </ListItemIcon>
+          <ListItemText
+            sx={{ display: { xs: 'none', sm: 'block' } }}
+            primary="Wallet"
+          />
+        </ListItemButton>
+        {tier === 0 && (
+          <ListItemButton
+            className={`${tab === 'Users' && 'shadow'}`}
+            sx={{
+              ':hover': {
+                bgcolor: '#1a1b1f', // theme.palette.primary.main
+                color: 'white'
+              },
+              color: 'white',
+              backgroundColor: '#00071a',
+              borderRadius: '20px',
+              m: 1,
+              border: '1px solid #091e17'
+            }}
+            onClick={() => setTab('Users')}
+          >
+            <ListItemIcon>
+              <GroupIcon sx={{ color: 'white' }} />
+            </ListItemIcon>
+            <ListItemText primary="Users" />
+          </ListItemButton>
+        )}
+        <ListItemButton
+          className={`${tab === 'Token' && 'shadow'}`}
+          sx={{
+            ':hover': {
+              bgcolor: '#1a1b1f', // theme.palette.primary.main
+              color: 'white'
+            },
+            color: 'white',
+            backgroundColor: '#00071a',
+            borderRadius: '20px',
+            m: 1,
+            border: '1px solid #091e17'
+          }}
+          onClick={() => setTab('Token')}
+        >
+          <ListItemIcon>
+            <TokenIcon sx={{ color: 'white' }} />
+          </ListItemIcon>
+          <ListItemText
+            sx={{ display: { xs: 'none', sm: 'block' } }}
+            primary="Tokens"
+          />
+        </ListItemButton>
+        <ListItemButton
+          className={`${tab === 'Profile' && 'shadow'}`}
+          sx={{
+            ':hover': {
+              bgcolor: '#1a1b1f', // theme.palette.primary.main
+              color: 'white'
+            },
+            color: 'white',
+            backgroundColor: '#00071a',
+            borderRadius: '20px',
+            m: 1,
+            border: '1px solid #091e17'
+          }}
+          onClick={() => setTab('Profile')}
+        >
+          <ListItemIcon>
+            <AccountCircleIcon sx={{ color: 'white' }} />
+          </ListItemIcon>
+          <ListItemText
+            sx={{ display: { xs: 'none', sm: 'block' } }}
+            primary="My Profile"
+          />
+        </ListItemButton>
+      </Box>
+      {/* showing dashboard based on user tier level */}
+      <Box sx={{ flex: 1, mt: 1 }}>
+        {/* wallet dashboard */}
+        {tab === 'Wallet' && (
+          <WalletDashboard user={user} pecuCoins={pecuCoins} />
+        )}
+        {/* Token Dashboard  */}
+        {tab === 'Token' && (
+          <TokenDashboard user={user} pecuCoins={pecuCoins} />
+        )}
+        {/* Vault dashboard */}
+        {tab === 'Vault' && (
+          <VaultDashboard user={user} pecuCoins={pecuCoins} />
+        )}
+        {tab === 'Profile' && <MyProfile user={user} />}
+      </Box>
     </>
   );
 }

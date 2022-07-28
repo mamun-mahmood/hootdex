@@ -107,17 +107,17 @@ const VaultDashboard = ({ user, pecuCoins }) => {
     <Box
       className="rounded shadow"
       sx={{
-        padding: 1,
         width: '95%',
         ml: '2.5%',
         mt: 3,
-        mb: 1
+        mb: 1,
+        height: '100vh'
       }}
     >
       <h2 style={{ color: '#fff', textAlign: 'center', fontWeight: 'bold' }}>
         Vault Dashboard
       </h2>
-      <Grid container spacing={5} sx={{ p: 1 }}>
+      <Grid container spacing={3}>
         <Grid item xs={12} md={6} lg={4}>
           <Paper
             style={{

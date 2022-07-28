@@ -46,12 +46,14 @@ a {
   color: white;
   font-size: 20px;
   padding: 15px;
+  border: none;
+  outline: none;
 }
-.searchField:focus {
+.searchFieldFocus {
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
   outline: none;
-  border: none;
+  /* border: none; */
 }
 @keyframes fadeIn {
   0% {
