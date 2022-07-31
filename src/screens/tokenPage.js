@@ -170,12 +170,18 @@ export default function TokenPage({ pecuCoins, user }) {
                 {priceUp ? (
                   <small style={{ fontSize: '18px' }}>
                     <ArrowUpwardIcon sx={{ fontSize: '13px' }} />
-                    {tokenPriceIncreasePercentage?.toFixed(2)}%
+                    {tokenPriceIncreasePercentage
+                      ? tokenPriceIncreasePercentage?.toFixed(2)
+                      : '0.00'}
+                    %
                   </small>
                 ) : (
                   <small style={{ fontSize: '13px' }}>
                     <ArrowDownwardIcon sx={{ fontSize: '13px' }} />
-                    {tokenPriceIncreasePercentage?.toFixed(2)}%
+                    {tokenPriceIncreasePercentage
+                      ? tokenPriceIncreasePercentage?.toFixed(2)
+                      : '0.00'}
+                    %
                   </small>
                 )}
               </p>
@@ -503,12 +509,18 @@ export default function TokenPage({ pecuCoins, user }) {
                 {priceUp ? (
                   <small style={{ fontSize: '18px', color: '#4caf50' }}>
                     (<ArrowUpwardIcon sx={{ fontSize: '18px' }} />
-                    {tokenPriceIncreasePercentage?.toFixed(2)}%)
+                    {tokenPriceIncreasePercentage
+                      ? tokenPriceIncreasePercentage?.toFixed(2)
+                      : '0.00'}
+                    %)
                   </small>
                 ) : (
                   <small style={{ fontSize: '18px', color: 'red' }}>
                     (<ArrowDownwardIcon sx={{ fontSize: '18px' }} />
-                    {tokenPriceIncreasePercentage?.toFixed(2)}%)
+                    {tokenPriceIncreasePercentage
+                      ? tokenPriceIncreasePercentage?.toFixed(2)
+                      : '0.00'}
+                    %)
                   </small>
                 )}
               </p>
