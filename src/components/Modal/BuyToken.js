@@ -138,7 +138,9 @@ export default function BuyToken({ each, user, pecuCoins }) {
           color: 'white',
           padding: '8px 16px',
           borderRadius: '12px',
-          cursor: 'pointer'
+          cursor: 'pointer',
+          maxHeight: '40px',
+          fontSize: '18px'
         }}
         className="shadow"
         onClick={handleOpen}

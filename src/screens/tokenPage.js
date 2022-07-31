@@ -101,32 +101,26 @@ export default function TokenPage({ pecuCoins, user }) {
   return (
     <>
       {loading && <LinearProgress sx={{ backgroundColor: 'grey' }} />}
-      <div style={{ padding: '1rem' }}>
+      <div style={{ padding: '1rem 4rem' }}>
         <Grid
           width={'100%'}
           container
           spacing={1}
-          padding={{ xs: 0, md: 5 }}
+          padding={{ xs: 0, md: 0 }}
           mb={1}
         >
           <Grid item xs={12} md={6}>
-            <div
-              style={{
-                backgroundColor: 'rgb(25, 27, 31)',
-                borderRadius: '20px',
-                padding: '1rem'
-              }}
-            >
+            <div>
               <Link
                 to={`/`}
                 style={{ fontSize: '1rem' }}
-              >{`Home > Pools > ${token.tokenSymbol} / PECU `}</Link>
+              >{`Home  >  Pools  >  ${token.tokenSymbol} / PECU `}</Link>
             </div>
             <div
               style={{
                 display: 'flex',
                 alignItems: 'center',
-                margin: '3rem 0 0 1rem',
+                margin: '2rem 0 0 1rem',
                 width: 'fit-content'
               }}
             >
@@ -240,7 +234,7 @@ export default function TokenPage({ pecuCoins, user }) {
             </div> */}
             <div
               style={{
-                marginTop: '1rem',
+                marginTop: '0.5rem',
                 display: 'flex',
                 flexDirection: 'row',
                 justifyContent: 'space-between',
@@ -351,7 +345,14 @@ export default function TokenPage({ pecuCoins, user }) {
                   </p>
                 </div>
               </div>
-              <div>
+              <div
+                style={{
+                  display: 'flex',
+                  flexDirectino: 'row',
+                  alignItems: 'center',
+                  flexWrap: 'wrap'
+                }}
+              >
                 {' '}
                 <IconButton
                   className="dfelxalitemC shadow"
@@ -363,7 +364,9 @@ export default function TokenPage({ pecuCoins, user }) {
                     cursor: 'pointer',
                     // width: "170px",
                     marginRight: '1rem',
-                    fontWeight: '800'
+                    fontWeight: '800',
+                    maxHeight: '40px',
+                    fontSize: '18px'
                   }}
                 >
                   <GetAppIcon />
