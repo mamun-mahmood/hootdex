@@ -15,7 +15,7 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import url from '../../serverUrl';
-const PoolTokens = () => {
+const Transactions = () => {
   const [loading, setLoading] = useState(false);
   const [tokens, setTokens] = useState([]);
   const [currentValue, setCurrentValue] = useState(0);
@@ -33,7 +33,7 @@ const PoolTokens = () => {
     if (target === 'all') {
       setLoading(true);
       axios
-        .get(`${url}/hootdex/available-tokens`)
+        .get(`${url}/hootdex/available-tokens-transactions`)
         .then((res) => {
           setTokens(res.data);
           setLoading(false);
@@ -67,12 +67,12 @@ const PoolTokens = () => {
             color: 'rgb(195, 197, 203)',
             fontSize: '1.4rem',
             fontWeight: '600',
-            textAlign: 'center',
+            textAlign: 'left',
             backgroundColor: '#21242b',
             width: '100%'
           }}
         >
-          Tokens
+          Transactions
         </p>
         {loading && <LinearProgress color="inherit" />}
         <Table
@@ -86,17 +86,20 @@ const PoolTokens = () => {
             <TableRow className="">
               {/* {poolTableAttributes.map((e, index) => ( */}
               <TableCell className="twhite" component="th" scope="row">
-                #
+                All
               </TableCell>
-              <TableCell className="twhite">Name</TableCell>
+              <TableCell className="twhite"> Total Value</TableCell>
               <TableCell className="twhite" align="left">
-                Price(PECU)
-              </TableCell>
-              <TableCell className="twhite" align="left">
-                Total Tokens
+                Total Value
               </TableCell>
               <TableCell className="twhite" align="left">
-                Volume
+                Total Amount
+              </TableCell>
+              <TableCell className="twhite" align="left">
+                Account
+              </TableCell>
+              <TableCell className="twhite" align="left">
+                Time
               </TableCell>
             </TableRow>
           </TableHead>
@@ -105,7 +108,7 @@ const PoolTokens = () => {
               tokens.map((each, index) => (
                 <TableRow key={each.id}>
                   <TableCell className="twhite" component="th" scope="row">
-                    {each.id}
+                    Swap PECU for {each.tokenName.toUpperCase()}
                   </TableCell>
                   <TableCell className="twhite" align="left">
                     <Link to={`/t/${each.tokenName}`} pecuCoins={currentValue}>
@@ -145,6 +148,9 @@ const PoolTokens = () => {
                   <TableCell className="twhite pink" align="left">
                     {each.volume?.toFixed(2)}
                   </TableCell>
+                  <TableCell className="twhite pink" align="left">
+                    {new Date().toLocaleDateString()}
+                  </TableCell>
                 </TableRow>
               ))}
 
@@ -160,4 +166,4 @@ const PoolTokens = () => {
   );
 };
 
-export default PoolTokens;
+export default Transactions;

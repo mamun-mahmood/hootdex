@@ -23,6 +23,7 @@ import AssetChart from '../components/dashboard/AssetChart';
 import WarpTokens from '../components/Tables/WarpTokens';
 import PoolTokens from '../components/Tables/PoolTokens';
 import url from '../serverUrl';
+import Transactions from '../components/Tables/Transactions';
 export default function TokenPage({ pecuCoins, user }) {
   const tokenName = useParams().tokenName;
   const [token, setToken] = useState({});
@@ -125,31 +126,64 @@ export default function TokenPage({ pecuCoins, user }) {
               style={{
                 display: 'flex',
                 alignItems: 'center',
-                marginTop: '3rem'
+                margin: '3rem 0 0 1rem',
+                width: 'fit-content'
               }}
             >
               <Avatar
                 className="rounded"
                 src={`${url}/hootdex/images/${token?.logo_src}`}
                 alt="token logo"
-                style={{ width: '30px', height: '30px' }}
+                style={{
+                  width: '24px',
+                  height: '24px',
+                  color: 'rgb(86, 90, 105)'
+                }}
               />
               <Avatar
                 className="rounded"
                 src={`https://pecunovus.net/static/media/icon.25c8ec299d961b9dd524.ico`}
                 alt="token logo"
-                style={{ width: '30px', height: '30px' }}
+                style={{
+                  width: '24px',
+                  height: '24px',
+                  color: 'rgb(86, 90, 105)'
+                }}
               />
               <p
                 style={{
                   color: 'white',
-                  marginLeft: '1rem',
-                  fontSize: '26px',
+                  marginLeft: '5px',
+                  fontSize: '24px',
                   fontWeight: '500',
-                  fontFamily: 'Iner var sans-serif'
+                  fontFamily: 'Inter var sans-serif'
                 }}
               >
                 {`${token.tokenSymbol} / PECU`}
+              </p>
+              <p
+                className="token-page-t2"
+                style={{
+                  fontSize: '18px',
+                  backgroundColor: 'rgb(64, 68, 79)',
+                  padding: '4px 6px',
+                  borderRadius: '8px',
+                  fontWeight: '400',
+                  boxSizing: 'border-box',
+                  cursor: 'pointer'
+                }}
+              >
+                {priceUp ? (
+                  <small style={{ fontSize: '18px' }}>
+                    <ArrowUpwardIcon sx={{ fontSize: '13px' }} />
+                    {tokenPriceIncreasePercentage?.toFixed(2)}%
+                  </small>
+                ) : (
+                  <small style={{ fontSize: '13px' }}>
+                    <ArrowDownwardIcon sx={{ fontSize: '13px' }} />
+                    {tokenPriceIncreasePercentage?.toFixed(2)}%
+                  </small>
+                )}
               </p>
             </div>
             {/* <div
@@ -204,8 +238,19 @@ export default function TokenPage({ pecuCoins, user }) {
                 </p>
               </div>
             </div> */}
-            <div>
-              <p
+            <div
+              style={{
+                marginTop: '1rem',
+                display: 'flex',
+                flexDirection: 'row',
+                justifyContent: 'space-between',
+                minWidth: '90vw',
+                width: '100%',
+
+                flexWrap: 'wrap'
+              }}
+            >
+              {/* <p
                 className="token-page-t2"
                 style={{
                   marginTop: '0.5rem',
@@ -213,7 +258,6 @@ export default function TokenPage({ pecuCoins, user }) {
                 }}
               >
                 ${token?.currentPrice?.toFixed(5)}{' '}
-                {/* {tokenPrice[0]?.previousPrice} */}
                 {priceUp ? (
                   <small style={{ fontSize: '18px', color: '#4caf50' }}>
                     (<ArrowUpwardIcon sx={{ fontSize: '18px' }} />
@@ -225,36 +269,118 @@ export default function TokenPage({ pecuCoins, user }) {
                     {tokenPriceIncreasePercentage?.toFixed(2)}%)
                   </small>
                 )}
-              </p>
+              </p> */}
+              <div
+                style={{
+                  display: 'flex',
+                  minWidth: '60%',
+                  flexDirection: 'row',
+                  flexWrap: 'wrap'
+                }}
+              >
+                <div
+                  style={{
+                    display: 'flex',
+                    flexDirection: 'row',
+                    backgroundColor: 'rgb(64, 68, 79)',
+                    padding: '4px 6px',
+                    borderRadius: '8px',
+                    fontWeight: '400',
+                    boxSizing: 'border-box',
+                    maxWidth: 'fit-content',
+                    color: 'white',
+                    margin: '1rem ',
+                    cursor: 'pointer',
+                    minWidth: '200px'
+                  }}
+                >
+                  <Avatar
+                    className="rounded"
+                    src={`${url}/hootdex/images/${token?.logo_src}`}
+                    alt="token logo"
+                    style={{
+                      width: '22px',
+                      height: '22px',
+                      color: 'rgb(86, 90, 105)'
+                    }}
+                  />
+                  <p
+                    style={{
+                      fontSize: '16px',
+                      fontWeight: 500,
+                      marginLeft: '5px'
+                    }}
+                  >
+                    1 {token.tokenSymbol} = {token?.tokenPrice?.toFixed(6)} USD
+                  </p>
+                </div>
+                <div
+                  style={{
+                    display: 'flex',
+                    flexDirection: 'row',
+                    backgroundColor: 'rgb(64, 68, 79)',
+                    padding: '4px 6px',
+                    borderRadius: '8px',
+                    fontWeight: '400',
+                    boxSizing: 'border-box',
+                    maxWidth: 'fit-content',
+                    color: 'white',
+                    margin: '1rem ',
+                    cursor: 'pointer',
+                    minWidth: '200px'
+                  }}
+                >
+                  <Avatar
+                    className="rounded"
+                    src={`https://pecunovus.net/static/media/icon.25c8ec299d961b9dd524.ico`}
+                    alt="token logo"
+                    style={{
+                      width: '22px',
+                      height: '22px',
+                      color: 'rgb(86, 90, 105)'
+                    }}
+                  />
+                  <p
+                    style={{
+                      fontSize: '16px',
+                      fontWeight: 500,
+                      marginLeft: '5px'
+                    }}
+                  >
+                    1 {'PECU'} = {currentValue?.toFixed(2)} USD
+                  </p>
+                </div>
+              </div>
+              <div>
+                {' '}
+                <IconButton
+                  className="dfelxalitemC shadow"
+                  sx={{
+                    backgroundColor: 'rgb(64, 68, 79)',
+                    color: 'rgb(195, 197, 203)',
+                    // padding: "8px 14px",
+                    borderRadius: '12px',
+                    cursor: 'pointer',
+                    // width: "170px",
+                    marginRight: '1rem',
+                    fontWeight: '800'
+                  }}
+                >
+                  <GetAppIcon />
+                  <p>Add Liquidity</p>
+                </IconButton>
+                {/* buy token modal */}
+                <BuyToken each={token} pecuCoins={pecuCoins} user={user} />
+              </div>
             </div>
           </Grid>
           <Grid item xs={12} md={6}>
             <div
               style={{
                 display: 'flex',
-                justifyContent: 'end',
-                marginTop: '3rem'
+                justifyContent: 'end'
               }}
-            >
-              <IconButton
-                className="dfelxalitemC shadow"
-                sx={{
-                  backgroundColor: 'rgb(64, 68, 79)',
-                  color: 'rgb(195, 197, 203)',
-                  // padding: "8px 14px",
-                  borderRadius: '12px',
-                  cursor: 'pointer',
-                  // width: "170px",
-                  marginRight: '1rem',
-                  fontWeight: '800'
-                }}
-              >
-                <GetAppIcon />
-                <p>Add Liquidity</p>
-              </IconButton>
-              {/* buy token modal */}
-              <BuyToken each={token} pecuCoins={pecuCoins} user={user} />
-            </div>
+            ></div>
           </Grid>
           <Grid item xs={12} md={4} mt={3}>
             <div
@@ -360,12 +486,7 @@ export default function TokenPage({ pecuCoins, user }) {
                   ${token?.tokenPrice?.toFixed(5)}
                 </p>
               </div> */}
-              <div style={{ marginBottom: '1rem' }}>
-                <p className="token-page-t1 mb-1">24h Fees</p>
-                <p className="token-page-t2 mb-1">
-                  ${token?.currentPrice?.toFixed(5)}
-                </p>
-              </div>
+
               <p
                 className="token-page-t2"
                 style={{
@@ -388,6 +509,13 @@ export default function TokenPage({ pecuCoins, user }) {
                   </small>
                 )}
               </p>
+              <br></br>
+              <div style={{ marginBottom: '1rem' }}>
+                <p className="token-page-t1 mb-1">24h Fees</p>
+                <p className="token-page-t2 mb-1">
+                  ${token?.currentPrice?.toFixed(5)}
+                </p>
+              </div>
             </div>
           </Grid>
           <Grid item xs={12} md={8} sx={{ marginTop: { xs: 8, md: 3 } }}>
@@ -467,7 +595,7 @@ export default function TokenPage({ pecuCoins, user }) {
           </Grid>
           <Grid item xs={12} mt={5}>
             {/* <WarpTokens /> */}
-            <PoolTokens />
+            <Transactions />
           </Grid>
         </Grid>
         <div style={{ display: 'flex', justifyContent: 'center' }}>
