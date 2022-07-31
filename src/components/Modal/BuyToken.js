@@ -222,7 +222,7 @@ export default function BuyToken({ each, user, pecuCoins }) {
                     className="rounded center-width tUpper"
                     style={{ backgroundColor: '#002945' }}
                   >
-                    <h3>Available</h3>
+                    <h3>Total Tokens</h3>
                   </div>
                   <p className="fontS22">{each?.totalToken}</p>
                 </div>
