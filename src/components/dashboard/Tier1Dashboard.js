@@ -12,6 +12,7 @@ function DashboardContent({ user }) {
   const [pendingToken, setPendingToken] = useState([]);
   const [totalCoins, setTotalCoins] = useState('');
   const [totalValue, setTotalValue] = useState('');
+  const [projectTokens, setProjectTokens] = useState([]);
   const [totalToken, setTotalToken] = useState([]);
   const username = user.username;
   const fetchTokens = () => {
@@ -20,6 +21,12 @@ function DashboardContent({ user }) {
         setPendingToken(res.data.reverse());
       });
     }
+  };
+  const fetchProjectTokens = () => {
+    axios.get(`${url}/wallet/get_all_tokens_project`).then((res) => {
+      setProjectTokens(res.data.tokens);
+      console.log(res.data, 'ptokens');
+    });
   };
   const gettotalTokens = () => {
     axios.get(`${url}/hootdex/all-token-reqs`).then((res) => {
@@ -46,8 +53,12 @@ function DashboardContent({ user }) {
     fetchTokens();
     getMyCoins(user_id);
     gettotalTokens();
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [username]);
+  useEffect(() => {
+    fetchProjectTokens();
+  }, []);
   return (
     <>
       <Box
@@ -187,7 +198,59 @@ function DashboardContent({ user }) {
                     className="rounded center-width tUpper"
                     style={{ backgroundColor: '#002945' }}
                   >
-                    <h3>Token Request</h3>
+                    <h3>Project Tokens</h3>
+                  </div>
+                </div>
+                <div
+                  style={{
+                    display: 'flex',
+                    justifyContent: 'space-around',
+                    alignItems: 'center',
+                    color: 'white'
+                  }}
+                >
+                  {/* <small>Name</small> */}
+                  {/* <small>Amount</small>
+                  <small>Status</small> */}
+                </div>
+                {projectTokens.map((each, index) => (
+                  <div style={{ border: '1px solid grey' }}>
+                    <p style={{ color: 'white' }}>
+                      Token Name : {each.token_name}
+                    </p>
+                    <p style={{ color: 'white' }}>
+                      Symbol : {each.token_symbol}
+                    </p>
+                    {/* <p style={{ color: 'white' }}>{each.token_name}</p>
+                    <p style={{ color: 'white' }}>{each.token_name}</p> */}
+                  </div>
+                ))}
+              </Paper>
+            </Grid>
+            <Grid sx={{ mt: 3 }}></Grid>
+          </Grid>
+          <Grid item xs={12} md={8} lg={3} mt={5}>
+            <Grid sx={{ mt: 3 }}>
+              <Paper
+                sx={{
+                  textAlign: 'center',
+                  backgroundColor: '#00071a',
+                  maxHeight: '50vh',
+                  overflowY: 'scroll'
+                }}
+                className="border hide-scrollbar"
+              >
+                <div
+                  style={{
+                    color: 'white',
+                    wordWrap: 'break-word'
+                  }}
+                >
+                  <div
+                    className="rounded center-width tUpper"
+                    style={{ backgroundColor: '#002945' }}
+                  >
+                    <h3>Pool Request</h3>
                   </div>
                 </div>
                 <div
