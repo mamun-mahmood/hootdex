@@ -91,7 +91,7 @@ const Transactions = () => {
               </TableCell>
               <TableCell className="twhite"> Total Value</TableCell>
               <TableCell className="twhite" align="left">
-                Total Value
+                Total Amount
               </TableCell>
               <TableCell className="twhite" align="left">
                 Total Amount

@@ -92,13 +92,16 @@ const PoolTokens = () => {
               </TableCell>
               <TableCell className="twhite">Name</TableCell>
               <TableCell className="twhite" align="left">
-                Price(PECU)
+                Price
               </TableCell>
               <TableCell className="twhite" align="left">
-                Total Tokens
+                Price Change ⬇
               </TableCell>
               <TableCell className="twhite" align="left">
-                Volume
+                Volume 24H
+              </TableCell>
+              <TableCell className="twhite" align="left">
+                TVL
               </TableCell>
             </TableRow>
           </TableHead>

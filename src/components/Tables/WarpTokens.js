@@ -37,6 +37,18 @@ const removeDuplicatedToken = (allData) => {
 
   return allData;
 };
+function convertToInternationalCurrencySystem(labelValue) {
+  // Nine Zeroes for Billions
+  return Math.abs(Number(labelValue)) >= 1.0e9
+    ? (Math.abs(Number(labelValue)) / 1.0e9).toFixed(2) + 'b'
+    : // Six Zeroes for Millions
+    Math.abs(Number(labelValue)) >= 1.0e6
+    ? (Math.abs(Number(labelValue)) / 1.0e6).toFixed(2) + 'm'
+    : // Three Zeroes for Thousands
+    Math.abs(Number(labelValue)) >= 1.0e3
+    ? (Math.abs(Number(labelValue)) / 1.0e3).toFixed(2) + 'k'
+    : Math.abs(Number(labelValue));
+}
 const WarpTokens = () => {
   const [loading, setLoading] = useState(false);
   const [tokens, setTokens] = useState([]);
@@ -109,10 +121,13 @@ const WarpTokens = () => {
                 Price
               </TableCell>
               <TableCell className="twhite" align="left">
-                Total Tokens
+                Price Change ⬇
               </TableCell>
               <TableCell className="twhite" align="left">
-                Volume
+                Volume 24H
+              </TableCell>
+              <TableCell className="twhite" align="left">
+                TVL
               </TableCell>
             </TableRow>
           </TableHead>
@@ -136,23 +151,42 @@ const WarpTokens = () => {
                           src={`${url}/hootdex/images/${each?.logo_src}`}
                           alt={each.symbol.slice(1)}
                         />
-                        <span style={{ marginLeft: '1rem', fontSize: '18px' }}>
-                          {each.tokenName}{' '}
-                          <small style={{ color: '#696c75' }}>
-                            ({each.symbol})
+                        <span
+                          style={{
+                            marginLeft: '1rem',
+                            fontSize: '18px',
+                            color: 'grey'
+                          }}
+                        >
+                          {each.tokenName} (
+                          <small style={{ color: 'orange' }}>
+                            {each.symbol}
                           </small>
+                          )
                         </span>
                       </div>
                     </Link>
                   </TableCell>
                   <TableCell className="twhite green" align="left">
-                    $ {each.initialFinal}
+                    $ {(each.initialFinal / each.wrapAmount).toFixed(2)}
                   </TableCell>
                   <TableCell className="twhite yellow" align="left">
-                    {each.wrapAmount}
+                    {(
+                      (Math.abs(each.initialFinal - each.firstPrice) /
+                        each.wrapAmount /
+                        each.initialFinal) *
+                      100
+                    ).toFixed(2)}{' '}
+                    %
                   </TableCell>
                   <TableCell className="twhite pink" align="left">
-                    {each.wrapAmount * each.initialFinal}
+                    {convertToInternationalCurrencySystem(each.initialFinal)}
+                  </TableCell>
+                  <TableCell className="twhite blue" align="left">
+                    {/* {each.wrapAmount * each.initialFinal} */}${' '}
+                    {convertToInternationalCurrencySystem(
+                      each.wrapAmount * each.initialFinal
+                    )}
                   </TableCell>
                 </TableRow>
               ))}

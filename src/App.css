@@ -90,9 +90,9 @@ body,
 
 .label {
   width: 90%;
-  color: rgb(1, 24, 6);
-  font-weight: 600;
-  font-size: 1.1rem;
+  color: rgb(222, 222, 222);
+  font-weight: 500;
+  font-size: 1rem;
   margin-top: 1rem;
 }
 
@@ -137,6 +137,7 @@ html {
 }
 .twhite {
   color: white !important;
+  font-weight: bold !important;
 }
 .tcenter {
   text-align: center !important;
@@ -327,6 +328,9 @@ html {
 
 .pink {
   color: pink !important;
+}
+.blue {
+  color: blue !important;
 }
 .dfelxJsb {
   display: flex;

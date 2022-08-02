@@ -14,9 +14,11 @@ export default function CreateToken({ token, closeMe }) {
   const [inputData, setInputData] = useState({
     createdBy: user.username,
     tokenName: token.token_name,
-    totalToken: '',
-    investementAmount: '',
+    totalToken: token.amount_issued,
+    investementAmount: token.amount_issued * token.token_price,
     pecuCoin: '',
+    otherToken: '',
+    otherTokenAmount: '',
     tokenPrice: token.token_price,
     status: 'Pending',
     tokenSymbol: token.token_symbol,
@@ -25,6 +27,42 @@ export default function CreateToken({ token, closeMe }) {
     pecuRate: currentValue,
     cTime: new Date()
   });
+
+  const [tokens, setTokens] = useState([]);
+  const removeDuplicatedToken = (allData) => {
+    for (let i = 0; i < allData.length; i++) {
+      for (let j = i + 1; j < allData.length; j++) {
+        if (allData[i].symbol == allData[j].symbol) {
+          allData[i].wrapAmount = allData[j].wrapAmount + allData[i].wrapAmount;
+          allData[i].initialFinal =
+            allData[j].initialFinal + allData[i].initialFinal;
+          allData = allData.filter((e) => e !== allData[j]);
+        }
+      }
+    }
+
+    for (let i = 0; i < allData.length; i++) {
+      for (let j = i + 1; j < allData.length; j++) {
+        if (allData[i].symbol == allData[j].symbol) {
+          return removeDuplicatedToken(allData);
+        }
+      }
+    }
+
+    return allData;
+  };
+  const fetchToken = (target) => {
+    axios
+      .get(`${url}/wallet/get_all_tokens_wrap`)
+      .then((res) => {
+        if (res.data.status) {
+          setTokens(removeDuplicatedToken(res.data.tokens));
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
   const get_current_index_coin = () => {
     axios
       .get(`${url}/wallet/get_current_index_coin`)
@@ -61,7 +99,7 @@ export default function CreateToken({ token, closeMe }) {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (inputData.pecuCoin && currentValue) {
+    if (inputData.pecuCoin) {
       axios
         .post(`${url}/hootdex/create-tokens`, inputData)
         .then((res) => {
@@ -148,14 +186,16 @@ export default function CreateToken({ token, closeMe }) {
   useEffect(() => {
     let pecuRate = currentValue;
     let changeData = { ...inputData };
-    let totalPecuCoin = inputData.investementAmount / pecuRate;
-    let tokenPrice = totalPecuCoin / inputData.totalToken;
-    changeData['pecuCoin'] = totalPecuCoin;
-    changeData['tokenPrice'] = tokenPrice;
+
+    // let totalPecuCoin = inputData.investementAmount / pecuRate;
+    // let tokenPrice = totalPecuCoin / inputData.totalToken;
+    // changeData['pecuCoin'] = totalPecuCoin;
+    // changeData['tokenPrice'] = tokenPrice;
     changeData['pecuRate'] = pecuRate;
     setInputData(changeData);
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [inputData.investementAmount, inputData.totalToken]);
+  }, [currentValue]);
 
   useEffect(() => {
     let data = localStorage.getItem('hootdex_secretcookie');
@@ -163,6 +203,7 @@ export default function CreateToken({ token, closeMe }) {
     if (data) {
       setUser(JSON.parse(data));
       get_current_index_coin();
+      fetchToken();
     }
   }, []);
 
@@ -197,7 +238,6 @@ export default function CreateToken({ token, closeMe }) {
           required
           disabled
         ></input>
-
         <label className="label">Token Symbol</label>
         <input
           className="input"
@@ -209,26 +249,57 @@ export default function CreateToken({ token, closeMe }) {
           required
           disabled
         ></input>
-        <label className="label">Total Token issue</label>
-        <input
-          className="input"
-          name={'totalToken'}
-          value={inputData.totalToken}
-          onChange={handleChange}
-          type={'number'}
-          placeholder="Enter"
-          required
-        ></input>
-        <label className="label">Value Investement (USD)</label>
-        <input
-          className="input"
-          name={'investementAmount'}
-          value={inputData.investementAmount}
-          onChange={handleChange}
-          type={'number'}
-          placeholder="Enter"
-          required
-        ></input>
+        <div
+          style={{
+            display: 'flex',
+            flexDirection: 'row',
+            maxWidth: '93%',
+
+            padding: '0px'
+          }}
+        >
+          <span>
+            {' '}
+            <label className="label">Token price (USD)</label>
+            <input
+              className="input"
+              style={{ marginLeft: '0px' }}
+              value={inputData.tokenPrice}
+              disabled
+              type={'number'}
+              placeholder="Enter"
+              required
+            ></input>
+          </span>
+          <span>
+            <label className="label">Total Token issue</label>
+            <input
+              className="input"
+              style={{ marginLeft: '0px' }}
+              name={'totalToken'}
+              value={inputData.totalToken}
+              onChange={handleChange}
+              type={'number'}
+              placeholder="Enter"
+              required
+              disabled
+            ></input>
+          </span>
+          <span>
+            <label className="label">Value Investement (USD)</label>
+            <input
+              className="input"
+              style={{ marginLeft: '0px' }}
+              name={'investementAmount'}
+              value={inputData.investementAmount}
+              onChange={handleChange}
+              type={'number'}
+              placeholder="Enter"
+              required
+              disabled
+            ></input>
+          </span>
+        </div>
 
         {/* <label className="label">
           Investement equivalent Pecu Coins. You have ({pecuCoins?.coin})
@@ -243,22 +314,93 @@ export default function CreateToken({ token, closeMe }) {
           required
         ></input> */}
 
-        <label className="label">Token price (USD)</label>
-        <input
-          className="input"
-          value={inputData.tokenPrice}
-          disabled
-          type={'number'}
-          placeholder="Enter"
-          required
-        ></input>
+        <div
+          style={{
+            display: 'flex',
+            flexDirection: 'row',
+            maxWidth: '93%',
+            width: '93%',
+            padding: '0px'
+          }}
+        >
+          <span style={{ flex: '0.5' }}>
+            {' '}
+            <label className="label">Token to be staked</label>
+            <select
+              style={{
+                padding: '0.85rem',
+                width: '93%',
+                marginTop: '1rem',
+                color: 'orange',
+                fontWeight: 'bold',
+                fontSize: '1rem',
+                name: 'pecu'
+              }}
+            >
+              <option value={'PECU'}>PECU</option>
+            </select>
+          </span>
+          <span style={{ flex: '0.5' }}>
+            <label className="label">Amount</label>
+            <input
+              type="number"
+              className="input"
+              name="pecuCoin"
+              min={1}
+              onChange={handleChange}
+            />
+          </span>
+        </div>
+        <div
+          style={{
+            display: 'flex',
+            flexDirection: 'row',
+            maxWidth: '93%',
+            width: '93%',
+            padding: '0px'
+          }}
+        >
+          <span style={{ flex: '0.5' }}>
+            {' '}
+            <label className="label">Token to be staked</label>
+            <select
+              style={{
+                padding: '0.85rem',
+                width: '93%',
+                marginTop: '1rem',
+                color: 'orange',
+                fontWeight: 'bold',
+                fontSize: '1rem'
+              }}
+              name="otherToken"
+              onChange={handleChange}
+            >
+              <option>select</option>
+              {tokens.map((e, i) => (
+                <option key={i} value={e.symbol}>
+                  {e.symbol}
+                </option>
+              ))}
+            </select>
+          </span>
+          <span style={{ flex: '0.5' }}>
+            <label className="label">Amount</label>
+            <input
+              type="number"
+              className="input"
+              name="otherTokenAmount"
+              min={1}
+              onChange={handleChange}
+            />
+          </span>
+        </div>
+
         <label className="label">Upload token logo</label>
         <input
           className="input"
           onChange={saveFile}
           type="file"
           placeholder="Enter"
-          required
         ></input>
         <span>
           {' '}
