@@ -102,6 +102,7 @@ export default function CreateToken({ token, closeMe }) {
                 type: 'success',
                 show: false
               });
+              closeMe();
             }, 3000);
           }
         })

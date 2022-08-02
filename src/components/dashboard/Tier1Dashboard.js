@@ -103,7 +103,7 @@ function DashboardContent({ user }) {
                     className="rounded center-width tUpper"
                     style={{ backgroundColor: '#002945' }}
                   >
-                    <h3>Issued Tokens</h3>
+                    <h4>Issued Tokens</h4>
                   </div>
                   <p className="fontS22">{totalToken.length}</p>
                 </div>
@@ -127,10 +127,14 @@ function DashboardContent({ user }) {
                     className="rounded center-width tUpper"
                     style={{ backgroundColor: '#002945' }}
                   >
-                    <h3>Total Value</h3>
+                    <h4>Total Value</h4>
                   </div>
                   <p className="fontS22">
-                    ${totalToken.reduce((a, b) => a + b.investementAmount, 0)}
+                    $
+                    {totalToken.reduce(
+                      (a, b) => a + b.investementAmount || 0,
+                      0
+                    )}
                   </p>
                 </div>
               </Paper>
@@ -153,9 +157,9 @@ function DashboardContent({ user }) {
                     className="rounded center-width tUpper"
                     style={{ backgroundColor: '#002945' }}
                   >
-                    <h3>Total Tokens</h3>
+                    <h4>Total Tokens</h4>
                   </div>
-                  <p className="fontS22">
+                  <p className="fontS18">
                     {totalToken.reduce((a, b) => a + b.totalToken, 0)}
                   </p>
                 </div>
@@ -209,7 +213,7 @@ function DashboardContent({ user }) {
                     className="rounded center-width tUpper"
                     style={{ backgroundColor: '#002945' }}
                   >
-                    <h3>Project Tokens</h3>
+                    <h4>Project Tokens</h4>
                   </div>
                 </div>
                 <div
@@ -283,7 +287,7 @@ function DashboardContent({ user }) {
                     className="rounded center-width tUpper"
                     style={{ backgroundColor: '#002945' }}
                   >
-                    <h3>Pool Request</h3>
+                    <h4>Pool Request</h4>
                   </div>
                 </div>
                 <div
@@ -348,7 +352,7 @@ function DashboardContent({ user }) {
                   className="rounded center-width tUpper"
                   style={{ backgroundColor: '#002945' }}
                 >
-                  <h3>Total XMG</h3>
+                  <h4>Total XMG</h4>
                 </div>
                 <p className="fontS22">$ 3,000,000,000</p>
               </div>
@@ -372,7 +376,7 @@ function DashboardContent({ user }) {
                   className="rounded center-width tUpper"
                   style={{ backgroundColor: '#002945' }}
                 >
-                  <h3>Total Pecu Coin</h3>
+                  <h4>Total Pecu Coin</h4>
                 </div>
                 <p className="fontS22">{totalCoins}</p>
               </div>
@@ -396,7 +400,7 @@ function DashboardContent({ user }) {
                   className="rounded center-width tUpper"
                   style={{ backgroundColor: '#002945' }}
                 >
-                  <h3>Total PECU Value</h3>
+                  <h4>Total PECU Value</h4>
                 </div>
                 <p className="fontS22">$ {totalValue}</p>
               </div>
@@ -420,12 +424,12 @@ function DashboardContent({ user }) {
                   className="rounded center-width tUpper"
                   style={{ backgroundColor: '#002945' }}
                 >
-                  <h3>Current Balance</h3>
+                  <h4>Current Balance</h4>
                 </div>
                 <p className="fontS22">
                   ${' '}
                   {parseInt(
-                    totalToken.reduce((a, b) => a + b.investementAmount, 0)
+                    totalToken.reduce((a, b) => a + b.investementAmount || 0, 0)
                   ) +
                     parseInt(totalValue) +
                     3000000000}
