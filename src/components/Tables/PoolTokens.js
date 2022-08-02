@@ -15,6 +15,18 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import url from '../../serverUrl';
+function convertToInternationalCurrencySystem(labelValue) {
+  // Nine Zeroes for Billions
+  return Math.abs(Number(labelValue)) >= 1.0e9
+    ? (Math.abs(Number(labelValue)) / 1.0e9).toFixed(2) + 'b'
+    : // Six Zeroes for Millions
+    Math.abs(Number(labelValue)) >= 1.0e6
+    ? (Math.abs(Number(labelValue)) / 1.0e6).toFixed(2) + 'm'
+    : // Three Zeroes for Thousands
+    Math.abs(Number(labelValue)) >= 1.0e3
+    ? (Math.abs(Number(labelValue)) / 1.0e3).toFixed(2) + 'k'
+    : Math.abs(Number(labelValue));
+}
 const PoolTokens = () => {
   const [loading, setLoading] = useState(false);
   const [tokens, setTokens] = useState([]);
@@ -135,20 +147,29 @@ const PoolTokens = () => {
                         <span style={{ marginLeft: '1rem', fontSize: '14px' }}>
                           {each.tokenName}{' '}
                           <small style={{ color: '#696c75' }}>
-                            ({`${each.tokenSymbol}/PECU`})
+                            (
+                            {`${each.tokenSymbol}${
+                              each.otherToken ? `/${each.otherToken}` : null
+                            }/PECU`}
+                            )
                           </small>
                         </span>
                       </div>
                     </Link>
                   </TableCell>
                   <TableCell className="twhite green" align="left">
-                    {each.currentPrice}
+                    ${each.currentPrice}
                   </TableCell>
                   <TableCell className="twhite yellow" align="left">
-                    {each.totalToken}
+                    0.00%
                   </TableCell>
                   <TableCell className="twhite pink" align="left">
-                    {each.volume?.toFixed(2)}
+                    {convertToInternationalCurrencySystem(
+                      (each.volume / each.pecuCoin) * currentValue
+                    )}
+                  </TableCell>
+                  <TableCell className="twhite blue" align="left">
+                    {convertToInternationalCurrencySystem(each.totalToken)}
                   </TableCell>
                 </TableRow>
               ))}

@@ -150,6 +150,12 @@ const WarpTokens = () => {
                           className="rounded"
                           src={`${url}/hootdex/images/${each?.logo_src}`}
                           alt={each.symbol.slice(1)}
+                          style={{
+                            backgroundColor: 'orange',
+                            height: '25px',
+                            width: '25px',
+                            fontSize: '18px'
+                          }}
                         />
                         <span
                           style={{
