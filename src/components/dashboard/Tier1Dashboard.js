@@ -214,13 +214,30 @@ function DashboardContent({ user }) {
                   <small>Status</small> */}
                 </div>
                 {projectTokens.map((each, index) => (
-                  <div style={{ border: '1px solid grey' }}>
-                    <p style={{ color: 'white' }}>
-                      Token Name : {each.token_name}
+                  <div
+                    style={{
+                      border: '0.5px solid green',
+                      margin: '5px 0px 5px 0px',
+                      display: 'flex',
+                      flexDirection: 'row',
+                      justifyContent: 'space-between',
+                      padding: '1rem',
+                      borderRadius: '8px'
+                    }}
+                  >
+                    <p style={{ color: 'orange', fontWeight: 'bold' }}>
+                      {each.token_symbol}
                     </p>
-                    <p style={{ color: 'white' }}>
-                      Symbol : {each.token_symbol}
-                    </p>
+                    <button
+                      style={{
+                        padding: '2px',
+                        color: 'green',
+                        borderRadius: '5px',
+                        outline: 'none'
+                      }}
+                    >
+                      Create Pool
+                    </button>
                     {/* <p style={{ color: 'white' }}>{each.token_name}</p>
                     <p style={{ color: 'white' }}>{each.token_name}</p> */}
                   </div>
