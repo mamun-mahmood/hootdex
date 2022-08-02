@@ -65,14 +65,16 @@ const PoolTokens = () => {
         <p
           style={{
             color: 'rgb(195, 197, 203)',
-            fontSize: '1.4rem',
-            fontWeight: '600',
-            textAlign: 'center',
+            fontSize: '15px',
+            fontWeight: 'bold',
+            textAlign: 'left',
             backgroundColor: '#21242b',
-            width: '100%'
+            width: '100%',
+
+            padding: '1rem'
           }}
         >
-          Tokens
+          Top Pools
         </p>
         {loading && <LinearProgress color="inherit" />}
         <Table
@@ -127,7 +129,7 @@ const PoolTokens = () => {
                           alt="token logo"
                           style={{ width: '20px', height: '20px' }}
                         />
-                        <span style={{ marginLeft: '1rem', fontSize: '20px' }}>
+                        <span style={{ marginLeft: '1rem', fontSize: '14px' }}>
                           {each.tokenName}{' '}
                           <small style={{ color: '#696c75' }}>
                             ({`${each.tokenSymbol}/PECU`})

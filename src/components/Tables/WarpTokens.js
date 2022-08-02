@@ -15,7 +15,28 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import url from '../../serverUrl';
+const removeDuplicatedToken = (allData) => {
+  for (let i = 0; i < allData.length; i++) {
+    for (let j = i + 1; j < allData.length; j++) {
+      if (allData[i].symbol == allData[j].symbol) {
+        allData[i].wrapAmount = allData[j].wrapAmount + allData[i].wrapAmount;
+        allData[i].initialFinal =
+          allData[j].initialFinal + allData[i].initialFinal;
+        allData = allData.filter((e) => e !== allData[j]);
+      }
+    }
+  }
 
+  for (let i = 0; i < allData.length; i++) {
+    for (let j = i + 1; j < allData.length; j++) {
+      if (allData[i].symbol == allData[j].symbol) {
+        return removeDuplicatedToken(allData);
+      }
+    }
+  }
+
+  return allData;
+};
 const WarpTokens = () => {
   const [loading, setLoading] = useState(false);
   const [tokens, setTokens] = useState([]);
@@ -26,7 +47,7 @@ const WarpTokens = () => {
         .get(`${url}/wallet/get_all_tokens_wrap`)
         .then((res) => {
           if (res.data.status) {
-            setTokens(res.data.tokens);
+            setTokens(removeDuplicatedToken(res.data.tokens));
           }
 
           setLoading(false);
@@ -57,13 +78,16 @@ const WarpTokens = () => {
           <p
             style={{
               color: 'rgb(195, 197, 203)',
-              fontSize: '1.4rem',
-              fontWeight: '600',
-              textAlign: 'center',
-              backgroundColor: '#21242b'
+              fontSize: '15px',
+              fontWeight: 'bold',
+              textAlign: 'left',
+              backgroundColor: '#21242b',
+              width: '100%',
+
+              padding: '1rem'
             }}
           >
-            Tokens
+            Top Tokens
           </p>
           {loading && <LinearProgress color="inherit" />}
         </div>
@@ -100,7 +124,7 @@ const WarpTokens = () => {
                     {each.id}
                   </TableCell>
                   <TableCell className="twhite" align="left">
-                    <Link to={`/t/${each.symbol}`}>
+                    <Link to={`#`}>
                       <div
                         style={{
                           display: 'flex',
@@ -112,7 +136,7 @@ const WarpTokens = () => {
                           src={`${url}/hootdex/images/${each?.logo_src}`}
                           alt={each.symbol.slice(1)}
                         />
-                        <span style={{ marginLeft: '1rem', fontSize: '20px' }}>
+                        <span style={{ marginLeft: '1rem', fontSize: '18px' }}>
                           {each.tokenName}{' '}
                           <small style={{ color: '#696c75' }}>
                             ({each.symbol})
