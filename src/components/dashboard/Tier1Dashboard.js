@@ -7,6 +7,7 @@ import TokenRequest from '../Modal/TokenRequest';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import url from '../../serverUrl';
+import CreateToken from '../../screens/createToken';
 
 function DashboardContent({ user }) {
   const [pendingToken, setPendingToken] = useState([]);
@@ -14,6 +15,8 @@ function DashboardContent({ user }) {
   const [totalValue, setTotalValue] = useState('');
   const [projectTokens, setProjectTokens] = useState([]);
   const [totalToken, setTotalToken] = useState([]);
+  const [createPool, setCreatePool] = useState(false);
+  const [poolToken, setPoolToken] = useState({});
   const username = user.username;
   const fetchTokens = () => {
     if (username) {
@@ -71,6 +74,14 @@ function DashboardContent({ user }) {
           pb: 2
         }}
       >
+        {createPool && (
+          <CreateToken
+            token={poolToken}
+            closeMe={() => {
+              setCreatePool(false);
+            }}
+          />
+        )}
         <Grid container spacing={5} sx={{ textTransform: 'uppercase', p: 5 }}>
           <Grid item xs={12} md={6} lg={3} mt={5}>
             {/* dashboard left */}
@@ -233,7 +244,12 @@ function DashboardContent({ user }) {
                         padding: '2px',
                         color: 'green',
                         borderRadius: '5px',
-                        outline: 'none'
+                        outline: 'none',
+                        cursor: 'pointer'
+                      }}
+                      onClick={(e) => {
+                        setPoolToken(each);
+                        setCreatePool(!createPool);
                       }}
                     >
                       Create Pool

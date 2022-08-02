@@ -3,7 +3,7 @@ import axios from 'axios';
 import url from '../serverUrl';
 import React, { useEffect, useState } from 'react';
 
-export default function CreateToken() {
+export default function CreateToken({ token, closeMe }) {
   const [user, setUser] = useState('');
   const [alert, setAlert] = useState({
     msg: '',
@@ -13,13 +13,13 @@ export default function CreateToken() {
   const [currentValue, setCurrentValue] = useState(null);
   const [inputData, setInputData] = useState({
     createdBy: user.username,
-    tokenName: '',
+    tokenName: token.token_name,
     totalToken: '',
     investementAmount: '',
     pecuCoin: '',
-    tokenPrice: '',
+    tokenPrice: token.token_price,
     status: 'Pending',
-    tokenSymbol: '',
+    tokenSymbol: token.token_symbol,
     fileName: '',
     approvedBy: '',
     pecuRate: currentValue,
@@ -92,13 +92,13 @@ export default function CreateToken() {
               tokenSymbol: ''
             });
             setAlert({
-              msg: 'Token Created!',
+              msg: 'Pool Created!',
               type: 'success',
               show: true
             });
             setTimeout(() => {
               setAlert({
-                msg: 'Token Created!',
+                msg: 'Pool Created!',
                 type: 'success',
                 show: false
               });
@@ -184,7 +184,7 @@ export default function CreateToken() {
         </div>
       </Box>
       <form id="myForm" className="form" onSubmit={handleSubmit}>
-        <h3>Create Token</h3>
+        <h5>Create Pool</h5>
 
         <label className="label">Token Name</label>
         <input
@@ -194,6 +194,7 @@ export default function CreateToken() {
           onChange={handleChange}
           placeholder="Enter"
           required
+          disabled
         ></input>
 
         <label className="label">Token Symbol</label>
@@ -205,6 +206,7 @@ export default function CreateToken() {
           type={'text'}
           placeholder="Enter"
           required
+          disabled
         ></input>
         <label className="label">Total Token issue</label>
         <input
@@ -257,9 +259,19 @@ export default function CreateToken() {
           placeholder="Enter"
           required
         ></input>
-        <button type="submit" className="submit-btn button">
-          Submit Request
-        </button>
+        <span>
+          {' '}
+          <button type="submit" className="submit-btn button">
+            Submit Request
+          </button>
+          <button
+            onClick={() => closeMe()}
+            className="submit-btn button"
+            style={{ backgroundColor: 'red', color: 'white' }}
+          >
+            Cancel
+          </button>
+        </span>
       </form>
     </div>
   ) : (
