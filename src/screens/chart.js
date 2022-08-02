@@ -51,7 +51,7 @@ export default function Chart() {
           textAlign: 'center',
           backgroundColor: '#21242b',
           width: '100%',
-          padding: '1rem'
+          padding: '0.5rem 0 0.5rem 0'
         }}
       >
         PECU CHART

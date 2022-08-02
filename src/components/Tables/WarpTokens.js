@@ -121,7 +121,7 @@ const WarpTokens = () => {
               tokens.map((each, index) => (
                 <TableRow key={each.id}>
                   <TableCell className="twhite" component="th" scope="row">
-                    {each.id}
+                    {index + 1}
                   </TableCell>
                   <TableCell className="twhite" align="left">
                     <Link to={`#`}>
