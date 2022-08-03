@@ -97,7 +97,14 @@ export default function Nav({ fetchWallet, wallet }) {
               <img src={logo} alt="nav_logo" width={'100%'} />
             </Box>
           </Link>
-          <div style={{ display: 'flex', alignItems: 'center' }}>
+          <div
+            style={{
+              display: 'flex',
+              alignItems: 'flex-start',
+              flexDirection: 'column',
+              justifyContent: 'center'
+            }}
+          >
             <div
               style={{
                 backgroundColor: 'rgba(255, 255, 255, 0.3)',
@@ -129,7 +136,8 @@ export default function Nav({ fetchWallet, wallet }) {
                 color: 'white',
                 fontSize: '11px',
                 fontWeight: 'bold',
-                opacity: '60%'
+                opacity: '60%',
+                margin: '0 5px 0 3px'
               }}
             >
               PECU PRICE : {currentValue} USD
