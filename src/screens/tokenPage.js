@@ -198,19 +198,61 @@ export default function TokenPage({ pecuCoins, user }) {
                     marginLeft: '6px'
                   }}
                 >
-                  {priceUp ? (
+                  {token.investementAmount +
+                    token.pecuCoin * currentValue +
+                    token.otherTokenAmount *
+                      cryptoData?.filter(
+                        (e) => e.symbol == token.otherToken.slice(1)
+                      )[0].price >
+                  token.firstTVL ? (
                     <small style={{ fontSize: '13px' }}>
                       <ArrowUpwardIcon sx={{ fontSize: '13px' }} />
-                      {tokenPriceIncreasePercentage
-                        ? tokenPriceIncreasePercentage?.toFixed(2)
+                      {token.investementAmount +
+                        token.pecuCoin * currentValue +
+                        token.otherTokenAmount *
+                          cryptoData?.filter(
+                            (e) => e.symbol == token.otherToken.slice(1)
+                          )[0].price >
+                      token.firstTVL
+                        ? (
+                            (Math.abs(
+                              token.investementAmount +
+                                token.pecuCoin * currentValue +
+                                token.otherTokenAmount *
+                                  cryptoData?.filter(
+                                    (e) => e.symbol == token.otherToken.slice(1)
+                                  )[0].price -
+                                token.firstTVL
+                            ) *
+                              100) /
+                            token.firstTVL
+                          ).toFixed(2)
                         : '0.00'}
                       %
                     </small>
                   ) : (
                     <small style={{ fontSize: '13px' }}>
                       <ArrowDownwardIcon sx={{ fontSize: '13px' }} />
-                      {tokenPriceIncreasePercentage
-                        ? tokenPriceIncreasePercentage?.toFixed(2)
+                      {token.investementAmount +
+                        token.pecuCoin * currentValue +
+                        token.otherTokenAmount *
+                          cryptoData?.filter(
+                            (e) => e.symbol == token.otherToken.slice(1)
+                          )[0].price <
+                      token.firstTVL
+                        ? (
+                            (Math.abs(
+                              token.investementAmount +
+                                token.pecuCoin * currentValue +
+                                token.otherTokenAmount *
+                                  cryptoData?.filter(
+                                    (e) => e.symbol == token.otherToken.slice(1)
+                                  )[0].price -
+                                token.firstTVL
+                            ) *
+                              100) /
+                            token.firstTVL
+                          ).toFixed(2)
                         : '0.00'}
                       %
                     </small>
@@ -675,7 +717,7 @@ export default function TokenPage({ pecuCoins, user }) {
                     {convertToInternationalCurrencySystem(
                       token.investementAmount +
                         token.pecuCoin * currentValue +
-                        (token.otherTokenAmount * token.otherTokenAmount) /
+                        token.otherTokenAmount *
                           cryptoData.filter(
                             (e) => e.symbol == token.otherToken.slice(1)
                           )[0].price
@@ -722,25 +764,65 @@ export default function TokenPage({ pecuCoins, user }) {
                       (token.volume / token.pecuCoin) * currentValue
                     )}
                   </p>
-                  {priceUp ? (
-                    <small style={{ fontSize: '15px', color: '#4caf50' }}>
-                      (<ArrowUpwardIcon sx={{ fontSize: '15px' }} />
-                      {tokenPriceIncreasePercentage
-                        ? convertToInternationalCurrencySystem(
-                            tokenPriceIncreasePercentage?.toFixed(2)
-                          )
+                  {token.investementAmount +
+                    token.pecuCoin * currentValue +
+                    token.otherTokenAmount *
+                      cryptoData?.filter(
+                        (e) => e.symbol == token.otherToken.slice(1)
+                      )[0].price >
+                  token.firstTVL ? (
+                    <small style={{ fontSize: '15px', color: 'green' }}>
+                      <ArrowUpwardIcon
+                        sx={{ fontSize: '15px', color: 'green' }}
+                      />
+                      {token.investementAmount +
+                        token.pecuCoin * currentValue +
+                        token.otherTokenAmount *
+                          cryptoData?.filter(
+                            (e) => e.symbol == token.otherToken.slice(1)
+                          )[0].price >
+                      token.firstTVL
+                        ? (
+                            (Math.abs(
+                              token.investementAmount +
+                                token.pecuCoin * currentValue +
+                                token.otherTokenAmount *
+                                  cryptoData?.filter(
+                                    (e) => e.symbol == token.otherToken.slice(1)
+                                  )[0].price -
+                                token.firstTVL
+                            ) *
+                              100) /
+                            token.firstTVL
+                          ).toFixed(2)
                         : '0.00'}
-                      %)
+                      %
                     </small>
                   ) : (
-                    <small style={{ fontSize: '15px', color: 'red' }}>
-                      (<ArrowDownwardIcon sx={{ fontSize: '15px' }} />
-                      {tokenPriceIncreasePercentage
-                        ? convertToInternationalCurrencySystem(
-                            tokenPriceIncreasePercentage?.toFixed(2)
-                          )
+                    <small style={{ fontSize: '13px' }}>
+                      <ArrowDownwardIcon sx={{ fontSize: '13px' }} />
+                      {token.investementAmount +
+                        token.pecuCoin * currentValue +
+                        token.otherTokenAmount *
+                          cryptoData?.filter(
+                            (e) => e.symbol == token.otherToken.slice(1)
+                          )[0].price <
+                      token.firstTVL
+                        ? (
+                            (Math.abs(
+                              token.investementAmount +
+                                token.pecuCoin * currentValue +
+                                token.otherTokenAmount *
+                                  cryptoData?.filter(
+                                    (e) => e.symbol == token.otherToken.slice(1)
+                                  )[0].price -
+                                token.firstTVL
+                            ) *
+                              100) /
+                            token.firstTVL
+                          ).toFixed(2)
                         : '0.00'}
-                      %)
+                      %
                     </small>
                   )}
                 </p>

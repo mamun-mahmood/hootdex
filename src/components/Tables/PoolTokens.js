@@ -31,6 +31,7 @@ const PoolTokens = () => {
   const [loading, setLoading] = useState(false);
   const [tokens, setTokens] = useState([]);
   const [currentValue, setCurrentValue] = useState(0);
+  const [cryptoData, setCryptoData] = useState([]);
   const get_current_index_coin = () => {
     axios
       .get(`${url}/wallet/get_current_index_coin`)
@@ -40,6 +41,11 @@ const PoolTokens = () => {
       .catch((err) => {
         console.log(err);
       });
+  };
+  const get_crypto_Data = () => {
+    axios.get(`https://mhiservers2.com/crypto/index`).then((res) => {
+      setCryptoData(res.data);
+    });
   };
   const fetchToken = (target) => {
     if (target === 'all') {
@@ -62,6 +68,7 @@ const PoolTokens = () => {
   useEffect(() => {
     fetchToken('all');
     get_current_index_coin();
+    get_crypto_Data();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return (
@@ -161,15 +168,40 @@ const PoolTokens = () => {
                     ${each.currentPrice}
                   </TableCell>
                   <TableCell className="twhite yellow" align="left">
-                    0.00%
+                    {cryptoData.length > 0 &&
+                      (
+                        (Math.abs(
+                          each.investementAmount +
+                            each.pecuCoin * currentValue +
+                            each.otherTokenAmount *
+                              cryptoData?.filter(
+                                (e) => e.symbol == each.otherToken.slice(1)
+                              )[0].price -
+                            each.firstTVL
+                        ) *
+                          100) /
+                        each.firstTVL
+                      ).toFixed(2)}
+                    %
                   </TableCell>
                   <TableCell className="twhite pink" align="left">
                     {convertToInternationalCurrencySystem(
                       (each.volume / each.pecuCoin) * currentValue
                     )}
                   </TableCell>
+
                   <TableCell className="twhite blue" align="left">
-                    {convertToInternationalCurrencySystem(each.totalToken)}
+                    {cryptoData.length > 0 &&
+                      convertToInternationalCurrencySystem(
+                        each.investementAmount +
+                          each.pecuCoin * currentValue +
+                          each.otherTokenAmount *
+                            cryptoData?.filter(
+                              (e) => e.symbol == each.otherToken.slice(1)
+                            )[0].price
+                      )}
+
+                    {/* {convertToInternationalCurrencySystem(each.totalToken)} */}
                   </TableCell>
                 </TableRow>
               ))}
