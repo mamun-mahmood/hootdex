@@ -97,7 +97,7 @@ export default function TokenRequest({ each, index, user, fetchTokens }) {
           className="border"
           sx={{ ...style, width: 800, backdropFilter: 'blur(5px)' }}
         >
-          <h2 className="twhite tcenter">Token details</h2>
+          <h2 className="twhite tcenter">Pool details</h2>
           <StepConnector />
           <Grid container spacing={5}>
             <Grid item xs={6} md={4} sx={{ mt: 3 }}>
@@ -168,7 +168,7 @@ export default function TokenRequest({ each, index, user, fetchTokens }) {
                   >
                     <h3>Price</h3>
                   </div>
-                  <p className="fontS22">{each?.tokenPrice}</p>
+                  <p className="fontS22">{each?.tokenPrice?.toFixed(8)}</p>
                 </div>
               </Paper>
             </Grid>

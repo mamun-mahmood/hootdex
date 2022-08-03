@@ -1,15 +1,13 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap");
-* {
-  font-family: "Poppins", sans-serif;
-}
+
 body {
   background-image: linear-gradient(
     to right,
-    #04251a,
-    #032c1e,
-    #033223,
-    #023927,
-    #01402b
+    #01110b,
+    #01110b,
+    #01110b,
+    #01110b,
+    #01110b
   );
 }
 html,
@@ -92,9 +90,9 @@ body,
 
 .label {
   width: 90%;
-  color: rgb(1, 24, 6);
-  font-weight: 600;
-  font-size: 1.1rem;
+  color: rgb(222, 222, 222);
+  font-weight: 500;
+  font-size: 1rem;
   margin-top: 1rem;
 }
 
@@ -139,6 +137,7 @@ html {
 }
 .twhite {
   color: white !important;
+  font-weight: bold !important;
 }
 .tcenter {
   text-align: center !important;
@@ -330,6 +329,9 @@ html {
 .pink {
   color: pink !important;
 }
+.blue {
+  color: blue !important;
+}
 .dfelxJsb {
   display: flex;
   justify-content: space-between;
@@ -412,6 +414,6 @@ border-radius: 16px;
 box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
 backdrop-filter: blur(5px);
 -webkit-backdrop-filter: blur(5px);
-border: 1px solid rgba(255, 255, 255, 0.1);
+
 margin-bottom: 1rem;
 }

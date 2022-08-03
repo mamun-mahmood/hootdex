@@ -7,12 +7,16 @@ import TokenRequest from '../Modal/TokenRequest';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import url from '../../serverUrl';
+import CreateToken from '../../screens/createToken';
 
 function DashboardContent({ user }) {
   const [pendingToken, setPendingToken] = useState([]);
   const [totalCoins, setTotalCoins] = useState('');
   const [totalValue, setTotalValue] = useState('');
+  const [projectTokens, setProjectTokens] = useState([]);
   const [totalToken, setTotalToken] = useState([]);
+  const [createPool, setCreatePool] = useState(false);
+  const [poolToken, setPoolToken] = useState({});
   const username = user.username;
   const fetchTokens = () => {
     if (username) {
@@ -20,6 +24,12 @@ function DashboardContent({ user }) {
         setPendingToken(res.data.reverse());
       });
     }
+  };
+  const fetchProjectTokens = () => {
+    axios.get(`${url}/wallet/get_all_tokens_project`).then((res) => {
+      setProjectTokens(res.data.tokens);
+      console.log(res.data, 'ptokens');
+    });
   };
   const gettotalTokens = () => {
     axios.get(`${url}/hootdex/all-token-reqs`).then((res) => {
@@ -46,8 +56,12 @@ function DashboardContent({ user }) {
     fetchTokens();
     getMyCoins(user_id);
     gettotalTokens();
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [username]);
+  useEffect(() => {
+    fetchProjectTokens();
+  }, []);
   return (
     <>
       <Box
@@ -60,6 +74,14 @@ function DashboardContent({ user }) {
           pb: 2
         }}
       >
+        {createPool && (
+          <CreateToken
+            token={poolToken}
+            closeMe={() => {
+              setCreatePool(false);
+            }}
+          />
+        )}
         <Grid container spacing={5} sx={{ textTransform: 'uppercase', p: 5 }}>
           <Grid item xs={12} md={6} lg={3} mt={5}>
             {/* dashboard left */}
@@ -81,7 +103,7 @@ function DashboardContent({ user }) {
                     className="rounded center-width tUpper"
                     style={{ backgroundColor: '#002945' }}
                   >
-                    <h3>Issued Tokens</h3>
+                    <h4>Issued Tokens</h4>
                   </div>
                   <p className="fontS22">{totalToken.length}</p>
                 </div>
@@ -105,10 +127,14 @@ function DashboardContent({ user }) {
                     className="rounded center-width tUpper"
                     style={{ backgroundColor: '#002945' }}
                   >
-                    <h3>Total Value</h3>
+                    <h4>Total Value</h4>
                   </div>
                   <p className="fontS22">
-                    ${totalToken.reduce((a, b) => a + b.investementAmount, 0)}
+                    $
+                    {totalToken.reduce(
+                      (a, b) => a + b.investementAmount || 0,
+                      0
+                    )}
                   </p>
                 </div>
               </Paper>
@@ -131,9 +157,9 @@ function DashboardContent({ user }) {
                     className="rounded center-width tUpper"
                     style={{ backgroundColor: '#002945' }}
                   >
-                    <h3>Total Tokens</h3>
+                    <h4>Total Tokens</h4>
                   </div>
-                  <p className="fontS22">
+                  <p className="fontS18">
                     {totalToken.reduce((a, b) => a + b.totalToken, 0)}
                   </p>
                 </div>
@@ -187,7 +213,81 @@ function DashboardContent({ user }) {
                     className="rounded center-width tUpper"
                     style={{ backgroundColor: '#002945' }}
                   >
-                    <h3>Token Request</h3>
+                    <h4>Project Tokens</h4>
+                  </div>
+                </div>
+                <div
+                  style={{
+                    display: 'flex',
+                    justifyContent: 'space-around',
+                    alignItems: 'center',
+                    color: 'white'
+                  }}
+                >
+                  {/* <small>Name</small> */}
+                  {/* <small>Amount</small>
+                  <small>Status</small> */}
+                </div>
+                {projectTokens.map((each, index) => (
+                  <div
+                    style={{
+                      border: '0.5px solid green',
+                      margin: '5px 0px 5px 0px',
+                      display: 'flex',
+                      flexDirection: 'row',
+                      justifyContent: 'space-between',
+                      padding: '1rem',
+                      borderRadius: '8px'
+                    }}
+                  >
+                    <p style={{ color: 'orange', fontWeight: 'bold' }}>
+                      {each.token_symbol}
+                    </p>
+                    <button
+                      style={{
+                        padding: '2px',
+                        color: 'green',
+                        borderRadius: '5px',
+                        outline: 'none',
+                        cursor: 'pointer'
+                      }}
+                      onClick={(e) => {
+                        setPoolToken(each);
+                        setCreatePool(!createPool);
+                      }}
+                    >
+                      Create Pool
+                    </button>
+                    {/* <p style={{ color: 'white' }}>{each.token_name}</p>
+                    <p style={{ color: 'white' }}>{each.token_name}</p> */}
+                  </div>
+                ))}
+              </Paper>
+            </Grid>
+            <Grid sx={{ mt: 3 }}></Grid>
+          </Grid>
+          <Grid item xs={12} md={8} lg={3} mt={5}>
+            <Grid sx={{ mt: 3 }}>
+              <Paper
+                sx={{
+                  textAlign: 'center',
+                  backgroundColor: '#00071a',
+                  maxHeight: '50vh',
+                  overflowY: 'scroll'
+                }}
+                className="border hide-scrollbar"
+              >
+                <div
+                  style={{
+                    color: 'white',
+                    wordWrap: 'break-word'
+                  }}
+                >
+                  <div
+                    className="rounded center-width tUpper"
+                    style={{ backgroundColor: '#002945' }}
+                  >
+                    <h4>Pool Request</h4>
                   </div>
                 </div>
                 <div
@@ -252,7 +352,7 @@ function DashboardContent({ user }) {
                   className="rounded center-width tUpper"
                   style={{ backgroundColor: '#002945' }}
                 >
-                  <h3>Total XMG</h3>
+                  <h4>Total XMG</h4>
                 </div>
                 <p className="fontS22">$ 3,000,000,000</p>
               </div>
@@ -276,7 +376,7 @@ function DashboardContent({ user }) {
                   className="rounded center-width tUpper"
                   style={{ backgroundColor: '#002945' }}
                 >
-                  <h3>Total Pecu Coin</h3>
+                  <h4>Total Pecu Coin</h4>
                 </div>
                 <p className="fontS22">{totalCoins}</p>
               </div>
@@ -300,7 +400,7 @@ function DashboardContent({ user }) {
                   className="rounded center-width tUpper"
                   style={{ backgroundColor: '#002945' }}
                 >
-                  <h3>Total PECU Value</h3>
+                  <h4>Total PECU Value</h4>
                 </div>
                 <p className="fontS22">$ {totalValue}</p>
               </div>
@@ -324,12 +424,12 @@ function DashboardContent({ user }) {
                   className="rounded center-width tUpper"
                   style={{ backgroundColor: '#002945' }}
                 >
-                  <h3>Current Balance</h3>
+                  <h4>Current Balance</h4>
                 </div>
                 <p className="fontS22">
                   ${' '}
                   {parseInt(
-                    totalToken.reduce((a, b) => a + b.investementAmount, 0)
+                    totalToken.reduce((a, b) => a + b.investementAmount || 0, 0)
                   ) +
                     parseInt(totalValue) +
                     3000000000}

@@ -46,11 +46,12 @@ export default function Chart() {
       <p
         style={{
           color: 'rgb(195, 197, 203)',
-          fontSize: '1.4rem',
+          fontSize: '15px',
           fontWeight: '600',
           textAlign: 'center',
           backgroundColor: '#21242b',
-          width: '100%'
+          width: '100%',
+          padding: '0.5rem 0 0.5rem 0'
         }}
       >
         PECU CHART

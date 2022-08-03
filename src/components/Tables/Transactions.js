@@ -65,14 +65,15 @@ const Transactions = () => {
         <p
           style={{
             color: 'rgb(195, 197, 203)',
-            fontSize: '1.4rem',
+            fontSize: '15px',
             fontWeight: '600',
             textAlign: 'left',
             backgroundColor: '#21242b',
-            width: '100%'
+            width: '100%',
+            padding: '1rem'
           }}
         >
-          Transactions
+          All Transactions
         </p>
         {loading && <LinearProgress color="inherit" />}
         <Table
@@ -90,7 +91,7 @@ const Transactions = () => {
               </TableCell>
               <TableCell className="twhite"> Total Value</TableCell>
               <TableCell className="twhite" align="left">
-                Total Value
+                Total Amount
               </TableCell>
               <TableCell className="twhite" align="left">
                 Total Amount

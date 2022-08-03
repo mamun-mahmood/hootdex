@@ -1,4 +1,5 @@
 import PoolTokens from '../components/Tables/PoolTokens';
+import Transactions from '../components/Tables/Transactions';
 import WarpTokens from '../components/Tables/WarpTokens';
 import Chart from './chart';
 export default function Home() {
@@ -20,8 +21,9 @@ export default function Home() {
             width: '80%'
           }}
         >
-          {/* <WarpTokens /> */}
+          <WarpTokens />
           <PoolTokens />
+          <Transactions />
         </div>
       </div>
     </>

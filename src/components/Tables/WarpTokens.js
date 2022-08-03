@@ -15,7 +15,40 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import url from '../../serverUrl';
+const removeDuplicatedToken = (allData) => {
+  for (let i = 0; i < allData.length; i++) {
+    for (let j = i + 1; j < allData.length; j++) {
+      if (allData[i].symbol == allData[j].symbol) {
+        allData[i].wrapAmount = allData[j].wrapAmount + allData[i].wrapAmount;
+        allData[i].initialFinal =
+          allData[j].initialFinal + allData[i].initialFinal;
+        allData = allData.filter((e) => e !== allData[j]);
+      }
+    }
+  }
 
+  for (let i = 0; i < allData.length; i++) {
+    for (let j = i + 1; j < allData.length; j++) {
+      if (allData[i].symbol == allData[j].symbol) {
+        return removeDuplicatedToken(allData);
+      }
+    }
+  }
+
+  return allData;
+};
+function convertToInternationalCurrencySystem(labelValue) {
+  // Nine Zeroes for Billions
+  return Math.abs(Number(labelValue)) >= 1.0e9
+    ? (Math.abs(Number(labelValue)) / 1.0e9).toFixed(2) + 'b'
+    : // Six Zeroes for Millions
+    Math.abs(Number(labelValue)) >= 1.0e6
+    ? (Math.abs(Number(labelValue)) / 1.0e6).toFixed(2) + 'm'
+    : // Three Zeroes for Thousands
+    Math.abs(Number(labelValue)) >= 1.0e3
+    ? (Math.abs(Number(labelValue)) / 1.0e3).toFixed(2) + 'k'
+    : Math.abs(Number(labelValue));
+}
 const WarpTokens = () => {
   const [loading, setLoading] = useState(false);
   const [tokens, setTokens] = useState([]);
@@ -26,7 +59,7 @@ const WarpTokens = () => {
         .get(`${url}/wallet/get_all_tokens_wrap`)
         .then((res) => {
           if (res.data.status) {
-            setTokens(res.data.tokens);
+            setTokens(removeDuplicatedToken(res.data.tokens));
           }
 
           setLoading(false);
@@ -57,13 +90,16 @@ const WarpTokens = () => {
           <p
             style={{
               color: 'rgb(195, 197, 203)',
-              fontSize: '1.4rem',
-              fontWeight: '600',
-              textAlign: 'center',
-              backgroundColor: '#21242b'
+              fontSize: '15px',
+              fontWeight: 'bold',
+              textAlign: 'left',
+              backgroundColor: '#21242b',
+              width: '100%',
+
+              padding: '1rem'
             }}
           >
-            Tokens
+            Top Tokens
           </p>
           {loading && <LinearProgress color="inherit" />}
         </div>
@@ -85,10 +121,13 @@ const WarpTokens = () => {
                 Price
               </TableCell>
               <TableCell className="twhite" align="left">
-                Total Tokens
+                Price Change ⬇
               </TableCell>
               <TableCell className="twhite" align="left">
-                Volume
+                Volume 24H
+              </TableCell>
+              <TableCell className="twhite" align="left">
+                TVL
               </TableCell>
             </TableRow>
           </TableHead>
@@ -97,10 +136,10 @@ const WarpTokens = () => {
               tokens.map((each, index) => (
                 <TableRow key={each.id}>
                   <TableCell className="twhite" component="th" scope="row">
-                    {each.id}
+                    {index + 1}
                   </TableCell>
                   <TableCell className="twhite" align="left">
-                    <Link to={`/t/${each.symbol}`}>
+                    <Link to={`#`}>
                       <div
                         style={{
                           display: 'flex',
@@ -111,24 +150,52 @@ const WarpTokens = () => {
                           className="rounded"
                           src={`${url}/hootdex/images/${each?.logo_src}`}
                           alt={each.symbol.slice(1)}
+                          style={{
+                            backgroundColor: 'orange',
+                            height: '25px',
+                            width: '25px',
+                            fontSize: '18px'
+                          }}
                         />
-                        <span style={{ marginLeft: '1rem', fontSize: '20px' }}>
-                          {each.tokenName}{' '}
-                          <small style={{ color: '#696c75' }}>
-                            ({each.symbol})
+                        <span
+                          style={{
+                            marginLeft: '1rem',
+                            fontSize: '18px',
+                            color: 'grey'
+                          }}
+                        >
+                          {each.tokenName} (
+                          <small style={{ color: 'orange' }}>
+                            {each.symbol}
                           </small>
+                          )
                         </span>
                       </div>
                     </Link>
                   </TableCell>
                   <TableCell className="twhite green" align="left">
-                    $ {each.initialFinal}
+                    ${' '}
+                    {convertToInternationalCurrencySystem(
+                      (each.initialFinal / each.wrapAmount).toFixed(2)
+                    )}
                   </TableCell>
                   <TableCell className="twhite yellow" align="left">
-                    {each.wrapAmount}
+                    {(
+                      (Math.abs(each.initialFinal - each.firstPrice) /
+                        each.wrapAmount /
+                        each.initialFinal) *
+                      100
+                    ).toFixed(2)}{' '}
+                    %
                   </TableCell>
                   <TableCell className="twhite pink" align="left">
-                    {each.wrapAmount * each.initialFinal}
+                    {convertToInternationalCurrencySystem(each.initialFinal)}
+                  </TableCell>
+                  <TableCell className="twhite blue" align="left">
+                    {/* {each.wrapAmount * each.initialFinal} */}${' '}
+                    {convertToInternationalCurrencySystem(
+                      each.wrapAmount * each.initialFinal
+                    )}
                   </TableCell>
                 </TableRow>
               ))}
