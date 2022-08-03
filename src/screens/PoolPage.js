@@ -20,8 +20,7 @@ import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
 import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
 import TinyLineChart from '../components/Charts/TinyLineChart';
 import AssetChart from '../components/dashboard/AssetChart';
-import WarpTokens from '../components/Tables/WarpTokens';
-import PoolTokens from '../components/Tables/PoolTokens';
+import TopToken from '../components/Tables/TopToken';
 import url from '../serverUrl';
 import Transactions from '../components/Tables/Transactions';
 function convertToInternationalCurrencySystem(labelValue) {
@@ -36,7 +35,7 @@ function convertToInternationalCurrencySystem(labelValue) {
     ? (Math.abs(Number(labelValue)) / 1.0e3).toFixed(2) + 'k'
     : Math.abs(Number(labelValue));
 }
-export default function TokenPage({ pecuCoins, user }) {
+export default function PoolPage({ pecuCoins, user }) {
   const tokenName = useParams().tokenName;
   const [token, setToken] = useState({});
   const [loading, setLoading] = useState(false);
@@ -126,7 +125,7 @@ export default function TokenPage({ pecuCoins, user }) {
         </div>
       )}
       {!loading && cryptoData.length > 0 && token.tokenSymbol && currentValue && (
-        <div style={{ padding: '1rem 4rem' }}>
+        <Box sx={{ padding: {xs: 1, md: '1rem 4rem'} }}>
           <Grid
             width={'100%'}
             container
@@ -517,7 +516,7 @@ export default function TokenPage({ pecuCoins, user }) {
                   borderRadius: '20px',
                   height: '100%',
                   padding: '1.5rem',
-                  maxWidth: '350px'
+                  // maxWidth: '350px'
                 }}
                 className="shadowGrey"
               >
@@ -930,7 +929,7 @@ export default function TokenPage({ pecuCoins, user }) {
               </Box>
             </Grid>
             <Grid item xs={12} mt={5}>
-              {/* <WarpTokens /> */}
+              {/* <TopToken /> */}
               <Transactions />
             </Grid>
           </Grid>
@@ -945,7 +944,7 @@ export default function TokenPage({ pecuCoins, user }) {
               </Alert>
             </Collapse>
           </div>
-        </div>
+        </Box>
       )}
     </>
   );

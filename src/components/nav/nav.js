@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react';
-import './style.css';
-import { Link, useLocation } from 'react-router-dom';
-import logo from '../../assets/images/logo.png';
+import React, { useEffect, useState } from "react";
+import "./style.css";
+import { Link, useLocation } from "react-router-dom";
+import logo from "../../assets/images/logo.png";
 
-import ConnectWallet from '../Modal/ConnectWallet';
+import ConnectWallet from "../Modal/ConnectWallet";
 import {
   Avatar,
   Button,
@@ -16,11 +16,11 @@ import {
   tableCellClasses,
   TableContainer,
   TableHead,
-  TableRow
-} from '@mui/material';
-import axios from 'axios';
-import { Box } from '@mui/system';
-import url from '../../serverUrl';
+  TableRow,
+} from "@mui/material";
+import axios from "axios";
+import { Box } from "@mui/system";
+import url from "../../serverUrl";
 export default function Nav({ fetchWallet, wallet }) {
   const [user, setUser] = useState(null);
   const [open, setOpen] = useState(false);
@@ -30,7 +30,7 @@ export default function Nav({ fetchWallet, wallet }) {
   const [showSugesstion, setShowSugesstion] = useState(false);
   const [currentValue, setCurrentValue] = useState(null);
   const findUser = async () => {
-    let data = localStorage.getItem('hootdex_secretcookie');
+    let data = localStorage.getItem("hootdex_secretcookie");
     if (data) {
       setUser(JSON.parse(data));
     }
@@ -55,7 +55,7 @@ export default function Nav({ fetchWallet, wallet }) {
   useEffect(() => {
     findUser();
   }, []);
-  const [searchKey, setSearchKey] = useState('');
+  const [searchKey, setSearchKey] = useState("");
   const handleSubmit = (e) => {
     e.preventDefault();
     // if (searchKey) {
@@ -64,9 +64,9 @@ export default function Nav({ fetchWallet, wallet }) {
   };
   const [loading, setLoading] = useState(false);
   const [tokens, setTokens] = useState([]);
-  const [block, setBlock] = useState('');
+  const [block, setBlock] = useState("");
   const fetchToken = (target) => {
-    if (target === 'all') {
+    if (target === "all") {
       setLoading(true);
       axios
         .get(`${url}/hootdex/available-tokens`)
@@ -85,7 +85,7 @@ export default function Nav({ fetchWallet, wallet }) {
     }
   };
   useEffect(() => {
-    fetchToken('all');
+    fetchToken("all");
   }, []);
   const [showMore, setShowMore] = useState(false);
   return (
@@ -94,50 +94,50 @@ export default function Nav({ fetchWallet, wallet }) {
         <div item sm={6} md={6} lg={2} className="">
           <Link to="/" className="logo__header">
             <Box sx={{ width: { xs: 100, sm: 150, md: 200 } }}>
-              <img src={logo} alt="nav_logo" width={'100%'} />
+              <img src={logo} alt="nav_logo" width={"100%"} />
             </Box>
           </Link>
           <div
             style={{
-              display: 'flex',
-              alignItems: 'flex-start',
-              flexDirection: 'column',
-              justifyContent: 'center'
+              display: "flex",
+              alignItems: "flex-start",
+              flexDirection: "column",
+              justifyContent: "center",
             }}
           >
             <div
               style={{
-                backgroundColor: 'rgba(255, 255, 255, 0.3)',
-                padding: '2px',
-                borderRadius: '5px',
-                color: 'white',
-                fontSize: '12px',
-                fontWeight: '600',
-                opacity: '60%',
-                margin: '0 5px 0 3px',
-                display: 'flex',
-                alignItems: 'center'
+                backgroundColor: "rgba(255, 255, 255, 0.3)",
+                padding: "2px",
+                borderRadius: "5px",
+                color: "white",
+                fontSize: "12px",
+                fontWeight: "600",
+                opacity: "60%",
+                margin: "0 5px 0 3px",
+                display: "flex",
+                alignItems: "center",
               }}
             >
-              {' '}
-              Latest synced block: {block}{' '}
+              {" "}
+              Latest synced block: {block}{" "}
               <div
                 style={{
-                  backgroundColor: 'yellow',
-                  width: '10px',
-                  height: '10px',
-                  borderRadius: '10px',
-                  margin: '0 4px 0 4px'
+                  backgroundColor: "yellow",
+                  width: "10px",
+                  height: "10px",
+                  borderRadius: "10px",
+                  margin: "0 4px 0 4px",
                 }}
               ></div>
             </div>
             <small
               style={{
-                color: 'white',
-                fontSize: '11px',
-                fontWeight: 'bold',
-                opacity: '60%',
-                margin: '0 5px 0 3px'
+                color: "white",
+                fontSize: "11px",
+                fontWeight: "bold",
+                opacity: "60%",
+                margin: "0 5px 0 3px",
               }}
             >
               PECU PRICE : {currentValue} USD
@@ -146,27 +146,27 @@ export default function Nav({ fetchWallet, wallet }) {
         </div>
         <Box
           sx={{
-            width: { xs: '50%', md: '40%', lg: '55%' },
-            position: 'relative'
+            width: { xs: "50%", md: "40%", lg: "55%" },
+            position: "relative",
           }}
         >
           <form
             style={{
-              textAlign: 'center',
-              display: 'flex',
-              justifyContent: 'center'
+              textAlign: "center",
+              display: "flex",
+              justifyContent: "center",
             }}
             onSubmit={handleSubmit}
           >
             <ClickAwayListener onClickAway={() => setShowSugesstion(false)}>
               <input
                 style={{
-                  width: '70%',
-                  height: '0.8rem'
+                  width: "70%",
+                  height: "0.8rem",
                 }}
                 onClick={() => setShowSugesstion(true)}
                 className={`${
-                  showSugesstion && 'searchFieldFocus'
+                  showSugesstion && "searchFieldFocus"
                 } "border searchField "`}
                 type="text"
                 placeholder="Search for token..."
@@ -181,14 +181,14 @@ export default function Nav({ fetchWallet, wallet }) {
           {showSugesstion && (
             <TableContainer
               sx={{
-                backgroundColor: '#1a1b1f',
+                backgroundColor: "#1a1b1f",
                 // mt: "70px",
-                borderBottomLeftRadius: '1rem',
-                borderBottomRightRadius: '1rem',
-                position: 'absolute',
+                borderBottomLeftRadius: "1rem",
+                borderBottomRightRadius: "1rem",
+                position: "absolute",
                 // left: 0,
-                width: '100%',
-                animation: 'fadeIn 0.4s ease-in-out'
+                width: "100%",
+                animation: "fadeIn 0.4s ease-in-out",
                 // mt:"1px"
               }}
               className="borderGrey hide-scrollbar "
@@ -198,9 +198,9 @@ export default function Nav({ fetchWallet, wallet }) {
                 <Table
                   sx={{
                     [`& .${tableCellClasses.root}`]: {
-                      borderBottom: ' 1px solid #1e2128'
+                      borderBottom: " 1px solid #1e2128",
                     },
-                    width: '100%'
+                    width: "100%",
                   }}
                 >
                   <TableHead className="">
@@ -232,30 +232,30 @@ export default function Nav({ fetchWallet, wallet }) {
                             <Link to={`/t/${each.tokenName}`}>
                               <div
                                 style={{
-                                  display: 'flex',
-                                  alignItems: 'center'
+                                  display: "flex",
+                                  alignItems: "center",
                                 }}
                               >
                                 <Avatar
                                   className="rounded"
                                   src={`${url}/hootdex/images/${each?.logo_src}`}
                                   alt="token logo"
-                                  style={{ width: '20px', height: '20px' }}
+                                  style={{ width: "20px", height: "20px" }}
                                 />
                                 <Avatar
                                   className="rounded"
                                   src={`https://pecunovus.net/static/media/icon.25c8ec299d961b9dd524.ico`}
                                   alt="token logo"
-                                  style={{ width: '20px', height: '20px' }}
+                                  style={{ width: "20px", height: "20px" }}
                                 />
                                 <span
                                   style={{
-                                    marginLeft: '1rem',
-                                    fontSize: '20px'
+                                    marginLeft: "1rem",
+                                    fontSize: "20px",
                                   }}
                                 >
-                                  {each.tokenName}{' '}
-                                  <small style={{ color: '#696c75' }}>
+                                  {each.tokenName}{" "}
+                                  <small style={{ color: "#696c75" }}>
                                     ({`${each.tokenSymbol}/PECU`})
                                   </small>
                                 </span>
@@ -282,7 +282,7 @@ export default function Nav({ fetchWallet, wallet }) {
                   </TableBody>
                 </Table>
               ) : (
-                <p style={{ textAlign: 'center', color: 'white' }}>
+                <p style={{ textAlign: "center", color: "white" }}>
                   Nothing to show !
                 </p>
               )}
@@ -294,18 +294,18 @@ export default function Nav({ fetchWallet, wallet }) {
           {true ? (
             <>
               {JSON.parse(
-                localStorage.getItem('hootdex_secretcookie_wallet')
+                localStorage.getItem("hootdex_secretcookie_wallet")
               ) ? (
                 <Link to="">
                   <Button
                     variant="outlined"
                     sx={{
-                      display: { xs: 'none', md: 'inline-block' },
-                      color: 'white',
-                      textTransform: 'capitalize'
+                      display: { xs: "none", md: "inline-block" },
+                      color: "white",
+                      textTransform: "capitalize",
                     }}
                     onClick={() => {
-                      localStorage.removeItem('hootdex_secretcookie_wallet');
+                      localStorage.removeItem("hootdex_secretcookie_wallet");
                       fetchWallet();
                     }}
                   >
@@ -316,10 +316,10 @@ export default function Nav({ fetchWallet, wallet }) {
                 <Button
                   variant="outlined"
                   sx={{
-                    display: { xs: 'none', md: 'inline-block' },
-                    color: 'white',
-                    textTransform: 'capitalize',
-                    mb: 1
+                    display: { xs: "none", md: "inline-block" },
+                    color: "white",
+                    textTransform: "capitalize",
+                    mb: 1,
                   }}
                   onClick={handleOpen}
                 >
@@ -327,13 +327,13 @@ export default function Nav({ fetchWallet, wallet }) {
                 </Button>
               )}
               <Link to="/dashboard">
-                {' '}
+                {" "}
                 <Button
                   variant="outlined"
                   sx={{
-                    display: { xs: 'none', md: 'inline-block' },
-                    color: 'white',
-                    textTransform: 'capitalize'
+                    display: { xs: "none", md: "inline-block" },
+                    color: "white",
+                    textTransform: "capitalize",
                     // m: 1,
                   }}
                 >
@@ -343,12 +343,12 @@ export default function Nav({ fetchWallet, wallet }) {
             </>
           ) : (
             <Link to="/login">
-              {' '}
+              {" "}
               <Button
                 variant="outlined"
                 sx={{
-                  color: 'white',
-                  textTransform: 'capitalize'
+                  color: "white",
+                  textTransform: "capitalize",
                   // m: 1,
                 }}
               >
@@ -357,12 +357,12 @@ export default function Nav({ fetchWallet, wallet }) {
             </Link>
           )}
           <Link to="/wallet">
-            {' '}
+            {" "}
             <Button
               variant="outlined"
               sx={{
-                color: 'white',
-                textTransform: 'capitalize'
+                color: "white",
+                textTransform: "capitalize",
                 // m: 1,
               }}
             >

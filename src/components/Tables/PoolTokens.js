@@ -132,7 +132,7 @@ const PoolTokens = () => {
                     {index + 1}
                   </TableCell>
                   <TableCell className="twhite" align="left">
-                    <Link to={`/t/${each.tokenName}`} pecuCoins={currentValue}>
+                    <Link to={`/pools/${each.tokenName}`} pecuCoins={currentValue}>
                       <div
                         style={{
                           display: 'flex',

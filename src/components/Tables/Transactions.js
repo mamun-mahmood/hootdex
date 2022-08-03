@@ -105,7 +105,7 @@ const Transactions = () => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {tokens.length &&
+            {tokens &&
               tokens.map((each, index) => (
                 <TableRow key={each.id}>
                   <TableCell className="twhite" component="th" scope="row">
