@@ -72,7 +72,7 @@ export default function Nav({ fetchWallet, wallet }) {
         .get(`${url}/hootdex/available-tokens`)
         .then((res) => {
           setTokens(res.data);
-          setBlock(Math.ceil(Math.random() * 100000000));
+          setBlock(Math.ceil(Math.random() * 5 * 1000000));
           setLoading(false);
         })
         .catch((err) => {
@@ -97,7 +97,14 @@ export default function Nav({ fetchWallet, wallet }) {
               <img src={logo} alt="nav_logo" width={'100%'} />
             </Box>
           </Link>
-          <div style={{ display: 'flex', alignItems: 'center' }}>
+          <div
+            style={{
+              display: 'flex',
+              alignItems: 'flex-start',
+              flexDirection: 'column',
+              justifyContent: 'center'
+            }}
+          >
             <div
               style={{
                 backgroundColor: 'rgba(255, 255, 255, 0.3)',
@@ -129,7 +136,8 @@ export default function Nav({ fetchWallet, wallet }) {
                 color: 'white',
                 fontSize: '11px',
                 fontWeight: 'bold',
-                opacity: '60%'
+                opacity: '60%',
+                margin: '0 5px 0 3px'
               }}
             >
               PECU PRICE : {currentValue} USD
@@ -202,7 +210,7 @@ export default function Nav({ fetchWallet, wallet }) {
                     #
                   </TableCell> */}
                       <TableCell className="twhite">Name</TableCell>
-                      <TableCell className="twhite" align="center">
+                      {/* <TableCell className="twhite" align="center">
                         Price
                       </TableCell>
                       <TableCell className="twhite" align="center">
@@ -210,7 +218,7 @@ export default function Nav({ fetchWallet, wallet }) {
                       </TableCell>
                       <TableCell className="twhite" align="center">
                         Volume
-                      </TableCell>
+                      </TableCell> */}
                     </TableRow>
                   </TableHead>
                   <TableBody>
@@ -254,7 +262,7 @@ export default function Nav({ fetchWallet, wallet }) {
                               </div>
                             </Link>
                           </TableCell>
-                          <TableCell className="twhite green" align="left">
+                          {/* <TableCell className="twhite green" align="left">
                             {each.tokenPrice}
                           </TableCell>
                           <TableCell className="twhite yellow" align="left">
@@ -262,7 +270,7 @@ export default function Nav({ fetchWallet, wallet }) {
                           </TableCell>
                           <TableCell className="twhite pink" align="left">
                             {each.investementAmount}
-                          </TableCell>
+                          </TableCell> */}
                         </TableRow>
                       ))}
 
