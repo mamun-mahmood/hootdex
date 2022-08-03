@@ -72,7 +72,7 @@ export default function Nav({ fetchWallet, wallet }) {
         .get(`${url}/hootdex/available-tokens`)
         .then((res) => {
           setTokens(res.data);
-          setBlock(Math.ceil(Math.random() * 100000000));
+          setBlock(Math.ceil(Math.random() * 5 * 1000000));
           setLoading(false);
         })
         .catch((err) => {
@@ -202,7 +202,7 @@ export default function Nav({ fetchWallet, wallet }) {
                     #
                   </TableCell> */}
                       <TableCell className="twhite">Name</TableCell>
-                      <TableCell className="twhite" align="center">
+                      {/* <TableCell className="twhite" align="center">
                         Price
                       </TableCell>
                       <TableCell className="twhite" align="center">
@@ -210,7 +210,7 @@ export default function Nav({ fetchWallet, wallet }) {
                       </TableCell>
                       <TableCell className="twhite" align="center">
                         Volume
-                      </TableCell>
+                      </TableCell> */}
                     </TableRow>
                   </TableHead>
                   <TableBody>
@@ -254,7 +254,7 @@ export default function Nav({ fetchWallet, wallet }) {
                               </div>
                             </Link>
                           </TableCell>
-                          <TableCell className="twhite green" align="left">
+                          {/* <TableCell className="twhite green" align="left">
                             {each.tokenPrice}
                           </TableCell>
                           <TableCell className="twhite yellow" align="left">
@@ -262,7 +262,7 @@ export default function Nav({ fetchWallet, wallet }) {
                           </TableCell>
                           <TableCell className="twhite pink" align="left">
                             {each.investementAmount}
-                          </TableCell>
+                          </TableCell> */}
                         </TableRow>
                       ))}
 
