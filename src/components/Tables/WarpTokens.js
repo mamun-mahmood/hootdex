@@ -174,7 +174,10 @@ const WarpTokens = () => {
                     </Link>
                   </TableCell>
                   <TableCell className="twhite green" align="left">
-                    $ {(each.initialFinal / each.wrapAmount).toFixed(2)}
+                    ${' '}
+                    {convertToInternationalCurrencySystem(
+                      (each.initialFinal / each.wrapAmount).toFixed(2)
+                    )}
                   </TableCell>
                   <TableCell className="twhite yellow" align="left">
                     {(
