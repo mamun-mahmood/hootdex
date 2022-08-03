@@ -596,7 +596,7 @@ export default function TokenPage({ pecuCoins, user }) {
                           }}
                         >
                           {`${convertToInternationalCurrencySystem(
-                            token.pecuCoin / currentValue
+                            token.pecuCoin
                           )}`}
                           {/* <br></br>$
                         {convertToInternationalCurrencySystem(token.pecuCoin)} */}
@@ -654,10 +654,7 @@ export default function TokenPage({ pecuCoins, user }) {
                             }}
                           >
                             {`${convertToInternationalCurrencySystem(
-                              token.otherTokenAmount /
-                                cryptoData.filter(
-                                  (e) => e.symbol == token.otherToken.slice(1)
-                                )[0].price
+                              token.otherTokenAmount
                             )}
                           `}
                             {/* <br></br>$
@@ -677,8 +674,11 @@ export default function TokenPage({ pecuCoins, user }) {
                     $
                     {convertToInternationalCurrencySystem(
                       token.investementAmount +
-                        token.pecuCoin +
-                        token.otherTokenAmount
+                        token.pecuCoin * currentValue +
+                        (token.otherTokenAmount * token.otherTokenAmount) /
+                          cryptoData.filter(
+                            (e) => e.symbol == token.otherToken.slice(1)
+                          )[0].price
                     )}
                   </p>
                   {/* <small style={{ fontSize: "18px", color: "red" }}>
@@ -723,18 +723,22 @@ export default function TokenPage({ pecuCoins, user }) {
                     )}
                   </p>
                   {priceUp ? (
-                    <small style={{ fontSize: '18px', color: '#4caf50' }}>
-                      (<ArrowUpwardIcon sx={{ fontSize: '18px' }} />
+                    <small style={{ fontSize: '15px', color: '#4caf50' }}>
+                      (<ArrowUpwardIcon sx={{ fontSize: '15px' }} />
                       {tokenPriceIncreasePercentage
-                        ? tokenPriceIncreasePercentage?.toFixed(2)
+                        ? convertToInternationalCurrencySystem(
+                            tokenPriceIncreasePercentage?.toFixed(2)
+                          )
                         : '0.00'}
                       %)
                     </small>
                   ) : (
-                    <small style={{ fontSize: '18px', color: 'red' }}>
-                      (<ArrowDownwardIcon sx={{ fontSize: '18px' }} />
+                    <small style={{ fontSize: '15px', color: 'red' }}>
+                      (<ArrowDownwardIcon sx={{ fontSize: '15px' }} />
                       {tokenPriceIncreasePercentage
-                        ? tokenPriceIncreasePercentage?.toFixed(2)
+                        ? convertToInternationalCurrencySystem(
+                            tokenPriceIncreasePercentage?.toFixed(2)
+                          )
                         : '0.00'}
                       %)
                     </small>
@@ -750,7 +754,10 @@ export default function TokenPage({ pecuCoins, user }) {
                       fontSize: '24px'
                     }}
                   >
-                    ${token?.currentPrice?.toFixed(5)}
+                    $
+                    {convertToInternationalCurrencySystem(
+                      token?.currentPrice?.toFixed(5)
+                    )}
                   </p>
                 </div>
               </div>

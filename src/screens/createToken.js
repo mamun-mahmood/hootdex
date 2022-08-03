@@ -341,7 +341,7 @@ export default function CreateToken({ token, closeMe }) {
             </select>
           </span>
           <span style={{ flex: '0.5' }}>
-            <label className="label">Amount</label>
+            <label className="label">Amount(Coin)</label>
             <input
               type="number"
               className="input"
@@ -384,7 +384,7 @@ export default function CreateToken({ token, closeMe }) {
             </select>
           </span>
           <span style={{ flex: '0.5' }}>
-            <label className="label">Amount</label>
+            <label className="label">Amount(Token)</label>
             <input
               type="number"
               className="input"
