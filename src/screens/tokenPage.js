@@ -187,17 +187,19 @@ export default function TokenPage({ pecuCoins, user }) {
                 <p
                   className="token-page-t2"
                   style={{
-                    fontSize: '18px',
+                    fontSize: '13px',
                     backgroundColor: 'rgb(64, 68, 79)',
-                    padding: '4px 6px',
+                    padding: '2px',
                     borderRadius: '8px',
                     fontWeight: '400',
                     boxSizing: 'border-box',
-                    cursor: 'pointer'
+                    cursor: 'pointer',
+                    fontFamily: 'arial',
+                    marginLeft: '6px'
                   }}
                 >
                   {priceUp ? (
-                    <small style={{ fontSize: '18px' }}>
+                    <small style={{ fontSize: '13px' }}>
                       <ArrowUpwardIcon sx={{ fontSize: '13px' }} />
                       {tokenPriceIncreasePercentage
                         ? tokenPriceIncreasePercentage?.toFixed(2)
@@ -472,7 +474,8 @@ export default function TokenPage({ pecuCoins, user }) {
                   backgroundColor: 'rgb(25, 27, 31)',
                   borderRadius: '20px',
                   height: '100%',
-                  padding: '1.5rem'
+                  padding: '1.5rem',
+                  maxWidth: '350px'
                 }}
                 className="shadowGrey"
               >
@@ -496,15 +499,36 @@ export default function TokenPage({ pecuCoins, user }) {
                           display: 'flex',
                           flexDirection: 'row',
                           alignItems: 'center',
-                          margin: '0.5rem'
+                          margin: '0.5rem',
+                          width: '100%',
+                          justifyContent: 'space-between'
                         }}
                       >
-                        <Avatar
-                          className="rounded"
-                          src={`${url}/hootdex/images/${token?.logo_src}`}
-                          alt="token logo"
-                          style={{ width: '20px', height: '20px' }}
-                        />
+                        <span
+                          style={{
+                            display: 'flex',
+                            flexDriection: 'row',
+                            alignItems: 'center'
+                          }}
+                        >
+                          <Avatar
+                            className="rounded"
+                            src={`${url}/hootdex/images/${token?.logo_src}`}
+                            alt="token logo"
+                            style={{ width: '20px', height: '20px' }}
+                          />
+                          <p
+                            style={{
+                              color: 'white',
+                              marginLeft: '1rem',
+                              fontSize: '13px',
+                              fontWeight: 'bold',
+                              fontFamily: 'arial'
+                            }}
+                          >
+                            ${token.tokenSymbol}:
+                          </p>
+                        </span>
 
                         <p
                           style={{
@@ -515,9 +539,7 @@ export default function TokenPage({ pecuCoins, user }) {
                             fontFamily: 'arial'
                           }}
                         >
-                          {`${
-                            token.tokenSymbol
-                          }: ${convertToInternationalCurrencySystem(
+                          {` ${convertToInternationalCurrencySystem(
                             token.totalToken
                           )}`}
                           {/* <br></br>$
@@ -531,15 +553,38 @@ export default function TokenPage({ pecuCoins, user }) {
                           display: 'flex',
                           flexDirection: 'row',
                           alignItems: 'flex-start',
-                          margin: '0.5rem'
+                          margin: '0.5rem',
+                          width: '100%',
+                          justifyContent: 'space-between'
                         }}
                       >
-                        <Avatar
-                          className="rounded"
-                          src={`https://pecunovus.net/static/media/icon.25c8ec299d961b9dd524.ico`}
-                          alt="token logo"
-                          style={{ width: '20px', height: '20px' }}
-                        />
+                        <span
+                          style={{
+                            display: 'flex',
+                            flexDriection: 'row',
+                            alignItems: 'center'
+                          }}
+                        >
+                          <Avatar
+                            className="rounded"
+                            src={`https://pecunovus.net/static/media/icon.25c8ec299d961b9dd524.ico`}
+                            alt="token logo"
+                            style={{ width: '20px', height: '20px' }}
+                          />{' '}
+                          <p
+                            style={{
+                              color: 'white',
+                              marginLeft: '1rem',
+                              fontSize: '13px',
+                              fontWeight: 'bold',
+                              fontFamily: 'arial'
+                            }}
+                          >
+                            {`PECU :`}
+                            {/* <br></br>$
+                      {convertToInternationalCurrencySystem(token.pecuCoin)} */}
+                          </p>
+                        </span>
 
                         <p
                           style={{
@@ -550,7 +595,7 @@ export default function TokenPage({ pecuCoins, user }) {
                             fontFamily: 'arial'
                           }}
                         >
-                          {`PECU : ${convertToInternationalCurrencySystem(
+                          {`${convertToInternationalCurrencySystem(
                             token.pecuCoin / currentValue
                           )}`}
                           {/* <br></br>$
@@ -563,20 +608,42 @@ export default function TokenPage({ pecuCoins, user }) {
                             display: 'flex',
                             flexDirection: 'row',
                             alignItems: 'flex-start',
-                            margin: '0.5rem'
+                            margin: '0.5rem',
+                            width: '100%',
+                            justifyContent: 'space-between'
                           }}
                         >
-                          <Avatar
-                            className="rounded"
-                            src={`hjh`}
-                            alt={token.otherToken}
+                          {' '}
+                          <span
                             style={{
-                              width: '20px',
-                              height: '20px',
-                              backgroundColor: 'orange'
+                              display: 'flex',
+                              flexDriection: 'row',
+                              alignItems: 'center'
                             }}
-                          />
-
+                          >
+                            <Avatar
+                              className="rounded"
+                              src={`hjh`}
+                              alt={token.otherToken}
+                              style={{
+                                width: '20px',
+                                height: '20px',
+                                backgroundColor: 'orange'
+                              }}
+                            />
+                            <p
+                              style={{
+                                color: 'white',
+                                marginLeft: '1rem',
+                                fontSize: '13px',
+                                fontWeight: 'bold',
+                                fontFamily: 'arial'
+                              }}
+                            >
+                              {`${token.otherToken} : 
+                          `}
+                            </p>
+                          </span>
                           <p
                             style={{
                               color: 'white',
@@ -586,9 +653,7 @@ export default function TokenPage({ pecuCoins, user }) {
                               fontFamily: 'arial'
                             }}
                           >
-                            {`${
-                              token.otherToken
-                            } : ${convertToInternationalCurrencySystem(
+                            {`${convertToInternationalCurrencySystem(
                               token.otherTokenAmount /
                                 cryptoData.filter(
                                   (e) => e.symbol == token.otherToken.slice(1)
