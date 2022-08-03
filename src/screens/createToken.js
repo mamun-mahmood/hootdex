@@ -255,7 +255,7 @@ export default function CreateToken() {
           onChange={saveFile}
           type="file"
           placeholder="Enter"
-          required
+          // required
         ></input>
         <button type="submit" className="submit-btn button">
           Submit Request
