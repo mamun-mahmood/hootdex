@@ -166,8 +166,8 @@ export default function TokenPage({ pecuCoins, user }) {
               >
                 <Avatar
                   className="rounded"
-                  // src={`${url}/hootdex/images/${token?.logo_src}`}
-                  alt={token?.tokenSymbol.slice(1)}
+                  src={`null`}
+                  alt={token.tokenSymbol.slice(1)}
                   style={{
                     backgroundColor: "orange",
                     height: "25px",
@@ -184,7 +184,10 @@ export default function TokenPage({ pecuCoins, user }) {
                     fontFamily: "Inter var sans-serif",
                   }}
                 >
-                  {`${token?.tokenName}`} ({`${token?.tokenSymbol}`})
+                  <span style={{ textTransform: "lowercase" }}>
+                    {`${token?.tokenSymbol.slice(0, 1)}`}
+                  </span>
+                  {token?.tokenSymbol.slice(1)}
                 </p>
               </div>
               <div
@@ -195,7 +198,6 @@ export default function TokenPage({ pecuCoins, user }) {
                   justifyContent: "space-between",
                   minWidth: "90vw",
                   width: "100%",
-
                   flexWrap: "wrap",
                 }}
               >
