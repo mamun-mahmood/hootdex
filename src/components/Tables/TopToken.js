@@ -52,29 +52,30 @@ function convertToInternationalCurrencySystem(labelValue) {
 const TopToken = () => {
   const [loading, setLoading] = useState(false);
   const [tokens, setTokens] = useState([]);
-  const fetchToken = (target) => {
-    if (target === "all") {
-      setLoading(true);
-      axios
-        .get(`${url}/wallet/get_all_tokens_wrap`)
-        .then((res) => {
-          if (res.data.status) {
-            console.log(res.data);
-            setTokens(removeDuplicatedToken(res.data.tokens));
-          }
-          setLoading(false);
-        })
-        .catch((err) => {
-          setLoading(false);
-        });
-    } else {
-      setLoading(true);
-      setTokens(tokens.filter((each) => each.tokenName === target));
-      setLoading(false);
-    }
-  };
+  console.log("Top token reders");
   useEffect(() => {
-    fetchToken("all");
+    // const fetchToken = (target) => {
+    // if (target === "all") {
+    setLoading(true);
+    axios
+      .get(`${url}/wallet/get_all_tokens_wrap`)
+      .then((res) => {
+        if (res.data.status) {
+          console.log(res.data);
+          setTokens(removeDuplicatedToken(res.data.tokens));
+        }
+        setLoading(false);
+      })
+      .catch((err) => {
+        setLoading(false);
+      });
+    // } else {
+    //   setLoading(true);
+    //   setTokens(tokens.filter((each) => each.tokenName === target));
+    //   setLoading(false);
+    // }
+    // };
+    // fetchToken("all");
   }, []);
   return (
     <>
@@ -215,4 +216,4 @@ const TopToken = () => {
   );
 };
 
-export default TopToken;
+export default React.memo(TopToken);

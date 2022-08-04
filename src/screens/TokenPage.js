@@ -245,7 +245,7 @@ export default function TokenPage({ pecuCoins, user }) {
                         marginLeft: "5px",
                       }}
                     >
-                      ${token?.firstPrice}
+                      {convertToInternationalCurrencySystem(cryptoData?.price)}
                     </p>
                     <small style={{ fontSize: "16px", color: "green" }}>
                       <ArrowUpwardIcon sx={{ fontSize: "13px" }} />
@@ -355,32 +355,18 @@ export default function TokenPage({ pecuCoins, user }) {
                     {" "}
                     $
                     {convertToInternationalCurrencySystem(
-                      token?.investementAmount +
-                        token.pecuCoin * currentValue +
-                        token.otherTokenAmount * cryptoData
+                      cryptoData?.price * currentValue
                     )}
                   </p>
                 </div>
-
                 <div style={{ marginBottom: "1rem" }}>
                   <p className="token-page-t1 mb-1">24h Trading Vol</p>
-                  <p className="token-page-t2 mb-1">{cryptoData?.volume24hr}</p>
-                </div>
-
-                <p
-                  className="token-page-t2"
-                  style={{
-                    marginTop: "0.5rem",
-                    fontSize: "24px",
-                  }}
-                >
-                  {" "}
-                  <p className="token-page-t1 mb-1">7d Trading Vol</p>
                   <p className="token-page-t2 mb-1">
-                    ${token?.tokenPrice?.toFixed(5)}
+                    {convertToInternationalCurrencySystem(
+                      cryptoData?.volume24hr
+                    )}
                   </p>
-                </p>
-                <br></br>
+                </div>
                 <div style={{ marginBottom: "1rem" }}>
                   <p className="token-page-t1 mb-1">24h Fees</p>
                   <p
@@ -392,7 +378,7 @@ export default function TokenPage({ pecuCoins, user }) {
                   >
                     $
                     {convertToInternationalCurrencySystem(
-                      token?.currentPrice?.toFixed(5)
+                      cryptoData?.price?.toFixed(5)
                     )}
                   </p>
                 </div>
