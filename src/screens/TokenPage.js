@@ -79,7 +79,11 @@ export default function TokenPage({ pecuCoins, user }) {
 
   const get_crypto_Data = () => {
     axios.get(`https://mhiservers2.com/crypto/index`).then((res) => {
-      setCryptoData(res.data);
+      const findtoken = res.data?.filter(
+        (e) => e.symbol === token.tokenSymbol.slice(1)
+      );
+      setCryptoData(findtoken[0]);
+      console.log(findtoken[0]);
     });
   };
   const date = new Date().toLocaleDateString();
@@ -89,7 +93,6 @@ export default function TokenPage({ pecuCoins, user }) {
       .get(`${url}/hootdex/getToken/${tokenName}`)
       .then((res) => {
         // setToken(res.data[0]);
-
         setLoading(false);
       })
       .catch((err) => {
@@ -348,14 +351,20 @@ export default function TokenPage({ pecuCoins, user }) {
               >
                 <div style={{ marginBottom: "1rem" }}>
                   <p className="token-page-t1 mb-1">TVL</p>
-                  <p className="token-page-t2 mb-1">{token?.pecuInvestement}</p>
+                  <p className="token-page-t2 mb-1">
+                    {" "}
+                    $
+                    {convertToInternationalCurrencySystem(
+                      token?.investementAmount +
+                        token.pecuCoin * currentValue +
+                        token.otherTokenAmount * cryptoData
+                    )}
+                  </p>
                 </div>
 
                 <div style={{ marginBottom: "1rem" }}>
                   <p className="token-page-t1 mb-1">24h Trading Vol</p>
-                  <p className="token-page-t2 mb-1">
-                    ${token?.tokenPrice?.toFixed(5)}
-                  </p>
+                  <p className="token-page-t2 mb-1">{cryptoData?.volume24hr}</p>
                 </div>
 
                 <p
@@ -419,9 +428,7 @@ export default function TokenPage({ pecuCoins, user }) {
                       >
                         {" "}
                         {convertToInternationalCurrencySystem(
-                          token?.pecuInvestement *
-                            token?.firstPrice *
-                            currentValue
+                          cryptoData?.market_cap
                         )}
                       </p>
                       {/* <p className="token-page-t1">{date}</p> */}
