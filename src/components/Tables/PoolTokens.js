@@ -212,18 +212,9 @@ const PoolTokens = () => {
                         each.investementAmount +
                           each.pecuCoin * currentValue +
                           each.otherTokenAmount *
-                            cryptoData?.filter(
+                            cryptoData.filter(
                               (e) => e.symbol == each.otherToken.slice(1)
-                            )[0].price +
-                          Math.abs(
-                            each.investementAmount +
-                              each.pecuCoin * currentValue +
-                              each.otherTokenAmount *
-                                cryptoData?.filter(
-                                  (e) => e.symbol == each.otherToken.slice(1)
-                                )[0].price -
-                              each.firstTVL
-                          )
+                            )[0].price
                       )}
 
                     {/* {convertToInternationalCurrencySystem(each.totalToken)} */}

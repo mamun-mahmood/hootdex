@@ -598,17 +598,7 @@ export default function TokenPage({ pecuCoins, user }) {
                           }}
                         >
                           {` ${convertToInternationalCurrencySystem(
-                            token.totalToken +
-                              Math.abs(
-                                token.investementAmount +
-                                  token.pecuCoin * currentValue +
-                                  token.otherTokenAmount *
-                                    cryptoData?.filter(
-                                      (e) =>
-                                        e.symbol == token.otherToken.slice(1)
-                                    )[0].price -
-                                  token.firstTVL
-                              )
+                            token.totalToken
                           )}`}
                           {/* <br></br>$
                         {convertToInternationalCurrencySystem(
@@ -746,16 +736,7 @@ export default function TokenPage({ pecuCoins, user }) {
                         token.otherTokenAmount *
                           cryptoData.filter(
                             (e) => e.symbol == token.otherToken.slice(1)
-                          )[0].price +
-                        Math.abs(
-                          token.investementAmount +
-                            token.pecuCoin * currentValue +
-                            token.otherTokenAmount *
-                              cryptoData?.filter(
-                                (e) => e.symbol == token.otherToken.slice(1)
-                              )[0].price -
-                            token.firstTVL
-                        )
+                          )[0].price
                     )}
                   </p>
                   {/* <small style={{ fontSize: "18px", color: "red" }}>
