@@ -360,9 +360,10 @@ html {
 }
 .token-page-t2 {
   color: white;
-  font-size: 28px;
+  font-size: 22px;
   font-weight: 600;
   font-family: Iner var sans-serif;
+  margin-top: 1rem;
 }
 .mb-1 {
   margin-bottom: 3px;
