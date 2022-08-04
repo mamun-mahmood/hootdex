@@ -166,20 +166,21 @@ const PoolTokens = () => {
                   </TableCell>
                   <TableCell className="twhite green" align="left">
                     $
-                    {(
-                      ((each.totalToken +
-                        Math.abs(
-                          each.investementAmount +
-                            each.pecuCoin * currentValue +
-                            each.otherTokenAmount *
-                              cryptoData?.filter(
-                                (e) => e.symbol == each.otherToken.slice(1)
-                              )[0].price -
-                            each.firstTVL
-                        )) /
-                        each.totalToken) *
-                      each.tokenPrice
-                    ).toFixed(2)}
+                    {cryptoData.length > 0 &&
+                      (
+                        ((each.totalToken +
+                          Math.abs(
+                            each.investementAmount +
+                              each.pecuCoin * currentValue +
+                              each.otherTokenAmount *
+                                cryptoData?.filter(
+                                  (e) => e.symbol == each.otherToken.slice(1)
+                                )[0].price -
+                              each.firstTVL
+                          )) /
+                          each.totalToken) *
+                        each.tokenPrice
+                      ).toFixed(2)}
                   </TableCell>
                   <TableCell className="twhite yellow" align="left">
                     {cryptoData.length > 0 &&
