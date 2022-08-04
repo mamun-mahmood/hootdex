@@ -245,7 +245,9 @@ export default function TokenPage({ pecuCoins, user }) {
                         marginLeft: "5px",
                       }}
                     >
-                      {convertToInternationalCurrencySystem(cryptoData?.price)}
+                      {convertToInternationalCurrencySystem(
+                        cryptoData?.price + currentValue
+                      )}
                     </p>
                     <small style={{ fontSize: "16px", color: "green" }}>
                       <ArrowUpwardIcon sx={{ fontSize: "13px" }} />
@@ -355,7 +357,7 @@ export default function TokenPage({ pecuCoins, user }) {
                     {" "}
                     $
                     {convertToInternationalCurrencySystem(
-                      cryptoData?.price * currentValue
+                      token?.initialFinal / cryptoData?.price
                     )}
                   </p>
                 </div>
