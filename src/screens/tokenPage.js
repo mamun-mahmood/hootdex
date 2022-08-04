@@ -66,7 +66,7 @@ export default function TokenPage({ pecuCoins, user }) {
   };
 
   const get_crypto_Data = () => {
-    axios.get(`https://mhiservers2.com/crypto/index`).then((res) => {
+    axios.get(`${url}/crypto/index`).then((res) => {
       setCryptoData(res.data);
     });
   };
@@ -384,7 +384,23 @@ export default function TokenPage({ pecuCoins, user }) {
                         marginLeft: '5px'
                       }}
                     >
-                      1 {token.tokenSymbol} = {token?.tokenPrice?.toFixed(2)}{' '}
+                      {}1 {token.tokenSymbol} ={' '}
+                      {convertToInternationalCurrencySystem(
+                        (
+                          ((token.totalToken +
+                            Math.abs(
+                              token.investementAmount +
+                                token.pecuCoin * currentValue +
+                                token.otherTokenAmount *
+                                  cryptoData?.filter(
+                                    (e) => e.symbol == token.otherToken.slice(1)
+                                  )[0].price -
+                                token.firstTVL
+                            )) /
+                            token.totalToken) *
+                          token.tokenPrice
+                        ).toFixed(2)
+                      )}
                       USD
                     </p>
                   </div>
@@ -582,7 +598,17 @@ export default function TokenPage({ pecuCoins, user }) {
                           }}
                         >
                           {` ${convertToInternationalCurrencySystem(
-                            token.totalToken
+                            token.totalToken +
+                              Math.abs(
+                                token.investementAmount +
+                                  token.pecuCoin * currentValue +
+                                  token.otherTokenAmount *
+                                    cryptoData?.filter(
+                                      (e) =>
+                                        e.symbol == token.otherToken.slice(1)
+                                    )[0].price -
+                                  token.firstTVL
+                              )
                           )}`}
                           {/* <br></br>$
                         {convertToInternationalCurrencySystem(
@@ -720,7 +746,16 @@ export default function TokenPage({ pecuCoins, user }) {
                         token.otherTokenAmount *
                           cryptoData.filter(
                             (e) => e.symbol == token.otherToken.slice(1)
-                          )[0].price
+                          )[0].price +
+                        Math.abs(
+                          token.investementAmount +
+                            token.pecuCoin * currentValue +
+                            token.otherTokenAmount *
+                              cryptoData?.filter(
+                                (e) => e.symbol == token.otherToken.slice(1)
+                              )[0].price -
+                            token.firstTVL
+                        )
                     )}
                   </p>
                   {/* <small style={{ fontSize: "18px", color: "red" }}>
@@ -837,8 +872,24 @@ export default function TokenPage({ pecuCoins, user }) {
                     }}
                   >
                     $
-                    {convertToInternationalCurrencySystem(
+                    {/* {convertToInternationalCurrencySystem(
                       token?.currentPrice?.toFixed(5)
+                    )} */}
+                    {convertToInternationalCurrencySystem(
+                      (
+                        ((token.totalToken +
+                          Math.abs(
+                            token.investementAmount +
+                              token.pecuCoin * currentValue +
+                              token.otherTokenAmount *
+                                cryptoData?.filter(
+                                  (e) => e.symbol == token.otherToken.slice(1)
+                                )[0].price -
+                              token.firstTVL
+                          )) /
+                          token.totalToken) *
+                        token.tokenPrice
+                      ).toFixed(2)
                     )}
                   </p>
                 </div>
