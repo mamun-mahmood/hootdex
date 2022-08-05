@@ -132,7 +132,10 @@ const PoolTokens = () => {
                     {index + 1}
                   </TableCell>
                   <TableCell className="twhite" align="left">
-                    <Link to={`/pools/${each.tokenName}`} pecuCoins={currentValue}>
+                    <Link
+                      to={`/pools/${each.tokenName}`}
+                      pecuCoins={currentValue}
+                    >
                       <div
                         style={{
                           display: 'flex',
@@ -156,7 +159,14 @@ const PoolTokens = () => {
                           <small style={{ color: '#696c75' }}>
                             (
                             {`${each.tokenSymbol}${
-                              each.otherToken ? `/${each.otherToken}` : null
+                              each.otherToken
+                                ? `/${each.otherToken
+                                    .split('')
+                                    .map((e, i) =>
+                                      i == 0 ? e.toLowerCase() : e
+                                    )
+                                    .join('')}`
+                                : null
                             }/PECU`}
                             )
                           </small>
