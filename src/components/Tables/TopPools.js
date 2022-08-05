@@ -205,7 +205,7 @@ const PoolTokens = () => {
                       ? convertToInternationalCurrencySystem(
                           (each.volume / each.pecuCoin) * currentValue
                         )
-                      : "00"}
+                      : '0.00'}
                   </TableCell>
 
                   <TableCell className="twhite blue" align="left">
