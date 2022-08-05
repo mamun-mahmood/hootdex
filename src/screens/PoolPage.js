@@ -157,7 +157,7 @@ export default function PoolPage({ pecuCoins, user }) {
                 >
                   <Avatar
                     className="rounded"
-                    src={`${url}/hootdex/images/${pool?.logo_src}`}
+                    src={`${url}/hootdex/images/${pool?.img}`}
                     alt="token logo"
                     style={{
                       width: "24px",
@@ -384,7 +384,7 @@ export default function PoolPage({ pecuCoins, user }) {
                     >
                       <Avatar
                         className="rounded"
-                        src={`${url}/hootdex/images/${pool?.logo_src}`}
+                        src={`${url}/hootdex/images/${pool?.img}`}
                         alt="token logo"
                         style={{
                           width: "22px",
@@ -401,21 +401,7 @@ export default function PoolPage({ pecuCoins, user }) {
                       >
                         {}1 {pool?.project_token_symbol} ={" "}
                         {convertToInternationalCurrencySystem(
-                          (
-                            ((pool.project_token_amount +
-                              Math.abs(
-                                pool?.pecuCoin * currentValue +
-                                  pool?.wrap_token_amount *
-                                    cryptoData?.filter(
-                                      (e) =>
-                                        e.symbol ==
-                                        pool?.wrap_token_symbol.slice(1)
-                                    )[0].price -
-                                  pool.firstTVL
-                              )) /
-                              pool.project_token_amount) *
-                            pool?.project_token_price
-                          ).toFixed(2)
+                          pool.project_token_price
                         )}
                         USD
                       </p>
@@ -602,7 +588,7 @@ export default function PoolPage({ pecuCoins, user }) {
                           >
                             <Avatar
                               className="rounded"
-                              src={`${url}/hootdex/images/${pool?.logo_src}`}
+                              src={`${url}/hootdex/images/${pool?.img}`}
                               alt="token logo"
                               style={{ width: "20px", height: "20px" }}
                             />

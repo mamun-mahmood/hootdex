@@ -77,9 +77,7 @@ const PoolGraph = ({ id, pool, currentValue }) => {
             }}
           >
             {" "}
-            {convertToInternationalCurrencySystem(
-              chartData[0]?.TVL
-            )}
+            {convertToInternationalCurrencySystem(chartData[0]?.TVL)}
           </p>
           {/* <p className="pool-page-t1">{date}</p> */}
         </div>
