@@ -32,7 +32,8 @@ function convertToInternationalCurrencySystem(labelValue) {
     : Math.abs(Number(labelValue));
 }
 export default function PoolPage({ pecuCoins, user }) {
-  const pool_id = useParams().id;
+  const id = useParams().id;
+  const pool_id = window.atob(id)
   const [pool, setPool] = useState({});
   const [loading, setLoading] = useState(false);
 
