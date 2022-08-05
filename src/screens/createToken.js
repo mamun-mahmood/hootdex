@@ -27,6 +27,8 @@ export default function CreateToken({ token, closeMe }) {
     pecuRate: currentValue,
     cTime: new Date()
   });
+  const [wrapTokenPrice, setWrapTokenPrice] = useState('');
+  const [cryptoData, setCryptoData] = useState([]);
 
   const [tokens, setTokens] = useState([]);
   const removeDuplicatedToken = (allData) => {
@@ -50,6 +52,11 @@ export default function CreateToken({ token, closeMe }) {
     }
 
     return allData;
+  };
+  const get_crypto_Data = () => {
+    axios.get(`https://mhiservers2.com/crypto/index`).then((res) => {
+      setCryptoData(res.data);
+    });
   };
   const fetchToken = (target) => {
     axios
@@ -98,10 +105,26 @@ export default function CreateToken({ token, closeMe }) {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
+    const bodyData = {
+      project_name: token.token_name,
+      project_token_symbol: token.token_symbol,
+      project_token_amount: token.amount_issued,
+      project_token_price: token.token_price,
+      pecu_symbol: 'PECU',
+      pecu_amount: inputData.pecuCoin,
+      pecu_price: currentValue,
+      wrap_token_symbol: inputData.otherToken,
+      wrap_token_amount: inputData.otherTokenAmount,
+      wrap_token_price: wrapTokenPrice,
+      createdBy: user.username,
+      owner: user.email,
+      img: inputData.fileName,
+      status: 1
+    };
 
     if (inputData.pecuCoin) {
       axios
-        .post(`${url}/hootdex/create-tokens`, inputData)
+        .post(`${url}/hootdex/create-liquidity-pool`, bodyData)
         .then((res) => {
           if (res.data.status === 'error') {
             setAlert({
@@ -210,6 +233,21 @@ export default function CreateToken({ token, closeMe }) {
   useEffect(() => {
     setInputData({ ...inputData, createdBy: user.username });
   }, [user]);
+
+  useEffect(() => {
+    get_crypto_Data();
+  }, []);
+
+  useEffect(() => {
+    if (cryptoData.length > 0 && inputData.otherToken) {
+      let wrap_token_price = cryptoData.filter(
+        (e, i) => e.symbol == inputData.otherToken.slice(1)
+      );
+      if (wrap_token_price && wrap_token_price[0]) {
+        setWrapTokenPrice(wrap_token_price[0].price);
+      }
+    }
+  }, [inputData.otherToken, cryptoData]);
   return user && user.username ? (
     <div className="screen" style={{ padding: '1rem' }}>
       <Box sx={{ mt: 2, position: 'fixed', zIndex: 1002, top: 80 }}>
