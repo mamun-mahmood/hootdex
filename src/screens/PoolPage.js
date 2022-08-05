@@ -134,7 +134,7 @@ export default function PoolPage({ pecuCoins, user }) {
               mb={1}
             >
               <Grid item xs={12} md={6}>
-                <div>
+                <div style={{position: "sticky"}} >
                   <Link
                     to={`/`}
                     style={{ fontSize: "1rem", fontWeight: "500" }}

@@ -166,7 +166,7 @@ export default function Nav({ fetchWallet, wallet }) {
                 }}
                 onClick={() => setShowSugesstion(true)}
                 className={`${
-                  showSugesstion && "searchFieldFocus"
+                  showSugesstion && ""
                 } "border searchField "`}
                 type="text"
                 placeholder="Search for token..."
@@ -189,9 +189,11 @@ export default function Nav({ fetchWallet, wallet }) {
                 // left: 0,
                 width: "100%",
                 animation: "fadeIn 0.4s ease-in-out",
-                // mt:"1px"
+                top: 70,
+                border: "2px solid #01402b",
+                borderTop: "none"
               }}
-              className="borderGrey hide-scrollbar "
+              className="borderGrey hide-scrollbar shadow"
               component={Paper}
             >
               {tokens.length ? (
@@ -229,7 +231,7 @@ export default function Nav({ fetchWallet, wallet }) {
                     {each.id}
                   </TableCell> */}
                           <TableCell className="twhite" align="left">
-                            <Link to={`/t/${each.tokenName}`}>
+                            <Link to={`/pools/${window.btoa(each.id)}`}>
                               <div
                                 style={{
                                   display: "flex",
