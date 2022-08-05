@@ -56,7 +56,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/wallet" element={<Wallet />} />
           <Route
-            path="/pools/:tokenName"
+            path="/pools/:id"
             element={<PoolPage user={user} pecuCoins={pecuCoins} />}
           />
           <Route
