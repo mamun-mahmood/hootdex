@@ -33,7 +33,7 @@ function convertToInternationalCurrencySystem(labelValue) {
 }
 export default function PoolPage({ pecuCoins, user }) {
   const id = useParams().id;
-  const pool_id = window.atob(id)
+  const pool_id = window.atob(id);
   const [pool, setPool] = useState({});
   const [loading, setLoading] = useState(false);
 
@@ -121,151 +121,160 @@ export default function PoolPage({ pecuCoins, user }) {
           <LinearProgress sx={{ backgroundColor: "grey" }} />
         </div>
       )}
-      {!loading && cryptoData.length > 0 && pool?.project_token_symbol && currentValue && (
-        <Box sx={{ padding: { xs: 1, md: "1rem 4rem" } }}>
-          <Grid
-            width={"100%"}
-            container
-            spacing={1}
-            padding={{ xs: 0, md: 0 }}
-            mb={1}
-          >
-            <Grid item xs={12} md={6}>
-              <div>
-                <Link
-                  to={`/`}
-                  style={{ fontSize: "1rem", fontWeight: "500" }}
-                >{`Home  >  Pools  >  ${pool?.project_token_symbol} ${
-                  pool?.wrap_token_symbol
-                    ? `/ ${pool?.wrap_token_symbol
-                        .split("")
-                        .map((e, i) => (i == 0 ? e.toLowerCase() : e))
-                        .join("")}`
-                    : null
-                } / PECU `}</Link>
-              </div>
-              <div
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  margin: "2rem 0 0 1rem",
-                  width: "fit-content",
-                }}
-              >
-                <Avatar
-                  className="rounded"
-                  src={`${url}/hootdex/images/${pool?.logo_src}`}
-                  alt="token logo"
-                  style={{
-                    width: "24px",
-                    height: "24px",
-                    color: "rgb(86, 90, 105)",
-                  }}
-                />
-                <Avatar
-                  className="rounded"
-                  src={`https://pecunovus.net/static/media/icon.25c8ec299d961b9dd524.ico`}
-                  alt="token logo"
-                  style={{
-                    width: "24px",
-                    height: "24px",
-                    color: "rgb(86, 90, 105)",
-                  }}
-                />
-                <p
-                  style={{
-                    color: "white",
-                    marginLeft: "5px",
-                    fontSize: "24px",
-                    fontWeight: "500",
-                    fontFamily: "Inter var sans-serif",
-                  }}
-                >
-                  {`${pool?.project_token_symbol} ${
+      {!loading &&
+        cryptoData.length > 0 &&
+        pool?.project_token_symbol &&
+        currentValue && (
+          <Box sx={{ padding: { xs: 1, md: "1rem 4rem" } }}>
+            <Grid
+              width={"100%"}
+              container
+              spacing={1}
+              padding={{ xs: 0, md: 0 }}
+              mb={1}
+            >
+              <Grid item xs={12} md={6}>
+                <div>
+                  <Link
+                    to={`/`}
+                    style={{ fontSize: "1rem", fontWeight: "500" }}
+                  >{`Home  >  Pools  >  ${pool?.project_token_symbol} ${
                     pool?.wrap_token_symbol
                       ? `/ ${pool?.wrap_token_symbol
                           .split("")
                           .map((e, i) => (i == 0 ? e.toLowerCase() : e))
                           .join("")}`
                       : null
-                  } / PECU`}
-                </p>
-                <p
-                  className="token-page-t2"
+                  } / PECU `}</Link>
+                </div>
+                <div
                   style={{
-                    fontSize: "13px",
-                    backgroundColor: "rgb(64, 68, 79)",
-                    padding: "2px",
-                    borderRadius: "8px",
-                    fontWeight: "400",
-                    boxSizing: "border-box",
-                    cursor: "pointer",
-                    fontFamily: "arial",
-                    marginLeft: "6px",
+                    display: "flex",
+                    alignItems: "center",
+                    margin: "2rem 0 0 1rem",
+                    width: "fit-content",
                   }}
                 >
-                  {pool.investementAmount +
-                    pool?.pecu_amount * currentValue +
-                    pool?.wrap_token_amount *
-                      cryptoData?.filter(
-                        (e) => e.symbol == pool?.wrap_token_symbol.slice(1)
-                      )[0].price >
-                  pool.firstTVL ? (
-                    <small style={{ fontSize: "13px" }}>
-                      <ArrowUpwardIcon sx={{ fontSize: "13px" }} />
-                      {pool.investementAmount +
-                        pool?.pecu_amount * currentValue +
-                        pool?.wrap_token_amount *
-                          cryptoData?.filter(
-                            (e) => e.symbol == pool?.wrap_token_symbol.slice(1)
-                          )[0].price >
-                      pool.firstTVL
-                        ? (
-                            (Math.abs(
-                              pool.investementAmount +
-                                pool?.pecu_amount * currentValue +
-                                pool?.wrap_token_amount *
-                                  cryptoData?.filter(
-                                    (e) => e.symbol == pool?.wrap_token_symbol.slice(1)
-                                  )[0].price -
-                                pool.firstTVL
-                            ) *
-                              100) /
-                            pool.firstTVL
-                          ).toFixed(2)
-                        : "0.00"}
-                      %
-                    </small>
-                  ) : (
-                    <small style={{ fontSize: "13px" }}>
-                      <ArrowDownwardIcon sx={{ fontSize: "13px" }} />
-                      {pool.investementAmount +
-                        pool?.pecu_amount * currentValue +
-                        pool?.wrap_token_amount *
-                          cryptoData?.filter(
-                            (e) => e.symbol == pool?.wrap_token_symbol.slice(1)
-                          )[0].price <
-                      pool.firstTVL
-                        ? (
-                            (Math.abs(
-                              pool.investementAmount +
-                                pool?.pecu_amount * currentValue +
-                                pool?.wrap_token_amount *
-                                  cryptoData?.filter(
-                                    (e) => e.symbol == pool?.wrap_token_symbol.slice(1)
-                                  )[0].price -
-                                pool.firstTVL
-                            ) *
-                              100) /
-                            pool.firstTVL
-                          ).toFixed(2)
-                        : "0.00"}
-                      %
-                    </small>
-                  )}
-                </p>
-              </div>
-              {/* <div
+                  <Avatar
+                    className="rounded"
+                    src={`${url}/hootdex/images/${pool?.logo_src}`}
+                    alt="token logo"
+                    style={{
+                      width: "24px",
+                      height: "24px",
+                      color: "rgb(86, 90, 105)",
+                    }}
+                  />
+                  <Avatar
+                    className="rounded"
+                    src={`https://pecunovus.net/static/media/icon.25c8ec299d961b9dd524.ico`}
+                    alt="token logo"
+                    style={{
+                      width: "24px",
+                      height: "24px",
+                      color: "rgb(86, 90, 105)",
+                    }}
+                  />
+                  <p
+                    style={{
+                      color: "white",
+                      marginLeft: "5px",
+                      fontSize: "24px",
+                      fontWeight: "500",
+                      fontFamily: "Inter var sans-serif",
+                    }}
+                  >
+                    {`${pool?.project_token_symbol} ${
+                      pool?.wrap_token_symbol
+                        ? `/ ${pool?.wrap_token_symbol
+                            .split("")
+                            .map((e, i) => (i == 0 ? e.toLowerCase() : e))
+                            .join("")}`
+                        : null
+                    } / PECU`}
+                  </p>
+                  <p
+                    className="token-page-t2"
+                    style={{
+                      fontSize: "13px",
+                      backgroundColor: "rgb(64, 68, 79)",
+                      padding: "2px",
+                      borderRadius: "8px",
+                      fontWeight: "400",
+                      boxSizing: "border-box",
+                      cursor: "pointer",
+                      fontFamily: "arial",
+                      marginLeft: "6px",
+                    }}
+                  >
+                    {pool.investementAmount +
+                      pool?.pecu_amount * currentValue +
+                      pool?.wrap_token_amount *
+                        cryptoData?.filter(
+                          (e) => e.symbol == pool?.wrap_token_symbol.slice(1)
+                        )[0].price >
+                    pool.firstTVL ? (
+                      <small style={{ fontSize: "13px" }}>
+                        <ArrowUpwardIcon sx={{ fontSize: "13px" }} />
+                        {pool.investementAmount +
+                          pool?.pecu_amount * currentValue +
+                          pool?.wrap_token_amount *
+                            cryptoData?.filter(
+                              (e) =>
+                                e.symbol == pool?.wrap_token_symbol.slice(1)
+                            )[0].price >
+                        pool.firstTVL
+                          ? (
+                              (Math.abs(
+                                pool.investementAmount +
+                                  pool?.pecu_amount * currentValue +
+                                  pool?.wrap_token_amount *
+                                    cryptoData?.filter(
+                                      (e) =>
+                                        e.symbol ==
+                                        pool?.wrap_token_symbol.slice(1)
+                                    )[0].price -
+                                  pool.firstTVL
+                              ) *
+                                100) /
+                              pool.firstTVL
+                            ).toFixed(2)
+                          : "0.00"}
+                        %
+                      </small>
+                    ) : (
+                      <small style={{ fontSize: "13px" }}>
+                        <ArrowDownwardIcon sx={{ fontSize: "13px" }} />
+                        {pool.investementAmount +
+                          pool?.pecu_amount * currentValue +
+                          pool?.wrap_token_amount *
+                            cryptoData?.filter(
+                              (e) =>
+                                e.symbol == pool?.wrap_token_symbol.slice(1)
+                            )[0].price <
+                        pool.firstTVL
+                          ? (
+                              (Math.abs(
+                                pool.investementAmount +
+                                  pool?.pecu_amount * currentValue +
+                                  pool?.wrap_token_amount *
+                                    cryptoData?.filter(
+                                      (e) =>
+                                        e.symbol ==
+                                        pool?.wrap_token_symbol.slice(1)
+                                    )[0].price -
+                                  pool.firstTVL
+                              ) *
+                                100) /
+                              pool.firstTVL
+                            ).toFixed(2)
+                          : "0.00"}
+                        %
+                      </small>
+                    )}
+                  </p>
+                </div>
+                {/* <div
               style={{
                 display: 'flex',
                 flexDirection: 'row'
@@ -317,19 +326,19 @@ export default function PoolPage({ pecuCoins, user }) {
                 </p>
               </div>
             </div> */}
-              <div
-                style={{
-                  marginTop: "0.5rem",
-                  display: "flex",
-                  flexDirection: "row",
-                  justifyContent: "space-between",
-                  minWidth: "90vw",
-                  width: "100%",
+                <div
+                  style={{
+                    marginTop: "0.5rem",
+                    display: "flex",
+                    flexDirection: "row",
+                    justifyContent: "space-between",
+                    minWidth: "90vw",
+                    width: "100%",
 
-                  flexWrap: "wrap",
-                }}
-              >
-                {/* <p
+                    flexWrap: "wrap",
+                  }}
+                >
+                  {/* <p
                 className="token-page-t2"
                 style={{
                   marginTop: '0.5rem',
@@ -349,345 +358,241 @@ export default function PoolPage({ pecuCoins, user }) {
                   </small>
                 )}
               </p> */}
-                <div
-                  style={{
-                    display: "flex",
-                    minWidth: "60%",
-                    flexDirection: "row",
-                    flexWrap: "wrap",
-                  }}
-                >
                   <div
                     style={{
                       display: "flex",
+                      minWidth: "60%",
                       flexDirection: "row",
-                      backgroundColor: "rgb(64, 68, 79)",
-                      padding: "4px 6px",
-                      borderRadius: "8px",
-                      fontWeight: "400",
-                      boxSizing: "border-box",
-                      maxWidth: "fit-content",
-                      color: "white",
-                      margin: "1rem ",
-                      cursor: "pointer",
-                      minWidth: "200px",
+                      flexWrap: "wrap",
                     }}
                   >
-                    <Avatar
-                      className="rounded"
-                      src={`${url}/hootdex/images/${pool?.logo_src}`}
-                      alt="token logo"
-                      style={{
-                        width: "22px",
-                        height: "22px",
-                        color: "rgb(86, 90, 105)",
-                      }}
-                    />
-                    <p
-                      style={{
-                        fontSize: "16px",
-                        fontWeight: 500,
-                        marginLeft: "5px",
-                      }}
-                    >
-                      {}1 {pool?.project_token_symbol} ={" "}
-                      {convertToInternationalCurrencySystem(
-                        (
-                          ((pool.project_token_amount +
-                            Math.abs(
-                                pool?.pecuCoin * currentValue +
-                                pool?.wrap_token_amount *
-                                  cryptoData?.filter(
-                                    (e) => e.symbol == pool?.wrap_token_symbol.slice(1)
-                                  )[0].price -
-                                pool.firstTVL
-                            )) /
-                            pool.project_token_amount) *
-                          pool?.project_token_price
-                        ).toFixed(2)
-                      )}
-                      USD
-                    </p>
-                  </div>
-                  <div
-                    style={{
-                      display: "flex",
-                      flexDirection: "row",
-                      backgroundColor: "rgb(64, 68, 79)",
-                      padding: "4px 6px",
-                      borderRadius: "8px",
-                      fontWeight: "400",
-                      boxSizing: "border-box",
-                      maxWidth: "fit-content",
-                      color: "white",
-                      margin: "1rem ",
-                      cursor: "pointer",
-                      minWidth: "200px",
-                    }}
-                  >
-                    <Avatar
-                      className="rounded"
-                      src={`https://pecunovus.net/static/media/icon.25c8ec299d961b9dd524.ico`}
-                      alt="token logo"
-                      style={{
-                        width: "22px",
-                        height: "22px",
-                        color: "rgb(86, 90, 105)",
-                      }}
-                    />
-                    <p
-                      style={{
-                        fontSize: "16px",
-                        fontWeight: 500,
-                        marginLeft: "5px",
-                      }}
-                    >
-                      1 {"PECU"} = {currentValue?.toFixed(2)} USD
-                    </p>
-                  </div>
-                  {pool?.wrap_token_symbol && (
-                    <Link
-                      to={`/tokens/tokenid`}
-                      state={pool?.wrap_token_symbol}
-                      // pecuCoins={currentValue}
-                    >
-                      <div
-                        style={{
-                          display: "flex",
-                          flexDirection: "row",
-                          backgroundColor: "rgb(64, 68, 79)",
-                          padding: "4px 6px",
-                          borderRadius: "8px",
-                          fontWeight: "400",
-                          boxSizing: "border-box",
-                          maxWidth: "fit-content",
-                          color: "white",
-                          margin: "1rem ",
-                          cursor: "pointer",
-                          minWidth: "200px",
-                        }}
-                      >
-                        <Avatar
-                          className="rounded"
-                          src={`hfj`}
-                          alt={pool?.wrap_token_symbol}
-                          style={{
-                            width: "22px",
-                            height: "22px",
-                            color: "rgb(86, 90, 105)",
-                            backgroundColor: "orange",
-                          }}
-                        />
-                        <p
-                          style={{
-                            fontSize: "16px",
-                            fontWeight: 500,
-                            marginLeft: "5px",
-                          }}
-                        >
-                          1{" "}
-                          {pool?.wrap_token_symbol
-                            .split("")
-                            .map((e, i) => (i == 0 ? e.toLowerCase() : e))
-                            .join("")}
-                          ={" "}
-                          {convertToInternationalCurrencySystem(
-                            cryptoData.filter(
-                              (e) => e.symbol == pool?.wrap_token_symbol.slice(1)
-                            )[0].price
-                          )}{" "}
-                          USD
-                        </p>
-                      </div>
-                    </Link>
-                  )}
-                </div>
-                <div
-                  style={{
-                    display: "flex",
-                    flexDirectino: "row",
-                    alignItems: "center",
-                    flexWrap: "wrap",
-                  }}
-                >
-                  {" "}
-                  <IconButton
-                    className="dfelxalitemC shadow"
-                    sx={{
-                      backgroundColor: "rgb(64, 68, 79)",
-                      color: "rgb(195, 197, 203)",
-                      // padding: "8px 14px",
-                      borderRadius: "12px",
-                      cursor: "pointer",
-                      // width: "170px",
-                      marginRight: "1rem",
-                      fontWeight: "800",
-                      maxHeight: "40px",
-                      fontSize: "18px",
-                    }}
-                  >
-                    <GetAppIcon />
-                    <p>Add Liquidity</p>
-                  </IconButton>
-                  {/* buy token modal */}
-                  <BuyToken pool={pool} pecuCoins={pecuCoins} user={user} />
-                </div>
-              </div>
-            </Grid>
-            <Grid item xs={12} md={6}>
-              <div
-                style={{
-                  display: "flex",
-                  justifyContent: "end",
-                }}
-              ></div>
-            </Grid>
-            <Grid item xs={12} md={4} mt={3}>
-              <div
-                style={{
-                  backgroundColor: "rgb(25, 27, 31)",
-                  borderRadius: "20px",
-                  height: "100%",
-                  padding: "1.5rem",
-                  maxWidth: "350px",
-                }}
-                className="shadowGrey"
-              >
-                <div style={{ marginBottom: "1rem" }}>
-                  <div className="glassmorphosism" style={{ padding: "1rem" }}>
-                    <p
-                      className="token-page-t2 mb-1"
-                      style={{ fontSize: "1rem", fontFamily: "arial" }}
-                    >
-                      Total Tokens Locked
-                    </p>
                     <div
                       style={{
                         display: "flex",
-                        flexDirection: "column",
-                        alignItems: "flex-start",
+                        flexDirection: "row",
+                        backgroundColor: "rgb(64, 68, 79)",
+                        padding: "4px 6px",
+                        borderRadius: "8px",
+                        fontWeight: "400",
+                        boxSizing: "border-box",
+                        maxWidth: "fit-content",
+                        color: "white",
+                        margin: "1rem ",
+                        cursor: "pointer",
+                        minWidth: "200px",
                       }}
                     >
-                      <div
+                      <Avatar
+                        className="rounded"
+                        src={`${url}/hootdex/images/${pool?.logo_src}`}
+                        alt="token logo"
                         style={{
-                          display: "flex",
-                          flexDirection: "row",
-                          alignItems: "center",
-                          margin: "0.5rem",
-                          width: "100%",
-                          justifyContent: "space-between",
+                          width: "22px",
+                          height: "22px",
+                          color: "rgb(86, 90, 105)",
+                        }}
+                      />
+                      <p
+                        style={{
+                          fontSize: "16px",
+                          fontWeight: 500,
+                          marginLeft: "5px",
                         }}
                       >
-                        <span
-                          style={{
-                            display: "flex",
-                            flexDriection: "row",
-                            alignItems: "center",
-                          }}
-                        >
-                          <Avatar
-                            className="rounded"
-                            src={`${url}/hootdex/images/${pool?.logo_src}`}
-                            alt="token logo"
-                            style={{ width: "20px", height: "20px" }}
-                          />
-                          <p
-                            style={{
-                              color: "white",
-                              marginLeft: "1rem",
-                              fontSize: "13px",
-                              fontWeight: "bold",
-                              fontFamily: "arial",
-                            }}
-                          >
-                            {pool?.project_token_symbol}:
-                          </p>
-                        </span>
-
-                        <p
-                          style={{
-                            color: "white",
-                            marginLeft: "1rem",
-                            fontSize: "13px",
-                            fontWeight: "bold",
-                            fontFamily: "arial",
-                          }}
-                        >
-                          {` ${convertToInternationalCurrencySystem(
-                            pool?.project_token_amount
-                          )}`}
-                          {/* <br></br>$
+                        {}1 {pool?.project_token_symbol} ={" "}
                         {convertToInternationalCurrencySystem(
-                          token.investementAmount
-                        )} */}
-                        </p>
-                      </div>
-                      <div
+                          (
+                            ((pool.project_token_amount +
+                              Math.abs(
+                                pool?.pecuCoin * currentValue +
+                                  pool?.wrap_token_amount *
+                                    cryptoData?.filter(
+                                      (e) =>
+                                        e.symbol ==
+                                        pool?.wrap_token_symbol.slice(1)
+                                    )[0].price -
+                                  pool.firstTVL
+                              )) /
+                              pool.project_token_amount) *
+                            pool?.project_token_price
+                          ).toFixed(2)
+                        )}
+                        USD
+                      </p>
+                    </div>
+                    <div
+                      style={{
+                        display: "flex",
+                        flexDirection: "row",
+                        backgroundColor: "rgb(64, 68, 79)",
+                        padding: "4px 6px",
+                        borderRadius: "8px",
+                        fontWeight: "400",
+                        boxSizing: "border-box",
+                        maxWidth: "fit-content",
+                        color: "white",
+                        margin: "1rem ",
+                        cursor: "pointer",
+                        minWidth: "200px",
+                      }}
+                    >
+                      <Avatar
+                        className="rounded"
+                        src={`https://pecunovus.net/static/media/icon.25c8ec299d961b9dd524.ico`}
+                        alt="token logo"
                         style={{
-                          display: "flex",
-                          flexDirection: "row",
-                          alignItems: "flex-start",
-                          margin: "0.5rem",
-                          width: "100%",
-                          justifyContent: "space-between",
+                          width: "22px",
+                          height: "22px",
+                          color: "rgb(86, 90, 105)",
+                        }}
+                      />
+                      <p
+                        style={{
+                          fontSize: "16px",
+                          fontWeight: 500,
+                          marginLeft: "5px",
                         }}
                       >
-                        <span
-                          style={{
-                            display: "flex",
-                            flexDriection: "row",
-                            alignItems: "center",
-                          }}
-                        >
-                          <Avatar
-                            className="rounded"
-                            src={`https://pecunovus.net/static/media/icon.25c8ec299d961b9dd524.ico`}
-                            alt="token logo"
-                            style={{ width: "20px", height: "20px" }}
-                          />{" "}
-                          <p
-                            style={{
-                              color: "white",
-                              marginLeft: "1rem",
-                              fontSize: "13px",
-                              fontWeight: "bold",
-                              fontFamily: "arial",
-                            }}
-                          >
-                            {`PECU :`}
-                            {/* <br></br>$
-                      {convertToInternationalCurrencySystem(token.pecuCoin)} */}
-                          </p>
-                        </span>
-
-                        <p
-                          style={{
-                            color: "white",
-                            marginLeft: "1rem",
-                            fontSize: "13px",
-                            fontWeight: "bold",
-                            fontFamily: "arial",
-                          }}
-                        >
-                          {`${convertToInternationalCurrencySystem(
-                            pool?.pecu_amount
-                          )}`}
-                          {/* <br></br>$
-                        {convertToInternationalCurrencySystem(token.pecuCoin)} */}
-                        </p>
-                      </div>
-                      {pool?.wrap_token_symbol && (
+                        1 {"PECU"} = {currentValue?.toFixed(2)} USD
+                      </p>
+                    </div>
+                    {pool?.wrap_token_symbol && (
+                      <Link
+                        to={`/tokens/tokenid`}
+                        state={pool?.wrap_token_symbol}
+                        // pecuCoins={currentValue}
+                      >
                         <div
                           style={{
                             display: "flex",
                             flexDirection: "row",
-                            alignItems: "flex-start",
+                            backgroundColor: "rgb(64, 68, 79)",
+                            padding: "4px 6px",
+                            borderRadius: "8px",
+                            fontWeight: "400",
+                            boxSizing: "border-box",
+                            maxWidth: "fit-content",
+                            color: "white",
+                            margin: "1rem ",
+                            cursor: "pointer",
+                            minWidth: "200px",
+                          }}
+                        >
+                          <Avatar
+                            className="rounded"
+                            src={`hfj`}
+                            alt={pool?.wrap_token_symbol}
+                            style={{
+                              width: "22px",
+                              height: "22px",
+                              color: "rgb(86, 90, 105)",
+                              backgroundColor: "orange",
+                            }}
+                          />
+                          <p
+                            style={{
+                              fontSize: "16px",
+                              fontWeight: 500,
+                              marginLeft: "5px",
+                            }}
+                          >
+                            1{" "}
+                            {pool?.wrap_token_symbol
+                              .split("")
+                              .map((e, i) => (i == 0 ? e.toLowerCase() : e))
+                              .join("")}
+                            ={" "}
+                            {convertToInternationalCurrencySystem(
+                              cryptoData.filter(
+                                (e) =>
+                                  e.symbol == pool?.wrap_token_symbol.slice(1)
+                              )[0].price
+                            )}{" "}
+                            USD
+                          </p>
+                        </div>
+                      </Link>
+                    )}
+                  </div>
+                  <div
+                    style={{
+                      display: "flex",
+                      flexDirectino: "row",
+                      alignItems: "center",
+                      flexWrap: "wrap",
+                    }}
+                  >
+                    {" "}
+                    <IconButton
+                      className="dfelxalitemC shadow"
+                      sx={{
+                        backgroundColor: "rgb(64, 68, 79)",
+                        color: "rgb(195, 197, 203)",
+                        // padding: "8px 14px",
+                        borderRadius: "12px",
+                        cursor: "pointer",
+                        // width: "170px",
+                        marginRight: "1rem",
+                        fontWeight: "800",
+                        maxHeight: "40px",
+                        fontSize: "18px",
+                      }}
+                    >
+                      <GetAppIcon />
+                      <p>Add Liquidity</p>
+                    </IconButton>
+                    {/* buy token modal */}
+                    <BuyToken pool={pool} pecuCoins={pecuCoins} user={user} />
+                  </div>
+                </div>
+              </Grid>
+              <Grid item xs={12} md={6}>
+                <div
+                  style={{
+                    display: "flex",
+                    justifyContent: "end",
+                  }}
+                ></div>
+              </Grid>
+              <Grid item xs={12} md={4} mt={3}>
+                <div
+                  style={{
+                    backgroundColor: "rgb(25, 27, 31)",
+                    borderRadius: "20px",
+                    height: "100%",
+                    padding: "1.5rem",
+                    maxWidth: "350px",
+                  }}
+                  className="shadowGrey"
+                >
+                  <div style={{ marginBottom: "1rem" }}>
+                    <div
+                      className="glassmorphosism"
+                      style={{ padding: "1rem" }}
+                    >
+                      <p
+                        className="token-page-t2 mb-1"
+                        style={{ fontSize: "1rem", fontFamily: "arial" }}
+                      >
+                        Total Tokens Locked
+                      </p>
+                      <div
+                        style={{
+                          display: "flex",
+                          flexDirection: "column",
+                          alignItems: "flex-start",
+                        }}
+                      >
+                        <div
+                          style={{
+                            display: "flex",
+                            flexDirection: "row",
+                            alignItems: "center",
                             margin: "0.5rem",
                             width: "100%",
                             justifyContent: "space-between",
                           }}
                         >
-                          {" "}
                           <span
                             style={{
                               display: "flex",
@@ -697,13 +602,9 @@ export default function PoolPage({ pecuCoins, user }) {
                           >
                             <Avatar
                               className="rounded"
-                              src={`hjh`}
-                              alt={pool?.wrap_token_symbol}
-                              style={{
-                                width: "20px",
-                                height: "20px",
-                                backgroundColor: "orange",
-                              }}
+                              src={`${url}/hootdex/images/${pool?.logo_src}`}
+                              alt="token logo"
+                              style={{ width: "20px", height: "20px" }}
                             />
                             <p
                               style={{
@@ -714,13 +615,66 @@ export default function PoolPage({ pecuCoins, user }) {
                                 fontFamily: "arial",
                               }}
                             >
-                              {`${pool?.wrap_token_symbol
-                                .split("")
-                                .map((e, i) => (i == 0 ? e.toLowerCase() : e))
-                                .join("")} : 
-                          `}
+                              {pool?.project_token_symbol}:
                             </p>
                           </span>
+
+                          <p
+                            style={{
+                              color: "white",
+                              marginLeft: "1rem",
+                              fontSize: "13px",
+                              fontWeight: "bold",
+                              fontFamily: "arial",
+                            }}
+                          >
+                            {` ${convertToInternationalCurrencySystem(
+                              pool?.project_token_amount
+                            )}`}
+                            {/* <br></br>$
+                        {convertToInternationalCurrencySystem(
+                          token.investementAmount
+                        )} */}
+                          </p>
+                        </div>
+                        <div
+                          style={{
+                            display: "flex",
+                            flexDirection: "row",
+                            alignItems: "flex-start",
+                            margin: "0.5rem",
+                            width: "100%",
+                            justifyContent: "space-between",
+                          }}
+                        >
+                          <span
+                            style={{
+                              display: "flex",
+                              flexDriection: "row",
+                              alignItems: "center",
+                            }}
+                          >
+                            <Avatar
+                              className="rounded"
+                              src={`https://pecunovus.net/static/media/icon.25c8ec299d961b9dd524.ico`}
+                              alt="token logo"
+                              style={{ width: "20px", height: "20px" }}
+                            />{" "}
+                            <p
+                              style={{
+                                color: "white",
+                                marginLeft: "1rem",
+                                fontSize: "13px",
+                                fontWeight: "bold",
+                                fontFamily: "arial",
+                              }}
+                            >
+                              {`PECU :`}
+                              {/* <br></br>$
+                      {convertToInternationalCurrencySystem(token.pecuCoin)} */}
+                            </p>
+                          </span>
+
                           <p
                             style={{
                               color: "white",
@@ -731,43 +685,104 @@ export default function PoolPage({ pecuCoins, user }) {
                             }}
                           >
                             {`${convertToInternationalCurrencySystem(
-                              pool?.wrap_token_amount
-                            )}
-                          `}
+                              pool?.pecu_amount
+                            )}`}
                             {/* <br></br>$
+                        {convertToInternationalCurrencySystem(token.pecuCoin)} */}
+                          </p>
+                        </div>
+                        {pool?.wrap_token_symbol && (
+                          <div
+                            style={{
+                              display: "flex",
+                              flexDirection: "row",
+                              alignItems: "flex-start",
+                              margin: "0.5rem",
+                              width: "100%",
+                              justifyContent: "space-between",
+                            }}
+                          >
+                            {" "}
+                            <span
+                              style={{
+                                display: "flex",
+                                flexDriection: "row",
+                                alignItems: "center",
+                              }}
+                            >
+                              <Avatar
+                                className="rounded"
+                                src={`hjh`}
+                                alt={pool?.wrap_token_symbol}
+                                style={{
+                                  width: "20px",
+                                  height: "20px",
+                                  backgroundColor: "orange",
+                                }}
+                              />
+                              <p
+                                style={{
+                                  color: "white",
+                                  marginLeft: "1rem",
+                                  fontSize: "13px",
+                                  fontWeight: "bold",
+                                  fontFamily: "arial",
+                                }}
+                              >
+                                {`${pool?.wrap_token_symbol
+                                  .split("")
+                                  .map((e, i) => (i == 0 ? e.toLowerCase() : e))
+                                  .join("")} : 
+                          `}
+                              </p>
+                            </span>
+                            <p
+                              style={{
+                                color: "white",
+                                marginLeft: "1rem",
+                                fontSize: "13px",
+                                fontWeight: "bold",
+                                fontFamily: "arial",
+                              }}
+                            >
+                              {`${convertToInternationalCurrencySystem(
+                                pool?.wrap_token_amount
+                              )}
+                          `}
+                              {/* <br></br>$
                           {convertToInternationalCurrencySystem(
                             token.otherTokenAmount
                           )} */}
-                          </p>
-                        </div>
-                      )}
+                            </p>
+                          </div>
+                        )}
+                      </div>
                     </div>
-                  </div>
-                  <p className="token-page-t1 mb-1">TVL</p>
-                  <p
-                    className="token-page-t2 mb-1"
-                    style={{ fontSize: "24px" }}
-                  >
-                    $
-                    {convertToInternationalCurrencySystem(
-                      pool?.project_token_amount * pool?.project_token_price +
-                        pool?.pecu_amount * pool?.pecu_price +
-                        pool?.wrap_token_price * pool?.wrap_token_amount
-                    )}
-                  </p>
-                  {/* <small style={{ fontSize: "18px", color: "red" }}>
+                    <p className="token-page-t1 mb-1">TVL</p>
+                    <p
+                      className="token-page-t2 mb-1"
+                      style={{ fontSize: "24px" }}
+                    >
+                      $
+                      {convertToInternationalCurrencySystem(
+                        pool?.project_token_amount * pool?.project_token_price +
+                          pool?.pecu_amount * pool?.pecu_price +
+                          pool?.wrap_token_price * pool?.wrap_token_amount
+                      )}
+                    </p>
+                    {/* <small style={{ fontSize: "18px", color: "red" }}>
                   <ArrowDownwardIcon sx={{ fontSize: "18px" }} />
                   10.89%
                 </small>{" "} */}
-                </div>
-                {/* <div style={{ marginBottom: '1rem' }}>
+                  </div>
+                  {/* <div style={{ marginBottom: '1rem' }}>
            
                 <p className="token-page-t1 mb-1">Total amount</p>
                 <p className="token-page-t2 mb-1">{token?.totalToken}</p>
               
               </div> */}
 
-                {/* <div style={{ marginBottom: '1rem' }}>
+                  {/* <div style={{ marginBottom: '1rem' }}>
             
                 <p className="token-page-t1 mb-1">Initial Price</p>
                 <p className="token-page-t2 mb-1">
@@ -775,155 +790,170 @@ export default function PoolPage({ pecuCoins, user }) {
                 </p>
               </div> */}
 
-                <p className="token-page-t2">
-                  {" "}
-                  <p className="token-page-t1 mb-1">Volume 24h</p>
-                  {/* {tokenPrice[0]?.previousPrice} */}
-                  <p
-                    style={{
-                      marginTop: "0.5rem",
-                      fontSize: "24px",
-                    }}
-                  >
+                  <p className="token-page-t2">
                     {" "}
-                    {pool?.volume ? convertToInternationalCurrencySystem(
-                      (pool.volume / pool?.pecu_amount) * currentValue
-                    ) : "00"}
+                    <p className="token-page-t1 mb-1">Volume 24h</p>
+                    {/* {tokenPrice[0]?.previousPrice} */}
+                    <p
+                      style={{
+                        marginTop: "0.5rem",
+                        fontSize: "24px",
+                      }}
+                    >
+                      {" "}
+                      {pool?.volume
+                        ? convertToInternationalCurrencySystem(
+                            (pool.volume / pool?.pecu_amount) * currentValue
+                          )
+                        : "00"}
+                    </p>
+                    {pool.investementAmount +
+                      pool?.pecu_amount * currentValue +
+                      pool?.wrap_token_amount *
+                        cryptoData?.filter(
+                          (e) => e.symbol == pool?.wrap_token_symbol.slice(1)
+                        )[0].price >
+                    pool.firstTVL ? (
+                      <small style={{ fontSize: "15px", color: "green" }}>
+                        <ArrowUpwardIcon
+                          sx={{ fontSize: "15px", color: "green" }}
+                        />
+                        {pool.investementAmount +
+                          pool?.pecu_amount * currentValue +
+                          pool?.wrap_token_amount *
+                            cryptoData?.filter(
+                              (e) =>
+                                e.symbol == pool?.wrap_token_symbol.slice(1)
+                            )[0].price >
+                        pool.firstTVL
+                          ? (
+                              (Math.abs(
+                                pool.investementAmount +
+                                  pool?.pecu_amount * currentValue +
+                                  pool?.wrap_token_amount *
+                                    cryptoData?.filter(
+                                      (e) =>
+                                        e.symbol ==
+                                        pool?.wrap_token_symbol.slice(1)
+                                    )[0].price -
+                                  pool.firstTVL
+                              ) *
+                                100) /
+                              pool.firstTVL
+                            ).toFixed(2)
+                          : "0.00"}
+                        %
+                      </small>
+                    ) : (
+                      <small style={{ fontSize: "13px" }}>
+                        <ArrowDownwardIcon sx={{ fontSize: "13px" }} />
+                        {pool.investementAmount +
+                          pool?.pecu_amount * currentValue +
+                          pool?.wrap_token_amount *
+                            cryptoData?.filter(
+                              (e) =>
+                                e.symbol == pool?.wrap_token_symbol.slice(1)
+                            )[0].price <
+                        pool.firstTVL
+                          ? (
+                              (Math.abs(
+                                pool.investementAmount +
+                                  pool?.pecu_amount * currentValue +
+                                  pool?.wrap_token_amount *
+                                    cryptoData?.filter(
+                                      (e) =>
+                                        e.symbol ==
+                                        pool?.wrap_token_symbol.slice(1)
+                                    )[0].price -
+                                  pool.firstTVL
+                              ) *
+                                100) /
+                              pool.firstTVL
+                            ).toFixed(2)
+                          : "0.00"}
+                        %
+                      </small>
+                    )}
                   </p>
-                  {pool.investementAmount +
-                    pool?.pecu_amount * currentValue +
-                    pool?.wrap_token_amount *
-                      cryptoData?.filter(
-                        (e) => e.symbol == pool?.wrap_token_symbol.slice(1)
-                      )[0].price >
-                  pool.firstTVL ? (
-                    <small style={{ fontSize: "15px", color: "green" }}>
-                      <ArrowUpwardIcon
-                        sx={{ fontSize: "15px", color: "green" }}
-                      />
-                      {pool.investementAmount +
-                        pool?.pecu_amount * currentValue +
-                        pool?.wrap_token_amount *
-                          cryptoData?.filter(
-                            (e) => e.symbol == pool?.wrap_token_symbol.slice(1)
-                          )[0].price >
-                      pool.firstTVL
-                        ? (
-                            (Math.abs(
-                              pool.investementAmount +
-                                pool?.pecu_amount * currentValue +
-                                pool?.wrap_token_amount *
-                                  cryptoData?.filter(
-                                    (e) => e.symbol == pool?.wrap_token_symbol.slice(1)
-                                  )[0].price -
-                                pool.firstTVL
-                            ) *
-                              100) /
-                            pool.firstTVL
-                          ).toFixed(2)
-                        : "0.00"}
-                      %
-                    </small>
-                  ) : (
-                    <small style={{ fontSize: "13px" }}>
-                      <ArrowDownwardIcon sx={{ fontSize: "13px" }} />
-                      {pool.investementAmount +
-                        pool?.pecu_amount * currentValue +
-                        pool?.wrap_token_amount *
-                          cryptoData?.filter(
-                            (e) => e.symbol == pool?.wrap_token_symbol.slice(1)
-                          )[0].price <
-                      pool.firstTVL
-                        ? (
-                            (Math.abs(
-                              pool.investementAmount +
-                                pool?.pecu_amount * currentValue +
-                                pool?.wrap_token_amount *
-                                  cryptoData?.filter(
-                                    (e) => e.symbol == pool?.wrap_token_symbol.slice(1)
-                                  )[0].price -
-                                pool.firstTVL
-                            ) *
-                              100) /
-                            pool.firstTVL
-                          ).toFixed(2)
-                        : "0.00"}
-                      %
-                    </small>
-                  )}
-                </p>
-                <br></br>
-                <div style={{ marginBottom: "1rem" }}>
-                  <p className="token-page-t1 mb-1">24h Fees</p>
-                  <p
-                    className="token-page-t2 mb-1"
-                    style={{
-                      marginTop: "0.5rem",
-                      fontSize: "24px",
-                    }}
-                  >
-                    $
-                    {/* {convertToInternationalCurrencySystem(
+                  <br></br>
+                  <div style={{ marginBottom: "1rem" }}>
+                    <p className="token-page-t1 mb-1">24h Fees</p>
+                    <p
+                      className="token-page-t2 mb-1"
+                      style={{
+                        marginTop: "0.5rem",
+                        fontSize: "24px",
+                      }}
+                    >
+                      $
+                      {/* {convertToInternationalCurrencySystem(
                       token?.currentPrice?.toFixed(5)
                     )} */}
-                    {pool?.fees ? convertToInternationalCurrencySystem(
-                      (
-                        ((pool?.project_token_amount +
-                          Math.abs(
-                            pool.investementAmount +
-                              pool?.pecu_amount * currentValue +
-                              pool?.wrap_token_amount *
-                                cryptoData?.filter(
-                                  (e) => e.symbol == pool?.wrap_token_symbol.slice(1)
-                                )[0].price -
-                              pool.firstTVL
-                          )) /
-                          pool?.project_token_amount) *
-                        pool?.project_token_price
-                      ).toFixed(2)
-                    ): "0.00%"}
-                  </p>
+                      {pool?.fees
+                        ? convertToInternationalCurrencySystem(
+                            (
+                              ((pool?.project_token_amount +
+                                Math.abs(
+                                  pool.investementAmount +
+                                    pool?.pecu_amount * currentValue +
+                                    pool?.wrap_token_amount *
+                                      cryptoData?.filter(
+                                        (e) =>
+                                          e.symbol ==
+                                          pool?.wrap_token_symbol.slice(1)
+                                      )[0].price -
+                                    pool.firstTVL
+                                )) /
+                                pool?.project_token_amount) *
+                              pool?.project_token_price
+                            ).toFixed(2)
+                          )
+                        : "0.00%"}
+                    </p>
+                  </div>
                 </div>
-              </div>
+              </Grid>
+              <Grid item xs={12} md={8} sx={{ marginTop: { xs: 8, md: 3 } }}>
+                <Box sx={{ height: "100%" }}>
+                  <div
+                    style={{
+                      backgroundColor: "rgb(25, 27, 31)",
+                      height: "100%",
+                      borderRadius: "20px",
+                      padding: "1.5rem",
+                    }}
+                    className="shadowGrey"
+                  >
+                    <PoolGraph
+                      id={pool.id}
+                      setTokenPrice={setTokenPrice}
+                      pool={pool}
+                      currentValue={currentValue}
+                    />
+                  </div>
+                </Box>
+              </Grid>
+              <Grid item xs={12} mt={5}>
+                {/* <TopToken /> */}
+                <Transactions />
+              </Grid>
             </Grid>
-            <Grid item xs={12} md={8} sx={{ marginTop: { xs: 8, md: 3 } }}>
-              <Box sx={{ height: "100%" }}>
-                <div
-                  style={{
-                    backgroundColor: "rgb(25, 27, 31)",
-                    height: "100%",
-                    borderRadius: "20px",
-                    padding: "1.5rem",
-                  }}
-                  className="shadowGrey"
-                >
-                  <PoolGraph
-                    id={pool.id}
-                    setTokenPrice={setTokenPrice}
-                    pool={pool}
-                    currentValue={currentValue}
-                  />
-                </div>
-              </Box>
-            </Grid>
-            <Grid item xs={12} mt={5}>
-              {/* <TopToken /> */}
-              <Transactions />
-            </Grid>
-          </Grid>
-          <div style={{ display: "flex", justifyContent: "center" }}>
-            <Collapse in={alert.show} sx={{ maxWidth: 400, position: "fixed" }}>
-              <Alert
-                variant="outlined"
-                severity={alert.type}
-                sx={{ mb: 2, backgroundColor: "white", fontSize: "18px" }}
+            <div style={{ display: "flex", justifyContent: "center" }}>
+              <Collapse
+                in={alert.show}
+                sx={{ maxWidth: 400, position: "fixed" }}
               >
-                {alert.msg}
-              </Alert>
-            </Collapse>
-          </div>
-        </Box>
-      )}
+                <Alert
+                  variant="outlined"
+                  severity={alert.type}
+                  sx={{ mb: 2, backgroundColor: "white", fontSize: "18px" }}
+                >
+                  {alert.msg}
+                </Alert>
+              </Collapse>
+            </div>
+          </Box>
+        )}
     </>
   );
 }
