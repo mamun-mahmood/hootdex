@@ -179,7 +179,7 @@ const PoolTokens = () => {
                     ${each.project_token_price}
                   </TableCell>
                   <TableCell className="twhite yellow" align="left">
-                    {cryptoData.length > 0 &&
+                    {cryptoData.length > 0 && each.investementAmount ?
                       (
                         ((each.totalToken +
                           Math.abs(
@@ -195,13 +195,13 @@ const PoolTokens = () => {
                           each.totalToken) *
                           each.tokenPrice -
                         each.tokenPrice
-                      ).toFixed(2)}
+                      ).toFixed(2) : "0.00"}
                     %
                   </TableCell>
                   <TableCell className="twhite pink" align="left">
-                    {convertToInternationalCurrencySystem(
+                    { each.volume ? convertToInternationalCurrencySystem(
                       (each.volume / each.pecuCoin) * currentValue
-                    )}
+                    ) : "00"}
                   </TableCell>
 
                   <TableCell className="twhite blue" align="left">

@@ -99,7 +99,7 @@ const AllTokenTable = () => {
               padding: "1rem",
             }}
           >
-            Top Tokens
+            All Tokens
           </p>
           {loading && <LinearProgress color="inherit" />}
         </div>

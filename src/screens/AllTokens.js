@@ -4,7 +4,7 @@ import AllTokenTable from '../components/Tables/AllTokenTable';
 const AllTokens = () => {
     return (
         <div>
-            <p>All Tokens</p>
+            {/* <p>All Tokens</p> */}
             <AllTokenTable/>
         </div>
     );

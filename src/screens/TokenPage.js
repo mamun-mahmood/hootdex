@@ -5,7 +5,6 @@ import {
   Divider,
   Grid,
   IconButton,
-<<<<<<< HEAD
   LinearProgress,
 } from "@mui/material";
 import { Box } from "@mui/system";
@@ -20,26 +19,6 @@ import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
 import url from "../serverUrl";
 import Transactions from "../components/Tables/Transactions";
 import TokenGraph from "../components/Graphs/TokenGraph";
-=======
-  LinearProgress
-} from '@mui/material';
-import { Box } from '@mui/system';
-import axios from 'axios';
-import React from 'react';
-import { useEffect } from 'react';
-import { useState } from 'react';
-import { Link, useParams, useLocation } from 'react-router-dom';
-import BuyToken from '../components/Modal/BuyToken';
-import Chart from './chart';
-import GetAppIcon from '@mui/icons-material/GetApp';
-import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
-import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
-import TinyLineChart from '../components/Charts/TinyLineChart';
-import AssetChart from '../components/dashboard/AssetChart';
-import TopToken from '../components/Tables/TopToken';
-import url from '../serverUrl';
-import Transactions from '../components/Tables/Transactions';
->>>>>>> e51bc06434e7dd6cd20516f5993157031b519bec
 function convertToInternationalCurrencySystem(labelValue) {
   // Nine Zeroes for Billions
   return Math.abs(Number(labelValue)) >= 1.0e9
@@ -57,7 +36,6 @@ export default function TokenPage({ pecuCoins, user }) {
   const tokenName = useParams().tokenName;
   // const [token, setToken] = useState();
   const token = {
-<<<<<<< HEAD
     tokenName: data?.baseToken,
     timestamp: data?.date_time,
     firstPrice: data?.firstPrice,
@@ -67,7 +45,6 @@ export default function TokenPage({ pecuCoins, user }) {
     pecuValue: data?.pecuValue,
     public_key: data?.public_key,
     tokenSymbol: data?.symbol,
-=======
     tokenName: data.baseToken,
     timestamp: data.date_time,
     firstPrice: data.firstPrice,
@@ -77,7 +54,6 @@ export default function TokenPage({ pecuCoins, user }) {
     pecuValue: data.pecuValue,
     public_key: data.public_key,
     tokenSymbol: data.symbol
->>>>>>> e51bc06434e7dd6cd20516f5993157031b519bec
   };
   console.log(token);
   const [loading, setLoading] = useState(false);
@@ -182,7 +158,6 @@ export default function TokenPage({ pecuCoins, user }) {
               <div>
                 <Link
                   to={`/`}
-<<<<<<< HEAD
                   style={{ fontSize: "1rem", fontWeight: "500" }}
                 >{`Home `}</Link>
                 <Link
@@ -200,10 +175,6 @@ export default function TokenPage({ pecuCoins, user }) {
                 >
                   {" >"} {token?.tokenSymbol} / PECU
                 </span>
-=======
-                  style={{ fontSize: '1rem', fontWeight: '500' }}
-                >{`Home  >  Tokens  >  ${token?.tokenSymbol} / PECU `}</Link>
->>>>>>> e51bc06434e7dd6cd20516f5993157031b519bec
               </div>
               <div
                 style={{
@@ -515,10 +486,10 @@ export default function TokenPage({ pecuCoins, user }) {
                       marginTop: '1rem'
                     }}
                   >
-                    <TokenGraph
+                    {/* <TokenGraph
                       tokenName={tokenName}
                       setTokenPrice={setTokenPrice}
-                    />
+                    /> */}
                   </div>
                 </div>
               </Box>
