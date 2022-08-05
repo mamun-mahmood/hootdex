@@ -3,6 +3,7 @@ import {
   Avatar,
   LinearProgress,
   Paper,
+  Skeleton,
   Table,
   TableBody,
   TableCell,
@@ -89,144 +90,153 @@ const PoolTokens = () => {
             fontWeight: "bold",
             textAlign: "left",
             backgroundColor: "#21242b",
-            width: "100%",
-
             padding: "1rem",
           }}
         >
           Top Pools
         </p>
         {loading && <LinearProgress color="inherit" />}
-        <Table
-          sx={{
-            [`& .${tableCellClasses.root}`]: {
-              borderBottom: " 1px solid #1e2128",
-            },
-          }}
-        >
-          <TableHead className="">
-            <TableRow className="">
-              {/* {poolTableAttributes.map((e, index) => ( */}
-              <TableCell className="twhite" component="th" scope="row">
-                #
-              </TableCell>
-              <TableCell className="twhite">Name</TableCell>
-              <TableCell className="twhite" align="left">
-                Price
-              </TableCell>
-              <TableCell className="twhite" align="left">
-                Price Change ⬇
-              </TableCell>
-              <TableCell className="twhite" align="left">
-                Volume 24H
-              </TableCell>
-              <TableCell className="twhite" align="left">
-                TVL
-              </TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {pools.length &&
-              pools.map((each, index) => (
-                <TableRow key={each.id}>
-                  <TableCell className="twhite" component="th" scope="row">
-                    {index + 1}
-                  </TableCell>
-                  <TableCell className="twhite" align="left">
-                    <Link
-                      to={`/pools/${window.btoa(each.id)}`}
-                      pecuCoins={currentValue}
-                    >
-                      <div
-                        style={{
-                          display: "flex",
-                          alignItems: "center",
-                        }}
+        {pools.length ? (
+          <Table
+            sx={{
+              [`& .${tableCellClasses.root}`]: {
+                borderBottom: " 1px solid #1e2128",
+              },
+            }}
+          >
+            <TableHead className="">
+              <TableRow className="">
+                {/* {poolTableAttributes.map((e, index) => ( */}
+                <TableCell className="twhite" component="th" scope="row">
+                  #
+                </TableCell>
+                <TableCell className="twhite">Name</TableCell>
+                <TableCell className="twhite" align="left">
+                  Price
+                </TableCell>
+                <TableCell className="twhite" align="left">
+                  Price Change ⬇
+                </TableCell>
+                <TableCell className="twhite" align="left">
+                  Volume 24H
+                </TableCell>
+                <TableCell className="twhite" align="left">
+                  TVL
+                </TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {pools.length &&
+                pools.map((each, index) => (
+                  <TableRow key={each.id}>
+                    <TableCell className="twhite" component="th" scope="row">
+                      {index + 1}
+                    </TableCell>
+                    <TableCell className="twhite" align="left">
+                      <Link
+                        to={`/pools/${window.btoa(each.id)}`}
+                        pecuCoins={currentValue}
                       >
-                        <Avatar
-                          className="rounded"
-                          src={`${url}/hootdex/images/${each?.img}`}
-                          alt="token logo"
-                          style={{ width: "20px", height: "20px" }}
-                        />
-                        <Avatar
-                          className="rounded"
-                          src={`https://pecunovus.net/static/media/icon.25c8ec299d961b9dd524.ico`}
-                          alt="token logo"
-                          style={{ width: "20px", height: "20px" }}
-                        />
-                        <span style={{ marginLeft: "1rem", fontSize: "14px" }}>
-                          {each.project_name}{" "}
-                          <small style={{ color: "#696c75" }}>
-                            (
-                            {`${each.project_token_symbol}${
-                              each.wrap_token_symbol
-                                ? `/${each.wrap_token_symbol
-                                    .split("")
-                                    .map((e, i) =>
-                                      i == 0 ? e.toLowerCase() : e
-                                    )
-                                    .join("")}`
-                                : null
-                            }/PECU`}
-                            )
-                          </small>
-                        </span>
-                      </div>
-                    </Link>
-                  </TableCell>
-                  <TableCell className="twhite green" align="left">
-                    ${each.project_token_price}
-                  </TableCell>
-                  <TableCell className="twhite yellow" align="left">
-                    {cryptoData.length > 0 && each.investementAmount
-                      ? (
-                          ((each.totalToken +
-                            Math.abs(
-                              each.investementAmount +
-                                each.pecuCoin * currentValue +
-                                each.otherTokenAmount *
-                                  cryptoData?.filter(
-                                    (e) =>
-                                      e.symbol ==
-                                      each?.wrap_token_symbol.slice(1)
-                                  )[0].price -
-                                each.firstTVL
-                            )) /
-                            each.totalToken) *
-                            each.tokenPrice -
-                          each.tokenPrice
-                        ).toFixed(2)
-                      : "0.00"}
-                    %
-                  </TableCell>
-                  <TableCell className="twhite pink" align="left">
-                    {each.volume
-                      ? convertToInternationalCurrencySystem(
-                          (each.volume / each.pecuCoin) * currentValue
-                        )
-                      : '0.00'}
-                  </TableCell>
+                        <div
+                          style={{
+                            display: "flex",
+                            alignItems: "center",
+                          }}
+                        >
+                          <Avatar
+                            className="rounded"
+                            src={`${url}/hootdex/images/${each?.img}`}
+                            alt="token logo"
+                            style={{ width: "20px", height: "20px" }}
+                          />
+                          <Avatar
+                            className="rounded"
+                            src={`https://pecunovus.net/static/media/icon.25c8ec299d961b9dd524.ico`}
+                            alt="token logo"
+                            style={{ width: "20px", height: "20px" }}
+                          />
+                          <span
+                            style={{ marginLeft: "1rem", fontSize: "14px" }}
+                          >
+                            {each.project_name}{" "}
+                            <small style={{ color: "#696c75" }}>
+                              (
+                              {`${each.project_token_symbol}${
+                                each.wrap_token_symbol
+                                  ? `/${each.wrap_token_symbol
+                                      .split("")
+                                      .map((e, i) =>
+                                        i == 0 ? e.toLowerCase() : e
+                                      )
+                                      .join("")}`
+                                  : null
+                              }/PECU`}
+                              )
+                            </small>
+                          </span>
+                        </div>
+                      </Link>
+                    </TableCell>
+                    <TableCell className="twhite green" align="left">
+                      ${each.project_token_price}
+                    </TableCell>
+                    <TableCell className="twhite yellow" align="left">
+                      {cryptoData.length > 0 && each.investementAmount
+                        ? (
+                            ((each.totalToken +
+                              Math.abs(
+                                each.investementAmount +
+                                  each.pecuCoin * currentValue +
+                                  each.otherTokenAmount *
+                                    cryptoData?.filter(
+                                      (e) =>
+                                        e.symbol ==
+                                        each?.wrap_token_symbol.slice(1)
+                                    )[0].price -
+                                  each.firstTVL
+                              )) /
+                              each.totalToken) *
+                              each.tokenPrice -
+                            each.tokenPrice
+                          ).toFixed(2)
+                        : "0.00"}
+                      %
+                    </TableCell>
+                    <TableCell className="twhite pink" align="left">
+                      {each.volume
+                        ? convertToInternationalCurrencySystem(
+                            (each.volume / each.pecuCoin) * currentValue
+                          )
+                        : "0.00"}
+                    </TableCell>
 
-                  <TableCell className="twhite blue" align="left">
-                    {convertToInternationalCurrencySystem(
-                      each.project_token_amount * each.project_token_price +
-                        each.pecu_amount * each.pecu_price +
-                        each.wrap_token_price * each.wrap_token_amount
-                    )}
+                    <TableCell className="twhite blue" align="left">
+                      {convertToInternationalCurrencySystem(
+                        each.project_token_amount * each.project_token_price +
+                          each.pecu_amount * each.pecu_price +
+                          each.wrap_token_price * each.wrap_token_amount
+                      )}
 
-                    {/* {convertToInternationalCurrencySystem(each.totalToken)} */}
-                  </TableCell>
-                </TableRow>
-              ))}
+                      {/* {convertToInternationalCurrencySystem(each.totalToken)} */}
+                    </TableCell>
+                  </TableRow>
+                ))}
 
-            {/* <TablePagination
-                sx={{ color: "white" }}
-                rowsPerPageOptions={[10, 50]}
-                onChange={(e) => setRows(e)}
-              /> */}
-          </TableBody>
-        </Table>
+              {/* <TablePagination
+       sx={{ color: "white" }}
+       rowsPerPageOptions={[10, 50]}
+       onChange={(e) => setRows(e)}
+     /> */}
+            </TableBody>
+          </Table>
+        ) : (
+          <Skeleton
+            sx={{ bgcolor: "#21242b", mt: 1 }}
+            variant="rectangular"
+            margin={"1rem"}
+            height={100}
+          />
+        )}
       </TableContainer>
     </>
   );
