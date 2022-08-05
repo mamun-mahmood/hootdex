@@ -134,7 +134,7 @@ const PoolTokens = () => {
                   </TableCell>
                   <TableCell className="twhite" align="left">
                     <Link
-                      to={`/pools/${each.project_name}`}
+                      to={`/pools/${each.id}`}
                       pecuCoins={currentValue}
                     >
                       <div

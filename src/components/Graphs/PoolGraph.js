@@ -31,6 +31,7 @@ const PoolGraph = ({ id, pool, currentValue }) => {
   const [chartBtn, setChartBtn] = useState(2);
   const [chartData, setChartData] = useState([]);
   const [filter, setFilter] = useState("current_hourly");
+  console.log(pool);
   const getChatData = (target) => {
     setFilter(target);
     axios
@@ -77,7 +78,7 @@ const PoolGraph = ({ id, pool, currentValue }) => {
           >
             {" "}
             {convertToInternationalCurrencySystem(
-              (pool.volume / pool.pecuCoin) * currentValue
+              (pool.project_token_amount / pool.pecu_amount) * currentValue
             )}
           </p>
           {/* <p className="pool-page-t1">{date}</p> */}
