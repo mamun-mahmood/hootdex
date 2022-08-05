@@ -80,7 +80,7 @@ export default function TokenPage({ pecuCoins, user }) {
   const get_crypto_Data = () => {
     axios.get(`https://mhiservers2.com/crypto/index`).then((res) => {
       const findtoken = res.data?.filter(
-        (e) => e.symbol === token.tokenSymbol.slice(1)
+        (e) => e.symbol === token.tokenSymbol?.slice(1)
       );
       setCryptoData(findtoken[0]);
       console.log(findtoken[0]);
@@ -167,7 +167,7 @@ export default function TokenPage({ pecuCoins, user }) {
                 <Avatar
                   className="rounded"
                   src={`null`}
-                  alt={token.tokenSymbol.slice(1)}
+                  alt={token.tokenSymbol?.slice(1)}
                   style={{
                     backgroundColor: "orange",
                     height: "25px",
@@ -185,9 +185,9 @@ export default function TokenPage({ pecuCoins, user }) {
                   }}
                 >
                   <span style={{ textTransform: "lowercase" }}>
-                    {`${token?.tokenSymbol.slice(0, 1)}`}
+                    {`${token?.tokenSymbol?.slice(0, 1)}`}
                   </span>
-                  {token?.tokenSymbol.slice(1)}
+                  {token?.tokenSymbol?.slice(1)}
                 </p>
               </div>
               <div
@@ -248,7 +248,7 @@ export default function TokenPage({ pecuCoins, user }) {
                       }}
                     >
                       {convertToInternationalCurrencySystem(
-                        cryptoData?.price + currentValue
+                        (data.initialFinal / data.wrapAmount).toFixed(2)
                       )}
                     </p>
                     <small style={{ fontSize: "16px", color: "green" }}>
@@ -359,7 +359,7 @@ export default function TokenPage({ pecuCoins, user }) {
                     {" "}
                     $
                     {convertToInternationalCurrencySystem(
-                      token?.initialFinal / cryptoData?.price
+                      data.wrapAmount * data.initialFinal
                     )}
                   </p>
                 </div>
@@ -367,7 +367,7 @@ export default function TokenPage({ pecuCoins, user }) {
                   <p className="token-page-t1 mb-1">24h Trading Vol</p>
                   <p className="token-page-t2 mb-1">
                     {convertToInternationalCurrencySystem(
-                      cryptoData?.volume24hr
+                      data?.initialFinal
                     )}
                   </p>
                 </div>

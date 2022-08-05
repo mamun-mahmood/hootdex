@@ -440,6 +440,11 @@ export default function PoolPage({ pecuCoins, user }) {
                     </p>
                   </div>
                   {token.otherToken && (
+                     <Link
+                     to={`/tokens/tokenid`}
+                     state={token.otherToken}
+                     // pecuCoins={currentValue}
+                   >
                     <div
                       style={{
                         display: "flex",
@@ -455,6 +460,7 @@ export default function PoolPage({ pecuCoins, user }) {
                         cursor: "pointer",
                         minWidth: "200px",
                       }}
+
                     >
                       <Avatar
                         className="rounded"
@@ -483,6 +489,7 @@ export default function PoolPage({ pecuCoins, user }) {
                         USD
                       </p>
                     </div>
+                  </Link>
                   )}
                 </div>
                 <div
