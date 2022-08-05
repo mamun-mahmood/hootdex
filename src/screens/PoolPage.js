@@ -4,31 +4,31 @@ import {
   Collapse,
   Grid,
   IconButton,
-  LinearProgress,
-} from "@mui/material";
-import { Box } from "@mui/system";
-import axios from "axios";
-import React from "react";
-import { useEffect } from "react";
-import { useState } from "react";
-import { Link, useParams } from "react-router-dom";
-import BuyToken from "../components/Modal/BuyToken";
-import GetAppIcon from "@mui/icons-material/GetApp";
-import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
-import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
-import PoolGraph from "../components/Graphs/PoolGraph";
-import url from "../serverUrl";
-import Transactions from "../components/Tables/Transactions";
+  LinearProgress
+} from '@mui/material';
+import { Box } from '@mui/system';
+import axios from 'axios';
+import React from 'react';
+import { useEffect } from 'react';
+import { useState } from 'react';
+import { Link, useParams } from 'react-router-dom';
+import BuyToken from '../components/Modal/BuyToken';
+import GetAppIcon from '@mui/icons-material/GetApp';
+import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
+import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
+import PoolGraph from '../components/Graphs/PoolGraph';
+import url from '../serverUrl';
+import Transactions from '../components/Tables/Transactions';
 function convertToInternationalCurrencySystem(labelValue) {
   // Nine Zeroes for Billions
   return Math.abs(Number(labelValue)) >= 1.0e9
-    ? (Math.abs(Number(labelValue)) / 1.0e9).toFixed(2) + "b"
+    ? (Math.abs(Number(labelValue)) / 1.0e9).toFixed(2) + 'b'
     : // Six Zeroes for Millions
     Math.abs(Number(labelValue)) >= 1.0e6
-    ? (Math.abs(Number(labelValue)) / 1.0e6).toFixed(2) + "m"
+    ? (Math.abs(Number(labelValue)) / 1.0e6).toFixed(2) + 'm'
     : // Three Zeroes for Thousands
     Math.abs(Number(labelValue)) >= 1.0e3
-    ? (Math.abs(Number(labelValue)) / 1.0e3).toFixed(2) + "k"
+    ? (Math.abs(Number(labelValue)) / 1.0e3).toFixed(2) + 'k'
     : Math.abs(Number(labelValue));
 }
 export default function PoolPage({ pecuCoins, user }) {
@@ -38,16 +38,16 @@ export default function PoolPage({ pecuCoins, user }) {
 
   const [cryptoData, setCryptoData] = useState([]);
   const [alert, setAlert] = useState({
-    msg: "",
-    type: "",
-    show: false,
+    msg: '',
+    type: '',
+    show: false
   });
   const [currentValue, setCurrentValue] = useState(0);
   const [tokenPrice, setTokenPrice] = useState([
     {
       currentPrice: null,
-      previousPrice: null,
-    },
+      previousPrice: null
+    }
   ]);
   const get_current_index_coin = () => {
     axios
@@ -78,15 +78,15 @@ export default function PoolPage({ pecuCoins, user }) {
       .catch((err) => {
         setLoading(false);
         setAlert({
-          msg: "There was an error",
-          type: "error",
-          show: true,
+          msg: 'There was an error',
+          type: 'error',
+          show: true
         });
         setTimeout(() => {
           setAlert({
-            msg: "There was an error",
-            type: "error",
-            show: false,
+            msg: 'There was an error',
+            type: 'error',
+            show: false
           });
         }, 3000);
         console.log(err);
@@ -117,13 +117,13 @@ export default function PoolPage({ pecuCoins, user }) {
     <>
       {loading && (
         <div>
-          <LinearProgress sx={{ backgroundColor: "grey" }} />
+          <LinearProgress sx={{ backgroundColor: 'grey' }} />
         </div>
       )}
       {!loading && cryptoData.length > 0 && token.tokenSymbol && currentValue && (
-        <Box sx={{ padding: { xs: 1, md: "1rem 4rem" } }}>
+        <Box sx={{ padding: { xs: 1, md: '1rem 4rem' } }}>
           <Grid
-            width={"100%"}
+            width={'100%'}
             container
             spacing={1}
             padding={{ xs: 0, md: 0 }}
@@ -133,22 +133,22 @@ export default function PoolPage({ pecuCoins, user }) {
               <div>
                 <Link
                   to={`/`}
-                  style={{ fontSize: "1rem", fontWeight: "500" }}
+                  style={{ fontSize: '1rem', fontWeight: '500' }}
                 >{`Home  >  Pools  >  ${token.tokenSymbol} ${
                   token.otherToken
                     ? `/${token.otherToken
-                        .split("")
+                        .split('')
                         .map((e, i) => (i == 0 ? e.toLowerCase() : e))
-                        .join("")}`
+                        .join('')}`
                     : null
                 } / PECU `}</Link>
               </div>
               <div
                 style={{
-                  display: "flex",
-                  alignItems: "center",
-                  margin: "2rem 0 0 1rem",
-                  width: "fit-content",
+                  display: 'flex',
+                  alignItems: 'center',
+                  margin: '2rem 0 0 1rem',
+                  width: 'fit-content'
                 }}
               >
                 <Avatar
@@ -156,9 +156,9 @@ export default function PoolPage({ pecuCoins, user }) {
                   src={`${url}/hootdex/images/${token?.logo_src}`}
                   alt="token logo"
                   style={{
-                    width: "24px",
-                    height: "24px",
-                    color: "rgb(86, 90, 105)",
+                    width: '24px',
+                    height: '24px',
+                    color: 'rgb(86, 90, 105)'
                   }}
                 />
                 <Avatar
@@ -166,41 +166,41 @@ export default function PoolPage({ pecuCoins, user }) {
                   src={`https://pecunovus.net/static/media/icon.25c8ec299d961b9dd524.ico`}
                   alt="token logo"
                   style={{
-                    width: "24px",
-                    height: "24px",
-                    color: "rgb(86, 90, 105)",
+                    width: '24px',
+                    height: '24px',
+                    color: 'rgb(86, 90, 105)'
                   }}
                 />
                 <p
                   style={{
-                    color: "white",
-                    marginLeft: "5px",
-                    fontSize: "24px",
-                    fontWeight: "500",
-                    fontFamily: "Inter var sans-serif",
+                    color: 'white',
+                    marginLeft: '5px',
+                    fontSize: '24px',
+                    fontWeight: '500',
+                    fontFamily: 'Inter var sans-serif'
                   }}
                 >
                   {`${token.tokenSymbol} ${
                     token.otherToken
                       ? `/${token.otherToken
-                          .split("")
+                          .split('')
                           .map((e, i) => (i == 0 ? e.toLowerCase() : e))
-                          .join("")}`
+                          .join('')}`
                       : null
                   } / PECU`}
                 </p>
                 <p
                   className="token-page-t2"
                   style={{
-                    fontSize: "13px",
-                    backgroundColor: "rgb(64, 68, 79)",
-                    padding: "2px",
-                    borderRadius: "8px",
-                    fontWeight: "400",
-                    boxSizing: "border-box",
-                    cursor: "pointer",
-                    fontFamily: "arial",
-                    marginLeft: "6px",
+                    fontSize: '13px',
+                    backgroundColor: 'rgb(64, 68, 79)',
+                    padding: '2px',
+                    borderRadius: '8px',
+                    fontWeight: '400',
+                    boxSizing: 'border-box',
+                    cursor: 'pointer',
+                    fontFamily: 'arial',
+                    marginLeft: '6px'
                   }}
                 >
                   {token.investementAmount +
@@ -210,8 +210,8 @@ export default function PoolPage({ pecuCoins, user }) {
                         (e) => e.symbol == token.otherToken.slice(1)
                       )[0].price >
                   token.firstTVL ? (
-                    <small style={{ fontSize: "13px" }}>
-                      <ArrowUpwardIcon sx={{ fontSize: "13px" }} />
+                    <small style={{ fontSize: '13px' }}>
+                      <ArrowUpwardIcon sx={{ fontSize: '13px' }} />
                       {token.investementAmount +
                         token.pecuCoin * currentValue +
                         token.otherTokenAmount *
@@ -232,12 +232,12 @@ export default function PoolPage({ pecuCoins, user }) {
                               100) /
                             token.firstTVL
                           ).toFixed(2)
-                        : "0.00"}
+                        : '0.00'}
                       %
                     </small>
                   ) : (
-                    <small style={{ fontSize: "13px" }}>
-                      <ArrowDownwardIcon sx={{ fontSize: "13px" }} />
+                    <small style={{ fontSize: '13px' }}>
+                      <ArrowDownwardIcon sx={{ fontSize: '13px' }} />
                       {token.investementAmount +
                         token.pecuCoin * currentValue +
                         token.otherTokenAmount *
@@ -258,7 +258,7 @@ export default function PoolPage({ pecuCoins, user }) {
                               100) /
                             token.firstTVL
                           ).toFixed(2)
-                        : "0.00"}
+                        : '0.00'}
                       %
                     </small>
                   )}
@@ -318,14 +318,14 @@ export default function PoolPage({ pecuCoins, user }) {
             </div> */}
               <div
                 style={{
-                  marginTop: "0.5rem",
-                  display: "flex",
-                  flexDirection: "row",
-                  justifyContent: "space-between",
-                  minWidth: "90vw",
-                  width: "100%",
+                  marginTop: '0.5rem',
+                  display: 'flex',
+                  flexDirection: 'row',
+                  justifyContent: 'space-between',
+                  minWidth: '90vw',
+                  width: '100%',
 
-                  flexWrap: "wrap",
+                  flexWrap: 'wrap'
                 }}
               >
                 {/* <p
@@ -350,26 +350,26 @@ export default function PoolPage({ pecuCoins, user }) {
               </p> */}
                 <div
                   style={{
-                    display: "flex",
-                    minWidth: "60%",
-                    flexDirection: "row",
-                    flexWrap: "wrap",
+                    display: 'flex',
+                    minWidth: '60%',
+                    flexDirection: 'row',
+                    flexWrap: 'wrap'
                   }}
                 >
                   <div
                     style={{
-                      display: "flex",
-                      flexDirection: "row",
-                      backgroundColor: "rgb(64, 68, 79)",
-                      padding: "4px 6px",
-                      borderRadius: "8px",
-                      fontWeight: "400",
-                      boxSizing: "border-box",
-                      maxWidth: "fit-content",
-                      color: "white",
-                      margin: "1rem ",
-                      cursor: "pointer",
-                      minWidth: "200px",
+                      display: 'flex',
+                      flexDirection: 'row',
+                      backgroundColor: 'rgb(64, 68, 79)',
+                      padding: '4px 6px',
+                      borderRadius: '8px',
+                      fontWeight: '400',
+                      boxSizing: 'border-box',
+                      maxWidth: 'fit-content',
+                      color: 'white',
+                      margin: '1rem ',
+                      cursor: 'pointer',
+                      minWidth: '200px'
                     }}
                   >
                     <Avatar
@@ -377,19 +377,19 @@ export default function PoolPage({ pecuCoins, user }) {
                       src={`${url}/hootdex/images/${token?.logo_src}`}
                       alt="token logo"
                       style={{
-                        width: "22px",
-                        height: "22px",
-                        color: "rgb(86, 90, 105)",
+                        width: '22px',
+                        height: '22px',
+                        color: 'rgb(86, 90, 105)'
                       }}
                     />
                     <p
                       style={{
-                        fontSize: "16px",
+                        fontSize: '16px',
                         fontWeight: 500,
-                        marginLeft: "5px",
+                        marginLeft: '5px'
                       }}
                     >
-                      {}1 {token.tokenSymbol} ={" "}
+                      {}1 {token.tokenSymbol} ={' '}
                       {convertToInternationalCurrencySystem(
                         (
                           ((token.totalToken +
@@ -411,18 +411,18 @@ export default function PoolPage({ pecuCoins, user }) {
                   </div>
                   <div
                     style={{
-                      display: "flex",
-                      flexDirection: "row",
-                      backgroundColor: "rgb(64, 68, 79)",
-                      padding: "4px 6px",
-                      borderRadius: "8px",
-                      fontWeight: "400",
-                      boxSizing: "border-box",
-                      maxWidth: "fit-content",
-                      color: "white",
-                      margin: "1rem ",
-                      cursor: "pointer",
-                      minWidth: "200px",
+                      display: 'flex',
+                      flexDirection: 'row',
+                      backgroundColor: 'rgb(64, 68, 79)',
+                      padding: '4px 6px',
+                      borderRadius: '8px',
+                      fontWeight: '400',
+                      boxSizing: 'border-box',
+                      maxWidth: 'fit-content',
+                      color: 'white',
+                      margin: '1rem ',
+                      cursor: 'pointer',
+                      minWidth: '200px'
                     }}
                   >
                     <Avatar
@@ -430,19 +430,19 @@ export default function PoolPage({ pecuCoins, user }) {
                       src={`https://pecunovus.net/static/media/icon.25c8ec299d961b9dd524.ico`}
                       alt="token logo"
                       style={{
-                        width: "22px",
-                        height: "22px",
-                        color: "rgb(86, 90, 105)",
+                        width: '22px',
+                        height: '22px',
+                        color: 'rgb(86, 90, 105)'
                       }}
                     />
                     <p
                       style={{
-                        fontSize: "16px",
+                        fontSize: '16px',
                         fontWeight: 500,
-                        marginLeft: "5px",
+                        marginLeft: '5px'
                       }}
                     >
-                      1 {"PECU"} = {currentValue?.toFixed(2)} USD
+                      1 {'PECU'} = {currentValue?.toFixed(2)} USD
                     </p>
                   </div>
                   {token.otherToken && (
@@ -453,18 +453,18 @@ export default function PoolPage({ pecuCoins, user }) {
                     >
                       <div
                         style={{
-                          display: "flex",
-                          flexDirection: "row",
-                          backgroundColor: "rgb(64, 68, 79)",
-                          padding: "4px 6px",
-                          borderRadius: "8px",
-                          fontWeight: "400",
-                          boxSizing: "border-box",
-                          maxWidth: "fit-content",
-                          color: "white",
-                          margin: "1rem ",
-                          cursor: "pointer",
-                          minWidth: "200px",
+                          display: 'flex',
+                          flexDirection: 'row',
+                          backgroundColor: 'rgb(64, 68, 79)',
+                          padding: '4px 6px',
+                          borderRadius: '8px',
+                          fontWeight: '400',
+                          boxSizing: 'border-box',
+                          maxWidth: 'fit-content',
+                          color: 'white',
+                          margin: '1rem ',
+                          cursor: 'pointer',
+                          minWidth: '200px'
                         }}
                       >
                         <Avatar
@@ -472,30 +472,30 @@ export default function PoolPage({ pecuCoins, user }) {
                           src={`hfj`}
                           alt={token.otherToken}
                           style={{
-                            width: "22px",
-                            height: "22px",
-                            color: "rgb(86, 90, 105)",
-                            backgroundColor: "orange",
+                            width: '22px',
+                            height: '22px',
+                            color: 'rgb(86, 90, 105)',
+                            backgroundColor: 'orange'
                           }}
                         />
                         <p
                           style={{
-                            fontSize: "16px",
+                            fontSize: '16px',
                             fontWeight: 500,
-                            marginLeft: "5px",
+                            marginLeft: '5px'
                           }}
                         >
-                          1{" "}
+                          1{' '}
                           {token.otherToken
-                            .split("")
+                            .split('')
                             .map((e, i) => (i == 0 ? e.toLowerCase() : e))
-                            .join("")}
-                          ={" "}
+                            .join('')}
+                          ={' '}
                           {convertToInternationalCurrencySystem(
                             cryptoData.filter(
                               (e) => e.symbol == token.otherToken.slice(1)
                             )[0].price
-                          )}{" "}
+                          )}{' '}
                           USD
                         </p>
                       </div>
@@ -504,26 +504,26 @@ export default function PoolPage({ pecuCoins, user }) {
                 </div>
                 <div
                   style={{
-                    display: "flex",
-                    flexDirectino: "row",
-                    alignItems: "center",
-                    flexWrap: "wrap",
+                    display: 'flex',
+                    flexDirectino: 'row',
+                    alignItems: 'center',
+                    flexWrap: 'wrap'
                   }}
                 >
-                  {" "}
+                  {' '}
                   <IconButton
                     className="dfelxalitemC shadow"
                     sx={{
-                      backgroundColor: "rgb(64, 68, 79)",
-                      color: "rgb(195, 197, 203)",
+                      backgroundColor: 'rgb(64, 68, 79)',
+                      color: 'rgb(195, 197, 203)',
                       // padding: "8px 14px",
-                      borderRadius: "12px",
-                      cursor: "pointer",
+                      borderRadius: '12px',
+                      cursor: 'pointer',
                       // width: "170px",
-                      marginRight: "1rem",
-                      fontWeight: "800",
-                      maxHeight: "40px",
-                      fontSize: "18px",
+                      marginRight: '1rem',
+                      fontWeight: '800',
+                      maxHeight: '40px',
+                      fontSize: '18px'
                     }}
                   >
                     <GetAppIcon />
@@ -537,80 +537,80 @@ export default function PoolPage({ pecuCoins, user }) {
             <Grid item xs={12} md={6}>
               <div
                 style={{
-                  display: "flex",
-                  justifyContent: "end",
+                  display: 'flex',
+                  justifyContent: 'end'
                 }}
               ></div>
             </Grid>
             <Grid item xs={12} md={4} mt={3}>
               <div
                 style={{
-                  backgroundColor: "rgb(25, 27, 31)",
-                  borderRadius: "20px",
-                  height: "100%",
-                  padding: "1.5rem",
-                  maxWidth: "350px",
+                  backgroundColor: 'rgb(25, 27, 31)',
+                  borderRadius: '20px',
+                  height: '100%',
+                  padding: '1.5rem',
+                  maxWidth: '350px'
                 }}
                 className="shadowGrey"
               >
-                <div style={{ marginBottom: "1rem" }}>
-                  <div className="glassmorphosism" style={{ padding: "1rem" }}>
+                <div style={{ marginBottom: '1rem' }}>
+                  <div className="glassmorphosism" style={{ padding: '1rem' }}>
                     <p
                       className="token-page-t2 mb-1"
-                      style={{ fontSize: "1rem", fontFamily: "arial" }}
+                      style={{ fontSize: '1rem', fontFamily: 'arial' }}
                     >
                       Total Tokens Locked
                     </p>
                     <div
                       style={{
-                        display: "flex",
-                        flexDirection: "column",
-                        alignItems: "flex-start",
+                        display: 'flex',
+                        flexDirection: 'column',
+                        alignItems: 'flex-start'
                       }}
                     >
                       <div
                         style={{
-                          display: "flex",
-                          flexDirection: "row",
-                          alignItems: "center",
-                          margin: "0.5rem",
-                          width: "100%",
-                          justifyContent: "space-between",
+                          display: 'flex',
+                          flexDirection: 'row',
+                          alignItems: 'center',
+                          margin: '0.5rem',
+                          width: '100%',
+                          justifyContent: 'space-between'
                         }}
                       >
                         <span
                           style={{
-                            display: "flex",
-                            flexDriection: "row",
-                            alignItems: "center",
+                            display: 'flex',
+                            flexDriection: 'row',
+                            alignItems: 'center'
                           }}
                         >
                           <Avatar
                             className="rounded"
                             src={`${url}/hootdex/images/${token?.logo_src}`}
                             alt="token logo"
-                            style={{ width: "20px", height: "20px" }}
+                            style={{ width: '20px', height: '20px' }}
                           />
                           <p
                             style={{
-                              color: "white",
-                              marginLeft: "1rem",
-                              fontSize: "13px",
-                              fontWeight: "bold",
-                              fontFamily: "arial",
+                              color: 'white',
+                              marginLeft: '1rem',
+                              fontSize: '13px',
+                              fontWeight: 'bold',
+                              fontFamily: 'arial'
                             }}
                           >
-                            ${token.tokenSymbol}:
+                            {token.tokenSymbol}:
                           </p>
                         </span>
 
                         <p
                           style={{
-                            color: "white",
-                            marginLeft: "1rem",
-                            fontSize: "13px",
-                            fontWeight: "bold",
-                            fontFamily: "arial",
+                            color: 'white',
+                            marginLeft: '1rem',
+                            fontSize: '13px',
+                            fontWeight: 'bold',
+                            fontFamily: 'arial'
                           }}
                         >
                           {` ${convertToInternationalCurrencySystem(
@@ -624,34 +624,34 @@ export default function PoolPage({ pecuCoins, user }) {
                       </div>
                       <div
                         style={{
-                          display: "flex",
-                          flexDirection: "row",
-                          alignItems: "flex-start",
-                          margin: "0.5rem",
-                          width: "100%",
-                          justifyContent: "space-between",
+                          display: 'flex',
+                          flexDirection: 'row',
+                          alignItems: 'flex-start',
+                          margin: '0.5rem',
+                          width: '100%',
+                          justifyContent: 'space-between'
                         }}
                       >
                         <span
                           style={{
-                            display: "flex",
-                            flexDriection: "row",
-                            alignItems: "center",
+                            display: 'flex',
+                            flexDriection: 'row',
+                            alignItems: 'center'
                           }}
                         >
                           <Avatar
                             className="rounded"
                             src={`https://pecunovus.net/static/media/icon.25c8ec299d961b9dd524.ico`}
                             alt="token logo"
-                            style={{ width: "20px", height: "20px" }}
-                          />{" "}
+                            style={{ width: '20px', height: '20px' }}
+                          />{' '}
                           <p
                             style={{
-                              color: "white",
-                              marginLeft: "1rem",
-                              fontSize: "13px",
-                              fontWeight: "bold",
-                              fontFamily: "arial",
+                              color: 'white',
+                              marginLeft: '1rem',
+                              fontSize: '13px',
+                              fontWeight: 'bold',
+                              fontFamily: 'arial'
                             }}
                           >
                             {`PECU :`}
@@ -662,11 +662,11 @@ export default function PoolPage({ pecuCoins, user }) {
 
                         <p
                           style={{
-                            color: "white",
-                            marginLeft: "1rem",
-                            fontSize: "13px",
-                            fontWeight: "bold",
-                            fontFamily: "arial",
+                            color: 'white',
+                            marginLeft: '1rem',
+                            fontSize: '13px',
+                            fontWeight: 'bold',
+                            fontFamily: 'arial'
                           }}
                         >
                           {`${convertToInternationalCurrencySystem(
@@ -679,20 +679,20 @@ export default function PoolPage({ pecuCoins, user }) {
                       {token.otherToken && (
                         <div
                           style={{
-                            display: "flex",
-                            flexDirection: "row",
-                            alignItems: "flex-start",
-                            margin: "0.5rem",
-                            width: "100%",
-                            justifyContent: "space-between",
+                            display: 'flex',
+                            flexDirection: 'row',
+                            alignItems: 'flex-start',
+                            margin: '0.5rem',
+                            width: '100%',
+                            justifyContent: 'space-between'
                           }}
                         >
-                          {" "}
+                          {' '}
                           <span
                             style={{
-                              display: "flex",
-                              flexDriection: "row",
-                              alignItems: "center",
+                              display: 'flex',
+                              flexDriection: 'row',
+                              alignItems: 'center'
                             }}
                           >
                             <Avatar
@@ -700,34 +700,34 @@ export default function PoolPage({ pecuCoins, user }) {
                               src={`hjh`}
                               alt={token.otherToken}
                               style={{
-                                width: "20px",
-                                height: "20px",
-                                backgroundColor: "orange",
+                                width: '20px',
+                                height: '20px',
+                                backgroundColor: 'orange'
                               }}
                             />
                             <p
                               style={{
-                                color: "white",
-                                marginLeft: "1rem",
-                                fontSize: "13px",
-                                fontWeight: "bold",
-                                fontFamily: "arial",
+                                color: 'white',
+                                marginLeft: '1rem',
+                                fontSize: '13px',
+                                fontWeight: 'bold',
+                                fontFamily: 'arial'
                               }}
                             >
                               {`${token.otherToken
-                                .split("")
+                                .split('')
                                 .map((e, i) => (i == 0 ? e.toLowerCase() : e))
-                                .join("")} : 
+                                .join('')} : 
                           `}
                             </p>
                           </span>
                           <p
                             style={{
-                              color: "white",
-                              marginLeft: "1rem",
-                              fontSize: "13px",
-                              fontWeight: "bold",
-                              fontFamily: "arial",
+                              color: 'white',
+                              marginLeft: '1rem',
+                              fontSize: '13px',
+                              fontWeight: 'bold',
+                              fontFamily: 'arial'
                             }}
                           >
                             {`${convertToInternationalCurrencySystem(
@@ -746,7 +746,7 @@ export default function PoolPage({ pecuCoins, user }) {
                   <p className="token-page-t1 mb-1">TVL</p>
                   <p
                     className="token-page-t2 mb-1"
-                    style={{ fontSize: "24px" }}
+                    style={{ fontSize: '24px' }}
                   >
                     $
                     {convertToInternationalCurrencySystem(
@@ -779,16 +779,16 @@ export default function PoolPage({ pecuCoins, user }) {
               </div> */}
 
                 <p className="token-page-t2">
-                  {" "}
+                  {' '}
                   <p className="token-page-t1 mb-1">Volume 24h</p>
                   {/* {tokenPrice[0]?.previousPrice} */}
                   <p
                     style={{
-                      marginTop: "0.5rem",
-                      fontSize: "24px",
+                      marginTop: '0.5rem',
+                      fontSize: '24px'
                     }}
                   >
-                    {" "}
+                    {' '}
                     {convertToInternationalCurrencySystem(
                       (token.volume / token.pecuCoin) * currentValue
                     )}
@@ -800,9 +800,9 @@ export default function PoolPage({ pecuCoins, user }) {
                         (e) => e.symbol == token.otherToken.slice(1)
                       )[0].price >
                   token.firstTVL ? (
-                    <small style={{ fontSize: "15px", color: "green" }}>
+                    <small style={{ fontSize: '15px', color: 'green' }}>
                       <ArrowUpwardIcon
-                        sx={{ fontSize: "15px", color: "green" }}
+                        sx={{ fontSize: '15px', color: 'green' }}
                       />
                       {token.investementAmount +
                         token.pecuCoin * currentValue +
@@ -824,12 +824,12 @@ export default function PoolPage({ pecuCoins, user }) {
                               100) /
                             token.firstTVL
                           ).toFixed(2)
-                        : "0.00"}
+                        : '0.00'}
                       %
                     </small>
                   ) : (
-                    <small style={{ fontSize: "13px" }}>
-                      <ArrowDownwardIcon sx={{ fontSize: "13px" }} />
+                    <small style={{ fontSize: '13px' }}>
+                      <ArrowDownwardIcon sx={{ fontSize: '13px' }} />
                       {token.investementAmount +
                         token.pecuCoin * currentValue +
                         token.otherTokenAmount *
@@ -850,19 +850,19 @@ export default function PoolPage({ pecuCoins, user }) {
                               100) /
                             token.firstTVL
                           ).toFixed(2)
-                        : "0.00"}
+                        : '0.00'}
                       %
                     </small>
                   )}
                 </p>
                 <br></br>
-                <div style={{ marginBottom: "1rem" }}>
+                <div style={{ marginBottom: '1rem' }}>
                   <p className="token-page-t1 mb-1">24h Fees</p>
                   <p
                     className="token-page-t2 mb-1"
                     style={{
-                      marginTop: "0.5rem",
-                      fontSize: "24px",
+                      marginTop: '0.5rem',
+                      fontSize: '24px'
                     }}
                   >
                     $
@@ -890,13 +890,13 @@ export default function PoolPage({ pecuCoins, user }) {
               </div>
             </Grid>
             <Grid item xs={12} md={8} sx={{ marginTop: { xs: 8, md: 3 } }}>
-              <Box sx={{ height: "100%" }}>
+              <Box sx={{ height: '100%' }}>
                 <div
                   style={{
-                    backgroundColor: "rgb(25, 27, 31)",
-                    height: "100%",
-                    borderRadius: "20px",
-                    padding: "1.5rem",
+                    backgroundColor: 'rgb(25, 27, 31)',
+                    height: '100%',
+                    borderRadius: '20px',
+                    padding: '1.5rem'
                   }}
                   className="shadowGrey"
                 >
@@ -914,12 +914,12 @@ export default function PoolPage({ pecuCoins, user }) {
               <Transactions />
             </Grid>
           </Grid>
-          <div style={{ display: "flex", justifyContent: "center" }}>
-            <Collapse in={alert.show} sx={{ maxWidth: 400, position: "fixed" }}>
+          <div style={{ display: 'flex', justifyContent: 'center' }}>
+            <Collapse in={alert.show} sx={{ maxWidth: 400, position: 'fixed' }}>
               <Alert
                 variant="outlined"
                 severity={alert.type}
-                sx={{ mb: 2, backgroundColor: "white", fontSize: "18px" }}
+                sx={{ mb: 2, backgroundColor: 'white', fontSize: '18px' }}
               >
                 {alert.msg}
               </Alert>
