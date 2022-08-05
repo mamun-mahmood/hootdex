@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import {
   Avatar,
   LinearProgress,
@@ -9,27 +9,27 @@ import {
   tableCellClasses,
   TableContainer,
   TableHead,
-  TableRow
-} from '@mui/material';
-import axios from 'axios';
-import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
-import url from '../../serverUrl';
+  TableRow,
+} from "@mui/material";
+import axios from "axios";
+import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import url from "../../serverUrl";
 function convertToInternationalCurrencySystem(labelValue) {
   // Nine Zeroes for Billions
   return Math.abs(Number(labelValue)) >= 1.0e9
-    ? (Math.abs(Number(labelValue)) / 1.0e9).toFixed(2) + 'b'
+    ? (Math.abs(Number(labelValue)) / 1.0e9).toFixed(2) + "b"
     : // Six Zeroes for Millions
     Math.abs(Number(labelValue)) >= 1.0e6
-    ? (Math.abs(Number(labelValue)) / 1.0e6).toFixed(2) + 'm'
+    ? (Math.abs(Number(labelValue)) / 1.0e6).toFixed(2) + "m"
     : // Three Zeroes for Thousands
     Math.abs(Number(labelValue)) >= 1.0e3
-    ? (Math.abs(Number(labelValue)) / 1.0e3).toFixed(2) + 'k'
+    ? (Math.abs(Number(labelValue)) / 1.0e3).toFixed(2) + "k"
     : Math.abs(Number(labelValue));
 }
 const PoolTokens = () => {
   const [loading, setLoading] = useState(false);
-  const [tokens, setTokens] = useState([]);
+  const [pools, setPools] = useState([]);
   const [currentValue, setCurrentValue] = useState(0);
   const [cryptoData, setCryptoData] = useState([]);
   const get_current_index_coin = () => {
@@ -47,13 +47,14 @@ const PoolTokens = () => {
       setCryptoData(res.data);
     });
   };
-  const fetchToken = (target) => {
-    if (target === 'all') {
+  const fetchPools = (target) => {
+    if (target === "all") {
       setLoading(true);
       axios
-        .get(`${url}/hootdex/available-tokens`)
+        .get(`${url}/hootdex/liquidity-pool-info-all`)
         .then((res) => {
-          setTokens(res.data);
+          setPools(res.data.data);
+          console.log(res.data.data);
           setLoading(false);
         })
         .catch((err) => {
@@ -61,12 +62,12 @@ const PoolTokens = () => {
         });
     } else {
       setLoading(true);
-      setTokens(tokens.filter((each) => each.tokenName === target));
+      setPools(pools.filter((each) => each.tokenName === target));
       setLoading(false);
     }
   };
   useEffect(() => {
-    fetchToken('all');
+    fetchPools("all");
     get_current_index_coin();
     get_crypto_Data();
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -75,22 +76,22 @@ const PoolTokens = () => {
     <>
       <TableContainer
         sx={{
-          backgroundColor: '#1a1b1f',
+          backgroundColor: "#1a1b1f",
           mt: 5,
-          borderRadius: '1rem'
+          borderRadius: "1rem",
         }}
         component={Paper}
       >
         <p
           style={{
-            color: 'rgb(195, 197, 203)',
-            fontSize: '15px',
-            fontWeight: 'bold',
-            textAlign: 'left',
-            backgroundColor: '#21242b',
-            width: '100%',
+            color: "rgb(195, 197, 203)",
+            fontSize: "15px",
+            fontWeight: "bold",
+            textAlign: "left",
+            backgroundColor: "#21242b",
+            width: "100%",
 
-            padding: '1rem'
+            padding: "1rem",
           }}
         >
           Top Pools
@@ -99,8 +100,8 @@ const PoolTokens = () => {
         <Table
           sx={{
             [`& .${tableCellClasses.root}`]: {
-              borderBottom: ' 1px solid #1e2128'
-            }
+              borderBottom: " 1px solid #1e2128",
+            },
           }}
         >
           <TableHead className="">
@@ -125,47 +126,47 @@ const PoolTokens = () => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {tokens.length &&
-              tokens.map((each, index) => (
+            {pools.length &&
+              pools.map((each, index) => (
                 <TableRow key={each.id}>
                   <TableCell className="twhite" component="th" scope="row">
                     {index + 1}
                   </TableCell>
                   <TableCell className="twhite" align="left">
                     <Link
-                      to={`/pools/${each.tokenName}`}
+                      to={`/pools/${each.project_name}`}
                       pecuCoins={currentValue}
                     >
                       <div
                         style={{
-                          display: 'flex',
-                          alignItems: 'center'
+                          display: "flex",
+                          alignItems: "center",
                         }}
                       >
                         <Avatar
                           className="rounded"
-                          src={`${url}/hootdex/images/${each?.logo_src}`}
+                          src={`${url}/hootdex/images/${each?.img}`}
                           alt="token logo"
-                          style={{ width: '20px', height: '20px' }}
+                          style={{ width: "20px", height: "20px" }}
                         />
                         <Avatar
                           className="rounded"
                           src={`https://pecunovus.net/static/media/icon.25c8ec299d961b9dd524.ico`}
                           alt="token logo"
-                          style={{ width: '20px', height: '20px' }}
+                          style={{ width: "20px", height: "20px" }}
                         />
-                        <span style={{ marginLeft: '1rem', fontSize: '14px' }}>
-                          {each.tokenName}{' '}
-                          <small style={{ color: '#696c75' }}>
+                        <span style={{ marginLeft: "1rem", fontSize: "14px" }}>
+                          {each.project_name}{" "}
+                          <small style={{ color: "#696c75" }}>
                             (
-                            {`${each.tokenSymbol}${
-                              each.otherToken
-                                ? `/${each.otherToken
-                                    .split('')
+                            {`${each.project_token_symbol}${
+                              each.wrap_token_symbol
+                                ? `/${each.wrap_token_symbol
+                                    .split("")
                                     .map((e, i) =>
                                       i == 0 ? e.toLowerCase() : e
                                     )
-                                    .join('')}`
+                                    .join("")}`
                                 : null
                             }/PECU`}
                             )
@@ -175,22 +176,7 @@ const PoolTokens = () => {
                     </Link>
                   </TableCell>
                   <TableCell className="twhite green" align="left">
-                    $
-                    {cryptoData.length > 0 &&
-                      (
-                        ((each.totalToken +
-                          Math.abs(
-                            each.investementAmount +
-                              each.pecuCoin * currentValue +
-                              each.otherTokenAmount *
-                                cryptoData?.filter(
-                                  (e) => e.symbol == each.otherToken.slice(1)
-                                )[0].price -
-                              each.firstTVL
-                          )) /
-                          each.totalToken) *
-                        each.tokenPrice
-                      ).toFixed(2)}
+                    ${each.project_token_price}
                   </TableCell>
                   <TableCell className="twhite yellow" align="left">
                     {cryptoData.length > 0 &&
@@ -201,7 +187,8 @@ const PoolTokens = () => {
                               each.pecuCoin * currentValue +
                               each.otherTokenAmount *
                                 cryptoData?.filter(
-                                  (e) => e.symbol == each.otherToken.slice(1)
+                                  (e) =>
+                                    e.symbol == each?.wrap_token_symbol.slice(1)
                                 )[0].price -
                               each.firstTVL
                           )) /
@@ -218,15 +205,12 @@ const PoolTokens = () => {
                   </TableCell>
 
                   <TableCell className="twhite blue" align="left">
-                    {cryptoData.length > 0 &&
-                      convertToInternationalCurrencySystem(
-                        each.investementAmount +
-                          each.pecuCoin * currentValue +
-                          each.otherTokenAmount *
-                            cryptoData.filter(
-                              (e) => e.symbol == each.otherToken.slice(1)
-                            )[0].price
-                      )}
+                    {convertToInternationalCurrencySystem(
+                      each.project_token_amount * each.project_token_price +
+                        each.pecu_price +
+                        each.wrap_token_price +
+                        each.wrap_token_amount
+                    )}
 
                     {/* {convertToInternationalCurrencySystem(each.totalToken)} */}
                   </TableCell>

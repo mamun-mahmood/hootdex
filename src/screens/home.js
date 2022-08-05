@@ -1,7 +1,7 @@
-import PoolTokens from "../components/Tables/PoolTokens";
+import TopPools from "../components/Tables/TopPools";
 import Transactions from "../components/Tables/Transactions";
 import TopToken from "../components/Tables/TopToken";
-import Chart from "./chart";
+import PecuGraph from "../components/Graphs/PecuGraph";
 export default function Home() {
   return (
     <>
@@ -14,7 +14,7 @@ export default function Home() {
           marginBottom: "1rem",
         }}
       >
-        <Chart />
+        <PecuGraph />
         {/* <h1 className="primary__title">Listed Tokens</h1> */}
         <div
           style={{
@@ -22,7 +22,7 @@ export default function Home() {
           }}
         >
           <TopToken />
-          <PoolTokens />
+          <TopPools />
           <Transactions />
         </div>
       </div>

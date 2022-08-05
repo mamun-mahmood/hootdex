@@ -2,10 +2,10 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import { Paper } from '@mui/material';
-import Chart from '../../screens/chart';
 import CircularChart from './CircularChart';
 import axios from 'axios';
 import url from '../../serverUrl';
+import LineCharts from '../Graphs/LineChart'; 
 function DashboardContent({ user }) {
   const [currentValue, setCurrentValue] = React.useState(0);
   const get_current_index_coin = () => {
@@ -201,7 +201,7 @@ function DashboardContent({ user }) {
           mb: 1
         }}
       >
-        <Chart />
+        <LineCharts />
       </Box>
       {/* Third row */}
       <Box

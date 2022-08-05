@@ -1,13 +1,13 @@
 import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
 import { Paper } from '@mui/material';
-import AssetChart from './AssetChart';
 import { Box } from '@mui/system';
 import TokenRequest from '../Modal/TokenRequest';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import url from '../../serverUrl';
 import CreateToken from '../../screens/createToken';
+import LineCharts from '../Graphs/LineChart';
 
 function DashboardContent({ user }) {
   const [pendingToken, setPendingToken] = useState([]);
@@ -187,7 +187,7 @@ function DashboardContent({ user }) {
                   justifyContent: 'center'
                 }}
               >
-                <AssetChart user={user} />
+                <LineCharts user={user} />
               </div>
             </Paper>
           </Grid>

@@ -3,7 +3,6 @@ import { Box, Button, ClickAwayListener, ListItemIcon } from '@mui/material';
 import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
 import { Paper } from '@mui/material';
-import AssetChart from './AssetChart';
 import { useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
 import axios from 'axios';

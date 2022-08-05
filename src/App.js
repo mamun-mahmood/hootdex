@@ -12,6 +12,7 @@ import PoolPage from "./screens/PoolPage";
 import axios from "axios";
 import url from "./serverUrl";
 import TokenPage from "./screens/TokenPage";
+import AllTokens from "./screens/AllTokens";
 function App() {
   const [user, setUser] = useState(null);
   const findUser = async () => {
@@ -61,6 +62,10 @@ function App() {
           <Route
             path="/tokens/tokenid"
             element={<TokenPage user={user} pecuCoins={pecuCoins} />}
+          />
+          <Route
+            path="/tokens"
+            element={<AllTokens user={user} pecuCoins={pecuCoins} />}
           />
           <Route
             path="/login"

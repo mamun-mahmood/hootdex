@@ -14,15 +14,11 @@ import { useEffect } from "react";
 import { useState } from "react";
 import { Link, useParams, useLocation } from "react-router-dom";
 import BuyToken from "../components/Modal/BuyToken";
-import Chart from "./chart";
 import GetAppIcon from "@mui/icons-material/GetApp";
 import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
-import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
-import TinyLineChart from "../components/Charts/TinyLineChart";
-import AssetChart from "../components/dashboard/AssetChart";
-import TopToken from "../components/Tables/TopToken";
 import url from "../serverUrl";
 import Transactions from "../components/Tables/Transactions";
+import TokenGraph from "../components/Graphs/TokenGraph";
 function convertToInternationalCurrencySystem(labelValue) {
   // Nine Zeroes for Billions
   return Math.abs(Number(labelValue)) >= 1.0e9
@@ -40,15 +36,15 @@ export default function TokenPage({ pecuCoins, user }) {
   const tokenName = useParams().tokenName;
   // const [token, setToken] = useState();
   const token = {
-    tokenName: data.baseToken,
-    timestamp: data.date_time,
-    firstPrice: data.firstPrice,
-    id: data.id,
-    initialFinal: data.initialFinal,
-    pecuInvestement: data.pecuInvestement,
-    pecuValue: data.pecuValue,
-    public_key: data.public_key,
-    tokenSymbol: data.symbol,
+    tokenName: data?.baseToken,
+    timestamp: data?.date_time,
+    firstPrice: data?.firstPrice,
+    id: data?.id,
+    initialFinal: data?.initialFinal,
+    pecuInvestement: data?.pecuInvestement,
+    pecuValue: data?.pecuValue,
+    public_key: data?.public_key,
+    tokenSymbol: data?.symbol,
   };
   console.log(token);
   const [loading, setLoading] = useState(false);
@@ -154,7 +150,22 @@ export default function TokenPage({ pecuCoins, user }) {
                 <Link
                   to={`/`}
                   style={{ fontSize: "1rem", fontWeight: "500" }}
-                >{`Home  >  Tokens  >  ${token?.tokenSymbol} / PECU `}</Link>
+                >{`Home `}</Link>
+                <Link
+                  to={`/tokens`}
+                  style={{ fontSize: "1rem", fontWeight: "500" }}
+                >
+                  {" >"} Tokens
+                </Link>
+                <span
+                  style={{
+                    fontSize: "1rem",
+                    fontWeight: "500",
+                    color: "white",
+                  }}
+                >
+                  {" >"} {token?.tokenSymbol} / PECU
+                </span>
               </div>
               <div
                 style={{
@@ -248,7 +259,7 @@ export default function TokenPage({ pecuCoins, user }) {
                       }}
                     >
                       {convertToInternationalCurrencySystem(
-                        (data.initialFinal / data.wrapAmount).toFixed(2)
+                        (data?.initialFinal / data?.wrapAmount).toFixed(2)
                       )}
                     </p>
                     <small style={{ fontSize: "16px", color: "green" }}>
@@ -293,7 +304,7 @@ export default function TokenPage({ pecuCoins, user }) {
                       >
                         1 {token?.otherToken} ={" "}
                         {convertToInternationalCurrencySystem(
-                          cryptoData.filter(
+                          cryptoData?.filter(
                             (e) => e?.symbol == token?.othertoken?.slice(1)
                           )[0]?.price
                         )}{" "}
@@ -359,16 +370,14 @@ export default function TokenPage({ pecuCoins, user }) {
                     {" "}
                     $
                     {convertToInternationalCurrencySystem(
-                      data.wrapAmount * data.initialFinal
+                      data?.wrapAmount * data?.initialFinal
                     )}
                   </p>
                 </div>
                 <div style={{ marginBottom: "1rem" }}>
                   <p className="token-page-t1 mb-1">24h Trading Vol</p>
                   <p className="token-page-t2 mb-1">
-                    {convertToInternationalCurrencySystem(
-                      data?.initialFinal
-                    )}
+                    {convertToInternationalCurrencySystem(data?.initialFinal)}
                   </p>
                 </div>
                 <div style={{ marginBottom: "1rem" }}>
@@ -465,7 +474,7 @@ export default function TokenPage({ pecuCoins, user }) {
                       marginTop: "1rem",
                     }}
                   >
-                    <AssetChart
+                    <TokenGraph
                       tokenName={tokenName}
                       setTokenPrice={setTokenPrice}
                     />

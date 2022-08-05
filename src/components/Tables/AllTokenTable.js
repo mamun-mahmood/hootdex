@@ -38,21 +38,20 @@ const removeDuplicatedToken = (allData) => {
   return allData;
 };
 function convertToInternationalCurrencySystem(labelValue) {
-  // Nine Zeroes for Billions
-  return Math.abs(Number(labelValue)) >= 1.0e9
-    ? (Math.abs(Number(labelValue)) / 1.0e9).toFixed(2) + "b"
-    : // Six Zeroes for Millions
-    Math.abs(Number(labelValue)) >= 1.0e6
-    ? (Math.abs(Number(labelValue)) / 1.0e6).toFixed(2) + "m"
-    : // Three Zeroes for Thousands
-    Math.abs(Number(labelValue)) >= 1.0e3
-    ? (Math.abs(Number(labelValue)) / 1.0e3).toFixed(2) + "k"
-    : Math.abs(Number(labelValue));
-}
-const TopToken = () => {
+    // Nine Zeroes for Billions
+    return Math.abs(Number(labelValue)) >= 1.0e9
+      ? (Math.abs(Number(labelValue)) / 1.0e9).toFixed(2) + "b"
+      : // Six Zeroes for Millions
+      Math.abs(Number(labelValue)) >= 1.0e6
+      ? (Math.abs(Number(labelValue)) / 1.0e6).toFixed(2) + "m"
+      : // Three Zeroes for Thousands
+      Math.abs(Number(labelValue)) >= 1.0e3
+      ? (Math.abs(Number(labelValue)) / 1.0e3).toFixed(2) + "k"
+      : Math.abs(Number(labelValue));
+  }
+const AllTokenTable = () => {
   const [loading, setLoading] = useState(false);
   const [tokens, setTokens] = useState([]);
-  console.log("Top token reders");
   useEffect(() => {
     // const fetchToken = (target) => {
     // if (target === "all") {
@@ -208,10 +207,10 @@ const TopToken = () => {
                 </TableRow>
               ))}
             {/* <TablePagination
-                sx={{ color: "white" }}
-                rowsPerPageOptions={[10, 50]}
-                onChange={(e) => setRows(e)}
-              /> */}
+                  sx={{ color: "white" }}
+                  rowsPerPageOptions={[10, 50]}
+                  onChange={(e) => setRows(e)}
+                /> */}
           </TableBody>
         </Table>
       </TableContainer>
@@ -219,4 +218,4 @@ const TopToken = () => {
   );
 };
 
-export default React.memo(TopToken);
+export default AllTokenTable;

@@ -3,13 +3,11 @@ import {
   ResponsiveContainer,
   Tooltip,
   XAxis,
-  YAxis,
-  CartesianGrid,
   AreaChart,
   Area,
 } from "recharts";
 import axios from "axios";
-import url from "../serverUrl";
+import url from "../../serverUrl";
 import { Skeleton, Button, Box } from "@mui/material";
 export default memo(function Chart() {
   const [chartData, setChartData] = useState([]);
