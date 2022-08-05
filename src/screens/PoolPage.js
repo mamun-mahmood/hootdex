@@ -214,7 +214,7 @@ export default function PoolPage({ pecuCoins, user }) {
                           (e) => e.symbol == pool?.wrap_token_symbol.slice(1)
                         )[0].price >
                     pool.firstTVL ? (
-                      <small style={{ fontSize: "13px" }}>
+                      <p style={{ fontSize: "13px", display: "flex", alignItems: "center" }}>
                         <ArrowUpwardIcon sx={{ fontSize: "13px" }} />
                         {pool.investementAmount +
                           pool?.pecu_amount * currentValue +
@@ -241,9 +241,9 @@ export default function PoolPage({ pecuCoins, user }) {
                             ).toFixed(2)
                           : "0.00"}
                         %
-                      </small>
+                      </p>
                     ) : (
-                      <small style={{ fontSize: "13px" }}>
+                      <p style={{ fontSize: "13px", display: "flex", alignItems: "center" }}>
                         <ArrowDownwardIcon sx={{ fontSize: "13px" }} />
                         {pool.investementAmount +
                           pool?.pecu_amount * currentValue +
@@ -270,7 +270,7 @@ export default function PoolPage({ pecuCoins, user }) {
                             ).toFixed(2)
                           : "0.00"}
                         %
-                      </small>
+                      </p>
                     )}
                   </p>
                 </div>
