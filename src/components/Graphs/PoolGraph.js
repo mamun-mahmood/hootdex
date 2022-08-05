@@ -78,7 +78,7 @@ const PoolGraph = ({ id, pool, currentValue }) => {
           >
             {" "}
             {convertToInternationalCurrencySystem(
-              (pool.project_token_amount / pool.pecu_amount) * currentValue
+              chartData[0].TVL
             )}
           </p>
           {/* <p className="pool-page-t1">{date}</p> */}
