@@ -137,7 +137,7 @@ const ConnectWallet = ({ fetchWallet, wallet, setOpen, open }) => {
             boxShadow: 'none'
           }
         }}
-      >
+        sx={{zIndex: 2001}}      >
         <Box
           sx={{
             width: {sm: 400},
