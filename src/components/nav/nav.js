@@ -8,7 +8,6 @@ import {
   Avatar,
   Button,
   ClickAwayListener,
-  div,
   Paper,
   Table,
   TableBody,
