@@ -330,7 +330,7 @@ html {
   color: pink !important;
 }
 .blue {
-  color: blue !important;
+  color: rgb(130, 130, 246) !important;
 }
 .dfelxJsb {
   display: flex;

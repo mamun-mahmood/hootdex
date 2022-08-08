@@ -171,6 +171,7 @@ const ConnectWallet = ({ fetchWallet, wallet, setOpen, open }) => {
                   boxShadow: 'none'
                 }
               }}
+              sx={{zIndex: 2002}}  
               className="border"
               onClose={() => setShowForm(false)}
             >
