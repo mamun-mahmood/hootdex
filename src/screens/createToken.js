@@ -119,6 +119,7 @@ export default function CreateToken({ token, closeMe }) {
       createdBy: user.username,
       owner: user.email,
       img: inputData.fileName,
+      user_id: user.user_id,
       status: 1
     };
 
