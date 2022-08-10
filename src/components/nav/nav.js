@@ -8,7 +8,6 @@ import {
   Avatar,
   Button,
   ClickAwayListener,
-  div,
   Paper,
   Table,
   TableBody,
@@ -231,7 +230,7 @@ export default function Nav({ fetchWallet, wallet }) {
                     {each.id}
                   </TableCell> */}
                           <TableCell className="twhite" align="left">
-                            <Link to={`/pools/${window.btoa(each.id)}`}>
+                            <Link to={`/pools/${(each.tokenSymbol)}`}>
                               <div
                                 style={{
                                   display: "flex",

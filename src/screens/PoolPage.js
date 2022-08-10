@@ -208,40 +208,40 @@ export default function PoolPage({ pecuCoins, user }) {
                     color: 'white'
                   }}
                 >
-                  {pool.investementAmount +
+                  {pool?.investementAmount +
                     pool?.pecu_amount * currentValue +
                     pool?.wrap_token_amount *
                       cryptoData?.filter(
                         (e) => e.symbol == pool?.wrap_token_symbol.slice(1)
-                      )[0].price >
-                  pool.firstTVL ? (
+                      )[0]?.price >
+                  pool?.firstTVL ? (
                     <p
                       style={{
                         fontSize: '13px'
                       }}
                     >
                       <ArrowUpwardIcon sx={{ fontSize: '13px' }} />
-                      {pool.investementAmount +
+                      {pool?.investementAmount +
                         pool?.pecu_amount * currentValue +
                         pool?.wrap_token_amount *
                           cryptoData?.filter(
                             (e) => e.symbol == pool?.wrap_token_symbol.slice(1)
-                          )[0].price >
-                      pool.firstTVL
+                          )[0]?.price >
+                      pool?.firstTVL
                         ? (
                             (Math.abs(
-                              pool.investementAmount +
+                              pool?.investementAmount +
                                 pool?.pecu_amount * currentValue +
                                 pool?.wrap_token_amount *
                                   cryptoData?.filter(
                                     (e) =>
                                       e.symbol ==
                                       pool?.wrap_token_symbol.slice(1)
-                                  )[0].price -
-                                pool.firstTVL
+                                  )[0]?.price -
+                                pool?.firstTVL
                             ) *
                               100) /
-                            pool.firstTVL
+                            pool?.firstTVL
                           ).toFixed(2)
                         : '0.00'}
                       %
@@ -255,27 +255,27 @@ export default function PoolPage({ pecuCoins, user }) {
                       }}
                     >
                       <ArrowDownwardIcon sx={{ fontSize: '13px' }} />
-                      {pool.investementAmount +
+                      {pool?.investementAmount +
                         pool?.pecu_amount * currentValue +
                         pool?.wrap_token_amount *
                           cryptoData?.filter(
                             (e) => e.symbol == pool?.wrap_token_symbol.slice(1)
-                          )[0].price <
-                      pool.firstTVL
+                          )[0]?.price <
+                      pool?.firstTVL
                         ? (
                             (Math.abs(
-                              pool.investementAmount +
+                              pool?.investementAmount +
                                 pool?.pecu_amount * currentValue +
                                 pool?.wrap_token_amount *
                                   cryptoData?.filter(
                                     (e) =>
                                       e.symbol ==
                                       pool?.wrap_token_symbol.slice(1)
-                                  )[0].price -
-                                pool.firstTVL
+                                  )[0]?.price -
+                                pool?.firstTVL
                             ) *
                               100) /
-                            pool.firstTVL
+                            pool?.firstTVL
                           ).toFixed(2)
                         : '0.00'}
                       %
@@ -410,7 +410,7 @@ export default function PoolPage({ pecuCoins, user }) {
                     >
                       {}1 {pool?.project_token_symbol} ={' '}
                       {convertToInternationalCurrencySystem(
-                        pool.project_token_price
+                        pool?.project_token_price
                       )}
                       USD
                     </p>
@@ -501,7 +501,7 @@ export default function PoolPage({ pecuCoins, user }) {
                             cryptoData.filter(
                               (e) =>
                                 e.symbol == pool?.wrap_token_symbol.slice(1)
-                            )[0].price
+                            )[0]?.price
                           )}{' '}
                           USD
                         </p>
@@ -795,42 +795,42 @@ export default function PoolPage({ pecuCoins, user }) {
                     {' '}
                     {pool?.volume
                       ? convertToInternationalCurrencySystem(
-                          (pool.volume / pool?.pecu_amount) * currentValue
+                          (pool?.volume / pool?.pecu_amount) * currentValue
                         )
                       : '00'}
                   </p>
-                  {pool.investementAmount +
+                  {pool?.investementAmount +
                     pool?.pecu_amount * currentValue +
                     pool?.wrap_token_amount *
                       cryptoData?.filter(
                         (e) => e.symbol == pool?.wrap_token_symbol.slice(1)
-                      )[0].price >
-                  pool.firstTVL ? (
+                      )[0]?.price >
+                  pool?.firstTVL ? (
                     <small style={{ fontSize: '15px', color: 'green' }}>
                       <ArrowUpwardIcon
                         sx={{ fontSize: '15px', color: 'green' }}
                       />
-                      {pool.investementAmount +
+                      {pool?.investementAmount +
                         pool?.pecu_amount * currentValue +
                         pool?.wrap_token_amount *
                           cryptoData?.filter(
                             (e) => e.symbol == pool?.wrap_token_symbol.slice(1)
-                          )[0].price >
-                      pool.firstTVL
+                          )[0]?.price >
+                      pool?.firstTVL
                         ? (
                             (Math.abs(
-                              pool.investementAmount +
+                              pool?.investementAmount +
                                 pool?.pecu_amount * currentValue +
                                 pool?.wrap_token_amount *
                                   cryptoData?.filter(
                                     (e) =>
                                       e.symbol ==
                                       pool?.wrap_token_symbol.slice(1)
-                                  )[0].price -
-                                pool.firstTVL
+                                  )[0]?.price -
+                                pool?.firstTVL
                             ) *
                               100) /
-                            pool.firstTVL
+                            pool?.firstTVL
                           ).toFixed(2)
                         : '0.00'}
                       %
@@ -838,27 +838,27 @@ export default function PoolPage({ pecuCoins, user }) {
                   ) : (
                     <small style={{ fontSize: '13px' }}>
                       <ArrowDownwardIcon sx={{ fontSize: '13px' }} />
-                      {pool.investementAmount +
+                      {pool?.investementAmount +
                         pool?.pecu_amount * currentValue +
                         pool?.wrap_token_amount *
                           cryptoData?.filter(
                             (e) => e.symbol == pool?.wrap_token_symbol.slice(1)
-                          )[0].price <
-                      pool.firstTVL
+                          )[0]?.price <
+                      pool?.firstTVL
                         ? (
                             (Math.abs(
-                              pool.investementAmount +
+                              pool?.investementAmount +
                                 pool?.pecu_amount * currentValue +
                                 pool?.wrap_token_amount *
                                   cryptoData?.filter(
                                     (e) =>
                                       e.symbol ==
                                       pool?.wrap_token_symbol.slice(1)
-                                  )[0].price -
-                                pool.firstTVL
+                                  )[0]?.price -
+                                pool?.firstTVL
                             ) *
                               100) /
-                            pool.firstTVL
+                            pool?.firstTVL
                           ).toFixed(2)
                         : '0.00'}
                       %
@@ -884,15 +884,15 @@ export default function PoolPage({ pecuCoins, user }) {
                           (
                             ((pool?.project_token_amount +
                               Math.abs(
-                                pool.investementAmount +
+                                pool?.investementAmount +
                                   pool?.pecu_amount * currentValue +
                                   pool?.wrap_token_amount *
                                     cryptoData?.filter(
                                       (e) =>
                                         e.symbol ==
                                         pool?.wrap_token_symbol.slice(1)
-                                    )[0].price -
-                                  pool.firstTVL
+                                    )[0]?.price -
+                                  pool?.firstTVL
                               )) /
                               pool?.project_token_amount) *
                             pool?.project_token_price
@@ -915,7 +915,7 @@ export default function PoolPage({ pecuCoins, user }) {
                   className="shadowGrey"
                 >
                   <PoolGraph
-                    id={pool.id}
+                    id={pool?.id}
                     setTokenPrice={setTokenPrice}
                     pool={pool}
                     currentValue={currentValue}
