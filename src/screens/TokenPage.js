@@ -5,20 +5,20 @@ import {
   Divider,
   Grid,
   IconButton,
-  LinearProgress,
-} from "@mui/material";
-import { Box } from "@mui/system";
-import axios from "axios";
-import React from "react";
-import { useEffect } from "react";
-import { useState } from "react";
-import { Link, useParams, useLocation } from "react-router-dom";
-import BuyToken from "../components/Modal/BuyToken";
-import GetAppIcon from "@mui/icons-material/GetApp";
-import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
-import url from "../serverUrl";
-import Transactions from "../components/Tables/Transactions";
-import TokenGraph from "../components/Graphs/TokenGraph";
+  LinearProgress
+} from '@mui/material';
+import { Box } from '@mui/system';
+import axios from 'axios';
+import React from 'react';
+import { useEffect } from 'react';
+import { useState } from 'react';
+import { Link, useParams, useLocation } from 'react-router-dom';
+import BuyToken from '../components/Modal/BuyToken';
+import GetAppIcon from '@mui/icons-material/GetApp';
+import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
+import url from '../serverUrl';
+import Transactions from '../components/Tables/Transactions';
+import TokenGraph from '../components/Graphs/TokenGraph.js';
 function convertToInternationalCurrencySystem(labelValue) {
   // Nine Zeroes for Billions
   return Math.abs(Number(labelValue)) >= 1.0e9
@@ -158,22 +158,22 @@ export default function TokenPage({ pecuCoins, user }) {
               <div>
                 <Link
                   to={`/`}
-                  style={{ fontSize: "1rem", fontWeight: "500" }}
+                  style={{ fontSize: '1rem', fontWeight: '500' }}
                 >{`Home `}</Link>
                 <Link
                   to={`/tokens`}
-                  style={{ fontSize: "1rem", fontWeight: "500" }}
+                  style={{ fontSize: '1rem', fontWeight: '500' }}
                 >
-                  {" >"} Tokens
+                  {' >'} Tokens
                 </Link>
                 <span
                   style={{
-                    fontSize: "1rem",
-                    fontWeight: "500",
-                    color: "white",
+                    fontSize: '1rem',
+                    fontWeight: '500',
+                    color: 'white'
                   }}
                 >
-                  {" >"} {token?.tokenSymbol} / PECU
+                  {' >'} {token?.tokenSymbol} / PECU
                 </span>
               </div>
               <div
@@ -420,77 +420,10 @@ export default function TokenPage({ pecuCoins, user }) {
                   }}
                   className="shadowGrey"
                 >
-                  <Box
-                    sx={{
-                      display: { xs: 'inline-block', sm: 'flex' },
-                      justifyContent: 'space-between',
-                      width: '100%',
-                      height: 30
-                    }}
-                  >
-                    <div>
-                      <p
-                        style={{
-                          marginTop: '0.5rem',
-                          fontSize: '24px',
-                          color: 'white',
-                          fontWeight: 'bold'
-                        }}
-                      >
-                        {' '}
-                        {convertToInternationalCurrencySystem(
-                          cryptoData?.market_cap
-                        )}
-                      </p>
-                      {/* <p className="token-page-t1">{date}</p> */}
-                    </div>
-                    <div
-                      style={{
-                        backgroundColor: 'rgb(44, 47, 54)',
-                        borderRadius: '12px',
-                        textAlign: 'center'
-                      }}
-                      className="dsparound"
-                    >
-                      <p
-                        className={`${
-                          chartBtn === 1 && 'chart_btn_selected'
-                        } chart_btn`}
-                        onClick={() => setChartBtn(1)}
-                      >
-                        Volume
-                      </p>
-                      <p
-                        className={`${
-                          chartBtn === 2 && 'chart_btn_selected'
-                        } chart_btn`}
-                        onClick={() => setChartBtn(2)}
-                      >
-                        TVL
-                      </p>
-                      <p
-                        className={`${
-                          chartBtn === 3 && 'chart_btn_selected'
-                        } chart_btn`}
-                        onClick={() => setChartBtn(3)}
-                      >
-                        Price
-                      </p>
-                    </div>
-                  </Box>
-                  <div
-                    style={{
-                      display: 'flex',
-                      justifyContent: 'center',
-                      height: '100%',
-                      marginTop: '1rem'
-                    }}
-                  >
-                    {/* <TokenGraph
-                      tokenName={tokenName}
-                      setTokenPrice={setTokenPrice}
-                    /> */}
-                  </div>
+                  <TokenGraph
+                    id={token?.id}
+                    setTokenPrice={setTokenPrice}
+                  />
                 </div>
               </Box>
             </Grid>

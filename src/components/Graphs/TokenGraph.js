@@ -14,27 +14,27 @@ import {
   Line
 } from 'recharts';
 import url from '../../serverUrl';
-function convertToInternationalCurrencySystem(labelValue) {
-  // Nine Zeroes for Billions
-  return Math.abs(Number(labelValue)) >= 1.0e9
-    ? (Math.abs(Number(labelValue)) / 1.0e9).toFixed(2) + 'b'
-    : // Six Zeroes for Millions
-    Math.abs(Number(labelValue)) >= 1.0e6
-    ? (Math.abs(Number(labelValue)) / 1.0e6).toFixed(2) + 'm'
-    : // Three Zeroes for Thousands
-    Math.abs(Number(labelValue)) >= 1.0e3
-    ? (Math.abs(Number(labelValue)) / 1.0e3).toFixed(2) + 'k'
-    : Math.abs(Number(labelValue));
-}
+// function convertToInternationalCurrencySystem(labelValue) {
+//   // Nine Zeroes for Billions
+//   return Math.abs(Number(labelValue)) >= 1.0e9
+//     ? (Math.abs(Number(labelValue)) / 1.0e9).toFixed(2) + 'b'
+//     : // Six Zeroes for Millions
+//     Math.abs(Number(labelValue)) >= 1.0e6
+//     ? (Math.abs(Number(labelValue)) / 1.0e6).toFixed(2) + 'm'
+//     : // Three Zeroes for Thousands
+//     Math.abs(Number(labelValue)) >= 1.0e3
+//     ? (Math.abs(Number(labelValue)) / 1.0e3).toFixed(2) + 'k'
+//     : Math.abs(Number(labelValue));
+// }
 const TokenGraph = ({ id, pool, currentValue }) => {
   const [chartBtn, setChartBtn] = useState(2);
   const [chartData, setChartData] = useState([]);
-  const [filter, setFilter] = useState('current_hourly');
+  const [filter, setFilter] = useState('daily');
   console.log(id);
   const getChatData = (target) => {
     setFilter(target);
     axios
-      .get(`${url}/hootdex/liquidity-pool-tvl-${target}?pool_id=${id}`)
+      .get(`http://localhost:3001/hootdex/token-price-daily?token_id=${id}`)
       .then((res) => {
         setChartData(res.data);
         console.log(res.data);
@@ -52,9 +52,9 @@ const TokenGraph = ({ id, pool, currentValue }) => {
         console.log(err);
       });
   };
-  //   useEffect(() => {
-  //     getChatData("current_hourly");
-  //   }, []);
+    useEffect(() => {
+      getChatData("daily");
+    }, []);
 
   return (
     <>
@@ -67,19 +67,6 @@ const TokenGraph = ({ id, pool, currentValue }) => {
         }}
       >
         <div>
-          <p
-            style={{
-              marginTop: '0.5rem',
-              fontSize: '24px',
-              color: 'white',
-              fontWeight: 'bold'
-            }}
-          >
-            {' '}
-            {convertToInternationalCurrencySystem(
-              (pool.volume / pool.pecuCoin) * currentValue
-            )}
-          </p>
           {/* <p className="pool-page-t1">{date}</p> */}
         </div>
         <div
@@ -120,61 +107,61 @@ const TokenGraph = ({ id, pool, currentValue }) => {
       >
         <Button
           className={`${
-            filter === 'current_hourly'
+            filter === 'daily'
               ? 'header-link chart-button activeButton'
               : 'header-link chart-button'
           }`}
           onClick={() => {
-            getChatData('current_hourly');
+            getChatData('daily');
           }}
         >
           1D
         </Button>
         <Button
           className={`${
-            filter === 'current_weekly'
+            filter === 'weekly'
               ? 'header-link chart-button activeButton'
               : 'header-link chart-button'
           }`}
           sx={{ display: { xs: 'none', md: 'block' } }}
           onClick={() => {
-            getChatData('current_weekly');
+            getChatData('weekly');
           }}
         >
           1W
         </Button>
         <Button
           className={`${
-            filter === 'current_monthly'
+            filter === 'monthly'
               ? 'header-link chart-button activeButton'
               : 'header-link chart-button'
           }`}
           onClick={() => {
-            getChatData('current_monthly');
+            getChatData('monthly');
           }}
         >
           3M
         </Button>
         <Button
           className={`${
-            filter === 'current_quaterly'
+            filter === 'quaterly'
               ? 'header-link chart-button activeButton'
               : 'header-link chart-button'
           }`}
           onClick={() => {
-            getChatData('current_quaterly');
+            getChatData('quaterly');
           }}
         >
           1m
         </Button>
         <Button
           className={`${
-            filter === 'current_yearly'
+            filter === 'yearly'
               ? 'header-link chart-button activeButton'
               : 'header-link chart-button'
           }`}
           onClick={() => {
-            getChatData('current_yearly');
+            getChatData('yearly');
           }}
         >
           1Y
@@ -192,7 +179,7 @@ const TokenGraph = ({ id, pool, currentValue }) => {
           <LineChart height={'100%'} data={chartData}>
             <Line
               type="monotone"
-              dataKey="TVL"
+              dataKey="volume"
               stroke="#01402b"
               strokeWidth={2}
             />

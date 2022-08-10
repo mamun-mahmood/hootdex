@@ -6,8 +6,8 @@ import TokenRequest from '../Modal/TokenRequest';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import url from '../../serverUrl';
-import CreateToken from '../../screens/createToken';
 import LineCharts from '../Graphs/LineChart';
+import CreatePool from '../../screens/CreatePool';
 
 function DashboardContent({ user }) {
   const [pendingToken, setPendingToken] = useState([]);
@@ -75,7 +75,7 @@ function DashboardContent({ user }) {
         }}
       >
         {createPool && (
-          <CreateToken
+          <CreatePool
             token={poolToken}
             closeMe={() => {
               setCreatePool(false);

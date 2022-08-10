@@ -3,7 +3,7 @@ import axios from 'axios';
 import url from '../serverUrl';
 import React, { useEffect, useState } from 'react';
 
-export default function CreateToken({ token, closeMe }) {
+export default function CreatePool({ token, closeMe }) {
   const [user, setUser] = useState('');
   const [alert, setAlert] = useState({
     msg: '',
@@ -13,15 +13,15 @@ export default function CreateToken({ token, closeMe }) {
   const [currentValue, setCurrentValue] = useState(null);
   const [inputData, setInputData] = useState({
     createdBy: user.username,
-    tokenName: token.token_name,
-    totalToken: token.amount_issued,
-    investementAmount: token.amount_issued * token.token_price,
+    tokenName: token?.token_name,
+    totalToken: token?.amount_issued,
+    investementAmount: token?.amount_issued * token?.token_price,
     pecuCoin: '',
     otherToken: '',
     otherTokenAmount: '',
-    tokenPrice: token.token_price,
+    tokenPrice: token?.token_price,
     status: 'Pending',
-    tokenSymbol: token.token_symbol,
+    tokenSymbol: token?.token_symbol,
     fileName: '',
     approvedBy: '',
     pecuRate: currentValue,
@@ -106,10 +106,10 @@ export default function CreateToken({ token, closeMe }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     const bodyData = {
-      project_name: token.token_name,
-      project_token_symbol: token.token_symbol,
-      project_token_amount: token.amount_issued,
-      project_token_price: token.token_price,
+      project_name: token?.token_name,
+      project_token_symbol: token?.token_symbol,
+      project_token_amount: token?.amount_issued,
+      project_token_price: token?.token_price,
       pecu_symbol: 'PECU',
       pecu_amount: inputData.pecuCoin,
       pecu_price: currentValue,
@@ -242,7 +242,7 @@ export default function CreateToken({ token, closeMe }) {
   useEffect(() => {
     if (cryptoData.length > 0 && inputData.otherToken) {
       let wrap_token_price = cryptoData.filter(
-        (e, i) => e.symbol == inputData.otherToken.slice(1)
+        (e, i) => e.symbol == inputData.othertoken?.slice(1)
       );
       if (wrap_token_price && wrap_token_price[0]) {
         setWrapTokenPrice(wrap_token_price[0].price);

@@ -3,7 +3,6 @@ import Home from "./screens/home";
 import Nav from "./components/nav/nav";
 import Footer from "./components/footer/footer";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import CreateToken from "./screens/createToken";
 import Wallet from "./screens/wallet";
 import Login from "./screens/login";
 import { useEffect, useState } from "react";
@@ -13,6 +12,7 @@ import axios from "axios";
 import url from "./serverUrl";
 import TokenPage from "./screens/TokenPage";
 import AllTokens from "./screens/AllTokens";
+import CreatePool from "./screens/CreatePool";
 function App() {
   const [user, setUser] = useState(null);
   const findUser = async () => {
@@ -52,7 +52,7 @@ function App() {
       <div>
         <Nav wallet={wallet} fetchWallet={fetchWallet} />
         <Routes>
-          <Route path="/create-token" element={<CreateToken />} />
+          <Route path="/create-token" element={<CreatePool />} />
           <Route path="/" element={<Home />} />
           <Route path="/wallet" element={<Wallet />} />
           <Route
