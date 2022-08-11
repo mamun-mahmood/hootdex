@@ -31,25 +31,11 @@ function convertToInternationalCurrencySystem(labelValue) {
     ? (Math.abs(Number(labelValue)) / 1.0e3).toFixed(2) + 'k'
     : Math.abs(Number(labelValue));
 }
-export default function TokenPage({ pecuCoins, user }) {
+export default function ProjectToken({ pecuCoins, user }) {
   const data = useLocation().state;
-  const tokenName = useParams().tokenName;
-  // const [token, setToken] = useState();
-  console.log(tokenName);
-  const token = {
-    tokenName: data?.baseToken,
-    timestamp: data?.date_time,
-    firstPrice: data?.firstPrice,
-    id: data?.id,
-    initialFinal: data?.initialFinal,
-    pecuInvestement: data?.pecuInvestement,
-    pecuValue: data?.pecuValue,
-    public_key: data?.public_key,
-    tokenSymbol: data?.symbol,
-  };
-  console.log(token);
+  const token_symbol = useParams().token_symbol;
+  const [token, setToken] = useState();
   const [loading, setLoading] = useState(false);
-  const [chartBtn, setChartBtn] = useState(3);
   const [cryptoData, setCryptoData] = useState([]);
   const [alert, setAlert] = useState({
     msg: '',
@@ -57,12 +43,6 @@ export default function TokenPage({ pecuCoins, user }) {
     show: false
   });
   const [currentValue, setCurrentValue] = useState(0);
-  const [tokenPrice, setTokenPrice] = useState([
-    {
-      currentPrice: null,
-      previousPrice: null
-    }
-  ]);
   const get_current_index_coin = () => {
     axios
       .get(`${url}/wallet/get_current_index_coin`)
@@ -77,20 +57,20 @@ export default function TokenPage({ pecuCoins, user }) {
   const get_crypto_Data = () => {
     axios.get(`https://mhiservers2.com/crypto/index`).then((res) => {
       const findtoken = res.data?.filter(
-        (e) => e.symbol === token.tokenSymbol?.slice(1)
+        (e) => e.symbol === token?.token_symbol?.slice(1)
       );
       setCryptoData(findtoken[0]);
       console.log(findtoken[0]);
     });
   };
-  const date = new Date().toLocaleDateString();
   useEffect(() => {
     setLoading(true);
     axios
-      .get(`${url}/hootdex/getToken/${tokenName}`)
+      .get(`${url}/hootdex/all-project-token`)
       .then((res) => {
-        // setToken(res.data[0]);
+        setToken(res.data.data[0]);
         setLoading(false);
+        console.log(res.data.data[0]);
       })
       .catch((err) => {
         setLoading(false);
@@ -108,27 +88,11 @@ export default function TokenPage({ pecuCoins, user }) {
         }, 3000);
         console?.log(err);
       });
-  }, [tokenName]);
+  }, []);
   useEffect(() => {
     get_current_index_coin();
-    get_crypto_Data();
+    // get_crypto_Data();
   }, []);
-
-  const currentPrice = tokenPrice[0]?.currentPrice;
-  const previousPrice = tokenPrice[0]?.previousPrice;
-  // const [priceUp, setPriceUp] = useState(true);
-  // const [priceVarriation, setPriceVarriation] = useState(0);
-  let priceUp = true;
-  let priceVarriation = false;
-  if (currentPrice && previousPrice && currentPrice > previousPrice) {
-    priceVarriation = currentPrice - previousPrice;
-    priceUp = true;
-  }
-  if (currentPrice && previousPrice && currentPrice < previousPrice) {
-    priceVarriation = previousPrice - currentPrice;
-    priceUp = false;
-  }
-  const tokenPriceIncreasePercentage = (priceVarriation / previousPrice) * 100;
 
   return (
     <>
@@ -162,10 +126,10 @@ export default function TokenPage({ pecuCoins, user }) {
                   style={{
                     fontSize: '1rem',
                     fontWeight: '500',
-                    color: 'white'
-                  }}
+                    color: 'white' 
+                  }} 
                 >
-                  {' >'} {token?.tokenSymbol} / PECU
+                  {' >'} {token?.token_symbol} / PECU
                 </span>
               </div>
               <div
@@ -179,7 +143,7 @@ export default function TokenPage({ pecuCoins, user }) {
                 <Avatar
                   className="rounded"
                   src={`null`}
-                  alt={token.tokenSymbol?.slice(1)}
+                  alt={token?.token_symbol?.slice(1)}
                   style={{
                     backgroundColor: 'orange',
                     height: '25px',
@@ -196,10 +160,7 @@ export default function TokenPage({ pecuCoins, user }) {
                     fontFamily: 'Inter var sans-serif'
                   }}
                 >
-                  <span style={{ textTransform: 'lowercase' }}>
-                    {`${token?.tokenSymbol?.slice(0, 1)}`}
-                  </span>
-                  {token?.tokenSymbol?.slice(1)}
+                  {token?.token_symbol}
                   <span style={{ fontSize: '13px', marginLeft: '5px' }}>
                     (Locked)
                   </span>
@@ -216,26 +177,6 @@ export default function TokenPage({ pecuCoins, user }) {
                   flexWrap: 'wrap'
                 }}
               >
-                {/* <p
-                  className="token-page-t2"
-                  style={{
-                    marginTop: '0.5rem',
-                    fontSize: '18px'
-                  }}
-                >
-                  ${token?.currentPrice?.toFixed(5)}{' '}
-                  {priceUp ? (
-                    <small style={{ fontSize: '18px', color: '#4caf50' }}>
-                      (<ArrowUpwardIcon sx={{ fontSize: '18px' }} />
-                      {tokenPriceIncreasePercentage?.toFixed(2)}%)
-                    </small>
-                  ) : (
-                    <small style={{ fontSize: '18px', color: 'red' }}>
-                      (<ArrowDownwardIcon sx={{ fontSize: '18px' }} />
-                      {tokenPriceIncreasePercentage?.toFixed(2)}%)
-                    </small>
-                  )}
-                </p> */}
                 <div
                   style={{
                     display: 'flex',
@@ -263,7 +204,7 @@ export default function TokenPage({ pecuCoins, user }) {
                       }}
                     >
                       {convertToInternationalCurrencySystem(
-                        (data?.initialFinal / data?.wrapAmount).toFixed(2)
+                        (token?.token_price)
                       )}
                     </p>
                     <small style={{ fontSize: '16px', color: 'green' }}>
@@ -271,51 +212,6 @@ export default function TokenPage({ pecuCoins, user }) {
                       0.00 %
                     </small>
                   </div>
-                  {token?.otherToken && (
-                    <div
-                      style={{
-                        display: 'flex',
-                        flexDirection: 'row',
-                        backgroundColor: 'rgb(64, 68, 79)',
-                        padding: '4px 6px',
-                        borderRadius: '8px',
-                        fontWeight: '400',
-                        boxSizing: 'border-box',
-                        maxWidth: 'fit-content',
-                        color: 'white',
-                        margin: '1rem ',
-                        cursor: 'pointer',
-                        minWidth: '200px'
-                      }}
-                    >
-                      <Avatar
-                        className="rounded"
-                        src={`hfj`}
-                        alt={token?.otherToken}
-                        style={{
-                          width: '22px',
-                          height: '22px',
-                          color: 'rgb(86, 90, 105)',
-                          backgroundColor: 'orange'
-                        }}
-                      />
-                      <p
-                        style={{
-                          fontSize: '16px',
-                          fontWeight: 500,
-                          marginLeft: '5px'
-                        }}
-                      >
-                        1 {token?.otherToken} ={' '}
-                        {convertToInternationalCurrencySystem(
-                          cryptoData?.filter(
-                            (e) => e?.symbol == token?.othertoken?.slice(1)
-                          )[0]?.price
-                        )}{' '}
-                        USD
-                      </p>
-                    </div>
-                  )}
                 </div>
                 <div
                   style={{
@@ -374,14 +270,15 @@ export default function TokenPage({ pecuCoins, user }) {
                     {' '}
                     $
                     {convertToInternationalCurrencySystem(
-                      data?.wrapAmount * data?.initialFinal
+                      token?.amount_issued * token?.launch_price
                     )}
                   </p>
                 </div>
                 <div style={{ marginBottom: '1rem' }}>
                   <p className="token-page-t1 mb-1">24h Trading Vol</p>
                   <p className="token-page-t2 mb-1">
-                    {convertToInternationalCurrencySystem(data?.initialFinal)}
+                    {/* {convertToInternationalCurrencySystem(data?.initialFinal)} */}
+                    00
                   </p>
                 </div>
                 <div style={{ marginBottom: '1rem' }}>
@@ -393,10 +290,11 @@ export default function TokenPage({ pecuCoins, user }) {
                       fontSize: '24px'
                     }}
                   >
-                    $
+                    {/* $
                     {convertToInternationalCurrencySystem(
                       cryptoData?.price?.toFixed(5)
-                    )}
+                    )} */}
+                    00
                   </p>
                 </div>
               </div>
@@ -412,10 +310,7 @@ export default function TokenPage({ pecuCoins, user }) {
                   }}
                   className="shadowGrey"
                 >
-                  <TokenGraph
-                    id={token?.id}
-                    setTokenPrice={setTokenPrice}
-                  />
+                  <TokenGraph id={token?.id} setTokenPrice={""} />
                 </div>
               </Box>
             </Grid>

@@ -136,17 +136,45 @@ export default function PoolPage({ pecuCoins, user }) {
           >
             <Grid item xs={12} md={6}>
               <div style={{ position: 'sticky' }}>
-                <Link
-                  to={`/`}
-                  style={{ fontSize: '1rem', fontWeight: '500' }}
-                >{`Home  >  Pools  >  ${pool?.project_token_symbol} ${
-                  pool?.wrap_token_symbol
-                    ? `/ ${pool?.wrap_token_symbol
-                        .split('')
-                        .map((e, i) => (i == 0 ? e.toLowerCase() : e))
-                        .join('')}`
-                    : null
-                } / PECU `}</Link>
+                <p
+                  style={{
+                    fontSize: '1rem',
+                    fontWeight: '500',
+                    color: 'white'
+                  }}
+                >
+                  {' '}
+                  {'Home  >'}{' '}
+                  <Link
+                    style={{
+                      fontSize: '1rem',
+                      fontWeight: '500',
+                      color: 'white'
+                    }}
+                    to="/pools"
+                  >
+                    Pools{' '}
+                  </Link>
+                  {'>'}{' '}
+                  <Link
+                    to={`/project-token/${pool?.project_token_symbol}`}
+                    style={{
+                      fontSize: '1rem',
+                      fontWeight: '500',
+                      color: 'white'
+                    }}
+                  >
+                    {pool?.project_token_symbol}{' '}
+                  </Link>
+                  {`${
+                    pool?.wrap_token_symbol
+                      ? `/ ${pool?.wrap_token_symbol
+                          .split('')
+                          .map((e, i) => (i == 0 ? e.toLowerCase() : e))
+                          .join('')}`
+                      : null
+                  } / PECU `}
+                </p>
               </div>
               <div
                 style={{
@@ -185,7 +213,19 @@ export default function PoolPage({ pecuCoins, user }) {
                     fontFamily: 'Inter var sans-serif'
                   }}
                 >
-                  {`${pool?.project_token_symbol} ${
+                  <Link
+                    style={{
+                      color: 'white',
+                      marginLeft: '5px',
+                      fontSize: '24px',
+                      fontWeight: '500',
+                      fontFamily: 'Inter var sans-serif'
+                    }}
+                    to={`/project-token/${pool?.project_token_symbol}`}
+                  >
+                    {pool?.project_token_symbol}
+                  </Link>
+                  {`${
                     pool?.wrap_token_symbol
                       ? `/ ${pool?.wrap_token_symbol
                           .split('')

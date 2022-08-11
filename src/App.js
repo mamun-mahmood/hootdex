@@ -13,6 +13,8 @@ import url from "./serverUrl";
 import TokenPage from "./screens/TokenPage";
 import AllTokens from "./screens/AllTokens";
 import CreatePool from "./screens/CreatePool";
+import InfoPage from "./screens/InfoPage";
+import ProjectToken from "./screens/ProjectToken";
 function App() {
   const [user, setUser] = useState(null);
   const findUser = async () => {
@@ -60,12 +62,20 @@ function App() {
             element={<PoolPage user={user} pecuCoins={pecuCoins} />}
           />
           <Route
-            path="/tokens/tokenid"
+            path="/tokens/:tokenName"
             element={<TokenPage user={user} pecuCoins={pecuCoins} />}
+          />
+          <Route
+            path="/project-token/:tokenSymbol"
+            element={<ProjectToken user={user} pecuCoins={pecuCoins} />}
           />
           <Route
             path="/tokens"
             element={<AllTokens user={user} pecuCoins={pecuCoins} />}
+          />
+          <Route
+            path="/info"
+            element={<InfoPage user={user} />}
           />
           <Route
             path="/login"

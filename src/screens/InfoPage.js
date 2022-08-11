@@ -1,6 +1,6 @@
 import React from 'react';
 
-const CreateInfo = () => {
+const InfoPage = () => {
     return (
         <div>
             
@@ -8,4 +8,4 @@ const CreateInfo = () => {
     );
 };
 
-export default CreateInfo;
+export default InfoPage;
