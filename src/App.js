@@ -62,7 +62,7 @@ function App() {
             element={<PoolPage user={user} pecuCoins={pecuCoins} />}
           />
           <Route
-            path="/tokens/:tokenName"
+            path="/tokens/:tokenSymbol"
             element={<TokenPage user={user} pecuCoins={pecuCoins} />}
           />
           <Route

@@ -225,14 +225,27 @@ export default function PoolPage({ pecuCoins, user }) {
                   >
                     {pool?.project_token_symbol}
                   </Link>
-                  {`${
-                    pool?.wrap_token_symbol
-                      ? `/ ${pool?.wrap_token_symbol
-                          .split('')
-                          .map((e, i) => (i == 0 ? e.toLowerCase() : e))
-                          .join('')}`
-                      : null
-                  } / PECU`}
+                  <Link
+                    to={`/tokens/${pool?.wrap_token_symbol}`}
+                    style={{
+                      color: 'white',
+                      marginLeft: '5px',
+                      fontSize: '24px',
+                      fontWeight: '500',
+                      fontFamily: 'Inter var sans-serif'
+                    }}
+                    state={pool?.wrap_token_symbol}
+                  >
+                    {`${
+                      pool?.wrap_token_symbol
+                        ? `/ ${pool?.wrap_token_symbol
+                            .split('')
+                            .map((e, i) => (i == 0 ? e.toLowerCase() : e))
+                            .join('')}`
+                        : null
+                    }`}
+                  </Link>
+                  {' / PECU'}
                 </p>
                 <p
                   style={{
@@ -323,58 +336,6 @@ export default function PoolPage({ pecuCoins, user }) {
                   )}
                 </p>
               </div>
-              {/* <div
-              style={{
-                display: 'flex',
-                flexDirection: 'row'
-              }}
-            >
-              {' '}
-              <div className="dfelxalitemC">
-                <Avatar
-                  src={`${url}/hootdex/images/${token?.logo_src}`}
-                  alt={token.tokenName}
-                />
-                <p
-                  style={{
-                    color: 'white',
-                    marginLeft: '1rem',
-                    fontSize: '26px',
-                    fontWeight: '500',
-                    fontFamily: 'arial'
-                  }}
-                >
-                  {token?.tokenName}{' '}
-                  <span
-                    style={{ fontSize: '20px', color: 'rgb(195, 197, 203)' }}
-                  >
-                    ({token?.tokenSymbol})
-                  </span>{' '}
-                </p>
-              </div>
-              <div className="dfelxalitemC" style={{ marginLeft: '1rem' }}>
-                <Avatar
-                  src={`https://pecunovus.net/static/media/icon.25c8ec299d961b9dd524.ico`}
-                  alt={token.tokenName}
-                />
-                <p
-                  style={{
-                    color: 'white',
-                    marginLeft: '1rem',
-                    fontSize: '26px',
-                    fontWeight: '500',
-                    fontFamily: 'arial'
-                  }}
-                >
-                  {'PECU'}{' '}
-                  <span
-                    style={{ fontSize: '20px', color: 'rgb(195, 197, 203)' }}
-                  >
-                    ({'PECU'})
-                  </span>{' '}
-                </p>
-              </div>
-            </div> */}
               <div
                 style={{
                   marginTop: '0.5rem',
@@ -387,26 +348,6 @@ export default function PoolPage({ pecuCoins, user }) {
                   flexWrap: 'wrap'
                 }}
               >
-                {/* <p
-                className="token-page-t2"
-                style={{
-                  marginTop: '0.5rem',
-                  fontSize: '18px'
-                }}
-              >
-                ${token?.currentPrice?.toFixed(5)}{' '}
-                {priceUp ? (
-                  <small style={{ fontSize: '18px', color: '#4caf50' }}>
-                    (<ArrowUpwardIcon sx={{ fontSize: '18px' }} />
-                    {tokenPriceIncreasePercentage?.toFixed(2)}%)
-                  </small>
-                ) : (
-                  <small style={{ fontSize: '18px', color: 'red' }}>
-                    (<ArrowDownwardIcon sx={{ fontSize: '18px' }} />
-                    {tokenPriceIncreasePercentage?.toFixed(2)}%)
-                  </small>
-                )}
-              </p> */}
                 <div
                   style={{
                     display: 'flex',
@@ -492,11 +433,7 @@ export default function PoolPage({ pecuCoins, user }) {
                     </p>
                   </div>
                   {pool?.wrap_token_symbol && (
-                    <Link
-                      to={`/tokens/tokenid`}
-                      state={pool?.wrap_token_symbol}
-                      // pecuCoins={currentValue}
-                    >
+                    <Link to={`/tokens/${pool?.wrap_token_symbol}`}>
                       <div
                         style={{
                           display: 'flex',
@@ -802,25 +739,7 @@ export default function PoolPage({ pecuCoins, user }) {
                         pool?.wrap_token_price * pool?.wrap_token_amount
                     )}
                   </p>
-                  {/* <small style={{ fontSize: "18px", color: "red" }}>
-                  <ArrowDownwardIcon sx={{ fontSize: "18px" }} />
-                  10.89%
-                </small>{" "} */}
                 </div>
-                {/* <div style={{ marginBottom: '1rem' }}>
-           
-                <p className="token-page-t1 mb-1">Total amount</p>
-                <p className="token-page-t2 mb-1">{token?.totalToken}</p>
-              
-              </div> */}
-
-                {/* <div style={{ marginBottom: '1rem' }}>
-            
-                <p className="token-page-t1 mb-1">Initial Price</p>
-                <p className="token-page-t2 mb-1">
-                  ${token?.tokenPrice?.toFixed(5)}
-                </p>
-              </div> */}
 
                 <p className="token-page-t2">
                   {' '}

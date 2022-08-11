@@ -140,7 +140,7 @@ const TopToken = () => {
                     </TableCell>
                     <TableCell className="twhite" align="left">
                       <Link
-                        to={`/tokens/tokenid`}
+                        to={`/tokens/${each.symbol}`}
                         state={each}
                         // pecuCoins={currentValue}
                       >

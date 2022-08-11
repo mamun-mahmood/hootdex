@@ -33,28 +33,21 @@ const TokenGraph = ({ id, pool, currentValue }) => {
   console.log(id);
   const getChatData = (target) => {
     setFilter(target);
-    axios
-      .get(`http://localhost:3001/hootdex/token-price-daily?token_id=${id}`)
-      .then((res) => {
-        setChartData(res.data);
-        console.log(res.data);
-        let i = 0;
-        i = res.data?.length - 1;
-        const data = [
-          {
-            currentPrice: res?.data[i]?.today_value,
-            previousPrice: res?.data[i - 1]?.today_value
-          }
-        ];
-        // setpoolPrice(data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    if (id) {
+      axios
+        .get(`http://localhost:3001/hootdex/token-price-daily?token_id=${id}`)
+        .then((res) => {
+          setChartData(res.data);
+          console.log(res.data);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
   };
-    useEffect(() => {
-      getChatData("daily");
-    }, []);
+  useEffect(() => {
+    getChatData('daily');
+  }, [id]);
 
   return (
     <>
@@ -66,9 +59,7 @@ const TokenGraph = ({ id, pool, currentValue }) => {
           height: 30
         }}
       >
-        <div>
-          {/* <p className="pool-page-t1">{date}</p> */}
-        </div>
+        <div>{/* <p className="pool-page-t1">{date}</p> */}</div>
         <div
           style={{
             backgroundColor: 'rgb(44, 47, 54)',

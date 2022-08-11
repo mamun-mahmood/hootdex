@@ -2,7 +2,6 @@ import {
   Alert,
   Avatar,
   Collapse,
-  Divider,
   Grid,
   IconButton,
   LinearProgress
@@ -12,7 +11,7 @@ import axios from 'axios';
 import React from 'react';
 import { useEffect } from 'react';
 import { useState } from 'react';
-import { Link, useParams, useLocation } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import BuyToken from '../components/Modal/BuyToken';
 import GetAppIcon from '@mui/icons-material/GetApp';
 import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
@@ -31,11 +30,31 @@ function convertToInternationalCurrencySystem(labelValue) {
     ? (Math.abs(Number(labelValue)) / 1.0e3).toFixed(2) + 'k'
     : Math.abs(Number(labelValue));
 }
+const removeDuplicatedToken = (allData) => {
+  for (let i = 0; i < allData.length; i++) {
+    for (let j = i + 1; j < allData.length; j++) {
+      if (allData[i].symbol == allData[j].symbol) {
+        allData[i].wrapAmount = allData[j].wrapAmount + allData[i].wrapAmount;
+        allData[i].initialFinal =
+          allData[j].initialFinal + allData[i].initialFinal;
+        allData = allData.filter((e) => e !== allData[j]);
+      }
+    }
+  }
+
+  for (let i = 0; i < allData.length; i++) {
+    for (let j = i + 1; j < allData.length; j++) {
+      if (allData[i].symbol == allData[j].symbol) {
+        return removeDuplicatedToken(allData);
+      }
+    }
+  }
+
+  return allData;
+};
 export default function TokenPage({ pecuCoins, user }) {
-  const data = useLocation().state;
-  const tokenName = useParams().tokenName;
-  // const [token, setToken] = useState();
-  console.log(tokenName);
+  const [data, setData] = useState({});
+  const tokenSymbol = useParams().tokenSymbol;
   const token = {
     tokenName: data?.baseToken,
     timestamp: data?.date_time,
@@ -45,11 +64,9 @@ export default function TokenPage({ pecuCoins, user }) {
     pecuInvestement: data?.pecuInvestement,
     pecuValue: data?.pecuValue,
     public_key: data?.public_key,
-    tokenSymbol: data?.symbol,
+    tokenSymbol: data?.symbol
   };
-  console.log(token);
   const [loading, setLoading] = useState(false);
-  const [chartBtn, setChartBtn] = useState(3);
   const [cryptoData, setCryptoData] = useState([]);
   const [alert, setAlert] = useState({
     msg: '',
@@ -83,32 +100,21 @@ export default function TokenPage({ pecuCoins, user }) {
       console.log(findtoken[0]);
     });
   };
-  const date = new Date().toLocaleDateString();
   useEffect(() => {
     setLoading(true);
     axios
-      .get(`${url}/hootdex/getToken/${tokenName}`)
+      .get(`${url}/wallet/get_my_tokens_wrap?symbol=${tokenSymbol}`)
       .then((res) => {
-        // setToken(res.data[0]);
+        if (res.data.status) {
+          const token = removeDuplicatedToken(res.data.tokens)
+          setData(token[0]);
+        }
         setLoading(false);
       })
       .catch((err) => {
         setLoading(false);
-        setAlert({
-          msg: 'There was an error',
-          type: 'error',
-          show: true
-        });
-        setTimeout(() => {
-          setAlert({
-            msg: 'There was an error',
-            type: 'error',
-            show: false
-          });
-        }, 3000);
-        console?.log(err);
       });
-  }, [tokenName]);
+  }, [tokenSymbol]);
   useEffect(() => {
     get_current_index_coin();
     get_crypto_Data();
@@ -216,26 +222,6 @@ export default function TokenPage({ pecuCoins, user }) {
                   flexWrap: 'wrap'
                 }}
               >
-                {/* <p
-                  className="token-page-t2"
-                  style={{
-                    marginTop: '0.5rem',
-                    fontSize: '18px'
-                  }}
-                >
-                  ${token?.currentPrice?.toFixed(5)}{' '}
-                  {priceUp ? (
-                    <small style={{ fontSize: '18px', color: '#4caf50' }}>
-                      (<ArrowUpwardIcon sx={{ fontSize: '18px' }} />
-                      {tokenPriceIncreasePercentage?.toFixed(2)}%)
-                    </small>
-                  ) : (
-                    <small style={{ fontSize: '18px', color: 'red' }}>
-                      (<ArrowDownwardIcon sx={{ fontSize: '18px' }} />
-                      {tokenPriceIncreasePercentage?.toFixed(2)}%)
-                    </small>
-                  )}
-                </p> */}
                 <div
                   style={{
                     display: 'flex',
@@ -412,10 +398,7 @@ export default function TokenPage({ pecuCoins, user }) {
                   }}
                   className="shadowGrey"
                 >
-                  <TokenGraph
-                    id={token?.id}
-                    setTokenPrice={setTokenPrice}
-                  />
+                  <TokenGraph id={token?.id} setTokenPrice={setTokenPrice} />
                 </div>
               </Box>
             </Grid>

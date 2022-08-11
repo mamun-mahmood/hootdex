@@ -129,7 +129,7 @@ export default function ProjectToken({ pecuCoins, user }) {
                     color: 'white' 
                   }} 
                 >
-                  {' >'} {token?.token_symbol} / PECU
+                  {' >'} {token?.token_symbol}
                 </span>
               </div>
               <div
