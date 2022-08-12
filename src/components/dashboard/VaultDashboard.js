@@ -172,6 +172,7 @@ const VaultDashboard = ({ user, pecuCoins }) => {
                   sx={{
                     color: 'white',
                     textTransform: 'capitalize',
+                    borderColor: '#01402b',
                     m: 1
                   }}
                 >
@@ -206,7 +207,8 @@ const VaultDashboard = ({ user, pecuCoins }) => {
                 sx={{
                   color: 'white',
                   textTransform: 'capitalize',
-                  m: 1
+                  m: 1,
+                  borderColor: '#01402b'
                 }}
               >
                 View
