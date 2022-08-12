@@ -54,7 +54,7 @@ function App() {
       <div>
         <Nav wallet={wallet} fetchWallet={fetchWallet} />
         <Routes>
-          <Route path="/create-token" element={<CreatePool />} />
+          <Route path="/create-pool" element={<CreatePool />} />
           <Route path="/" element={<Home />} />
           <Route path="/wallet" element={<Wallet />} />
           <Route

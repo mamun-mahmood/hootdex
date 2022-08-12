@@ -6,7 +6,7 @@ import Users from "./Users";
 import { Button, Divider } from "@mui/material";
 
 const DashboardIndex = ({ user, pecuCoins }) => {
-  const [tier, setTier] = React.useState(user.tier || 2);
+  const [tier, setTier] = React.useState(user.tier || 1);
   const [tab, setTab] = React.useState(0);
   const switchTier = () => {
     if (tier < 2) {

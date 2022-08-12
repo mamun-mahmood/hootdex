@@ -382,7 +382,8 @@ export default function TokenPage({ pecuCoins, user }) {
                     {/* $
                     {convertToInternationalCurrencySystem(
                       cryptoData?.price?.toFixed(5)
-                    )} */}0.00%
+                    )} */}
+                    0.00%
                   </p>
                 </div>
               </div>

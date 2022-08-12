@@ -1,25 +1,11 @@
 import * as React from 'react';
-import { Box, Button, ClickAwayListener, ListItemIcon } from '@mui/material';
-import Typography from '@mui/material/Typography';
-import Grid from '@mui/material/Grid';
-import { Paper } from '@mui/material';
+import { Box, ListItemIcon } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
 import axios from 'axios';
-import TokenList from '../Modal/TokenList';
-import MenuIcon from '@mui/icons-material/Menu';
-import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemText from '@mui/material/ListItemText';
-import DashboardIcon from '@mui/icons-material/Dashboard';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
-import Toolbar from '@mui/material/Toolbar';
-import List from '@mui/material/List';
-import Divider from '@mui/material/Divider';
-import GroupIcon from '@mui/icons-material/Group';
-import { Link } from 'react-router-dom';
-import { styled } from '@mui/material/styles';
-import MuiDrawer from '@mui/material/Drawer';
 import AccountBalanceWalletIcon from '@mui/icons-material/AccountBalanceWallet';
 import TokenIcon from '@mui/icons-material/Token';
 import Vault from '../../assets/images/vault-svgrepo-com.svg';
@@ -28,33 +14,6 @@ import TokenDashboard from './TokenDashboard';
 import VaultDashboard from './VaultDashboard';
 import MyProfile from './MyProfile';
 import url from '../../serverUrl';
-
-const drawerWidth = 240;
-const Drawer = styled(MuiDrawer, {
-  shouldForwardProp: (prop) => prop !== 'open'
-})(({ theme, open }) => ({
-  '& .MuiDrawer-paper': {
-    position: 'relative',
-    whiteSpace: 'nowrap',
-    width: drawerWidth,
-    transition: theme.transitions.create('width', {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.enteringScreen
-    }),
-    boxSizing: 'border-box',
-    ...(!open && {
-      overflowX: 'hidden',
-      transition: theme.transitions.create('width', {
-        easing: theme.transitions.easing.sharp,
-        duration: theme.transitions.duration.leavingScreen
-      }),
-      width: theme.spacing(7),
-      [theme.breakpoints.up('sm')]: {
-        width: theme.spacing(9)
-      }
-    })
-  }
-}));
 
 function DashboardContent({ user, pecuCoins }) {
   const navigate = useNavigate();
@@ -214,28 +173,6 @@ function DashboardContent({ user, pecuCoins }) {
             primary="Wallet"
           />
         </ListItemButton>
-        {tier === 0 && (
-          <ListItemButton
-            className={`${tab === 'Users' && 'shadow'}`}
-            sx={{
-              ':hover': {
-                bgcolor: '#1a1b1f', // theme.palette.primary.main
-                color: 'white'
-              },
-              color: 'white',
-              backgroundColor: '#00071a',
-              borderRadius: '20px',
-              m: 1,
-              border: '1px solid #091e17'
-            }}
-            onClick={() => setTab('Users')}
-          >
-            <ListItemIcon>
-              <GroupIcon sx={{ color: 'white' }} />
-            </ListItemIcon>
-            <ListItemText primary="Users" />
-          </ListItemButton>
-        )}
         <ListItemButton
           className={`${tab === 'Token' && 'shadow'}`}
           sx={{

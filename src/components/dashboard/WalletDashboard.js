@@ -35,13 +35,14 @@ const WalletDashboard = ({ user, pecuCoins }) => {
 
   return (
     <Box
-      className="rounded shadow"
+      className="rounded shadow-light"
       sx={{
         width: '95%',
         ml: '2.5%',
         mt: 3,
         mb: 1,
-        height: '100vh'
+        height: '100vh',
+        p: 1
       }}
     >
       <h2 style={{ color: '#fff', textAlign: 'center', fontWeight: 'bold' }}>
@@ -50,11 +51,8 @@ const WalletDashboard = ({ user, pecuCoins }) => {
       <Grid container spacing={3} sx={{ textTransform: 'uppercase' }}>
         <Grid item xs={12} md={6} lg={4}>
           <Paper
-            style={{
-              textAlign: 'center',
-              backgroundColor: 'grey'
-            }}
-            className="border tShadow"
+            className="border dashboard-card"
+            sx={{p: 2}}
           >
             <div
               style={{
@@ -87,65 +85,10 @@ const WalletDashboard = ({ user, pecuCoins }) => {
             </div>
           </Paper>
         </Grid>
-        {/* <Grid item xs={12} md={6} lg={4}>
-            <Paper
-              style={{
-                textAlign: "center",
-                backgroundColor: "grey",
-              }}
-              className="border"
-            >
-              <div
-                style={{
-                  color: "white",
-                  wordWrap: "break-word",
-                }}
-              >
-                <div
-                  className="rounded center-width tUpper"
-                  style={{ backgroundColor: "#01402b" }}
-                >
-                  <h3>Connected Wallet</h3>
-                </div>
-                <p className="fontS22">0</p>
-              </div>
-            </Paper>
-          </Grid> */}
-        {/* <Grid item xs={12} md={6} lg={4}>
-            <Paper
-              style={{
-                textAlign: "center",
-                backgroundColor: "grey",
-                cursor: "pointer",
-              }}
-              // onClick={() => handleOpen(1)}
-              className="border"
-            >
-              <div
-                style={{
-                  color: "white",
-                  wordWrap: "break-word",
-                }}
-              >
-                <div
-                  className="rounded center-width tUpper"
-                  style={{ backgroundColor: "#01402b" }}
-                >
-                  <h3>Current Holdings</h3>
-                </div>
-                <p className="fontS22">0</p>
-              </div>
-            </Paper>
-          </Grid> */}
         <Grid item xs={12} md={6} lg={4}>
           <Paper
-            style={{
-              textAlign: 'center',
-              backgroundColor: 'grey',
-              cursor: 'pointer'
-            }}
-            // onClick={() => handleOpen(2)}
-            className="border"
+            className="border dashboard-card"
+            sx={{p: 2}}
           >
             <div
               style={{
@@ -202,11 +145,8 @@ const WalletDashboard = ({ user, pecuCoins }) => {
           </Grid> */}
         <Grid item xs={12} md={6} lg={4}>
           <Paper
-            style={{
-              textAlign: 'center',
-              backgroundColor: 'grey'
-            }}
-            className="border"
+            className="border dashboard-card"
+            sx={{p: 2}}
           >
             <div
               style={{

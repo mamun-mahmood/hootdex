@@ -105,13 +105,14 @@ const VaultDashboard = ({ user, pecuCoins }) => {
   const [tab, setTab] = React.useState(0);
   return (
     <Box
-      className="rounded shadow"
+      className="rounded shadow-light"
       sx={{
         width: '95%',
         ml: '2.5%',
         mt: 3,
         mb: 1,
-        height: '100vh'
+        height: '100vh',
+        p: 1
       }}
     >
       <h2 style={{ color: '#fff', textAlign: 'center', fontWeight: 'bold' }}>
@@ -120,13 +121,8 @@ const VaultDashboard = ({ user, pecuCoins }) => {
       <Grid container spacing={3}>
         <Grid item xs={12} md={6} lg={4}>
           <Paper
-            style={{
-              textAlign: 'center',
-              backgroundColor: 'grey',
-              cursor: 'pointer'
-            }}
+            className="border dashboard-card"
             onClick={() => handleOpen(2)}
-            className="border"
           >
             <div
               style={{
@@ -154,12 +150,7 @@ const VaultDashboard = ({ user, pecuCoins }) => {
         </Grid>
         <Grid item xs={12} md={6} lg={4}>
           <Paper
-            style={{
-              textAlign: 'center',
-              backgroundColor: 'grey',
-              cursor: 'pointer'
-            }}
-            className="border"
+           className="border dashboard-card"
             onClick={() => wallet?.uid && navigate('/create-token')}
           >
             <div
@@ -194,13 +185,8 @@ const VaultDashboard = ({ user, pecuCoins }) => {
         </Grid>
         <Grid item xs={12} md={6} lg={4}>
           <Paper
-            style={{
-              textAlign: 'center',
-              backgroundColor: 'grey',
-              cursor: 'pointer'
-            }}
             // onClick={() => handleOpen(1)}
-            className="border"
+            className="border dashboard-card"
           >
             <div
               style={{
@@ -214,7 +200,7 @@ const VaultDashboard = ({ user, pecuCoins }) => {
               >
                 <h3>NFT Holdings</h3>
               </div>
-              <p className="fontS22">Total NFT: {nftCount}</p>
+              <p >Total NFT: {nftCount}</p>
               <Button
                 variant="outlined"
                 sx={{

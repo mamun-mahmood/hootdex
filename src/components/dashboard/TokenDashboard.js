@@ -110,13 +110,14 @@ const TokenDashboard = ({ user, pecuCoins }) => {
   const [tab, setTab] = React.useState(0);
   return (
     <Box
-      className="rounded shadow"
+      className="rounded shadow-light"
       sx={{
         width: '95%',
         ml: '2.5%',
         mt: 3,
         mb: 1,
-        height: '100vh'
+        height: '100vh',
+        p: 1
       }}
     >
       {' '}
@@ -126,13 +127,9 @@ const TokenDashboard = ({ user, pecuCoins }) => {
       <Grid container spacing={5} sx={{ p: 1 }}>
         <Grid item xs={12} md={6} lg={4}>
           <Paper
-            style={{
-              textAlign: 'center',
-              backgroundColor: 'grey',
-              cursor: 'pointer'
-            }}
             onClick={() => handleOpen(2)}
-            className="border"
+            className="border dashboard-card"
+            sx={{p: 2}}
           >
             <div
               style={{
@@ -152,13 +149,9 @@ const TokenDashboard = ({ user, pecuCoins }) => {
         </Grid>
         <Grid item xs={12} md={6} lg={4}>
           <Paper
-            style={{
-              textAlign: 'center',
-              backgroundColor: 'grey',
-              cursor: 'pointer'
-            }}
-            className="border"
+            className="border dashboard-card"
             onClick={() => wallet?.uid && navigate('/create-token')}
+            sx={{p: 2}}
           >
             <div
               style={{
@@ -180,13 +173,9 @@ const TokenDashboard = ({ user, pecuCoins }) => {
         </Grid>
         <Grid item xs={12} md={6} lg={4}>
           <Paper
-            style={{
-              textAlign: 'center',
-              backgroundColor: 'grey',
-              cursor: 'pointer'
-            }}
+            className="border dashboard-card"
             onClick={() => handleOpen(1)}
-            className="border"
+            sx={{p: 2}}
           >
             <div
               style={{

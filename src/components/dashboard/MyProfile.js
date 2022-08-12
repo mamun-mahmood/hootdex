@@ -2,7 +2,6 @@ import {
   Avatar,
   Button,
   Grid,
-  Paper,
   StepConnector,
   Typography
 } from '@mui/material';
@@ -33,15 +32,13 @@ const MyProfile = ({ user }) => {
   return (
     <>
       <Box
-        className="rounded shadow"
+        className="rounded shadow-light"
         sx={{
           width: '95%',
           ml: '2.5%',
           mt: 3,
-          mb: 1,
-          backgroundColor: 'black',
-          pb: 1,
-          height: '100vh'
+          mb: 2,
+          p: 1
         }}
       >
         <div
@@ -57,17 +54,13 @@ const MyProfile = ({ user }) => {
           </Typography>
           <StepConnector />
         </div>
-        <Grid
-          container
-          sx={{ backgroundColor: '#384b4', maxWidth: '100%' }}
-          spacing={5}
-        >
+        <Grid container sx={{ maxWidth: '100%' }} spacing={5}>
           <Grid item xs={12} md={4} mt={5} sx={{ ml: { xs: 3, sm: 0 } }}>
-            <Paper
+            <Box
               style={{
                 textAlign: 'center',
-                backgroundColor: 'black',
-                width: '100%'
+                width: '100%',
+                backgroundColor: '#1a1b1f'
               }}
               className="border rounded20"
             >
@@ -87,7 +80,7 @@ const MyProfile = ({ user }) => {
               >
                 <div
                   className="rounded center-width tUpper"
-                  style={{ backgroundColor: '#002945' }}
+                  style={{ backgroundColor: '#01402b' }}
                 >
                   <h3>{user.username}</h3>
                 </div>
@@ -107,12 +100,11 @@ const MyProfile = ({ user }) => {
               >
                 Logout
               </Button>
-            </Paper>
+            </Box>
           </Grid>
           <Grid item xs={12} md={4}>
             <div
               style={{
-                backgroundColor: 'black',
                 padding: '10px'
               }}
             >
@@ -125,7 +117,6 @@ const MyProfile = ({ user }) => {
             </div>
             <div
               style={{
-                backgroundColor: 'black',
                 padding: '10px'
               }}
             >
@@ -138,7 +129,6 @@ const MyProfile = ({ user }) => {
             </div>
             <div
               style={{
-                backgroundColor: 'black',
                 padding: '10px'
               }}
             >
@@ -153,7 +143,6 @@ const MyProfile = ({ user }) => {
           <Grid item xs={12} md={4}>
             <div
               style={{
-                backgroundColor: 'black',
                 padding: '10px'
               }}
             >
@@ -162,7 +151,6 @@ const MyProfile = ({ user }) => {
             </div>
             <div
               style={{
-                backgroundColor: 'black',
                 padding: '10px'
               }}
             >
@@ -171,7 +159,6 @@ const MyProfile = ({ user }) => {
             </div>
             <div
               style={{
-                backgroundColor: 'black',
                 padding: '10px'
               }}
             >
@@ -198,7 +185,6 @@ const MyProfile = ({ user }) => {
           <Grid item xs={12} md={4}>
             <div
               style={{
-                backgroundColor: 'black',
                 padding: '10px'
               }}
             >
@@ -209,7 +195,6 @@ const MyProfile = ({ user }) => {
           <Grid item xs={12} md={4}>
             <div
               style={{
-                backgroundColor: 'black',
                 padding: '10px'
               }}
             >
@@ -220,7 +205,6 @@ const MyProfile = ({ user }) => {
           <Grid item xs={12} md={4}>
             <div
               style={{
-                backgroundColor: 'black',
                 padding: '10px'
               }}
             >
@@ -231,7 +215,10 @@ const MyProfile = ({ user }) => {
         </Grid>
         {/* settings */}
         <div style={{ display: 'flex', justifyContent: 'center' }}>
-          <Button variant="outlined" sx={{ color: 'red' }}>
+          <Button
+            variant="outlined"
+            sx={{ color: 'white', borderColor: '#01402b' }}
+          >
             Save Changes
           </Button>
         </div>
