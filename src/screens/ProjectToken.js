@@ -102,7 +102,7 @@ export default function ProjectToken({ pecuCoins, user }) {
         </div>
       )}
       {
-        <div style={{ padding: '1rem 4rem' }}>
+        <Box sx={{ padding: { xs: 1, md: '1rem 4rem' } }}>
           <Grid
             width={'100%'}
             container
@@ -330,7 +330,7 @@ export default function ProjectToken({ pecuCoins, user }) {
               </Alert>
             </Collapse>
           </div>
-        </div>
+          </Box>
       }
     </>
   );

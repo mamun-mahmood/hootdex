@@ -159,6 +159,7 @@ export default function BuyToken({ each, user, pecuCoins }) {
             boxShadow: 'none'
           }
         }}
+        sx={{zIndex: 2002}}  
         disableScrollLock={true}
       >
         <Box className="border" sx={{ backdropFilter: 'blur(5px)', p: 3 }}>

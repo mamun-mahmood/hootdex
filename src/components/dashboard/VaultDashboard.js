@@ -112,13 +112,19 @@ const VaultDashboard = ({ user, pecuCoins }) => {
         mt: 3,
         mb: 1,
         height: '100vh',
-        p: 1
+        pt: 1
       }}
     >
       <h2 style={{ color: '#fff', textAlign: 'center', fontWeight: 'bold' }}>
         Vault Dashboard
       </h2>
-      <Grid container spacing={3}>
+      <Grid
+        container
+        spacing={3}
+        sx={{
+          p: 1,
+        }}
+      >
         <Grid item xs={12} md={6} lg={4}>
           <Paper
             className="border dashboard-card"
@@ -150,7 +156,7 @@ const VaultDashboard = ({ user, pecuCoins }) => {
         </Grid>
         <Grid item xs={12} md={6} lg={4}>
           <Paper
-           className="border dashboard-card"
+            className="border dashboard-card"
             onClick={() => wallet?.uid && navigate('/create-token')}
           >
             <div
@@ -201,7 +207,7 @@ const VaultDashboard = ({ user, pecuCoins }) => {
               >
                 <h3>NFT Holdings</h3>
               </div>
-              <p >Total NFT: {nftCount}</p>
+              <p>Total NFT: {nftCount}</p>
               <Button
                 variant="outlined"
                 sx={{

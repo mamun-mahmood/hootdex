@@ -134,7 +134,7 @@ export default function PoolPage({ pecuCoins, user }) {
             padding={{ xs: 0, md: 0 }}
             mb={1}
           >
-            <Grid item xs={12} md={6}>
+            <Grid item xs={12}>
               <div style={{ position: 'sticky' }}>
                 <p
                   style={{
@@ -344,8 +344,7 @@ export default function PoolPage({ pecuCoins, user }) {
                   justifyContent: 'space-between',
                   minWidth: '90vw',
                   width: '100%',
-
-                  flexWrap: 'wrap'
+                  flexWrap: 'wrap',
                 }}
               >
                 <div
@@ -487,12 +486,6 @@ export default function PoolPage({ pecuCoins, user }) {
                   )}
                 </div>
                 <div
-                  style={{
-                    display: 'flex',
-                    flexDirectino: 'row',
-                    alignItems: 'center',
-                    flexWrap: 'wrap'
-                  }}
                 >
                   {' '}
                   <IconButton
@@ -517,14 +510,6 @@ export default function PoolPage({ pecuCoins, user }) {
                   <BuyToken pool={pool} pecuCoins={pecuCoins} user={user} />
                 </div>
               </div>
-            </Grid>
-            <Grid item xs={12} md={6}>
-              <div
-                style={{
-                  display: 'flex',
-                  justifyContent: 'end'
-                }}
-              ></div>
             </Grid>
             <Grid item xs={12} md={4} mt={3}>
               <div

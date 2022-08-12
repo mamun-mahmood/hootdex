@@ -117,14 +117,14 @@ const TokenDashboard = ({ user, pecuCoins }) => {
         mt: 3,
         mb: 1,
         height: '100vh',
-        p: 1
+        pt: 1
       }}
     >
       {' '}
       <h2 style={{ color: '#fff', textAlign: 'center', fontWeight: 'bold' }}>
         Token Dashboard
       </h2>
-      <Grid container spacing={5} sx={{ p: 1 }}>
+      <Grid container spacing={3} sx={{ p: 1 }}>
         <Grid item xs={12} md={6} lg={4}>
           <Paper
             onClick={() => handleOpen(2)}

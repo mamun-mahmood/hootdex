@@ -38,7 +38,7 @@ const MyProfile = ({ user }) => {
           ml: '2.5%',
           mt: 3,
           mb: 2,
-          p: 1
+          pt: 1
         }}
       >
         <div
@@ -217,7 +217,7 @@ const MyProfile = ({ user }) => {
         <div style={{ display: 'flex', justifyContent: 'center' }}>
           <Button
             variant="outlined"
-            sx={{ color: 'white', borderColor: '#01402b' }}
+            sx={{ color: 'white', borderColor: '#01402b', mb: 1 }}
           >
             Save Changes
           </Button>

@@ -8,13 +8,12 @@ import ListItemText from '@mui/material/ListItemText';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import AccountBalanceWalletIcon from '@mui/icons-material/AccountBalanceWallet';
 import TokenIcon from '@mui/icons-material/Token';
-import Vault from '../../assets/images/vault-svgrepo-com.svg';
 import WalletDashboard from './WalletDashboard';
 import TokenDashboard from './TokenDashboard';
 import VaultDashboard from './VaultDashboard';
 import MyProfile from './MyProfile';
 import url from '../../serverUrl';
-
+import DashboardIcon from '@mui/icons-material/Dashboard';
 function DashboardContent({ user, pecuCoins }) {
   const navigate = useNavigate();
   const [tokenCreated, setTokenCreated] = React.useState([]);
@@ -143,7 +142,7 @@ function DashboardContent({ user, pecuCoins }) {
           // className={`${tab === 'Vault' && "button-hover"}`}
         >
           <ListItemIcon>
-            <img src={Vault} alt="vault icon" />
+            <DashboardIcon sx={{color: 'white'}} />
           </ListItemIcon>
           <ListItemText
             sx={{ display: { xs: 'none', sm: 'block' } }}
