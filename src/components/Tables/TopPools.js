@@ -90,6 +90,8 @@ const PoolTokens = () => {
             fontWeight: 'bold',
             textAlign: 'left',
             backgroundColor: '#21242b',
+            left: '0px',
+            position: 'sticky',
             padding: '1rem'
           }}
         >
