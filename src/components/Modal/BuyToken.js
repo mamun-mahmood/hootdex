@@ -140,12 +140,12 @@ export default function BuyToken({ each, user, pecuCoins }) {
           borderRadius: '12px',
           cursor: 'pointer',
           maxHeight: '40px',
-          fontSize: '18px'
+          fontSize: '14px'
         }}
         className="shadow"
         onClick={handleOpen}
       >
-        <p>Trade</p>
+        <p>Swap</p>
       </IconButton>
       <Dialog
         fullWidth={fullScreen}
@@ -159,7 +159,7 @@ export default function BuyToken({ each, user, pecuCoins }) {
             boxShadow: 'none'
           }
         }}
-        sx={{zIndex: 2002}}  
+        sx={{ zIndex: 2002 }}
         disableScrollLock={true}
       >
         <Box className="border" sx={{ backdropFilter: 'blur(5px)', p: 3 }}>

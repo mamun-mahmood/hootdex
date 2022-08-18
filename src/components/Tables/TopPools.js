@@ -180,28 +180,30 @@ const PoolTokens = () => {
                       </Link>
                     </TableCell>
                     <TableCell className="twhite green" align="left">
-                      ${each.project_token_price}
+                      $
+                      {(
+                        each.project_token_price +
+                        Math.abs(
+                          each?.project_token_amount *
+                            each?.project_token_price -
+                            (each?.pecu_amount * each?.pecu_price +
+                              each?.wrap_token_price * each?.wrap_token_amount)
+                        ) /
+                          each?.project_token_amount
+                      ).toFixed(2)}
                     </TableCell>
                     <TableCell className="twhite yellow" align="left">
-                      {cryptoData.length > 0 && each.investementAmount
-                        ? (
-                            ((each.totalToken +
-                              Math.abs(
-                                each.investementAmount +
-                                  each.pecuCoin * currentValue +
-                                  each.otherTokenAmount *
-                                    cryptoData?.filter(
-                                      (e) =>
-                                        e.symbol ==
-                                        each?.wrap_token_symbol.slice(1)
-                                    )[0].price -
-                                  each.firstTVL
-                              )) /
-                              each.totalToken) *
-                              each.tokenPrice -
-                            each.tokenPrice
-                          ).toFixed(2)
-                        : '0.00'}
+                      {(
+                        (Math.abs(
+                          each?.project_token_amount *
+                            each?.project_token_price -
+                            (each?.pecu_amount * each?.pecu_price +
+                              each?.wrap_token_price * each?.wrap_token_amount)
+                        ) /
+                          each?.project_token_amount /
+                          each.project_token_price) *
+                        100
+                      ).toFixed(2)}
                       %
                     </TableCell>
                     <TableCell className="twhite pink" align="left">

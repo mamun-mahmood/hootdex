@@ -106,7 +106,7 @@ export default function TokenPage({ pecuCoins, user }) {
       .get(`${url}/wallet/get_my_tokens_wrap?symbol=${tokenSymbol}`)
       .then((res) => {
         if (res.data.status) {
-          const token = removeDuplicatedToken(res.data.tokens)
+          const token = removeDuplicatedToken(res.data.tokens);
           setData(token[0]);
         }
         setLoading(false);
@@ -171,7 +171,7 @@ export default function TokenPage({ pecuCoins, user }) {
                     color: 'white'
                   }}
                 >
-                  {' >'} {token?.tokenSymbol} / PECU
+                  {' >'} {token?.tokenSymbol}
                 </span>
               </div>
               <div
@@ -206,9 +206,6 @@ export default function TokenPage({ pecuCoins, user }) {
                     {`${token?.tokenSymbol?.slice(0, 1)}`}
                   </span>
                   {token?.tokenSymbol?.slice(1)}
-                  <span style={{ fontSize: '13px', marginLeft: '5px' }}>
-                    (Locked)
-                  </span>
                 </p>
               </div>
               <div
@@ -419,7 +416,7 @@ export default function TokenPage({ pecuCoins, user }) {
               </Alert>
             </Collapse>
           </div>
-          </Box>
+        </Box>
       }
     </>
   );

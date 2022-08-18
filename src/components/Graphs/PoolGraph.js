@@ -122,6 +122,7 @@ const PoolGraph = ({ id, pool, currentValue }) => {
               ? 'header-link chart-button activeButton'
               : 'header-link chart-button'
           }`}
+          style={{ fontSize: '10px', height: '20px' }}
           onClick={() => {
             getChatData('current_hourly');
           }}
@@ -135,6 +136,7 @@ const PoolGraph = ({ id, pool, currentValue }) => {
               : 'header-link chart-button'
           }`}
           sx={{ display: { xs: 'none', md: 'block' } }}
+          style={{ fontSize: '10px', height: '20px' }}
           onClick={() => {
             getChatData('current_weekly');
           }}
@@ -147,6 +149,7 @@ const PoolGraph = ({ id, pool, currentValue }) => {
               ? 'header-link chart-button activeButton'
               : 'header-link chart-button'
           }`}
+          style={{ fontSize: '10px', height: '20px' }}
           onClick={() => {
             getChatData('current_monthly');
           }}
@@ -159,6 +162,7 @@ const PoolGraph = ({ id, pool, currentValue }) => {
               ? 'header-link chart-button activeButton'
               : 'header-link chart-button'
           }`}
+          style={{ fontSize: '10px', height: '20px' }}
           onClick={() => {
             getChatData('current_quaterly');
           }}
@@ -171,6 +175,7 @@ const PoolGraph = ({ id, pool, currentValue }) => {
               ? 'header-link chart-button activeButton'
               : 'header-link chart-button'
           }`}
+          style={{ fontSize: '10px', height: '20px' }}
           onClick={() => {
             getChatData('current_yearly');
           }}

@@ -19,6 +19,7 @@ import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
 import url from '../serverUrl';
 import Transactions from '../components/Tables/Transactions';
 import TokenGraph from '../components/Graphs/TokenGraph.js';
+
 function convertToInternationalCurrencySystem(labelValue) {
   // Nine Zeroes for Billions
   return Math.abs(Number(labelValue)) >= 1.0e9
@@ -34,6 +35,7 @@ function convertToInternationalCurrencySystem(labelValue) {
 export default function ProjectToken({ pecuCoins, user }) {
   const data = useLocation().state;
   const token_symbol = useParams().token_symbol;
+  const token_price = data?.token_price;
   const [token, setToken] = useState();
   const [loading, setLoading] = useState(false);
   const [cryptoData, setCryptoData] = useState([]);
@@ -126,8 +128,8 @@ export default function ProjectToken({ pecuCoins, user }) {
                   style={{
                     fontSize: '1rem',
                     fontWeight: '500',
-                    color: 'white' 
-                  }} 
+                    color: 'white'
+                  }}
                 >
                   {' >'} {token?.token_symbol}
                 </span>
@@ -161,9 +163,6 @@ export default function ProjectToken({ pecuCoins, user }) {
                   }}
                 >
                   {token?.token_symbol}
-                  <span style={{ fontSize: '13px', marginLeft: '5px' }}>
-                    (Locked)
-                  </span>
                 </p>
               </div>
               <div
@@ -203,9 +202,10 @@ export default function ProjectToken({ pecuCoins, user }) {
                         marginLeft: '5px'
                       }}
                     >
+                      $
                       {convertToInternationalCurrencySystem(
-                        (token?.token_price)
-                      )}
+                        token_price
+                      ).toFixed(2)}
                     </p>
                     <small style={{ fontSize: '16px', color: 'green' }}>
                       <ArrowUpwardIcon sx={{ fontSize: '13px' }} />
@@ -270,7 +270,7 @@ export default function ProjectToken({ pecuCoins, user }) {
                     {' '}
                     $
                     {convertToInternationalCurrencySystem(
-                      token?.amount_issued * token?.launch_price
+                      token?.amount_issued * token_price
                     )}
                   </p>
                 </div>
@@ -310,7 +310,7 @@ export default function ProjectToken({ pecuCoins, user }) {
                   }}
                   className="shadowGrey"
                 >
-                  <TokenGraph id={token?.id} setTokenPrice={""} />
+                  <TokenGraph id={token?.id} setTokenPrice={''} />
                 </div>
               </Box>
             </Grid>
@@ -330,7 +330,7 @@ export default function ProjectToken({ pecuCoins, user }) {
               </Alert>
             </Collapse>
           </div>
-          </Box>
+        </Box>
       }
     </>
   );

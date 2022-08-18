@@ -102,6 +102,13 @@ export default function PoolPage({ pecuCoins, user }) {
     get_crypto_Data();
   }, []);
 
+  const priceProjectToken =
+    Math.abs(
+      pool?.project_token_amount * pool?.project_token_price -
+        (pool?.pecu_amount * pool?.pecu_price +
+          pool?.wrap_token_price * pool?.wrap_token_amount)
+    ) / pool?.project_token_amount;
+
   const currentPrice = tokenPrice[0]?.currentPrice;
   const previousPrice = tokenPrice[0]?.previousPrice;
   // const [priceUp, setPriceUp] = useState(true);
@@ -344,7 +351,7 @@ export default function PoolPage({ pecuCoins, user }) {
                   justifyContent: 'space-between',
                   minWidth: '90vw',
                   width: '100%',
-                  flexWrap: 'wrap',
+                  flexWrap: 'wrap'
                 }}
               >
                 <div
@@ -355,46 +362,57 @@ export default function PoolPage({ pecuCoins, user }) {
                     flexWrap: 'wrap'
                   }}
                 >
-                  <div
-                    style={{
-                      display: 'flex',
-                      flexDirection: 'row',
-                      backgroundColor: 'rgb(64, 68, 79)',
-                      padding: '4px 6px',
-                      borderRadius: '8px',
-                      fontWeight: '400',
-                      boxSizing: 'border-box',
-                      maxWidth: 'fit-content',
-                      color: 'white',
-                      margin: '1rem ',
-                      cursor: 'pointer',
-                      minWidth: '200px'
-                    }}
-                  >
-                    <Avatar
-                      className="rounded"
-                      src={`${url}/hootdex/images/${pool?.img}`}
-                      alt="token logo"
-                      style={{
-                        width: '22px',
-                        height: '22px',
-                        color: 'rgb(86, 90, 105)'
-                      }}
-                    />
-                    <p
-                      style={{
-                        fontSize: '16px',
-                        fontWeight: 500,
-                        marginLeft: '5px'
+                  {pool.project_token_symbol && (
+                    <Link
+                      to={`/project-token/${pool?.project_token_symbol}`}
+                      state={{
+                        token_price:
+                          pool?.project_token_price + priceProjectToken
                       }}
                     >
-                      {}1 {pool?.project_token_symbol} ={' '}
-                      {convertToInternationalCurrencySystem(
-                        pool?.project_token_price
-                      )}
-                      USD
-                    </p>
-                  </div>
+                      <div
+                        style={{
+                          display: 'flex',
+                          flexDirection: 'row',
+                          backgroundColor: 'rgb(64, 68, 79)',
+                          padding: '4px 6px',
+                          borderRadius: '8px',
+                          fontWeight: '400',
+                          boxSizing: 'border-box',
+                          maxWidth: 'fit-content',
+                          color: 'white',
+                          margin: '1rem ',
+                          cursor: 'pointer',
+                          minWidth: '200px'
+                        }}
+                      >
+                        <Avatar
+                          className="rounded"
+                          src={`${url}/hootdex/images/${pool?.img}`}
+                          alt="token logo"
+                          style={{
+                            width: '22px',
+                            height: '22px',
+                            color: 'rgb(86, 90, 105)'
+                          }}
+                        />
+                        <p
+                          style={{
+                            fontSize: '16px',
+                            fontWeight: 500,
+                            marginLeft: '5px'
+                          }}
+                        >
+                          {}1 {pool?.project_token_symbol} ={' '}
+                          {convertToInternationalCurrencySystem(
+                            pool?.project_token_price + priceProjectToken
+                          ).toFixed(2)}
+                          USD
+                        </p>
+                      </div>
+                    </Link>
+                  )}
+
                   <div
                     style={{
                       display: 'flex',
@@ -485,8 +503,7 @@ export default function PoolPage({ pecuCoins, user }) {
                     </Link>
                   )}
                 </div>
-                <div
-                >
+                <div>
                   {' '}
                   <IconButton
                     className="dfelxalitemC shadow"
@@ -500,7 +517,7 @@ export default function PoolPage({ pecuCoins, user }) {
                       marginRight: '1rem',
                       fontWeight: '800',
                       maxHeight: '40px',
-                      fontSize: '18px'
+                      fontSize: '14px'
                     }}
                   >
                     <GetAppIcon />
@@ -585,6 +602,7 @@ export default function PoolPage({ pecuCoins, user }) {
                           {` ${convertToInternationalCurrencySystem(
                             pool?.project_token_amount
                           )}`}
+                          ,{' '}
                           {/* <br></br>$
                         {convertToInternationalCurrencySystem(
                           token.investementAmount
