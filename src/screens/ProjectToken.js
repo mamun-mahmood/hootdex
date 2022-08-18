@@ -162,7 +162,16 @@ export default function ProjectToken({ pecuCoins, user }) {
                     fontFamily: 'Inter var sans-serif'
                   }}
                 >
-                  {token?.token_symbol}
+                  {token?.token_name}
+                  <span
+                    style={{
+                      fontSize: '22px',
+                      color: 'rgb(195, 197, 203)',
+                      margin: '0 7px 0 7px '
+                    }}
+                  >
+                    ({token?.token_symbol})
+                  </span>
                 </p>
               </div>
               <div
@@ -278,7 +287,14 @@ export default function ProjectToken({ pecuCoins, user }) {
                   <p className="token-page-t1 mb-1">24h Trading Vol</p>
                   <p className="token-page-t2 mb-1">
                     {/* {convertToInternationalCurrencySystem(data?.initialFinal)} */}
-                    00
+                    0.00
+                  </p>
+                </div>
+                <div style={{ marginBottom: '1rem' }}>
+                  <p className="token-page-t1 mb-1">7d Trading Vol</p>
+                  <p className="token-page-t2 mb-1">
+                    0.00
+                    {/* {convertToInternationalCurrencySystem(data?.initialFinal)} */}
                   </p>
                 </div>
                 <div style={{ marginBottom: '1rem' }}>

@@ -170,6 +170,9 @@ export default function PoolPage({ pecuCoins, user }) {
                       fontWeight: '500',
                       color: 'white'
                     }}
+                    state={{
+                      token_price: pool?.project_token_price + priceProjectToken
+                    }}
                   >
                     {pool?.project_token_symbol}{' '}
                   </Link>
@@ -229,6 +232,9 @@ export default function PoolPage({ pecuCoins, user }) {
                       fontFamily: 'Inter var sans-serif'
                     }}
                     to={`/project-token/${pool?.project_token_symbol}`}
+                    state={{
+                      token_price: pool?.project_token_price + priceProjectToken
+                    }}
                   >
                     {pool?.project_token_symbol}
                   </Link>

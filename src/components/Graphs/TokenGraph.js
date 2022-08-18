@@ -71,18 +71,21 @@ const TokenGraph = ({ id, pool, currentValue }) => {
           <p
             className={`${chartBtn === 1 && 'chart_btn_selected'} chart_btn`}
             onClick={() => setChartBtn(1)}
+            style={{ fontSize: '10px' }}
           >
             Volume
           </p>
           <p
             className={`${chartBtn === 2 && 'chart_btn_selected'} chart_btn`}
             onClick={() => setChartBtn(2)}
+            style={{ fontSize: '10px' }}
           >
             TVL
           </p>
           <p
             className={`${chartBtn === 3 && 'chart_btn_selected'} chart_btn`}
             onClick={() => setChartBtn(3)}
+            style={{ fontSize: '10px' }}
           >
             Price
           </p>
