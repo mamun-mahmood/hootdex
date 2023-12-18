@@ -1,6 +1,6 @@
 [Live](https://www.hootdex.net/)
 
-# WhiteBoard App
+# Hootdex
 
 ![App Screen](./Screenshot from 2023-12-03 23-58-34.png)
 ![App Screen](./Screenshot from 2023-12-03 23-58-47.png)
