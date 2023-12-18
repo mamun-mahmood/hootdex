@@ -2,9 +2,9 @@
 
 # Hootdex
 
-![App Screen](./Screenshot from 2023-12-03 23-58-34.png)
-![App Screen](./Screenshot from 2023-12-03 23-58-47.png)
-![App Screen](./Screenshot from 2023-12-03 23-59-15.png)
+![App Screen](./public/p1.png)
+![App Screen](./public/p2.png)
+![App Screen](./public/p3.png)
 
 ## Introduction
 
